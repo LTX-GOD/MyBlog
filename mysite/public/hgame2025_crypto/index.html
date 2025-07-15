@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Hgame2025_crypto - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/hgame2025_crypto/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="Hgame2025_crypto">
+  <meta property="og:description" content="week1 sieve task
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 from Crypto.Util.number import bytes_to_long from sympy import nextprime FLAG = b&#39;hgame{xxxxxxxxxxxxxxxxxxxxxx}&#39; m = bytes_to_long(FLAG) def trick(k): if k &gt; 1: mul = prod(range(1,k)) if k - mul % k - 1 == 0: return euler_phi(k) &#43; trick(k-1) &#43; 1 else: return euler_phi(k) &#43; trick(k-1) else: return 1 e = 65537 p = q = nextprime(trick(e^2//6)&lt;&lt;128) n = p * q enc = pow(m,e,n) print(f&#39;{enc=}&#39;) trick计算的是小于k的所有数的欧拉函数之和加上素数的个数 这个k - mul % k - 1 == 0成立代表此时为素数(威尔逊定理) 实现可以用sage里面的phi，这里都用cpp写了，快一点">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-02-19T10:38:09+08:00">
+    <meta property="article:modified_time" content="2025-02-19T10:38:09+08:00">
+    <meta property="article:tag" content="Crypto">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="Hgame2025_crypto">
+  <meta name="twitter:description" content="week1 sieve task
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 from Crypto.Util.number import bytes_to_long from sympy import nextprime FLAG = b&#39;hgame{xxxxxxxxxxxxxxxxxxxxxx}&#39; m = bytes_to_long(FLAG) def trick(k): if k &gt; 1: mul = prod(range(1,k)) if k - mul % k - 1 == 0: return euler_phi(k) &#43; trick(k-1) &#43; 1 else: return euler_phi(k) &#43; trick(k-1) else: return 1 e = 65537 p = q = nextprime(trick(e^2//6)&lt;&lt;128) n = p * q enc = pow(m,e,n) print(f&#39;{enc=}&#39;) trick计算的是小于k的所有数的欧拉函数之和加上素数的个数 这个k - mul % k - 1 == 0成立代表此时为素数(威尔逊定理) 实现可以用sage里面的phi，这里都用cpp写了，快一点">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/hgame2025_crypto/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/vuln_hmv5/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/vuln_hmv6/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hgame2025_crypto",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/hgame2025_crypto\/"
+        },"genre": "posts","keywords": "crypto","wordcount":  3494 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/hgame2025_crypto\/","datePublished": "2025-02-19T10:38:09+08:00","dateModified": "2025-02-19T10:38:09+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Hgame2025_crypto</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>CTF</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-19">2025-02-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3494 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;<span id="/hgame2025_crypto/" class="leancloud_visitors" data-flag-title="Hgame2025_crypto">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#week1">week1</a>
+      <ul>
+        <li><a href="#sieve">sieve</a></li>
+        <li><a href="#ezbag">ezbag</a></li>
+        <li><a href="#surperrsa">surperrsa</a></li>
+      </ul>
+    </li>
+    <li><a href="#week2">week2</a>
+      <ul>
+        <li><a href="#ancient-recall">Ancient Recall</a></li>
+        <li><a href="#intergalactic-bound">Intergalactic Bound</a></li>
+        <li><a href="#spica">SPiCa</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="week1">week1</h2>
+<h3 id="sieve">sieve</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import bytes_to_long
+</span></span><span class="line"><span class="cl">from sympy import nextprime
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">FLAG = b&#39;hgame{xxxxxxxxxxxxxxxxxxxxxx}&#39;
+</span></span><span class="line"><span class="cl">m = bytes_to_long(FLAG)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def trick(k):
+</span></span><span class="line"><span class="cl">    if k &gt; 1:
+</span></span><span class="line"><span class="cl">        mul = prod(range(1,k)) 
+</span></span><span class="line"><span class="cl">        if k - mul % k - 1 == 0:
+</span></span><span class="line"><span class="cl">            return euler_phi(k) + trick(k-1) + 1
+</span></span><span class="line"><span class="cl">        else:
+</span></span><span class="line"><span class="cl">            return euler_phi(k) + trick(k-1)
+</span></span><span class="line"><span class="cl">    else:
+</span></span><span class="line"><span class="cl">        return 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">p = q = nextprime(trick(e^2//6)&lt;&lt;128)
+</span></span><span class="line"><span class="cl">n = p * q
+</span></span><span class="line"><span class="cl">enc = pow(m,e,n)
+</span></span><span class="line"><span class="cl">print(f&#39;{enc=}&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>trick计算的是小于k的所有数的欧拉函数之和加上素数的个数
+这个k - mul % k - 1 == 0成立代表此时为素数(威尔逊定理)
+实现可以用sage里面的phi，这里都用cpp写了，快一点</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ll</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">715849728</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">isPrime</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">isPrime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">isPrime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 处理2的倍数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">isPrime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 只处理奇数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">isPrime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">isPrime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ll</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">isPrime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">count</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//37030583
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define ll long long
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mf">1e7</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ll</span> <span class="n">phi</span><span class="p">[</span><span class="n">N</span> <span class="o">+</span> <span class="mi">10</span><span class="p">],</span> <span class="n">prime</span><span class="p">[</span><span class="n">N</span> <span class="o">+</span> <span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">tot</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">mark</span><span class="p">[</span><span class="n">N</span> <span class="o">+</span> <span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">getphi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">mark</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">prime</span><span class="p">[</span><span class="o">++</span><span class="n">tot</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 性质1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">tot</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mark</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">phi</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">];</span> <span class="c1">// 性质2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="n">phi</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">phi</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">ll</span> <span class="nf">work</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">phi</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pos</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// 向下取整，很长一段是相同的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">work</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">ll</span><span class="p">)</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">715849728</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">getphi</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld&#34;</span><span class="p">,</span> <span class="n">work</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 155763335410704472
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后去求解flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from sympy import nextprime
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">trick_result = 155763335410704472+37030583
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = q = nextprime(trick_result&lt;&lt;128)
+</span></span><span class="line"><span class="cl">n=p**2
+</span></span><span class="line"><span class="cl">phi=p**2-p
+</span></span><span class="line"><span class="cl">enc=2449294097474714136530140099784592732766444481665278038069484466665506153967851063209402336025065476172617376546
+</span></span><span class="line"><span class="cl">d=inverse(e,phi)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(int(pow(enc,d,n))))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ezbag">ezbag</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">from Crypto.Util.Padding import pad
+</span></span><span class="line"><span class="cl">from secrets import flag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">list = []
+</span></span><span class="line"><span class="cl">bag = []
+</span></span><span class="line"><span class="cl">p=random.getrandbits(64)
+</span></span><span class="line"><span class="cl">assert len(bin(p)[2:])==64
+</span></span><span class="line"><span class="cl">for i in range(4):
+</span></span><span class="line"><span class="cl">    t = p
+</span></span><span class="line"><span class="cl">    a=[getPrime(32) for _ in range(64)]
+</span></span><span class="line"><span class="cl">    b=0
+</span></span><span class="line"><span class="cl">    for i in a:
+</span></span><span class="line"><span class="cl">        temp=t%2
+</span></span><span class="line"><span class="cl">        b+=temp*i
+</span></span><span class="line"><span class="cl">        t=t&gt;&gt;1
+</span></span><span class="line"><span class="cl">    list.append(a)
+</span></span><span class="line"><span class="cl">    bag.append(b)
+</span></span><span class="line"><span class="cl">print(f&#39;list={list}&#39;)
+</span></span><span class="line"><span class="cl">print(f&#39;bag={bag}&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key = hashlib.sha256(str(p).encode()).digest()
+</span></span><span class="line"><span class="cl">cipher = AES.new(key, AES.MODE_ECB)
+</span></span><span class="line"><span class="cl">flag = pad(flag,16)
+</span></span><span class="line"><span class="cl">ciphertext = cipher.encrypt(flag)
+</span></span><span class="line"><span class="cl">print(f&#34;ciphertext={ciphertext}&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>本来想着直接用通杀，直接构造试试，发现出不来，估计是密度问题，给两组数据应该也是因为这个，那么就把第二组数据扔最下面新的一行，用BKZ即可
+看stone的wp，好像还有更简单的方法，我也写上来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">list=
+</span></span><span class="line"><span class="cl">bag=
+</span></span><span class="line"><span class="cl">ciphertext=
+</span></span><span class="line"><span class="cl">L=Matrix(ZZ,65,68)
+</span></span><span class="line"><span class="cl">for i in range(64):
+</span></span><span class="line"><span class="cl">    L[i,i]=2
+</span></span><span class="line"><span class="cl">    L[i,-1]=list[0][-i-1]
+</span></span><span class="line"><span class="cl">    L[i,-2]=list[1][-i-1]
+</span></span><span class="line"><span class="cl">    L[i,-3]=list[2][-i-1]
+</span></span><span class="line"><span class="cl">    L[i,-4]=list[3][-i-1]
+</span></span><span class="line"><span class="cl">L[-1,:]=1
+</span></span><span class="line"><span class="cl">L[-1,-1]=bag[0]
+</span></span><span class="line"><span class="cl">L[-1,-2]=bag[1]
+</span></span><span class="line"><span class="cl">L[-1,-3]=bag[2]
+</span></span><span class="line"><span class="cl">L[-1,-4]=bag[3]
+</span></span><span class="line"><span class="cl">x=L.BKZ()
+</span></span><span class="line"><span class="cl">print(x[0])
+</span></span><span class="line"><span class="cl">p=&#39;&#39;
+</span></span><span class="line"><span class="cl">for i in x[0][:64]:
+</span></span><span class="line"><span class="cl">    if i==x[0][0]:
+</span></span><span class="line"><span class="cl">        p+=&#39;1&#39;
+</span></span><span class="line"><span class="cl">    else:
+</span></span><span class="line"><span class="cl">        p+=&#39;0&#39;
+</span></span><span class="line"><span class="cl">p=int(p,2)
+</span></span><span class="line"><span class="cl">key = hashlib.sha256(str(p).encode()).digest()
+</span></span><span class="line"><span class="cl">cipher = AES.new(key, AES.MODE_ECB)
+</span></span><span class="line"><span class="cl">flag = cipher.decrypt(ciphertext)
+</span></span><span class="line"><span class="cl">print(flag)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">            |           |
+</span></span><span class="line"><span class="cl">|p0 p1 ...|*|a0 a1 a2 a3| = |b0 b1 ...|
+</span></span><span class="line"><span class="cl">            |           |
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">A= matrix(ZZ,list).T
+</span></span><span class="line"><span class="cl">B= matrix(ZZ,bag)
+</span></span><span class="line"><span class="cl">M= block_matrix(ZZ,[[1,A],[0,B]])
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">v = M.BKZ()
+</span></span><span class="line"><span class="cl">a = -1*v[-1]
+</span></span><span class="line"><span class="cl">p =  int(&#39;&#39;.join(map(str,a[:-4][::-1])),2)
+</span></span><span class="line"><span class="cl">#17739748707559623655
+</span></span><span class="line"><span class="cl">key = hashlib.sha256(str(p).encode()).digest()
+</span></span><span class="line"><span class="cl">cipher = AES.new(key, AES.MODE_ECB)
+</span></span><span class="line"><span class="cl">cipher.decrypt(ciphertext)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="surperrsa">surperrsa</h3>
+<p>好像是中间改了一次题？
+task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">from sympy import prime
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">FLAG=b&#39;hgame{xxxxxxxxxxxxxxxxxx}&#39;
+</span></span><span class="line"><span class="cl">e=0x10001
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def primorial(num):
+</span></span><span class="line"><span class="cl">    result = 1
+</span></span><span class="line"><span class="cl">    for i in range(1, num + 1):
+</span></span><span class="line"><span class="cl">        result *= prime(i)
+</span></span><span class="line"><span class="cl">    return result
+</span></span><span class="line"><span class="cl">M=primorial(random.choice([39,71,126]))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def gen_key():
+</span></span><span class="line"><span class="cl">    while True:
+</span></span><span class="line"><span class="cl">        k = getPrime(random.randint(20,40))
+</span></span><span class="line"><span class="cl">        a = getPrime(random.randint(20,60))
+</span></span><span class="line"><span class="cl">        p = k * M + pow(e, a, M)
+</span></span><span class="line"><span class="cl">        if isPrime(p):
+</span></span><span class="line"><span class="cl">            return p
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p,q=gen_key(),gen_key()
+</span></span><span class="line"><span class="cl">n=p*q
+</span></span><span class="line"><span class="cl">m=bytes_to_long(FLAG)
+</span></span><span class="line"><span class="cl">enc=pow(m,e,n)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(f&#39;{n=}&#39;)
+</span></span><span class="line"><span class="cl">print(f&#39;{enc=}&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>改了之后就是最经典的roca问题啦，直接用脚本，改一下参数就行，微调一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#roca脚本</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Util</span><span class="o">.</span><span class="n">number</span> <span class="n">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Coppersmith-howgrave</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">coppersmith_howgrave</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#Check if parameters are within bounds</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">beta</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;beta not in (0, 1]&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">assert</span> <span class="n">f</span><span class="o">.</span><span class="n">is_monic</span><span class="p">(),</span> <span class="s1">&#39;f is not monic&#39;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">#get delta and the matrix dimension</span>
+</span></span><span class="line"><span class="cl">    <span class="n">delta</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">*</span> <span class="n">m</span> <span class="o">+</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">#Building the polynomials</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fZ</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">change_ring</span><span class="p">(</span><span class="n">ZZ</span><span class="p">)</span> <span class="c1">#change the ring from Zmod(N) to ZZ</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">fZ</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">gen</span><span class="p">()</span>  <span class="c1">#make x a variable in ZZ</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f_list</span> <span class="o">=</span> <span class="p">[]</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">delta</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">#We want them ordered that&#39;s we have N^(m-ii1) and fZ^ii</span>
+</span></span><span class="line"><span class="cl">            <span class="n">f_list</span><span class="o">.</span><span class="n">append</span><span class="p">(((</span><span class="n">x</span><span class="o">*</span><span class="n">R</span><span class="p">)</span><span class="o">^</span><span class="n">j</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="o">^</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">ii</span><span class="p">)</span> <span class="o">*</span> <span class="n">fZ</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">R</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span> <span class="c1">#the g_{i,j}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="o">*</span><span class="n">R</span><span class="p">)</span><span class="o">^</span><span class="n">ii</span> <span class="o">*</span> <span class="n">fZ</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">R</span><span class="p">)</span><span class="o">^</span><span class="n">m</span><span class="p">)</span> <span class="c1">#the h_i</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="c1">#Build the lattice</span>
+</span></span><span class="line"><span class="cl">    <span class="n">B</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">(</span><span class="n">ZZ</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># n = delta * m + t</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">B</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">f_list</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">    <span class="c1">#LLL it</span>
+</span></span><span class="line"><span class="cl">    <span class="n">B_lll</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">LLL</span><span class="p">(</span><span class="n">early_red</span> <span class="o">=</span> <span class="n">True</span><span class="p">,</span> <span class="n">use_siegel</span> <span class="o">=</span> <span class="n">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">#take the shortest vector to construct our new poly g</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">g</span> <span class="o">+=</span> <span class="n">x</span><span class="o">^</span><span class="n">ii</span> <span class="o">*</span> <span class="n">B_lll</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">ii</span><span class="p">]</span> <span class="o">/</span> <span class="n">R</span><span class="o">^</span><span class="n">ii</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">#factor the polynomial</span>
+</span></span><span class="line"><span class="cl">    <span class="n">potential_roots</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">roots</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#print(&#39;potential roots:&#39;, potential_roots)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">#we don&#39;t need to do this Since our we test in our roca function</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     #test roots</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     roots = []</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     for r in potential_roots:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#         if r[0].is_integer():</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#             res = fZ(ZZ(r[0]))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#             if gcd(N, res) &gt;= N^beta:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#                 roots.append(ZZ(r[0]))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#print(&#39;roots:&#39;, roots)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">potential_roots</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#return roots</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">roca</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M_prime</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span> <span class="o">=</span> <span class="ne">int</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c_prime</span> <span class="o">=</span> <span class="n">discrete_log</span><span class="p">(</span><span class="n">Zmod</span><span class="p">(</span><span class="n">M_prime</span><span class="p">)(</span><span class="n">N</span><span class="p">),</span> <span class="n">Zmod</span><span class="p">(</span><span class="n">M_prime</span><span class="p">)(</span><span class="n">g</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ord_M_prime</span> <span class="o">=</span> <span class="n">Zmod</span><span class="p">(</span><span class="n">M_prime</span><span class="p">)(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">multiplicative_order</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">#search boundaries</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bottom</span> <span class="o">=</span> <span class="n">c_prime</span> <span class="o">//</span> <span class="mi">2</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">top</span> <span class="o">=</span><span class="p">(</span><span class="n">c_prime</span> <span class="o">+</span> <span class="n">ord_M_prime</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> 
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;numbers to check&#39;</span><span class="p">,</span>   <span class="n">top</span> <span class="o">-</span> <span class="n">bottom</span><span class="p">,</span> <span class="s1">&#39; between &#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">bottom</span><span class="p">,</span> <span class="n">top</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">#constants for coppersmith</span>
+</span></span><span class="line"><span class="cl">    <span class="n">P</span><span class="o">.&lt;</span><span class="n">x</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">PolynomialRing</span><span class="p">(</span><span class="n">Zmod</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">beta</span> <span class="o">/</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span> <span class="o">=</span> <span class="nb">floor</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">N</span><span class="o">^</span><span class="n">beta</span> <span class="o">/</span> <span class="n">M_prime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">#the search</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">bottom</span><span class="p">,</span> <span class="n">top</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#count iterations</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        <span class="c1">#construct polynomial</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="ne">int</span><span class="p">((</span><span class="n">inverse_mod</span><span class="p">(</span><span class="n">M_prime</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span> <span class="o">*</span> <span class="ne">int</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">M_prime</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">#roots = f.small_roots(X, beta, epsilon) #coppersmith</span>
+</span></span><span class="line"><span class="cl">        <span class="n">roots</span> <span class="o">=</span> <span class="n">coppersmith_howgrave</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#check solutions</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">k_prime</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="ne">int</span><span class="p">(</span><span class="n">k_prime</span> <span class="o">*</span> <span class="n">M_prime</span><span class="p">)</span> <span class="o">+</span> <span class="ne">int</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">M_prime</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">N</span> <span class="o">%</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">N</span><span class="o">//</span><span class="n">p</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span><span class="o">=</span><span class="mi">787190064146025392337631797277972559696758830083248285626115725258876808514690830730702705056550628756290183000265129340257928314614351263713241</span>
+</span></span><span class="line"><span class="cl"><span class="n">e</span><span class="o">=</span><span class="mi">65537</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_M1_m_t_values</span><span class="p">(</span><span class="n">key_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="mi">512</span> <span class="o">&lt;=</span> <span class="n">key_size</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl">        <span class="n">M1</span><span class="o">=</span><span class="mh">0x1b3e6c9433a7735fa5fc479ffe4027e13bea</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="mi">1024</span> <span class="o">&lt;=</span> <span class="n">key_size</span> <span class="o">&lt;</span> <span class="mi">2048</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">        <span class="n">M1</span><span class="o">=</span><span class="mh">0x24683144f41188c2b1d6a217f81f12888e4e6513c43f3f60e72af8bd9728807483425d1e</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="mi">2048</span> <span class="o">&lt;=</span> <span class="n">key_size</span> <span class="o">&lt;</span> <span class="mi">3072</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl">        <span class="n">M1</span><span class="o">=</span><span class="mh">0x016928dc3e47b44daf289a60e80e1fc6bd7648d7ef60d1890f3e0a9455efe0abdb7a748131413cebd2e36a76a355c1b664be462e115ac330f9c13344f8f3d1034a02c23396e6</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="mi">3072</span> <span class="o">&lt;=</span> <span class="n">key_size</span> <span class="o">&lt;</span> <span class="mi">4096</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="mi">25</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">M1</span><span class="p">,</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">M_prime</span><span class="p">,</span><span class="n">m</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">get_M1_m_t_values</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">roca</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">M_prime</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">assert</span><span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="n">q</span><span class="o">==</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">enc</span><span class="o">=</span><span class="mi">365164788284364079752299551355267634718233656769290285760796137651769990253028664857272749598268110892426683253579840758552222893644373690398408</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="ne">int</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">enc</span><span class="p">,</span><span class="n">inverse_mod</span><span class="p">(</span><span class="n">e</span><span class="p">,(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span><span class="n">n</span><span class="p">))))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="week2">week2</h2>
+<h3 id="ancient-recall">Ancient Recall</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Major_Arcana = [&#34;The Fool&#34;, &#34;The Magician&#34;, &#34;The High Priestess&#34;,&#34;The Empress&#34;, &#34;The Emperor&#34;, &#34;The Hierophant&#34;,&#34;The Lovers&#34;, &#34;The Chariot&#34;, &#34;Strength&#34;,&#34;The Hermit&#34;, &#34;Wheel of Fortune&#34;, &#34;Justice&#34;,&#34;The Hanged Man&#34;, &#34;Death&#34;, &#34;Temperance&#34;,&#34;The Devil&#34;, &#34;The Tower&#34;, &#34;The Star&#34;,&#34;The Moon&#34;, &#34;The Sun&#34;, &#34;Judgement&#34;,&#34;The World&#34;]
+</span></span><span class="line"><span class="cl">wands = [&#34;Ace of Wands&#34;, &#34;Two of Wands&#34;, &#34;Three of Wands&#34;, &#34;Four of Wands&#34;, &#34;Five of Wands&#34;, &#34;Six of Wands&#34;, &#34;Seven of Wands&#34;, &#34;Eight of Wands&#34;, &#34;Nine of Wands&#34;, &#34;Ten of Wands&#34;, &#34;Page of Wands&#34;, &#34;Knight of Wands&#34;, &#34;Queen of Wands&#34;, &#34;King of Wands&#34;]
+</span></span><span class="line"><span class="cl">cups = [&#34;Ace of Cups&#34;, &#34;Two of Cups&#34;, &#34;Three of Cups&#34;, &#34;Four of Cups&#34;, &#34;Five of Cups&#34;, &#34;Six of Cups&#34;, &#34;Seven of Cups&#34;, &#34;Eight of Cups&#34;, &#34;Nine of Cups&#34;, &#34;Ten of Cups&#34;, &#34;Page of Cups&#34;, &#34;Knight of Cups&#34;, &#34;Queen of Cups&#34;, &#34;King of Cups&#34;]
+</span></span><span class="line"><span class="cl">swords = [&#34;Ace of Swords&#34;, &#34;Two of Swords&#34;, &#34;Three of Swords&#34;, &#34;Four of Swords&#34;, &#34;Five of Swords&#34;, &#34;Six of Swords&#34;, &#34;Seven of Swords&#34;, &#34;Eight of Swords&#34;, &#34;Nine of Swords&#34;, &#34;Ten of Swords&#34;, &#34;Page of Swords&#34;, &#34;Knight of Swords&#34;, &#34;Queen of Swords&#34;, &#34;King of Swords&#34;]
+</span></span><span class="line"><span class="cl">pentacles = [&#34;Ace of Pentacles&#34;, &#34;Two of Pentacles&#34;, &#34;Three of Pentacles&#34;, &#34;Four of Pentacles&#34;, &#34;Five of Pentacles&#34;, &#34;Six of Pentacles&#34;, &#34;Seven of Pentacles&#34;, &#34;Eight of Pentacles&#34;, &#34;Nine of Pentacles&#34;, &#34;Ten of Pentacles&#34;, &#34;Page of Pentacles&#34;, &#34;Knight of Pentacles&#34;, &#34;Queen of Pentacles&#34;, &#34;King of Pentacles&#34;]
+</span></span><span class="line"><span class="cl">Minor_Arcana = wands + cups + swords + pentacles
+</span></span><span class="line"><span class="cl">tarot = Major_Arcana + Minor_Arcana
+</span></span><span class="line"><span class="cl">reversals = [0,-1]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Value = []
+</span></span><span class="line"><span class="cl">cards = []
+</span></span><span class="line"><span class="cl">YOUR_initial_FATE = []
+</span></span><span class="line"><span class="cl">while len(YOUR_initial_FATE)&lt;5:
+</span></span><span class="line"><span class="cl">    card = random.choice(tarot)
+</span></span><span class="line"><span class="cl">    if card not in cards:
+</span></span><span class="line"><span class="cl">        cards.append(card)
+</span></span><span class="line"><span class="cl">        if card in Major_Arcana:
+</span></span><span class="line"><span class="cl">            k = random.choice(reversals)
+</span></span><span class="line"><span class="cl">            Value.append(tarot.index(card)^k)
+</span></span><span class="line"><span class="cl">            if k == -1:
+</span></span><span class="line"><span class="cl">                YOUR_initial_FATE.append(&#34;re-&#34;+card)
+</span></span><span class="line"><span class="cl">            else:
+</span></span><span class="line"><span class="cl">                YOUR_initial_FATE.append(card)
+</span></span><span class="line"><span class="cl">        else:
+</span></span><span class="line"><span class="cl">            Value.append(tarot.index(card))
+</span></span><span class="line"><span class="cl">            YOUR_initial_FATE.append(card)
+</span></span><span class="line"><span class="cl">    else:
+</span></span><span class="line"><span class="cl">        continue
+</span></span><span class="line"><span class="cl">print(&#34;Oops!lets reverse 1T!&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">FLAG=(&#34;hgame{&#34;+&#34;&amp;&#34;.join(YOUR_initial_FATE)+&#34;}&#34;).replace(&#34; &#34;,&#34;_&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">YOUR_final_Value = Value
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def Fortune_wheel(FATE):
+</span></span><span class="line"><span class="cl">    FATEd = [FATE[i]+FATE[(i+1)%5] for i in range(len(FATE))]
+</span></span><span class="line"><span class="cl">    return FATEd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i in range(250):
+</span></span><span class="line"><span class="cl">    YOUR_final_Value = Fortune_wheel(YOUR_final_Value)
+</span></span><span class="line"><span class="cl">print(YOUR_final_Value)
+</span></span><span class="line"><span class="cl">YOUR_final_FATE = []
+</span></span><span class="line"><span class="cl">for i in YOUR_final_Value:
+</span></span><span class="line"><span class="cl">    YOUR_final_FATE.append(tarot[i%78])
+</span></span><span class="line"><span class="cl">print(&#34;Your destiny changed!\n&#34;,&#34;,&#34;.join(YOUR_final_FATE))
+</span></span><span class="line"><span class="cl">print(&#34;oh,now you GET th3 GOOd lU&gt;k,^^&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">Oops!lets reverse 1T!
+</span></span><span class="line"><span class="cl">[2532951952066291774890498369114195917240794704918210520571067085311474675019, 2532951952066291774890327666074100357898023013105443178881294700381509795270, 2532951952066291774890554459287276604903130315859258544173068376967072335730, 2532951952066291774890865328241532885391510162611534514014409174284299139015, 2532951952066291774890830662608134156017946376309989934175833913921142609334]
+</span></span><span class="line"><span class="cl">Your destiny changed!
+</span></span><span class="line"><span class="cl"> Eight of Cups,Ace of Cups,Strength,The Chariot,Five of Swords
+</span></span><span class="line"><span class="cl">oh,now you GET th3 GOOd lU&gt;k,^^
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>感觉是纯纯的脚本题,上一个是abcde，下一个就是a+b,b+c,c+d,d+e,e+a，那么e+a-a-b+b+c-c-d+d+e=2e，一个一个还原就行了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Major_Arcana = [&#34;The Fool&#34;, &#34;The Magician&#34;, &#34;The High Priestess&#34;, &#34;The Empress&#34;, &#34;The Emperor&#34;, &#34;The Hierophant&#34;, &#34;The Lovers&#34;, &#34;The Chariot&#34;, &#34;Strength&#34;, &#34;The Hermit&#34;, &#34;Wheel of Fortune&#34;, &#34;Justice&#34;, &#34;The Hanged Man&#34;, &#34;Death&#34;, &#34;Temperance&#34;, &#34;The Devil&#34;, &#34;The Tower&#34;, &#34;The Star&#34;, &#34;The Moon&#34;, &#34;The Sun&#34;, &#34;Judgement&#34;, &#34;The World&#34;]
+</span></span><span class="line"><span class="cl">Minor_Arcana = [&#34;Ace of Wands&#34;, &#34;Two of Wands&#34;, &#34;Three of Wands&#34;, &#34;Four of Wands&#34;, &#34;Five of Wands&#34;, &#34;Six of Wands&#34;, &#34;Seven of Wands&#34;, &#34;Eight of Wands&#34;, &#34;Nine of Wands&#34;, &#34;Ten of Wands&#34;, &#34;Page of Wands&#34;, &#34;Knight of Wands&#34;, &#34;Queen of Wands&#34;, &#34;King of Wands&#34;,
+</span></span><span class="line"><span class="cl">                &#34;Ace of Cups&#34;, &#34;Two of Cups&#34;, &#34;Three of Cups&#34;, &#34;Four of Cups&#34;, &#34;Five of Cups&#34;, &#34;Six of Cups&#34;, &#34;Seven of Cups&#34;, &#34;Eight of Cups&#34;, &#34;Nine of Cups&#34;, &#34;Ten of Cups&#34;, &#34;Page of Cups&#34;, &#34;Knight of Cups&#34;, &#34;Queen of Cups&#34;, &#34;King of Cups&#34;,
+</span></span><span class="line"><span class="cl">                &#34;Ace of Swords&#34;, &#34;Two of Swords&#34;, &#34;Three of Swords&#34;, &#34;Four of Swords&#34;, &#34;Five of Swords&#34;, &#34;Six of Swords&#34;, &#34;Seven of Swords&#34;, &#34;Eight of Swords&#34;, &#34;Nine of Swords&#34;, &#34;Ten of Swords&#34;, &#34;Page of Swords&#34;, &#34;Knight of Swords&#34;, &#34;Queen of Swords&#34;, &#34;King of Swords&#34;,
+</span></span><span class="line"><span class="cl">                &#34;Ace of Pentacles&#34;, &#34;Two of Pentacles&#34;, &#34;Three of Pentacles&#34;, &#34;Four of Pentacles&#34;, &#34;Five of Pentacles&#34;, &#34;Six of Pentacles&#34;, &#34;Seven of Pentacles&#34;, &#34;Eight of Pentacles&#34;, &#34;Nine of Pentacles&#34;, &#34;Ten of Pentacles&#34;, &#34;Page of Pentacles&#34;, &#34;Knight of Pentacles&#34;, &#34;Queen of Pentacles&#34;, &#34;King of Pentacles&#34;]
+</span></span><span class="line"><span class="cl">tarot = Major_Arcana + Minor_Arcana
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">YOUR_final_Value = [2532951952066291774890498369114195917240794704918210520571067085311474675019,
+</span></span><span class="line"><span class="cl">                    2532951952066291774890327666074100357898023013105443178881294700381509795270,
+</span></span><span class="line"><span class="cl">                    2532951952066291774890554459287276604903130315859258544173068376967072335730,
+</span></span><span class="line"><span class="cl">                    2532951952066291774890865328241532885391510162611534514014409174284299139015,
+</span></span><span class="line"><span class="cl">                    2532951952066291774890830662608134156017946376309989934175833913921142609334]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def reverse_Fortune_wheel(FATEd):
+</span></span><span class="line"><span class="cl">    f0 = (FATEd[4] - FATEd[3] + FATEd[2] - FATEd[1] + FATEd[0]) // 2
+</span></span><span class="line"><span class="cl">    return [f0, FATEd[0] - f0, FATEd[1] - FATEd[0] + f0, FATEd[2] - FATEd[1] + FATEd[0] - f0, FATEd[3] - FATEd[2] + FATEd[1] - FATEd[0] + f0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for _ in range(250):
+</span></span><span class="line"><span class="cl">    YOUR_final_Value = reverse_Fortune_wheel(YOUR_final_Value)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">YOUR_initial_FATE = [&#39;re-&#39; + tarot[i ^ -1] if i &lt; 0 else tarot[i] for i in YOUR_final_Value]
+</span></span><span class="line"><span class="cl">FLAG = f&#34;hgame{{{&#39;&amp;&#39;.join(YOUR_initial_FATE).replace(&#39; &#39;, &#39;_&#39;)}}}&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(FLAG)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="intergalactic-bound">Intergalactic Bound</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">from Crypto.Util.Padding import pad
+</span></span><span class="line"><span class="cl">from random import randint
+</span></span><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">from secrets import flag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def add_THCurve(P, Q):
+</span></span><span class="line"><span class="cl">    if P == (0, 0):
+</span></span><span class="line"><span class="cl">        return Q
+</span></span><span class="line"><span class="cl">    if Q == (0, 0):
+</span></span><span class="line"><span class="cl">        return P
+</span></span><span class="line"><span class="cl">    x1, y1 = P
+</span></span><span class="line"><span class="cl">    x2, y2 = Q
+</span></span><span class="line"><span class="cl">    x3 = (x1 - y1 ** 2 * x2 * y2) * pow(a * x1 * y1 * x2 ** 2 - y2, -1, p) % p
+</span></span><span class="line"><span class="cl">    y3 = (y1 * y2 ** 2 - a * x1 ** 2 * x2) * pow(a * x1 * y1 * x2 ** 2 - y2, -1, p) % p
+</span></span><span class="line"><span class="cl">    return x3, y3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def mul_THCurve(n, P):
+</span></span><span class="line"><span class="cl">    R = (0, 0)
+</span></span><span class="line"><span class="cl">    while n &gt; 0:
+</span></span><span class="line"><span class="cl">        if n % 2 == 1:
+</span></span><span class="line"><span class="cl">            R = add_THCurve(R, P)
+</span></span><span class="line"><span class="cl">        P = add_THCurve(P, P)
+</span></span><span class="line"><span class="cl">        n = n // 2
+</span></span><span class="line"><span class="cl">    return R
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = getPrime(96)
+</span></span><span class="line"><span class="cl">a = randint(1, p)
+</span></span><span class="line"><span class="cl">G = (randint(1,p), randint(1,p))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">d = (a*G[0]^3+G[1]^3+1)%p*inverse(G[0]*G[1],p)%p
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">x = randint(1, p)
+</span></span><span class="line"><span class="cl">Q = mul_THCurve(x, G)
+</span></span><span class="line"><span class="cl">print(f&#34;p = {p}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;G = {G}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;Q = {Q}&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key = hashlib.sha256(str(x).encode()).digest()
+</span></span><span class="line"><span class="cl">cipher = AES.new(key, AES.MODE_ECB)
+</span></span><span class="line"><span class="cl">flag = pad(flag,16)
+</span></span><span class="line"><span class="cl">ciphertext = cipher.encrypt(flag)
+</span></span><span class="line"><span class="cl">print(f&#34;ciphertext={ciphertext}&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">p = 55099055368053948610276786301
+</span></span><span class="line"><span class="cl">G = (19663446762962927633037926740, 35074412430915656071777015320)
+</span></span><span class="line"><span class="cl">Q = (26805137673536635825884330180, 26376833112609309475951186883)
+</span></span><span class="line"><span class="cl">ciphertext=b&#34;k\xe8\xbe\x94\x9e\xfc\xe2\x9e\x97\xe5\xf3\x04&#39;\x8f\xb2\x01T\x06\x88\x04\xeb3Jl\xdd Pk$\x00:\xf5&#34;
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>先把a求出来，后面类似羊城杯,
+<a href="https://tangcuxiaojikuai.xyz/post/689431.html" target="_blank" rel="noopener noreffer ">https://tangcuxiaojikuai.xyz/post/689431.html</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = 55099055368053948610276786301
+</span></span><span class="line"><span class="cl">Gx, Gy = 19663446762962927633037926740, 35074412430915656071777015320
+</span></span><span class="line"><span class="cl">Qx, Qy = 26805137673536635825884330180, 26376833112609309475951186883
+</span></span><span class="line"><span class="cl">G = (19663446762962927633037926740, 35074412430915656071777015320)
+</span></span><span class="line"><span class="cl">Q = (26805137673536635825884330180, 26376833112609309475951186883)
+</span></span><span class="line"><span class="cl">ciphertext=b&#34;k\xe8\xbe\x94\x9e\xfc\xe2\x9e\x97\xe5\xf3\x04&#39;\x8f\xb2\x01T\x06\x88\x04\xeb3Jl\xdd Pk$\x00:\xf5&#34;
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import*
+</span></span><span class="line"><span class="cl">numerator = ((pow(Qy,3,p)+1)*Gx*Gy - (pow(Gy,3,p)+1)*Qx*Qy) % p
+</span></span><span class="line"><span class="cl">denominator = (pow(Gx,3,p)*Qx*Qy - pow(Qx,3,p)*Gx*Gy) % p
+</span></span><span class="line"><span class="cl">a = (numerator * pow(denominator, -1, p)) % p
+</span></span><span class="line"><span class="cl">print(a)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">a=39081810733380615260725035189
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">d = (a*G[0]^3+G[1]^3+1)%p*inverse(G[0]*G[1],p)%p
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">R.&lt;x,y,z&gt; = Zmod(p)[]
+</span></span><span class="line"><span class="cl">cubic = a*x^3 + y^3 + z^3 - d*x*y*z
+</span></span><span class="line"><span class="cl">E = EllipticCurve_from_cubic(cubic,morphism=True)
+</span></span><span class="line"><span class="cl">P = E(G)
+</span></span><span class="line"><span class="cl">Q = E(Q)
+</span></span><span class="line"><span class="cl">r = 60869967041981
+</span></span><span class="line"><span class="cl">m = (r*Q).log(r*P)
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key = hashlib.sha256(str(m).encode()).digest()
+</span></span><span class="line"><span class="cl">cipher = AES.new(key, AES.MODE_ECB)
+</span></span><span class="line"><span class="cl">ciphertext = b&#34;k\xe8\xbe\x94\x9e\xfc\xe2\x9e\x97\xe5\xf3\x04&#39;\x8f\xb2\x01T\x06\x88\x04\xeb3Jl\xdd Pk$\x00:\xf5&#34;
+</span></span><span class="line"><span class="cl">flag = cipher.decrypt(ciphertext)
+</span></span><span class="line"><span class="cl">print(&#34;Flag:&#34;, flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="spica">SPiCa</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import getPrime, long_to_bytes,bytes_to_long
+</span></span><span class="line"><span class="cl">from secrets import flag
+</span></span><span class="line"><span class="cl">from sage.all import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def derive_M(n):
+</span></span><span class="line"><span class="cl">    iota=0.035
+</span></span><span class="line"><span class="cl">    Mbits=int(2 * iota * n^2 + n * log(n,2))
+</span></span><span class="line"><span class="cl">    M = random_prime(2^Mbits, proof = False, lbound = 2^(Mbits - 1))
+</span></span><span class="line"><span class="cl">    return Integer(M)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">m = bytes_to_long(flag).bit_length()
+</span></span><span class="line"><span class="cl">n = 70
+</span></span><span class="line"><span class="cl">p = derive_M(n)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">F = GF(p)
+</span></span><span class="line"><span class="cl">x = random_matrix(F, 1, n)
+</span></span><span class="line"><span class="cl">A = random_matrix(ZZ, n, m, x=0, y=2)
+</span></span><span class="line"><span class="cl">A[randint(0, n-1)] = vector(ZZ, list(bin(bytes_to_long(flag))[2:]))
+</span></span><span class="line"><span class="cl">h = x*A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">with open(&#34;data.txt&#34;, &#34;w&#34;) as file:
+</span></span><span class="line"><span class="cl">    file.write(str(m) + &#34;\n&#34;)
+</span></span><span class="line"><span class="cl">    file.write(str(p) + &#34;\n&#34;)
+</span></span><span class="line"><span class="cl">    for item in h:
+</span></span><span class="line"><span class="cl">        file.write(str(item) + &#34;\n&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>是一个hssp问题，用的https://0xffff.one/d/2077/6 ,没咋理解，但是会写题啦起码（）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">import logging
+</span></span><span class="line"><span class="cl">logging.basicConfig(
+</span></span><span class="line"><span class="cl">    level=logging.DEBUG,
+</span></span><span class="line"><span class="cl">    format=&#34;[%(levelname)s] %(message)s&#34;
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># https://github.com/Neobeo/HackTM2023/blob/main/solve420.sage
+</span></span><span class="line"><span class="cl"># faster LLL reduction to replace `M.LLL()` wiith `flatter(M)`
+</span></span><span class="line"><span class="cl">def flatter(M, **kwds):
+</span></span><span class="line"><span class="cl">    from subprocess import check_output
+</span></span><span class="line"><span class="cl">    from re import findall
+</span></span><span class="line"><span class="cl">    M = matrix(ZZ,M)
+</span></span><span class="line"><span class="cl">    # compile https://github.com/keeganryan/flatter and put it in [imath:0]PATH
+</span></span><span class="line"><span class="cl">    z = &#39;[[&#39; + &#39;]\n[&#39;.join(&#39; &#39;.join(map(str,row)) for row in M) + &#39;]]&#39;
+</span></span><span class="line"><span class="cl">    ret = check_output([&#34;flatter&#34;], input=z.encode())
+</span></span><span class="line"><span class="cl">    return matrix(M.nrows(), M.ncols(), map(int,findall(b&#39;-?\\d+&#39;, ret)))
+</span></span><span class="line"><span class="cl">def checkMatrix(M, wl=[-1, 1]):
+</span></span><span class="line"><span class="cl">  M = [list(_) for _ in list(M)]
+</span></span><span class="line"><span class="cl">  ml = list(set(flatten(M)))
+</span></span><span class="line"><span class="cl">  logging.debug(ml)
+</span></span><span class="line"><span class="cl">  return sorted(ml) == sorted(wl)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def Nguyen_Stern(h, m, n, M):
+</span></span><span class="line"><span class="cl">  B = matrix(ZZ, m)
+</span></span><span class="line"><span class="cl">  B[0, 0] = M
+</span></span><span class="line"><span class="cl">  h0i = Integer(h[0]).inverse_mod(M)
+</span></span><span class="line"><span class="cl">  for i in range(1, m):
+</span></span><span class="line"><span class="cl">    B[i, 0] = - h[i] * h0i
+</span></span><span class="line"><span class="cl">    B[i, i] = 1
+</span></span><span class="line"><span class="cl">  #L = B.BKZ()	# slooooooow
+</span></span><span class="line"><span class="cl">  L = flatter(B)
+</span></span><span class="line"><span class="cl">  logging.info(&#39;flatter done.&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  &#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">  vh = vector(Zmod(M), h)
+</span></span><span class="line"><span class="cl">  logging.debug([vector(Zmod(M), list(l)) * vh  for l in L])
+</span></span><span class="line"><span class="cl">  &#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  Lxo = matrix(ZZ, L[:m-n])
+</span></span><span class="line"><span class="cl">  Lxc = Lxo.right_kernel(algorithm=&#39;pari&#39;).matrix() # faster
+</span></span><span class="line"><span class="cl">  logging.info(&#39;right_kernel done.&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  &#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">  try:
+</span></span><span class="line"><span class="cl">    Lx_real = matrix(ZZ, [xi + [0] * (m - len(xi)) for xi in X])
+</span></span><span class="line"><span class="cl">    rsc = Lxc.row_space()
+</span></span><span class="line"><span class="cl">    logging.debug([xi in rsc for xi in Lx_real])
+</span></span><span class="line"><span class="cl">  except:
+</span></span><span class="line"><span class="cl">    pass
+</span></span><span class="line"><span class="cl">  &#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  e = matrix(ZZ, [1] * m)
+</span></span><span class="line"><span class="cl">  B = block_matrix([[-e], [2*Lxc]])
+</span></span><span class="line"><span class="cl">  Lx = B.BKZ()
+</span></span><span class="line"><span class="cl">  logging.info(&#39;BKZ done.&#39;)
+</span></span><span class="line"><span class="cl">  assert checkMatrix(Lx)
+</span></span><span class="line"><span class="cl">  assert len(set(Lx[0])) == 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  Lx = Lx[1:]
+</span></span><span class="line"><span class="cl">  E = matrix(ZZ, [[1 for c in range(Lxc.ncols())] for r in range(Lxc.nrows())])
+</span></span><span class="line"><span class="cl">  Lx = (Lx + E) / 2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  Lx2 = []
+</span></span><span class="line"><span class="cl">  e = vector(ZZ, [1] * m)
+</span></span><span class="line"><span class="cl">  rsc = Lxc.row_space()
+</span></span><span class="line"><span class="cl">  for lx in Lx:
+</span></span><span class="line"><span class="cl">    if lx in rsc:
+</span></span><span class="line"><span class="cl">      Lx2 += [lx]
+</span></span><span class="line"><span class="cl">      continue
+</span></span><span class="line"><span class="cl">    lx = e - lx
+</span></span><span class="line"><span class="cl">    if lx in rsc:
+</span></span><span class="line"><span class="cl">      Lx2 += [lx]
+</span></span><span class="line"><span class="cl">      continue
+</span></span><span class="line"><span class="cl">    logging.warning(&#39;Something wrong?&#39;)
+</span></span><span class="line"><span class="cl">  Lx = matrix(Zmod(M), Lx2)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  vh = vector(Zmod(M), h)
+</span></span><span class="line"><span class="cl">  va = Lx.solve_left(vh)
+</span></span><span class="line"><span class="cl">  return Lx, va
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">m=247
+</span></span><span class="line"><span class="cl">n=70
+</span></span><span class="line"><span class="cl">M= 
+</span></span><span class="line"><span class="cl">h=
+</span></span><span class="line"><span class="cl">Lx, va = Nguyen_Stern(h, m, n, M)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i in Lx:
+</span></span><span class="line"><span class="cl">  flag=&#39;&#39;
+</span></span><span class="line"><span class="cl">  for j in i:
+</span></span><span class="line"><span class="cl">    flag+=str(j)
+</span></span><span class="line"><span class="cl">  flag=long_to_bytes(int(flag,2))
+</span></span><span class="line"><span class="cl">  if b&#39;hgame&#39; in flag:
+</span></span><span class="line"><span class="cl">    print(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p>题目质量真的挺高的，有些题第一开始不会写，想了好多才发现自己是zz，被自己蠢哭了</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-02-19</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/hgame2025_crypto/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/hgame2025_crypto/" data-title="Hgame2025_crypto" data-hashtags="crypto"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/hgame2025_crypto/" data-hashtag="crypto"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/hgame2025_crypto/" data-title="Hgame2025_crypto"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/hgame2025_crypto/" data-title="Hgame2025_crypto"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/hgame2025_crypto/" data-title="Hgame2025_crypto"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/vuln_hmv5/" class="prev" rel="prev" title="HMV VivifyTech"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>HMV VivifyTech</a>
+            <a href="/vuln_hmv6/" class="next" rel="next" title="HMV Airbind">HMV Airbind<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

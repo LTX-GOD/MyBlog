@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Study Docker - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/study-docker/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="Study Docker">
+  <meta property="og:description" content="中文文档 https://yeasy.gitbook.io/docker_practice
+关于部署 mac可以用docker-desktop，或者是orbstack(这个真的好用xd)，linux就直接指令操作吧。win不推荐，推荐wsl里面搞docker然后映射出来">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-09T08:48:08+08:00">
+    <meta property="article:modified_time" content="2025-06-09T08:48:08+08:00">
+    <meta property="article:tag" content="开发">
+    <meta property="article:tag" content="Study">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="Study Docker">
+  <meta name="twitter:description" content="中文文档 https://yeasy.gitbook.io/docker_practice
+关于部署 mac可以用docker-desktop，或者是orbstack(这个真的好用xd)，linux就直接指令操作吧。win不推荐，推荐wsl里面搞docker然后映射出来">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/study-docker/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/hnctf2025/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/study-k8s/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Study Docker",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/study-docker\/"
+        },"genre": "posts","keywords": "开发, study","wordcount":  1018 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/study-docker\/","datePublished": "2025-06-09T08:48:08+08:00","dateModified": "2025-06-09T08:48:08+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Study Docker</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%AE%B9%E5%99%A8/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>容器</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-09">2025-06-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1018 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/study-docker/" class="leancloud_visitors" data-flag-title="Study Docker">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#中文文档">中文文档</a></li>
+    <li><a href="#关于部署">关于部署</a></li>
+    <li><a href="#基本知识">基本知识</a></li>
+    <li><a href="#composeyaml编写">compose.yaml编写</a>
+      <ul>
+        <li><a href="#顶级元素">顶级元素</a></li>
+      </ul>
+    </li>
+    <li><a href="#dockerfile编写">dockerfile编写</a></li>
+    <li><a href="#动态端口实现">动态端口实现</a>
+      <ul>
+        <li><a href="#动态端口映射">动态端口映射</a></li>
+        <li><a href="#环境变量配置端口">环境变量配置端口</a></li>
+      </ul>
+    </li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#未完结">未完结</a></li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="中文文档">中文文档</h2>
+<p><a href="https://yeasy.gitbook.io/docker_practice" target="_blank" rel="noopener noreffer ">https://yeasy.gitbook.io/docker_practice</a></p>
+<h2 id="关于部署">关于部署</h2>
+<p>mac可以用docker-desktop，或者是orbstack(这个真的好用xd)，linux就直接指令操作吧。win不推荐，推荐wsl里面搞docker然后映射出来</p>
+<h2 id="基本知识">基本知识</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">search</span> <span class="n">nginx</span> <span class="err">寻找镜像</span> <span class="err">有</span><span class="n">ok的是官方的</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">pull</span> <span class="n">nginx</span> <span class="err">直接下载</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">images</span> <span class="err">查看镜像</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">hub</span> <span class="err">镜像仓库</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">rmi删除镜像</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="err">运行</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="n">IMAGE</span> <span class="p">[</span><span class="n">COMMAND</span><span class="p">]</span> <span class="p">[</span><span class="n">ARG</span><span class="o">...</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">d</span><span class="p">:</span> <span class="err">后台运行容器，并返回容器</span><span class="n">ID</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">i</span><span class="p">:</span> <span class="err">以交互模式运行容器，通常与</span> <span class="o">-</span><span class="n">t</span> <span class="err">一起使用。</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">t</span><span class="p">:</span> <span class="err">分配一个伪终端。</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">p</span> <span class="n">HOST_PORT</span><span class="p">:</span><span class="n">CONTAINER_PORT</span><span class="p">:</span> <span class="err">将主机的端口映射到容器的端口。</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">v</span> <span class="n">HOST_DIR</span><span class="p">:</span><span class="n">CONTAINER_DIR</span><span class="p">:</span> <span class="err">将主机目录挂载到容器中。</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">name</span> <span class="n">NAME</span><span class="p">:</span> <span class="err">为容器指定一个名称。</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">e</span> <span class="n">KEY</span><span class="o">=</span><span class="n">VALUE</span><span class="p">:</span> <span class="err">设置环境变量。</span>
+</span></span><span class="line"><span class="cl"><span class="err">示例</span>
+</span></span><span class="line"><span class="cl"><span class="err">运行带有交互终端的</span> <span class="n">Ubuntu</span> <span class="err">容器：</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">ubuntu</span>
+</span></span><span class="line"><span class="cl"><span class="err">在后台运行</span> <span class="n">Nginx</span> <span class="err">容器并映射端口：</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">80</span> <span class="n">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="err">挂载本地目录到容器中：</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">path</span><span class="p">:</span><span class="o">/</span><span class="n">container</span><span class="o">/</span><span class="n">path</span> <span class="n">my</span><span class="o">-</span><span class="n">image</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">ps</span> <span class="err">查看容器</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span> <span class="err">查看所有容器（包括停止的）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">stop</span> <span class="err">停止容器</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">rm</span> <span class="err">删除容器</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">start</span> <span class="err">启动容器</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">stats</span> <span class="err">查看容器状态</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">logs</span> <span class="err">查看容器日志</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">exec</span> <span class="err">进入容器</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">commit</span> <span class="err">创建镜像</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">save</span> <span class="err">保存</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="nb">load</span> <span class="err">加载</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">inspect</span> <span class="n">zsm_2</span> <span class="err">查看容器信息</span><span class="p">(</span><span class="err">主要是</span><span class="n">ip</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">network</span> <span class="n">create</span> <span class="err">创建网络</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">driver</span> <span class="err">指定网络驱动</span><span class="p">(</span><span class="err">默认是</span><span class="n">bridge</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">subnet</span> <span class="err">指定子网</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">gateway</span> <span class="err">指定网关</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">ip</span><span class="o">-</span><span class="nb">range</span> <span class="err">指定</span><span class="n">ip范围</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">attachable</span> <span class="err">是否允许容器加入网络</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">network</span> <span class="n">rm</span> <span class="n">my_custom_network</span>  <span class="err">删除网络</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">name</span> <span class="n">my_container</span> <span class="o">--</span><span class="n">network</span> <span class="n">my_custom_network</span> <span class="n">nginx</span> <span class="err">启动容器时指定网络</span>
+</span></span><span class="line"><span class="cl"><span class="n">docker</span> <span class="n">network</span> <span class="n">connect</span> <span class="n">my_custom_network</span> <span class="n">my_container</span>  <span class="err">将运行的容器加入网络</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="composeyaml编写">compose.yaml编写</h2>
+<h3 id="顶级元素">顶级元素</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">name # 容器组名称
+</span></span><span class="line"><span class="cl">services # 容器组,服务
+</span></span><span class="line"><span class="cl">networks # 网络
+</span></span><span class="line"><span class="cl">volumes: # 卷
+</span></span><span class="line"><span class="cl">configs: # 配置
+</span></span><span class="line"><span class="cl">secrets: # 密钥
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="dockerfile编写">dockerfile编写</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">FROM #指定镜像基础环境
+</span></span><span class="line"><span class="cl">RUN #运行自定义命令
+</span></span><span class="line"><span class="cl">CMD #容器启动命令或者是参数
+</span></span><span class="line"><span class="cl">LABEL #标签
+</span></span><span class="line"><span class="cl">EXPOSE #暴露端口
+</span></span><span class="line"><span class="cl">ENV #环境变量
+</span></span><span class="line"><span class="cl">ADD #添加文件到镜像
+</span></span><span class="line"><span class="cl">COPY #复制文件到镜像
+</span></span><span class="line"><span class="cl">ENTRYPOINT #容器固定启动命令
+</span></span><span class="line"><span class="cl">WORKDIR #工作目录
+</span></span><span class="line"><span class="cl">USER #用户
+</span></span><span class="line"><span class="cl">VOLUME #挂载目录
+</span></span><span class="line"><span class="cl">ARG #参数
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="动态端口实现">动态端口实现</h2>
+<p>在ctf题目里面，总有一些题的环境打开后发现端口是不定的，就是这样实现的。想gzctf平台上面是已经自动实现了，自己练习的时候可以用以下方式实现</p>
+<h3 id="动态端口映射">动态端口映射</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">version: &#34;3&#34;
+</span></span><span class="line"><span class="cl">services:
+</span></span><span class="line"><span class="cl">  server:
+</span></span><span class="line"><span class="cl">    build: .
+</span></span><span class="line"><span class="cl">    restart: always
+</span></span><span class="line"><span class="cl">    ports:
+</span></span><span class="line"><span class="cl">      - &#34;2222-2232:2222&#34;  # 这里定义了一个端口范围
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="环境变量配置端口">环境变量配置端口</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">version: &#34;3&#34;
+</span></span><span class="line"><span class="cl">services:
+</span></span><span class="line"><span class="cl">  server:
+</span></span><span class="line"><span class="cl">    build: .
+</span></span><span class="line"><span class="cl">    restart: always
+</span></span><span class="line"><span class="cl">    environment:
+</span></span><span class="line"><span class="cl">      SERVICE_PORT: 2222  # 容器内服务监听的端口
+</span></span><span class="line"><span class="cl">    ports:
+</span></span><span class="line"><span class="cl">      - &#34;${HOST_PORT:-2222}:2222&#34;  # 外部端口可以通过环境变量 HOST_PORT 设置
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="注意事项">注意事项</h2>
+<p>在用docker打包一个项目时，可以利用<code>.dockerignore</code>文件，把不需要直接打包的文件除去，比如<code>nodejs</code>项目的<code>node_modules</code>文件夹等。</p>
+<p>这样的好处是，在docker中去配置环境，避免冲突，也避免了打包时因为内存太大而造成的速度影响</p>
+<h2 id="未完结">未完结</h2>
+<p>咕咕咕</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-06-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/study-docker/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/study-docker/" data-title="Study Docker" data-hashtags="开发,study"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/study-docker/" data-hashtag="开发"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/study-docker/" data-title="Study Docker"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/study-docker/" data-title="Study Docker"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/study-docker/" data-title="Study Docker"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a>,&nbsp;<a href="/tags/study/">Study</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hnctf2025/" class="prev" rel="prev" title="HNCTF2025"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>HNCTF2025</a>
+            <a href="/study-k8s/" class="next" rel="next" title="Study K8s">Study K8s<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

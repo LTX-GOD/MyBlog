@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>isctf2024_crypto - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/isctf2024_crypto/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="isctf2024_crypto">
+  <meta property="og:description" content="前言 本来以为社会组没有奖，就只写了crypto和一部分misc，结果结束了又说前十有奖，呜呜呜
+题目 我和小蓝鲨的秘密 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 from PIL import Image from Crypto.Util.number import bytes_to_long, long_to_bytes import numpy as np n = 29869349657224745144762606999 e = 65537 original_image_path = &#34;flag.jpg&#34; img = Image.open(original_image_path) img = img.convert(&#34;RGB&#34;) img_array = np.array(img) h, w, _ = img_array.shape encrypted_array = np.zeros((h, w, 3), dtype=object) for i in range(h): for j in range(w): r, g, b = int(img_array[i, j, 0]), int(img_array[i, j, 1]), int(img_array[i, j, 2]) encrypted_array[i, j, 0] = pow(r, e, n) encrypted_array[i, j, 1] = pow(g, e, n) encrypted_array[i, j, 2] = pow(b, e, n) np.save(&#34;encrypted_image.npy&#34;, encrypted_array) print(&#34;图片已加密并保存为 encrypted_image.npy&#34;) 思路：就是很简单图片rsa，可以直接，遍历，n很小，可以直接分解 exp">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-12T00:00:00+00:00">
+    <meta property="article:tag" content="Crypto">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="isctf2024_crypto">
+  <meta name="twitter:description" content="前言 本来以为社会组没有奖，就只写了crypto和一部分misc，结果结束了又说前十有奖，呜呜呜
+题目 我和小蓝鲨的秘密 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 from PIL import Image from Crypto.Util.number import bytes_to_long, long_to_bytes import numpy as np n = 29869349657224745144762606999 e = 65537 original_image_path = &#34;flag.jpg&#34; img = Image.open(original_image_path) img = img.convert(&#34;RGB&#34;) img_array = np.array(img) h, w, _ = img_array.shape encrypted_array = np.zeros((h, w, 3), dtype=object) for i in range(h): for j in range(w): r, g, b = int(img_array[i, j, 0]), int(img_array[i, j, 1]), int(img_array[i, j, 2]) encrypted_array[i, j, 0] = pow(r, e, n) encrypted_array[i, j, 1] = pow(g, e, n) encrypted_array[i, j, 2] = pow(b, e, n) np.save(&#34;encrypted_image.npy&#34;, encrypted_array) print(&#34;图片已加密并保存为 encrypted_image.npy&#34;) 思路：就是很简单图片rsa，可以直接，遍历，n很小，可以直接分解 exp">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/isctf2024_crypto/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/moectf2024_crypto/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/basectf2024-crypto-wp/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "isctf2024_crypto",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/isctf2024_crypto\/"
+        },"genre": "posts","keywords": "crypto","wordcount":  3300 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/isctf2024_crypto\/","datePublished": "2024-12-12T00:00:00+00:00","dateModified": "2024-12-12T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">isctf2024_crypto</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>CTF</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-12">2024-12-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3300 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;<span id="/isctf2024_crypto/" class="leancloud_visitors" data-flag-title="isctf2024_crypto">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#题目">题目</a>
+      <ul>
+        <li><a href="#我和小蓝鲨的秘密">我和小蓝鲨的秘密</a></li>
+        <li><a href="#chacha20">chacha20</a></li>
+        <li><a href="#基础的数学">基础的数学</a></li>
+        <li><a href="#小蓝鲨的密码">小蓝鲨的密码</a></li>
+        <li><a href="#ezmath">ezmath</a></li>
+        <li><a href="#fermat">fermat</a></li>
+        <li><a href="#蓝鲨的rsa">蓝鲨的RSA</a></li>
+        <li><a href="#小蓝鲨的方程">小蓝鲨的方程</a></li>
+        <li><a href="#him复现">HIM（复现）</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>本来以为社会组没有奖，就只写了crypto和一部分misc，结果结束了又说前十有奖，呜呜呜</p>
+<h2 id="题目">题目</h2>
+<h3 id="我和小蓝鲨的秘密">我和小蓝鲨的秘密</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from PIL import Image
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import bytes_to_long, long_to_bytes
+</span></span><span class="line"><span class="cl">import numpy as np
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">n = 29869349657224745144762606999
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">original_image_path = &#34;flag.jpg&#34;
+</span></span><span class="line"><span class="cl">img = Image.open(original_image_path)
+</span></span><span class="line"><span class="cl">img = img.convert(&#34;RGB&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">img_array = np.array(img)
+</span></span><span class="line"><span class="cl">h, w, _ = img_array.shape
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">encrypted_array = np.zeros((h, w, 3), dtype=object)
+</span></span><span class="line"><span class="cl">for i in range(h):
+</span></span><span class="line"><span class="cl">    for j in range(w):
+</span></span><span class="line"><span class="cl">        r, g, b = int(img_array[i, j, 0]), int(img_array[i, j, 1]), int(img_array[i, j, 2])
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        encrypted_array[i, j, 0] = pow(r, e, n)
+</span></span><span class="line"><span class="cl">        encrypted_array[i, j, 1] = pow(g, e, n)
+</span></span><span class="line"><span class="cl">        encrypted_array[i, j, 2] = pow(b, e, n)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">np.save(&#34;encrypted_image.npy&#34;, encrypted_array)
+</span></span><span class="line"><span class="cl">print(&#34;图片已加密并保存为 encrypted_image.npy&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：就是很简单图片rsa，可以直接，遍历，n很小，可以直接分解
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">from</span> <span class="n">sympy</span> <span class="n">import</span> <span class="n">factorint</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Util</span><span class="o">.</span><span class="n">number</span> <span class="n">import</span><span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">PIL</span> <span class="n">import</span> <span class="ne">Image</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">29869349657224745144762606999</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">=</span><span class="mi">186431677583461</span>
+</span></span><span class="line"><span class="cl"><span class="n">q</span><span class="o">=</span><span class="mi">160216064374859</span>
+</span></span><span class="line"><span class="cl"><span class="n">e</span><span class="o">=</span><span class="mi">65537</span>
+</span></span><span class="line"><span class="cl"><span class="n">phi</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">encrypted_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&#34;encrypted_image.npy&#34;</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="n">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">encrypted_array</span><span class="o">.</span><span class="n">shape</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">decrypted_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">decrypted_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">encrypted_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">decrypted_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">encrypted_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">decrypted_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">encrypted_array</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">decrypted_img</span> <span class="o">=</span> <span class="ne">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">decrypted_array</span><span class="p">,</span> <span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">decrypted_img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;decrypted_flag.jpg&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Flag 已解密并保存为 decrypted_flag.jpg&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="chacha20">chacha20</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Cipher import ChaCha20_Poly1305
+</span></span><span class="line"><span class="cl">import os
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key = os.urandom(32)
+</span></span><span class="line"><span class="cl">nonce = os.urandom(12)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">with open(&#39;flag.txt&#39;, &#39;rb&#39;) as f:
+</span></span><span class="line"><span class="cl">    plaintext = f.read()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cipher = ChaCha20_Poly1305.new(key=key, nonce=nonce)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ct, tag = cipher.encrypt_and_digest(plaintext)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(f&#34;Encrypted Flag: {ct.hex()}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;Tag: {tag.hex()}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;Nonce: {nonce.hex()}&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">with open(&#39;key.txt&#39;, &#39;w&#39;) as key_file:
+</span></span><span class="line"><span class="cl">    key_file.write(key.hex())
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key?.txt
+</span></span><span class="line"><span class="cl">3=t#sMX3?9GHSPdi4i^gk!3*(cH8S8XT2y&amp;?Tv4!?AGG=R]ZDy/PVVa+DqiXAH*}DS&amp;Nn*a+@&lt;H,=!L
+</span></span><span class="line"><span class="cl">output.txt
+</span></span><span class="line"><span class="cl">Encrypted Flag: 20408b9fc498063ad53a4abb53633a6a15df0ddaf173012d620fa33001794dbb8c038920273464e13170e26d08923aeb
+</span></span><span class="line"><span class="cl">Tag: 70ffcc508bf4519e7616f602123c307b
+</span></span><span class="line"><span class="cl">Nonce: d8ebeedec812a6d71240cc50
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：chacha20反向解过去就行了，key是个base，至于多少自己试吧，因为我也是一个一个试的（气死我了）
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># python
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import ChaCha20_Poly1305
+</span></span><span class="line"><span class="cl">#key是base
+</span></span><span class="line"><span class="cl"># 提供的密钥、Nonce、密文和标签
+</span></span><span class="line"><span class="cl">key_hex = &#39;173974535637a5ef30a116b03d00bd2fe751951ca3eaa62daec2b8f5ca5b6135&#39;
+</span></span><span class="line"><span class="cl">nonce_hex = &#39;d8ebeedec812a6d71240cc50&#39;
+</span></span><span class="line"><span class="cl">ciphertext_hex = &#39;20408b9fc498063ad53a4abb53633a6a15df0ddaf173012d620fa33001794dbb8c038920273464e13170e26d08923aeb&#39;
+</span></span><span class="line"><span class="cl">tag_hex = &#39;70ffcc508bf4519e7616f602123c307b&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 转换为字节
+</span></span><span class="line"><span class="cl">key = bytes.fromhex(key_hex)
+</span></span><span class="line"><span class="cl">nonce = bytes.fromhex(nonce_hex)
+</span></span><span class="line"><span class="cl">ciphertext = bytes.fromhex(ciphertext_hex)
+</span></span><span class="line"><span class="cl">tag = bytes.fromhex(tag_hex)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 创建解密器
+</span></span><span class="line"><span class="cl">cipher = ChaCha20_Poly1305.new(key=key, nonce=nonce)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">try:
+</span></span><span class="line"><span class="cl">    # 解密并验证
+</span></span><span class="line"><span class="cl">    plaintext = cipher.decrypt_and_verify(ciphertext, tag)
+</span></span><span class="line"><span class="cl">    print(&#34;Flag:&#34;, plaintext.decode())
+</span></span><span class="line"><span class="cl">except Exception as e:
+</span></span><span class="line"><span class="cl">    print(&#34;解密失败:&#34;, e)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="基础的数学">基础的数学</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Base和Ciphertext
+</span></span><span class="line"><span class="cl">m = 5321153468370294351697008906248782883193902636120413346203705810525086437271585682015110123362488732193020749380395419994982400888011862076022065339666193
+</span></span><span class="line"><span class="cl">c = 7383779796712259466884236308066760158536557371789388054326630574611014773044467468610300619865230550443643660647968413988480055366698747395046400909922513
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：写的时候已经有hint了，说是mod是2**512，那么直接解就行了
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">m = 5321153468370294351697008906248782883193902636120413346203705810525086437271585682015110123362488732193020749380395419994982400888011862076022065339666193
+</span></span><span class="line"><span class="cl">c = 7383779796712259466884236308066760158536557371789388054326630574611014773044467468610300619865230550443643660647968413988480055366698747395046400909922513
+</span></span><span class="line"><span class="cl">n=2**512
+</span></span><span class="line"><span class="cl">from sympy import discrete_log
+</span></span><span class="line"><span class="cl">flag=discrete_log(n,c,m)
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import long_to_bytes
+</span></span><span class="line"><span class="cl">print(long_to_bytes(flag))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="小蓝鲨的密码">小蓝鲨的密码</h3>
+<p>省略：压缩包密码就是图片的名字，不喜欢</p>
+<h3 id="ezmath">ezmath</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">import base64
+</span></span><span class="line"><span class="cl">from hashlib import md5
+</span></span><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">from libnum import s2n
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">INF = 0xff
+</span></span><span class="line"><span class="cl">bigINF = 0xffffffff
+</span></span><span class="line"><span class="cl"># ---------------------error------------------------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def sumFunc(func):
+</span></span><span class="line"><span class="cl">	def wapper(*args,start = 1,end=INF):
+</span></span><span class="line"><span class="cl">		sums = 0
+</span></span><span class="line"><span class="cl">		for i in trange(start, 0xffff * end):
+</span></span><span class="line"><span class="cl">			sums += function(*args,j/0xf) * (1/0xf)
+</span></span><span class="line"><span class="cl">		return sums
+</span></span><span class="line"><span class="cl">	return wapper
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def limitFunc(func):
+</span></span><span class="line"><span class="cl">	def wapper(*args, approch = bigINF, pos = &#34;+&#34;):
+</span></span><span class="line"><span class="cl">		o = 1/bigINF
+</span></span><span class="line"><span class="cl">		return function(args, eval(f&#34;{approch} {pos} {o}&#34;))
+</span></span><span class="line"><span class="cl">	return wapper
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># -------------------enderror-----------------------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def pad(data):
+</span></span><span class="line"><span class="cl">	data=data.encode(&#39;utf8&#39;)
+</span></span><span class="line"><span class="cl">	while len(data) % 16 !=0:
+</span></span><span class="line"><span class="cl">		data+=b&#39;\x00&#39;
+</span></span><span class="line"><span class="cl">	return data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def encode(key,m):
+</span></span><span class="line"><span class="cl">	mode=AES.MODE_ECB
+</span></span><span class="line"><span class="cl">	aes=AES.new(pad(key),mode)
+</span></span><span class="line"><span class="cl">	en_m=aes.encrypt(pad(m))
+</span></span><span class="line"><span class="cl">	en_m=base64.encodebytes(en_m)
+</span></span><span class="line"><span class="cl">	en_m=en_m.decode(&#39;utf8&#39;)
+</span></span><span class="line"><span class="cl">	return en_m
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def enc(msg, key):
+</span></span><span class="line"><span class="cl">	random.seed(key)
+</span></span><span class="line"><span class="cl">	new_key = md5(str(random.getrandbits(256)).encode(&#39;utf-8&#39;)).hexdigest()
+</span></span><span class="line"><span class="cl">	return encode(new_key, msg)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@sumFunc
+</span></span><span class="line"><span class="cl">def gamma(x,t):
+</span></span><span class="line"><span class="cl">	data = pow(t,x-1) * pow(magicNumber,-t)
+</span></span><span class="line"><span class="cl">	return data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@sumFunc
+</span></span><span class="line"><span class="cl">def common(t):
+</span></span><span class="line"><span class="cl">	data = pow(magicNumber,-pow(t,2))
+</span></span><span class="line"><span class="cl">	return data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@limitFunc
+</span></span><span class="line"><span class="cl">def getMagicNumber(t):
+</span></span><span class="line"><span class="cl">	data = pow(1+1/t,t)
+</span></span><span class="line"><span class="cl">	return data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">magicNumber = getMagicNumber()
+</span></span><span class="line"><span class="cl">encKey1 = str(gamma(3/2))[2:6]
+</span></span><span class="line"><span class="cl">encKey2 = str(common())[2:6]
+</span></span><span class="line"><span class="cl">assert encKey1 == encKey2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key = int(str(gamma(5/2))[2:])
+</span></span><span class="line"><span class="cl">print(enc(flag, key))
+</span></span><span class="line"><span class="cl"># n2SQK64JMsXstCtZurBiz81pMr3ZmgMjhuyL67hssm3shqJGYGfS/mWubINeE5HZ
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：代码里面是装饰器，先把代码修复一下，虽然修不修无所谓，计算gamma(5/2)的结果就行，key就是小数部分，直接求就行了</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">import base64
+</span></span><span class="line"><span class="cl">from hashlib import md5
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def pad(data):
+</span></span><span class="line"><span class="cl">    if isinstance(data, str):
+</span></span><span class="line"><span class="cl">        data = data.encode(&#39;utf8&#39;)
+</span></span><span class="line"><span class="cl">    while len(data) % 16 != 0:
+</span></span><span class="line"><span class="cl">        data += b&#39;\x00&#39;
+</span></span><span class="line"><span class="cl">    return data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    random.seed(key)
+</span></span><span class="line"><span class="cl">    rand_bits = random.getrandbits(256)
+</span></span><span class="line"><span class="cl">    new_key = md5(str(rand_bits).encode(&#39;utf-8&#39;)).hexdigest()
+</span></span><span class="line"><span class="cl">    return new_key
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def decode(key, en_m):
+</span></span><span class="line"><span class="cl">    new_key = compute_new_key(key)
+</span></span><span class="line"><span class="cl">    print(f&#34;New Key: {new_key}&#34;)
+</span></span><span class="line"><span class="cl">    aes = AES.new(pad(new_key), AES.MODE_ECB)
+</span></span><span class="line"><span class="cl">    en_m_bytes = base64.decodebytes(en_m.encode(&#39;utf8&#39;))
+</span></span><span class="line"><span class="cl">    de_m = aes.decrypt(en_m_bytes)
+</span></span><span class="line"><span class="cl">    try:
+</span></span><span class="line"><span class="cl">        return de_m.rstrip(b&#39;\x00&#39;).decode(&#39;utf8&#39;)
+</span></span><span class="line"><span class="cl">    except UnicodeDecodeError:
+</span></span><span class="line"><span class="cl">        print(&#34;解密后的字节无法以UTF-8解码。&#34;)
+</span></span><span class="line"><span class="cl">        return de_m.rstrip(b&#39;\x00&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">encrypted_flag = &#34;n2SQK64JMsXstCtZurBiz81pMr3ZmgMjhuyL67hssm3shqJGYGfS/mWubINeE5HZ&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key_str = &#34;1.329340388179137&#34;
+</span></span><span class="line"><span class="cl">key = int(key_str.split(&#39;.&#39;)[1])
+</span></span><span class="line"><span class="cl">print(f&#34;Computed Key: {key}&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag = decode(key, encrypted_flag)
+</span></span><span class="line"><span class="cl">print(f&#34;Flag = {flag}&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="fermat">fermat</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import libnum
+</span></span><span class="line"><span class="cl">import gmpy2
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag=b&#39;ISCTF{********}&#39;
+</span></span><span class="line"><span class="cl">m=bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p=libnum.generate_prime(1024)
+</span></span><span class="line"><span class="cl">q=libnum.generate_prime(1024)
+</span></span><span class="line"><span class="cl">n=p*q
+</span></span><span class="line"><span class="cl">e=0x10001
+</span></span><span class="line"><span class="cl">c=pow(m,e,n)
+</span></span><span class="line"><span class="cl">d=inverse(e,(p-1)*(q-1))
+</span></span><span class="line"><span class="cl">leak = (d+(pow(p,q,n)+pow(q,p,n)))%n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(&#34;c=&#34;, c)
+</span></span><span class="line"><span class="cl">print(&#34;n=&#34;, n)
+</span></span><span class="line"><span class="cl">print(&#34;leak=&#34;, leak)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">c= 8989289659072309605793417141528767265266446236550650613514493589798432446586991233583435051268377555448062724563967695425657559568596372723980081067589103919296476501677424322525079257328042851349095575718347302884996529329066703597604694781627113384086536158793653551546025090807063130353950841148535682974762381044510423210397947080397718080033363000599995100765708244828566873128882878164321817156170983773105693537799111546309755235573342169431295776881832991533489235535981382958295960435126843833532716436804949502318851112378495533302256759494573250596802016112398817816155228378089079806308296705261876583997
+</span></span><span class="line"><span class="cl">n= 13424018200035368603483071894166480724482952594135293395398366121467209427078817227870501294732149372214083432516059795712917132804111155585926502759533393295089100965059106772393520277313184519450478832376508528256865861027444446718552169503579478134286009893965458507369983396982525906466073384013443851551139147777507283791250268462136554061959016630318688169168797939873600493494258467352326974238472394214986505312411729432927489878418792288365594455065912126527908319239444514857325441614280498882524432151918146061570116187524918358453036228204087993064505391742062288050068745930452767100091519798860487150247
+</span></span><span class="line"><span class="cl">leak= 9192002086528025412361053058922669469031188193149143635074798633855112230489479254740324032262690315813650428270911079121913869290893574897752990491429582640499542165616254566396564016734157323265631446079744216458719690853526969359930225042993006404843355356540487296896949431969541367144841985153231095140361069256753593550199420993461786814074270171257117410848796614931926182811404655619662690700351986753661502438299236428991412206196135090756862851230228396476709412020941670878645924203989895008014836619321109848938770269989596541278600166088022166386213646074764712810133558692545401032391239330088256431881
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：很经典的题目，风二西佬好像讲过，可以直接去看，所以咱们就不写了（懒
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import gmpy2
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import long_to_bytes, inverse
+</span></span><span class="line"><span class="cl">import libnum
+</span></span><span class="line"><span class="cl"># 给定的值
+</span></span><span class="line"><span class="cl">c = 8989289659072309605793417141528767265266446236550650613514493589798432446586991233583435051268377555448062724563967695425657559568596372723980081067589103919296476501677424322525079257328042851349095575718347302884996529329066703597604694781627113384086536158793653551546025090807063130353950841148535682974762381044510423210397947080397718080033363000599995100765708244828566873128882878164321817156170983773105693537799111546309755235573342169431295776881832991533489235535981382958295960435126843833532716436804949502318851112378495533302256759494573250596802016112398817816155228378089079806308296705261876583997
+</span></span><span class="line"><span class="cl">n = 13424018200035368603483071894166480724482952594135293395398366121467209427078817227870501294732149372214083432516059795712917132804111155585926502759533393295089100965059106772393520277313184519450478832376508528256865861027444446718552169503579478134286009893965458507369983396982525906466073384013443851551139147777507283791250268462136554061959016630318688169168797939873600493494258467352326974238472394214986505312411729432927489878418792288365594455065912126527908319239444514857325441614280498882524432151918146061570116187524918358453036228204087993064505391742062288050068745930452767100091519798860487150247
+</span></span><span class="line"><span class="cl">leak = 9192002086528025412361053058922669469031188193149143635074798633855112230489479254740324032262690315813650428270911079121913869290893574897752990491429582640499542165616254566396564016734157323265631446079744216458719690853526969359930225042993006404843355356540487296896949431969541367144841985153231095140361069256753593550199420993461786814074270171257117410848796614931926182811404655619662690700351986753661502438299236428991412206196135090756862851230228396476709412020941670878645924203989895008014836619321109848938770269989596541278600166088022166386213646074764712810133558692545401032391239330088256431881
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">c_1 = inverse(c,n)
+</span></span><span class="line"><span class="cl">m = pow(c_1, n+1-leak,n)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="蓝鲨的rsa">蓝鲨的RSA</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">import gmpy2
+</span></span><span class="line"><span class="cl">import decimal
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def gethint(h,p):
+</span></span><span class="line"><span class="cl">    decimal.getcontext().prec = 1024
+</span></span><span class="line"><span class="cl">    H = decimal.Decimal(int(h))
+</span></span><span class="line"><span class="cl">    P = decimal.Decimal(int(p))
+</span></span><span class="line"><span class="cl">    leak = decimal.Decimal((8*H*P - 1) / (16*P*P))
+</span></span><span class="line"><span class="cl">    return leak
+</span></span><span class="line"><span class="cl">p = getPrime(512)
+</span></span><span class="line"><span class="cl">q = getPrime(512)
+</span></span><span class="line"><span class="cl">f = getPrime(512)
+</span></span><span class="line"><span class="cl">g = getPrime(128)
+</span></span><span class="line"><span class="cl">h = gmpy2.invert(f, p) * g % p
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">n = f*q
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">m = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">c = pow(m,e,n)
+</span></span><span class="line"><span class="cl">print(&#39;c =&#39;, c)
+</span></span><span class="line"><span class="cl">print(&#39;hint =&#39;, gethint(h,p))
+</span></span><span class="line"><span class="cl">print(&#39;n =&#39;,n)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#c = 587245179027322480379581200283415189810421958968516831191660631552695197401940961725169763339428980298128692606951200581483431566182271569207988054537414289564013883171160614196522169980339024564884190765084419167938640701193928669
+</span></span><span class="line"><span class="cl">#hint = 0.2427542737153618793334900104191212626446625872340179613972610728976081994921862517310186626304527115125924716035632505287111236596234811779375148657365336957626454491865164520834975233144235103885081268955448330597818844340656652982593545877449810282619387305007246499089258519062093814083383071737897364213169497762760797899310673216754376885295598952272100016962368762532805864796748393317534908268379601445004775495237901072144236328105526403608646831124542336002540011176406194984370372589752234640498423911217119220030242197564695880261480071310815379681250975672935544404797155655708441222387631967447088319826137200280810029390387418159394276760100487636516708987579464183208860911063948902432948269805493252899815187044807603000344378890835564906163242023600624338694473573763088471321731611077227112205396909637906507673367598721218000123789690455125909411309668615810240938664264212370815385282488986625554704015828254539339719586211726300858711328516487805251366293457402531199532556110786048074755505680210260049
+</span></span><span class="line"><span class="cl">#n = 839799159583571337450826982895478997157381520448790705455708438948150905361244823725400304016136863419723271227616684280477524669207590477657886623628732394537008838314015048569652202355464477680540884654473950183135276735347866051
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：p和h直接连分数展开，basectf有一个与之类似的题，但是注意到是</p>
+$$8HP/16PP $$<p>所以展开时其实是leak*2,后面是个基础的格，可以看detex佬的博客
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hint = 0.2427542737153618793334900104191212626446625872340179613972610728976081994921862517310186626304527115125924716035632505287111236596234811779375148657365336957626454491865164520834975233144235103885081268955448330597818844340656652982593545877449810282619387305007246499089258519062093814083383071737897364213169497762760797899310673216754376885295598952272100016962368762532805864796748393317534908268379601445004775495237901072144236328105526403608646831124542336002540011176406194984370372589752234640498423911217119220030242197564695880261480071310815379681250975672935544404797155655708441222387631967447088319826137200280810029390387418159394276760100487636516708987579464183208860911063948902432948269805493252899815187044807603000344378890835564906163242023600624338694473573763088471321731611077227112205396909637906507673367598721218000123789690455125909411309668615810240938664264212370815385282488986625554704015828254539339719586211726300858711328516487805251366293457402531199532556110786048074755505680210260049
+</span></span><span class="line"><span class="cl">hint=hint*2
+</span></span><span class="line"><span class="cl">cf = continued_fraction(hint)
+</span></span><span class="line"><span class="cl">for i in range(1000000000000):
+</span></span><span class="line"><span class="cl">    k = cf.numerator(i)
+</span></span><span class="line"><span class="cl">    x = cf.denominator(i)
+</span></span><span class="line"><span class="cl">    if  is_prime(x) and x.bit_length() == 512:
+</span></span><span class="line"><span class="cl">        print(k,x)
+</span></span><span class="line"><span class="cl">        p,q = k,x
+</span></span><span class="line"><span class="cl">        break
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">h=5644635742819829990750561229762805499221246439546826634192809053443196388050776487556004854931490257361050491682744164242094809598515347830480716371931526
+</span></span><span class="line"><span class="cl">p=11626233508536225614198811594320851252696454462193005033285647766940577053402735947923143276545500298338019376937355197687508293952240619015634703176724083
+</span></span><span class="line"><span class="cl">c=587245179027322480379581200283415189810421958968516831191660631552695197401940961725169763339428980298128692606951200581483431566182271569207988054537414289564013883171160614196522169980339024564884190765084419167938640701193928669
+</span></span><span class="line"><span class="cl">n=839799159583571337450826982895478997157381520448790705455708438948150905361244823725400304016136863419723271227616684280477524669207590477657886623628732394537008838314015048569652202355464477680540884654473950183135276735347866051
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Ge = Matrix(ZZ,[[1,h],[0,p]])
+</span></span><span class="line"><span class="cl">print(Ge.LLL())
+</span></span><span class="line"><span class="cl">f,g = Ge.LLL()[0]
+</span></span><span class="line"><span class="cl">f,g = abs(f),abs(g)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">q=n//f
+</span></span><span class="line"><span class="cl">phi=(f-1)*(q-1)
+</span></span><span class="line"><span class="cl">d=inverse_mod(65537,phi)
+</span></span><span class="line"><span class="cl">m=pow(c,d,n)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="小蓝鲨的方程">小蓝鲨的方程</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Cryptodome.Util.number import *
+</span></span><span class="line"><span class="cl">from random import *
+</span></span><span class="line"><span class="cl">from gmpy2 import *
+</span></span><span class="line"><span class="cl">import uuid
+</span></span><span class="line"><span class="cl">flag1=&#39;ISCTF{&#39;+str(uuid.uuid4())+&#39;}&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">m1=bytes_to_long(flag1.encode())
+</span></span><span class="line"><span class="cl">def get_p():
+</span></span><span class="line"><span class="cl">    BITS = 256
+</span></span><span class="line"><span class="cl">    bits = 777
+</span></span><span class="line"><span class="cl">    oder = 4
+</span></span><span class="line"><span class="cl">    a = randint(1 &lt;&lt; bits, 1 &lt;&lt; bits + 1)
+</span></span><span class="line"><span class="cl">    p=getPrime(BITS)
+</span></span><span class="line"><span class="cl">    p1 = p**oder+a
+</span></span><span class="line"><span class="cl">    return p,p1
+</span></span><span class="line"><span class="cl">p,p1=get_p()
+</span></span><span class="line"><span class="cl">s=getPrime(1024)
+</span></span><span class="line"><span class="cl">q=getPrime(512)
+</span></span><span class="line"><span class="cl">n=p*q**4
+</span></span><span class="line"><span class="cl">e=65537
+</span></span><span class="line"><span class="cl">c1=pow(s,e,n)
+</span></span><span class="line"><span class="cl">c=pow(s**3+1,m1,s**5)
+</span></span><span class="line"><span class="cl">print(&#34;c1=&#34;,c1)
+</span></span><span class="line"><span class="cl">print(&#34;c =&#34;,c)
+</span></span><span class="line"><span class="cl">print(&#34;n =&#34;,n)
+</span></span><span class="line"><span class="cl">print(&#34;p1 =&#34;,p1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">c1= 671390498592586008552998377599101093977542184109077889081448730480869018650843045119891777468161631085086340705902115332025675787789530562679603254577287153918966364523848382506106179394235772395029788721306186952016420794804145631124905952103136061076643266886961178241381892015555099638200222249447194504082451341122502519637821695210573997670753981061458264118355417889153180841281073262935937836447460470926729282834006229571453935760593644658459098721652426154970766417292435960463905367868753821950303919781798234432998272038029063155193184039985018137026245365188171178677898869374676546799536208952198558258306460302868688355653022725288744014143221560882404431652751343944983442109327
+</span></span><span class="line"><span class="cl">c = 8641190030376811670503537177719719233418166235794962118828671236836174132083208517733734760455990850156371205118391537919769888760384574011411232571257192285256730733174399297826587479261381970232162702657952399683882650083181048279650913795429823628186888540572704055008102853692060360140858142686334722286525699998854566609078547487420929457446776757558492454916447188774943818970599916514467335772992690805247630814156710861067503956707301402347944233660194395192354000788262111000900574820275786269075882923600474781645848712157460135387134196156906258218217831988828360827613420801773911833194097791649069743116686685667300622630909231822986237104627385544169938138006242341269672868611269202418482629393372933567053272565557137741441902377611003983050084491513897727856173625922194300103448148829004025229567101761111396110940066254801762424343522707712480796358754008120503317686600144600226149617189681233392693738216138797012278242152852923361635415564580582002132107424154426980566696622448291815571736676562214017436
+</span></span><span class="line"><span class="cl">n = 1076246859437269645898003764327104347852443049519429833372038915264009774423737482018987571807662568251485615769880354898666799006772572239466617428164721157850526408878346223839884319846641438292436373441749602341461361190584638190903978829024853974880636148520803145113551453821058269641304504880310836801494499720662704717315748614372503735165114899680682056477494953525794354656896362929510309669119173103242509398650608116835276076364248473952717811633756784397347121601006659623317417388283638159905288128181587304367489096254611610975352096229116491567502061775862811850081040850421151385474249060884479729988512713640536139010928836126719149031115182144744359297169350288886555784650111
+</span></span><span class="line"><span class="cl">p1 = 145356063641618996012874664536921616978986640263438210169671010403677822239343590475177543891188656103067696467174379510912427160232486984044862545338401652910975162942038201716552753723984593267892098222213049269335313670049037479410635628460505327693176152061750827570561482918795206276991967169087371403553
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：第一开始没想到和方程有什么关系，然后发现在最后面用到了，前面的p直接开方并且循环爆破一下，asssert一下，保证无错，然后求q，也assert验证一下，然后求出s，发现s很大，更别说s**5了，以下是思路
+利用 二项式定理 对 (s^3 + 1)^m1 进行展开，并简化模 s^5 的表达式：
+</p>
+$$ (s^3 + 1)^{m1} \equiv 1 + m1 \cdot s^3 \mod s^5 $$<p>
+因此，方程变为： </p>
+$$ 1 + m1 \cdot s^3 \equiv c \mod s^5 $$<p>
+移项后得到： </p>
+$$ m1 \cdot s^3 \equiv c - 1 \mod s^5 $$<p>
+由于 s^3 与 s^5 的关系，可以将 m1 表示为： </p>
+$$ m1 \equiv \frac{c - 1}{s^3} \mod s^2 $$<p>
+这个方程表明，m1 可以通过以下步骤直接计算：
+计算 (c - 1) // s^3：
+确保 (c - 1) 能被 s^3 整除，否则方程无解。
+取模 s^2：因为在模 s^5 下，m1 的值在模 s^2 的范围内是唯一确定的。
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">c1= 671390498592586008552998377599101093977542184109077889081448730480869018650843045119891777468161631085086340705902115332025675787789530562679603254577287153918966364523848382506106179394235772395029788721306186952016420794804145631124905952103136061076643266886961178241381892015555099638200222249447194504082451341122502519637821695210573997670753981061458264118355417889153180841281073262935937836447460470926729282834006229571453935760593644658459098721652426154970766417292435960463905367868753821950303919781798234432998272038029063155193184039985018137026245365188171178677898869374676546799536208952198558258306460302868688355653022725288744014143221560882404431652751343944983442109327
+</span></span><span class="line"><span class="cl">c = 8641190030376811670503537177719719233418166235794962118828671236836174132083208517733734760455990850156371205118391537919769888760384574011411232571257192285256730733174399297826587479261381970232162702657952399683882650083181048279650913795429823628186888540572704055008102853692060360140858142686334722286525699998854566609078547487420929457446776757558492454916447188774943818970599916514467335772992690805247630814156710861067503956707301402347944233660194395192354000788262111000900574820275786269075882923600474781645848712157460135387134196156906258218217831988828360827613420801773911833194097791649069743116686685667300622630909231822986237104627385544169938138006242341269672868611269202418482629393372933567053272565557137741441902377611003983050084491513897727856173625922194300103448148829004025229567101761111396110940066254801762424343522707712480796358754008120503317686600144600226149617189681233392693738216138797012278242152852923361635415564580582002132107424154426980566696622448291815571736676562214017436
+</span></span><span class="line"><span class="cl">n = 1076246859437269645898003764327104347852443049519429833372038915264009774423737482018987571807662568251485615769880354898666799006772572239466617428164721157850526408878346223839884319846641438292436373441749602341461361190584638190903978829024853974880636148520803145113551453821058269641304504880310836801494499720662704717315748614372503735165114899680682056477494953525794354656896362929510309669119173103242509398650608116835276076364248473952717811633756784397347121601006659623317417388283638159905288128181587304367489096254611610975352096229116491567502061775862811850081040850421151385474249060884479729988512713640536139010928836126719149031115182144744359297169350288886555784650111
+</span></span><span class="line"><span class="cl">p1 = 145356063641618996012874664536921616978986640263438210169671010403677822239343590475177543891188656103067696467174379510912427160232486984044862545338401652910975162942038201716552753723984593267892098222213049269335313670049037479410635628460505327693176152061750827570561482918795206276991967169087371403553
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">from gmpy2 import*
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from sympy import discrete_log
+</span></span><span class="line"><span class="cl">from gmpy2 import mpz, iroot, is_prime
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lower_a = mpz(1) &lt;&lt; 777
+</span></span><span class="line"><span class="cl">upper_a = mpz(1) &lt;&lt; 778
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">approx_p, exact = iroot(p1, 4)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if not exact:
+</span></span><span class="line"><span class="cl">    approx_p += 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">search_range = 100000
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for k in range(-search_range, search_range):
+</span></span><span class="line"><span class="cl">    p_candidate = approx_p + k
+</span></span><span class="line"><span class="cl">    if not is_prime(p_candidate):
+</span></span><span class="line"><span class="cl">        continue
+</span></span><span class="line"><span class="cl">    # 计算对应的 a
+</span></span><span class="line"><span class="cl">    a_candidate = p1 - p_candidate**4
+</span></span><span class="line"><span class="cl">    if lower_a &lt;= a_candidate &lt;= upper_a:
+</span></span><span class="line"><span class="cl">        print(&#34;找到 p:&#34;, p_candidate)
+</span></span><span class="line"><span class="cl">        print(&#34;对应的 a:&#34;, a_candidate)
+</span></span><span class="line"><span class="cl">        break
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">p=109801503867274649798222703146361472504035741051437565219324438087291269873711
+</span></span><span class="line"><span class="cl">assert n%p == 0
+</span></span><span class="line"><span class="cl">q=n//p
+</span></span><span class="line"><span class="cl">q=iroot(q,4)[0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">phi=(p-1)*(q-1)*(q**3)
+</span></span><span class="line"><span class="cl">d=inverse(65537,phi)
+</span></span><span class="line"><span class="cl">s=pow(c1,d,n)
+</span></span><span class="line"><span class="cl">s=94423586985629586109151158736296883361273289450685688621152315803642865015090106522217001407373857704007853280049626049708701029510476587908461385557678191510801074269386297085357100319875645753000245907974169833335293172030062044583394890776091941620200339705124166508737987531884585421144791962938319477479
+</span></span><span class="line"><span class="cl">#c=pow(s**3+1,m1,s**5)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">s = 94423586985629586109151158736296883361273289450685688621152315803642865015090106522217001407373857704007853280049626049708701029510476587908461385557678191510801074269386297085357100319875645753000245907974169833335293172030062044583394890776091941620200339705124166508737987531884585421144791962938319477479
+</span></span><span class="line"><span class="cl">c = 8641190030376811670503537177719719233418166235794962118828671236836174132083208517733734760455990850156371205118391537919769888760384574011411232571257192285256730733174399297826587479261381970232162702657952399683882650083181048279650913795429823628186888540572704055008102853692060360140858142686334722286525699998854566609078547487420929457446776757558492454916447188774943818970599916514467335772992690805247630814156710861067503956707301402347944233660194395192354000788262111000900574820275786269075882923600474781645848712157460135387134196156906258218217831988828360827613420801773911833194097791649069743116686685667300622630909231822986237104627385544169938138006242341269672868611269202418482629393372933567053272565557137741441902377611003983050084491513897727856173625922194300103448148829004025229567101761111396110940066254801762424343522707712480796358754008120503317686600144600226149617189681233392693738216138797012278242152852923361635415564580582002132107424154426980566696622448291815571736676562214017436 # 请在此处填入已知的 c 值
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import long_to_bytes
+</span></span><span class="line"><span class="cl">if (c - 1) % (s**3) != 0:
+</span></span><span class="line"><span class="cl">    print(&#34;方程无解，因为 (c - 1) 不能被 s^3 整除。&#34;)
+</span></span><span class="line"><span class="cl">else:
+</span></span><span class="line"><span class="cl">    m1 = ((c - 1) // s**3) % (s**2)
+</span></span><span class="line"><span class="cl">    print(&#34;m1 =&#34;, m1)
+</span></span><span class="line"><span class="cl">    print(&#34;flag1 =&#34;, long_to_bytes(m1))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="him复现">HIM（复现）</h3>
+<p>task</p>
+<blockquote>
+<p>附件好大的，直接去is下吧（哭哭</p></blockquote>
+<p>思路：这玩意的应该是https://github.com/spawnmason/randar-explanation 这个为基础出来的，代码审计一下，主要的main里边就是HIM会设置两个在-23440 到23440的随机数，分别为X，Z，我们的目标就是恢复这两个随机数，恢复5次即可。其实没啥思路，看了看wp，居然是LLL出来的，大概意思是我们通过到一些地方，生成坐标，然后利用坐标去LLL出seed，然后利用LCG伪随机的特性求出him的坐标正是给了him的范围，我们才能爆出来，挺好玩的，github的文档里面就有做法，直接用改改pwn库就行
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">from pwn import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sa = lambda s,n : p.sendafter(s,n)
+</span></span><span class="line"><span class="cl">sla = lambda s,n : p.sendlineafter(s,n)
+</span></span><span class="line"><span class="cl">sl = lambda s : p.sendline(s)
+</span></span><span class="line"><span class="cl">sd = lambda s : p.send(s)
+</span></span><span class="line"><span class="cl">rc = lambda n : p.recv(n)
+</span></span><span class="line"><span class="cl">ru = lambda s : p.recvuntil(s)
+</span></span><span class="line"><span class="cl">rl = lambda : p.recvline()
+</span></span><span class="line"><span class="cl">it = lambda : p.interactive()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ip = &#39;&#39;
+</span></span><span class="line"><span class="cl">port = 0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = remote(ip , port)
+</span></span><span class="line"><span class="cl"># p = remote(&#34;127.0.0.1&#34;, 8888)
+</span></span><span class="line"><span class="cl">sla(&#34;请输入用户名: &#34;,b&#34;guoql&#34;)
+</span></span><span class="line"><span class="cl">sla(&#34;=&gt;请选择：&#34;,b&#34;start&#34;)
+</span></span><span class="line"><span class="cl">for _ in range(5):
+</span></span><span class="line"><span class="cl">        sla(&#34;输入yes投币开始:&#34;,b&#34;yes&#34;)
+</span></span><span class="line"><span class="cl">        sla(&#34;请选择：&#34;,&#34;2&#34;)
+</span></span><span class="line"><span class="cl">        sla(&#34;请输入想要挖掘的方块坐标(例： (1,1,1) )：&#34;,b&#34;(1,1,1)&#34;)
+</span></span><span class="line"><span class="cl">        data = rl().decode(&#39;utf-8&#39;)
+</span></span><span class="line"><span class="cl">        blockX,blockY,blockZ = tuple([float(&#34;0.&#34; + i.split(&#34;.&#34;)[1]) for i in data.split(&#34;Block drop in &#34;)[1][:-1][1:-1].split(&#34;, &#34;)])
+</span></span><span class="line"><span class="cl">        print(data,blockX,blockY,blockZ)
+</span></span><span class="line"><span class="cl">        randX = round(2 * 2**24 * (blockX - 0.25))
+</span></span><span class="line"><span class="cl">        randY = round(2 * 2**24 * (blockY - 0.25))
+</span></span><span class="line"><span class="cl">        randZ = round(2 * 2**24 * (blockZ - 0.25))
+</span></span><span class="line"><span class="cl">        # 获取低24位数据
+</span></span><span class="line"><span class="cl">        print(f&#34;{randX},{randY},{randZ}&#34;)
+</span></span><span class="line"><span class="cl">        # 格基规约得到原始seed
+</span></span><span class="line"><span class="cl">        def crack(a0,b0,c0):
+</span></span><span class="line"><span class="cl">            a=25214903917
+</span></span><span class="line"><span class="cl">            b=11
+</span></span><span class="line"><span class="cl">            c=281474976710656
+</span></span><span class="line"><span class="cl">            a1 = a0 * 2**24 + 2**23
+</span></span><span class="line"><span class="cl">            b1 = b0 * 2**24 + 2**23
+</span></span><span class="line"><span class="cl">            c1 = c0 * 2**24 + 2**23
+</span></span><span class="line"><span class="cl">            v = vector([a1,b1 - b,c1 - b - a*b])
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            matex = matrix.zero(3)
+</span></span><span class="line"><span class="cl">            matex[0] = [1,a,a*a]
+</span></span><span class="line"><span class="cl">            matex[1] = [0,c,0]
+</span></span><span class="line"><span class="cl">            matex[2] = [0,0,c]
+</span></span><span class="line"><span class="cl">            lattice = matex.LLL()
+</span></span><span class="line"><span class="cl">            base = lattice.transpose().inverse()
+</span></span><span class="line"><span class="cl">            result = base*v
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            final = vector([round(RDF(i)) for i in result])
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            solved = lattice.transpose() * final
+</span></span><span class="line"><span class="cl">            return solved
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        seed = int(crack(randX, randY, randZ)[0])
+</span></span><span class="line"><span class="cl">        # LCG线性同余求解出来上一个seed
+</span></span><span class="line"><span class="cl">        old_seed = ((seed - 11 ) * 246154705703781) % 2**48
+</span></span><span class="line"><span class="cl">        # sagemath的异或是^^而不是^
+</span></span><span class="line"><span class="cl">        HIM_seed = old_seed ^^ 0x5DEECE66D
+</span></span><span class="line"><span class="cl">        print(old_seed,HIM_seed)
+</span></span><span class="line"><span class="cl">        world_seed = 14617218721232814696
+</span></span><span class="line"><span class="cl">        # input()
+</span></span><span class="line"><span class="cl">        # 寻找x，z需要满足在-23440 到 23400 的范围内
+</span></span><span class="line"><span class="cl">        for x in range(-23440, 23441):
+</span></span><span class="line"><span class="cl">                z = ((HIM_seed - world_seed - 10387319 - x * 341873128712 ) * 211541297333629 ) % 2**48
+</span></span><span class="line"><span class="cl">                if z &gt;= 2**48 + -23440 :
+</span></span><span class="line"><span class="cl">                        z = z - 2**48
+</span></span><span class="line"><span class="cl">                        print(f&#34;x,z found:{x},{z}&#34;)
+</span></span><span class="line"><span class="cl">                        break
+</span></span><span class="line"><span class="cl">                if z &lt;= 23440:
+</span></span><span class="line"><span class="cl">                        print(f&#34;x,z found:{x},{z}&#34;)
+</span></span><span class="line"><span class="cl">                        break
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        sla(&#34;请选择：&#34;, b&#34;1&#34;)
+</span></span><span class="line"><span class="cl">        sla(&#34;请输入HIM所在区块的坐标(例: (10,-25) )：&#34;, f&#34;({x},{z})&#34;.encode(&#39;utf-8&#39;))
+</span></span><span class="line"><span class="cl">        print(rl().decode(&#39;utf-8&#39;))
+</span></span><span class="line"><span class="cl">print(rl().decode(&#39;utf-8&#39;))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p>总的来说不难，但是那个压缩包我感觉挺没必要的，最后这个him感觉可以放个hint，只有L佬做出来了，害，被折磨了一天，其他的题都挺好的，没有出老套无聊的题，很适合我们这种刚入门的人，嘿嘿。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-12-12</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/isctf2024_crypto/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/isctf2024_crypto/" data-title="isctf2024_crypto" data-hashtags="crypto"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/isctf2024_crypto/" data-hashtag="crypto"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/isctf2024_crypto/" data-title="isctf2024_crypto"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/isctf2024_crypto/" data-title="isctf2024_crypto"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/isctf2024_crypto/" data-title="isctf2024_crypto"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/moectf2024_crypto/" class="prev" rel="prev" title="moectf2024_crypto"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>moectf2024_crypto</a>
+            <a href="/basectf2024-crypto-wp/" class="next" rel="next" title="Basectf2024_crypto">Basectf2024_crypto<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

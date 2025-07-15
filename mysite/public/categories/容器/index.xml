@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>容器 on Zsm Blog</title>
+    <link>https://www.zhuangsanmeng.xyz/categories/%E5%AE%B9%E5%99%A8/</link>
+    <description>Recent content in 容器 on Zsm Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2924465428@qq.com (Zsm)</managingEditor>
+    <webMaster>2924465428@qq.com (Zsm)</webMaster>
+    <lastBuildDate>Wed, 11 Jun 2025 15:43:48 +0800</lastBuildDate>
+    <atom:link href="https://www.zhuangsanmeng.xyz/categories/%E5%AE%B9%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>云计算课设</title>
+      <link>https://www.zhuangsanmeng.xyz/yjsks/</link>
+      <pubDate>Wed, 11 Jun 2025 15:43:48 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/yjsks/</guid>
+      <description>&lt;h2 id=&#34;云计算课设&#34;&gt;云计算课设&lt;/h2&gt;&#xA;&lt;p&gt;这个课设是一个基于MapReduce的倒排索引系统，核心是Hadoop+docker+k8s&lt;/p&gt;&#xA;&lt;h3 id=&#34;整体架构&#34;&gt;整体架构&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;前端&lt;/strong&gt;&#xA;vue+nodejs&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;后端&lt;/strong&gt;&#xA;nodejs+express+redis+sqlite3&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;部署方法&lt;/strong&gt;&#xA;dockerfile+k8s&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;数据处理方法&lt;/strong&gt;&#xA;Hadoop&lt;/p&gt;&#xA;&lt;h3 id=&#34;课设灵感&#34;&gt;课设灵感&lt;/h3&gt;&#xA;&lt;p&gt;自己blog的搜索功能很弱，采用的是js插件的全局遍历搜索，就在网上查了一下优化方法，顺便知道了倒排索引这种方法，结合云计算课堂的&lt;code&gt;docker&lt;/code&gt;和&lt;code&gt;Hadoop&lt;/code&gt;知识，便有了这个课设&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study K8s</title>
+      <link>https://www.zhuangsanmeng.xyz/study-k8s/</link>
+      <pubDate>Mon, 09 Jun 2025 08:58:54 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study-k8s/</guid>
+      <description>&lt;h2 id=&#34;关于安装&#34;&gt;关于安装&lt;/h2&gt;&#xA;&lt;p&gt;mac的话可以直接orb一把梭了，里面直接启动即可，如果不想的话，就直接去看&lt;a href=&#34;https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary&amp;#43;download&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;官方安装方法&lt;/a&gt;我感觉不如orb，linux和win只能安装官方的来咯&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study Docker</title>
+      <link>https://www.zhuangsanmeng.xyz/study-docker/</link>
+      <pubDate>Mon, 09 Jun 2025 08:48:08 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study-docker/</guid>
+      <description>&lt;h2 id=&#34;中文文档&#34;&gt;中文文档&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://yeasy.gitbook.io/docker_practice&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;https://yeasy.gitbook.io/docker_practice&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;关于部署&#34;&gt;关于部署&lt;/h2&gt;&#xA;&lt;p&gt;mac可以用docker-desktop，或者是orbstack(这个真的好用xd)，linux就直接指令操作吧。win不推荐，推荐wsl里面搞docker然后映射出来&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

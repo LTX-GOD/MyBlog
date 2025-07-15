@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>ApoorvCTF 2025 - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/apoorvctf_2025/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="ApoorvCTF 2025">
+  <meta property="og:description" content="前言 赛时就做了两题，跟着佬的wp复现一下
+题目 Genjutsu_Labyrinth task
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 from sympy import primerange import random from collections import deque def generate(size): grid = [[random.randint(0, 9) for col in range(size)] for row in range(size)] grid[0][0] = 0 return grid def encrypt(n, a, b, mod=101): return (a * n &#43; b) % mod def build_encrypted_grid(grid, a, b, mod=101): size = 10 encry_grid = [] for y in range(size): row = [] for x in range(size): enc_val = encrypt(grid[y][x], a, b, mod) row.append(str(enc_val).zfill(2)) encry_grid.append(row) return encry_grid def optimize(grid): #hidden pass grid = generate(10) a = random.choice(list(primerange(2, 12))) b = random.choice(range(101)) encry_grid = build_encrypted_grid(grid, a, b, mod=101) #nc chals1.apoorvctf.xyz 4002 generate是正常一个10*10的迷宫，每个数字0-9，起点是0 encrypt是正常的线性同余加密 optimize没啥用 build_encrypted_grid是生成一个没个数加密后的矩阵，并且输出为字符串，比如5-&gt;05">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-09T09:08:13+08:00">
+    <meta property="article:modified_time" content="2025-03-09T09:08:13+08:00">
+    <meta property="article:tag" content="Crypto">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="ApoorvCTF 2025">
+  <meta name="twitter:description" content="前言 赛时就做了两题，跟着佬的wp复现一下
+题目 Genjutsu_Labyrinth task
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 from sympy import primerange import random from collections import deque def generate(size): grid = [[random.randint(0, 9) for col in range(size)] for row in range(size)] grid[0][0] = 0 return grid def encrypt(n, a, b, mod=101): return (a * n &#43; b) % mod def build_encrypted_grid(grid, a, b, mod=101): size = 10 encry_grid = [] for y in range(size): row = [] for x in range(size): enc_val = encrypt(grid[y][x], a, b, mod) row.append(str(enc_val).zfill(2)) encry_grid.append(row) return encry_grid def optimize(grid): #hidden pass grid = generate(10) a = random.choice(list(primerange(2, 12))) b = random.choice(range(101)) encry_grid = build_encrypted_grid(grid, a, b, mod=101) #nc chals1.apoorvctf.xyz 4002 generate是正常一个10*10的迷宫，每个数字0-9，起点是0 encrypt是正常的线性同余加密 optimize没啥用 build_encrypted_grid是生成一个没个数加密后的矩阵，并且输出为字符串，比如5-&gt;05">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/apoorvctf_2025/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/hmv_jo2024/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/hgctf2025/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ApoorvCTF 2025",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/apoorvctf_2025\/"
+        },"genre": "posts","keywords": "crypto","wordcount":  1716 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/apoorvctf_2025\/","datePublished": "2025-03-09T09:08:13+08:00","dateModified": "2025-03-09T09:08:13+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ApoorvCTF 2025</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>CTF</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-03-09">2025-03-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1716 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/apoorvctf_2025/" class="leancloud_visitors" data-flag-title="ApoorvCTF 2025">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#题目">题目</a>
+      <ul>
+        <li><a href="#genjutsu_labyrinth">Genjutsu_Labyrinth</a></li>
+        <li><a href="#split_lies">Split_Lies</a></li>
+        <li><a href="#finding_goku">Finding_Goku</a></li>
+        <li><a href="#kowareta_cipher">Kowareta_Cipher</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>赛时就做了两题，跟着佬的wp复现一下</p>
+<h2 id="题目">题目</h2>
+<h3 id="genjutsu_labyrinth">Genjutsu_Labyrinth</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from sympy import primerange
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">from collections import deque
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def generate(size):
+</span></span><span class="line"><span class="cl">    grid = [[random.randint(0, 9) for col in range(size)] for row in range(size)]
+</span></span><span class="line"><span class="cl">    grid[0][0] = 0
+</span></span><span class="line"><span class="cl">    return grid
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def encrypt(n, a, b, mod=101):
+</span></span><span class="line"><span class="cl">    return (a * n + b) % mod
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def build_encrypted_grid(grid, a, b, mod=101):
+</span></span><span class="line"><span class="cl">    size = 10
+</span></span><span class="line"><span class="cl">    encry_grid = []
+</span></span><span class="line"><span class="cl">    for y in range(size):
+</span></span><span class="line"><span class="cl">        row = []
+</span></span><span class="line"><span class="cl">        for x in range(size):
+</span></span><span class="line"><span class="cl">            enc_val = encrypt(grid[y][x], a, b, mod)
+</span></span><span class="line"><span class="cl">            row.append(str(enc_val).zfill(2))
+</span></span><span class="line"><span class="cl">        encry_grid.append(row)
+</span></span><span class="line"><span class="cl">    return encry_grid
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def optimize(grid):
+</span></span><span class="line"><span class="cl">    #hidden
+</span></span><span class="line"><span class="cl">    pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">grid = generate(10)
+</span></span><span class="line"><span class="cl">a = random.choice(list(primerange(2, 12)))
+</span></span><span class="line"><span class="cl">b = random.choice(range(101))
+</span></span><span class="line"><span class="cl">encry_grid = build_encrypted_grid(grid, a, b, mod=101)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#nc chals1.apoorvctf.xyz 4002
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>generate是正常一个10*10的迷宫，每个数字0-9，起点是0
+encrypt是正常的线性同余加密
+optimize没啥用
+build_encrypted_grid是生成一个没个数加密后的矩阵，并且输出为字符串，比如5-&gt;05</p>
+<p>a=[2,3,5,7,11]</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//nc情况
+</span></span><span class="line"><span class="cl">  ____                 _         _
+</span></span><span class="line"><span class="cl"> / ___|  ___  _ __    (_) _   _ | |_  ___  _   _
+</span></span><span class="line"><span class="cl">| |  _  / _ \| &#39;_ \   | || | | || __|/ __|| | | |
+</span></span><span class="line"><span class="cl">| |_| ||  __/| | | |  | || |_| || |_ \__ \| |_| |
+</span></span><span class="line"><span class="cl"> \____| \___||_| |_| _/ | \__,_| \__||___/ \__,_|
+</span></span><span class="line"><span class="cl">                    |__/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Welcome to Genjutsu Labyrinth!
+</span></span><span class="line"><span class="cl">Your goal is to navigate from the top-left to the bottom-right successfully
+</span></span><span class="line"><span class="cl">Note: Your current position is denoted by Pa. The first cell has a value 0
+</span></span><span class="line"><span class="cl">-------------------------------------------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Pa 49 42 42 00 00 21 00 21 00
+</span></span><span class="line"><span class="cl">49 00 42 21 28 56 07 00 42 56
+</span></span><span class="line"><span class="cl">21 28 42 42 14 21 21 21 00 14
+</span></span><span class="line"><span class="cl">07 49 07 35 07 07 42 56 35 07
+</span></span><span class="line"><span class="cl">63 28 28 07 00 49 00 56 21 28
+</span></span><span class="line"><span class="cl">07 56 07 35 14 42 21 35 35 00
+</span></span><span class="line"><span class="cl">14 21 00 07 21 35 49 07 14 28
+</span></span><span class="line"><span class="cl">21 35 07 00 49 14 21 00 42 42
+</span></span><span class="line"><span class="cl">42 21 56 28 49 56 07 14 49 28
+</span></span><span class="line"><span class="cl">63 07 49 35 07 07 07 28 63 00
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Use S/D to move down or right. Type &#39;exit&#39; to quit.
+</span></span><span class="line"><span class="cl">Enter move (S/D):
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>哎，其实我们要找的是xor为0，即从 enc_val 中穷举 a, b 的值。然后根据 a, b 的值求出 grid 的值，进行穷举路径，找到 XOR 值为 0 的路径。</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">from</span> <span class="n">pwn</span> <span class="n">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">itertools</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Util</span><span class="o">.</span><span class="n">number</span> <span class="n">import</span> <span class="n">inverse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;chals1.apoorvctf.xyz&#39;</span><span class="p">,</span> <span class="mi">4002</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 读取加密网格，每行接收后替换&#39;Pa&#39;为&#39;00&#39;，并转换成数字列表</span>
+</span></span><span class="line"><span class="cl"><span class="n">encry_grid</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Pa&#39;</span><span class="p">,</span> <span class="s1">&#39;00&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">row</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">map</span><span class="p">(</span><span class="ne">int</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">encry_grid</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">encs</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">encry_grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">encs</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">encs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">encry_grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">found</span> <span class="o">=</span> <span class="n">False</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">success</span> <span class="o">=</span> <span class="n">True</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="mi">101</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">encs</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">success</span> <span class="o">=</span> <span class="n">False</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">found</span> <span class="o">=</span> <span class="n">True</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">grid</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">row</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">encry_grid</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="n">inverse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span> <span class="o">%</span> <span class="mi">101</span>
+</span></span><span class="line"><span class="cl">        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">grid</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 构造移动指令：总共需要18步，选取9步向下（S）移动，其余为向右（D）移动，</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 利用排列枚举所有可能的路径，选择 XOR 结果为 0 的路径</span>
+</span></span><span class="line"><span class="cl"><span class="n">seq</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">com</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">perm</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">com</span> <span class="o">+=</span> <span class="s1">&#39;S&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">val</span> <span class="o">^=</span> <span class="n">grid</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">com</span> <span class="o">+=</span> <span class="s1">&#39;D&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">y</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">val</span> <span class="o">^=</span> <span class="n">grid</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;: &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="o">+</span> <span class="n">com</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">com</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;exit!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="split_lies">Split_Lies</h3>
+<p>两个照片什么都没有，有点抽象
+尝试了很多方法后，将 RGB 的值相加后除以 256 的余数，中央出现了旗帜。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from PIL import Image
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">img1 = Image.open(&#39;part1.png&#39;).convert(&#39;RGB&#39;)
+</span></span><span class="line"><span class="cl">img2 = Image.open(&#39;part2.png&#39;).convert(&#39;RGB&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">w, h = img1.size
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">output_img = Image.new(&#39;RGB&#39;, (w, h), (255, 255, 255))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for y in range(h):
+</span></span><span class="line"><span class="cl">    for x in range(w):
+</span></span><span class="line"><span class="cl">        r1, g1, b1 = img1.getpixel((x, y))
+</span></span><span class="line"><span class="cl">        r2, g2, b2 = img2.getpixel((x, y))
+</span></span><span class="line"><span class="cl">        r = (r1 + r2) % 256
+</span></span><span class="line"><span class="cl">        g = (g1 + g2) % 256
+</span></span><span class="line"><span class="cl">        b = (b1 + b2) % 256
+</span></span><span class="line"><span class="cl">        output_img.putpixel((x, y), (r, g, b))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">output_img.save(&#39;flag.png&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="finding_goku">Finding_Goku</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def check_hex_data(hex1, hex2, start_string):
+</span></span><span class="line"><span class="cl">    if hex1 == hex2:
+</span></span><span class="line"><span class="cl">        return &#34;Error: Even a Saiyan warrior knows that true strength lies in difference! The two inputs must not be identical.&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    try:
+</span></span><span class="line"><span class="cl">        data1 = bytes.fromhex(hex1)
+</span></span><span class="line"><span class="cl">        data2 = bytes.fromhex(hex2)
+</span></span><span class="line"><span class="cl">    except ValueError:
+</span></span><span class="line"><span class="cl">        return &#34;Error: Looks like you misfired a Ki blast! Invalid hex input detected.&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    start_bytes = start_string.encode()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    if not (data1.startswith(start_bytes) and data2.startswith(start_bytes)):
+</span></span><span class="line"><span class="cl">        return &#34;Error: These aren&#39;t true warriors! Both inputs must start with the legendary sign of &#39;GOKU&#39; to proceed.&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def md5_hash(data):
+</span></span><span class="line"><span class="cl">        hasher = hashlib.md5()
+</span></span><span class="line"><span class="cl">        hasher.update(data)
+</span></span><span class="line"><span class="cl">        return hasher.hexdigest()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    hash1 = md5_hash(data1)
+</span></span><span class="line"><span class="cl">    hash2 = md5_hash(data2)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    if hash1 != hash2:
+</span></span><span class="line"><span class="cl">        return &#34;Error: These warriors are impostors! They wear the same armor but their Ki signatures (MD5 hashes) don&#39;t match.&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    try:
+</span></span><span class="line"><span class="cl">        with open(&#34;flag.txt&#34;, &#34;r&#34;) as flag_file:
+</span></span><span class="line"><span class="cl">            flag = flag_file.read().strip()
+</span></span><span class="line"><span class="cl">        return f&#34;🔥 You have found the real Goku! Your flag is: {flag}&#34;
+</span></span><span class="line"><span class="cl">    except FileNotFoundError:
+</span></span><span class="line"><span class="cl">        return &#34;Error: The Dragon Balls couldn&#39;t summon the flag! &#39;flag.txt&#39; is missing.&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if __name__ == &#34;__main__&#34;:
+</span></span><span class="line"><span class="cl">    start_string = &#34;GOKU&#34;
+</span></span><span class="line"><span class="cl">    hex1 = input(&#34;Enter first hex data: &#34;)
+</span></span><span class="line"><span class="cl">    hex2 = input(&#34;Enter second hex data: &#34;)
+</span></span><span class="line"><span class="cl">    print(check_hex_data(hex1, hex2, start_string))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>总而言之言而总之想让md5相等，直接开爆</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from pwn import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = remote(&#39;chals1.apoorvctf.xyz&#39;, 5002)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">with open(&#39;md5_data1&#39;, &#39;rb&#39;) as f:
+</span></span><span class="line"><span class="cl">    data1 = f.read().hex()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">with open(&#39;md5_data2&#39;, &#39;rb&#39;) as f:
+</span></span><span class="line"><span class="cl">    data2 = f.read().hex()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">data = p.recvuntil(b&#39;: &#39;)
+</span></span><span class="line"><span class="cl">print(data.decode() + data1)
+</span></span><span class="line"><span class="cl">p.sendline(data1.encode())
+</span></span><span class="line"><span class="cl">data = p.recvuntil(b&#39;: &#39;)
+</span></span><span class="line"><span class="cl">print(data.decode() + data2)
+</span></span><span class="line"><span class="cl">p.sendline(data2.encode())
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">data = p.recvuntil(b&#39;\n&#39;).rstrip()
+</span></span><span class="line"><span class="cl">print(data.decode())
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p.interactive()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="kowareta_cipher">Kowareta_Cipher</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import sys
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">from Crypto.Util.Padding import pad
+</span></span><span class="line"><span class="cl">from random import randbytes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def main():
+</span></span><span class="line"><span class="cl">    key = randbytes(16)
+</span></span><span class="line"><span class="cl">    cipher = AES.new(key, AES.MODE_ECB)
+</span></span><span class="line"><span class="cl">    flag = b&#39;apoorvctf{fake_flag_123}&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    print(&#34;Welcome to the ECB Oracle challenge!&#34;)
+</span></span><span class="line"><span class="cl">    print(&#34;Enter your input in hex format.&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    try:
+</span></span><span class="line"><span class="cl">        while True:
+</span></span><span class="line"><span class="cl">            print(&#34;Enter your input: &#34;, end=&#34;&#34;, flush=True)
+</span></span><span class="line"><span class="cl">            userinput = sys.stdin.readline().strip()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            if not userinput:
+</span></span><span class="line"><span class="cl">                break
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            try:
+</span></span><span class="line"><span class="cl">                userinput = bytes.fromhex(userinput)
+</span></span><span class="line"><span class="cl">                ciphertext = cipher.encrypt(pad(userinput + flag + userinput, 16))
+</span></span><span class="line"><span class="cl">                print(&#34;Ciphertext:&#34;, ciphertext.hex())
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            except Exception as e:
+</span></span><span class="line"><span class="cl">                print(f&#34;Error: {str(e)}&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    except KeyboardInterrupt:
+</span></span><span class="line"><span class="cl">        print(&#34;Server shutting down.&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if __name__ == &#34;__main__&#34;:
+</span></span><span class="line"><span class="cl">    main()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># nc chals1.apoorvctf.xyz 4001
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>很有意思，加密格式变成<code>x+flag+x</code>，我们<code>ECB</code>的特点就是相同的明文块会生成相同的密文块，padding怎么办呢？消除影响就好了</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from pwn import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = remote(&#39;chals1.apoorvctf.xyz&#39;, 4001)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for _ in range(2):
+</span></span><span class="line"><span class="cl">    data = p.recvuntil(b&#39;\n&#39;).strip().decode()
+</span></span><span class="line"><span class="cl">    print(data)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag = &#39;&#39;
+</span></span><span class="line"><span class="cl">for i in range(32):
+</span></span><span class="line"><span class="cl">    for code in range(33, 127):
+</span></span><span class="line"><span class="cl">        inp = &#39;X&#39; * (31 - i) + flag + chr(code) + &#39;X&#39; * (31 - i)
+</span></span><span class="line"><span class="cl">        print(&#39;[+] input:&#39;, inp)
+</span></span><span class="line"><span class="cl">        inp_hex = inp.encode().hex()
+</span></span><span class="line"><span class="cl">        prompt = p.recvuntil(b&#39;: &#39;).decode()
+</span></span><span class="line"><span class="cl">        print(prompt + inp_hex)
+</span></span><span class="line"><span class="cl">        p.sendline(inp_hex.encode())
+</span></span><span class="line"><span class="cl">        data = p.recvuntil(b&#39;\n&#39;).strip().decode()
+</span></span><span class="line"><span class="cl">        print(data)
+</span></span><span class="line"><span class="cl">        ct = data.split(&#39; &#39;)[-1]
+</span></span><span class="line"><span class="cl">        if ct[32:64] == ct[96:128]:
+</span></span><span class="line"><span class="cl">            flag += chr(code)
+</span></span><span class="line"><span class="cl">            break
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(&#39;[*] flag:&#39;, flag)
+</span></span><span class="line"><span class="cl">p.interactive()
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-03-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/apoorvctf_2025/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/apoorvctf_2025/" data-title="ApoorvCTF 2025" data-hashtags="crypto"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/apoorvctf_2025/" data-hashtag="crypto"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/apoorvctf_2025/" data-title="ApoorvCTF 2025"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/apoorvctf_2025/" data-title="ApoorvCTF 2025"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/apoorvctf_2025/" data-title="ApoorvCTF 2025"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hmv_jo2024/" class="prev" rel="prev" title="HMV JO2024"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>HMV JO2024</a>
+            <a href="/hgctf2025/" class="next" rel="next" title="Hgctf2025">Hgctf2025<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

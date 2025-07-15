@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.147.1">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="Zsm Blog">
+  <meta property="og:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="Zsm Blog">
+  <meta name="twitter:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Zsm Blog">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Zsm Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/","inLanguage": "zh-CN","author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": "Zsm Blog,crypto,ctf,nodejs,wp,密码学","name": "Zsm Blog"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="文章"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/zsm.jpg"
+        data-srcset="/images/zsm.jpg, /images/zsm.jpg 1.5x, /images/zsm.jpg 2x"
+        data-sizes="auto"
+        alt="/images/zsm.jpg"
+        title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/htb-environment/">HTB Environment</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-06-02">2025-06-02</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>一个很有意思的靶机，HTB中等难度</p>
+<h2 id="外网打点">外网打点</h2>
+<p>按照惯例nmap+dirsearch</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">nmap</span> <span class="o">-</span><span class="n">sC</span> <span class="o">-</span><span class="n">sV</span> <span class="mf">10.10</span><span class="o">.</span><span class="mf">11.67</span>        
+</span></span><span class="line"><span class="cl"><span class="n">Starting</span> <span class="n">Nmap</span> <span class="mf">7.94</span><span class="n">SVN</span> <span class="p">(</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">nmap</span><span class="o">.</span><span class="n">org</span> <span class="p">)</span> <span class="n">at</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">31</span> <span class="mi">20</span><span class="p">:</span><span class="mi">35</span> <span class="n">CST</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">21</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">46.63</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">38</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">29</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">17</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">54.81</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">39</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">50</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">05</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">61.43</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">40</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">54</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">10</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">79.51</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">42</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">19</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">55</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">94.33</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">43</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">25</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">55</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">94.34</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">43</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">25</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Nmap</span> <span class="n">scan</span> <span class="n">report</span> <span class="k">for</span> <span class="mf">10.10</span><span class="o">.</span><span class="mf">11.67</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span> <span class="n">is</span> <span class="n">up</span> <span class="p">(</span><span class="mf">1.1</span><span class="n">s</span> <span class="n">latency</span><span class="p">)</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Not</span> <span class="n">shown</span><span class="p">:</span> <span class="mi">998</span> <span class="n">closed</span> <span class="n">tcp</span> <span class="n">ports</span> <span class="p">(</span><span class="n">conn</span><span class="o">-</span><span class="n">refused</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">PORT</span>   <span class="n">STATE</span> <span class="n">SERVICE</span> <span class="n">VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="mi">22</span><span class="o">/</span><span class="n">tcp</span> <span class="n">open</span>  <span class="n">ssh</span>     <span class="n">OpenSSH</span> <span class="mf">9.2</span><span class="n">p1</span> <span class="n">Debian</span> <span class="mi">2</span><span class="o">+</span><span class="n">deb12u5</span> <span class="p">(</span><span class="n">protocol</span> <span class="mf">2.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">ssh</span><span class="o">-</span><span class="n">hostkey</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span>   <span class="mi">256</span> <span class="mi">5</span><span class="n">c</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="n">ef</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="n">e2</span><span class="p">:</span><span class="mi">80</span><span class="p">:</span><span class="n">cd</span><span class="p">:</span><span class="mi">3</span><span class="n">a</span><span class="p">:</span><span class="mi">96</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="n">f1</span><span class="p">:</span><span class="mi">92</span><span class="p">:</span><span class="mi">64</span> <span class="p">(</span><span class="n">ECDSA</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="n">_</span>  <span class="mi">256</span> <span class="mi">1</span><span class="n">f</span><span class="p">:</span><span class="mi">3</span><span class="n">d</span><span class="p">:</span><span class="n">c2</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="mi">77</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">48</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="n">c4</span><span class="p">:</span><span class="mi">4</span><span class="n">b</span><span class="p">:</span><span class="mi">74</span><span class="p">:</span><span class="n">ab</span> <span class="p">(</span><span class="n">ED25519</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">80</span><span class="o">/</span><span class="n">tcp</span> <span class="n">open</span>  <span class="n">http</span>    <span class="n">nginx</span> <span class="mf">1.22</span><span class="o">.</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="n">_http</span><span class="o">-</span><span class="n">title</span><span class="p">:</span> <span class="n">Did</span> <span class="ow">not</span> <span class="n">follow</span> <span class="n">redirect</span> <span class="n">to</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="n">_http</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">header</span><span class="p">:</span> <span class="n">nginx</span><span class="o">/</span><span class="mf">1.22</span><span class="o">.</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Service</span> <span class="n">Info</span><span class="p">:</span> <span class="ne">OS</span><span class="p">:</span> <span class="n">Linux</span><span class="p">;</span> <span class="n">CPE</span><span class="p">:</span> <span class="n">cpe</span><span class="p">:</span><span class="o">/</span><span class="n">o</span><span class="p">:</span><span class="n">linux</span><span class="p">:</span><span class="n">linux_kernel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="n">python</span> <span class="n">dirsearch</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">u</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">zsm</span><span class="o">/</span><span class="n">CTF</span><span class="o">/</span><span class="k">tool</span><span class="o">/</span><span class="n">kali_word</span><span class="o">/</span><span class="n">dirb</span><span class="o">/</span><span class="n">wordlists</span><span class="o">/</span><span class="n">big</span><span class="o">.</span><span class="n">txt</span>     
+</span></span><span class="line"><span class="cl">  <span class="n">_</span><span class="o">|.</span> <span class="n">_</span> <span class="n">_</span>  <span class="n">_</span>  <span class="n">_</span>  <span class="n">_</span> <span class="n">_</span><span class="o">|</span><span class="n">_</span>    <span class="n">v0</span><span class="o">.</span><span class="mf">4.3</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="n">_</span><span class="o">|||</span> <span class="n">_</span><span class="p">)</span> <span class="p">(</span><span class="o">/</span><span class="n">_</span><span class="p">(</span><span class="n">_</span><span class="o">||</span> <span class="p">(</span><span class="n">_</span><span class="o">|</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Extensions</span><span class="p">:</span> <span class="n">php</span><span class="p">,</span> <span class="n">asp</span><span class="p">,</span> <span class="n">aspx</span><span class="p">,</span> <span class="n">jsp</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">htm</span> <span class="o">|</span> <span class="n">HTTP</span> <span class="n">method</span><span class="p">:</span> <span class="n">GET</span> <span class="o">|</span> <span class="n">Threads</span><span class="p">:</span> <span class="mi">25</span> <span class="o">|</span> <span class="n">Wordlist</span> <span class="n">size</span><span class="p">:</span> <span class="mi">20469</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Target</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span> <span class="n">Scanning</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">49</span><span class="p">:</span><span class="mi">52</span><span class="p">]</span> <span class="mi">301</span> <span class="o">-</span>   <span class="mi">169</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">build</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">build</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">49</span><span class="p">:</span><span class="mi">52</span><span class="p">]</span> <span class="mi">301</span> <span class="o">-</span>   <span class="mi">169</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">build</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">build</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">23</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>     <span class="mi">0</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">favicon</span><span class="o">.</span><span class="n">ico</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">04</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">2</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">login</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">04</span><span class="p">]</span> <span class="mi">302</span> <span class="o">-</span>   <span class="mi">358</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">logout</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">login</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span> <span class="mi">405</span> <span class="o">-</span>  <span class="mi">244</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">mailing</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">33</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">24</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">robots</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">09</span><span class="p">]</span> <span class="mi">301</span> <span class="o">-</span>   <span class="mi">169</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">storage</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">storage</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">19</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">2</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">up</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span> <span class="mi">405</span> <span class="o">-</span>  <span class="mi">244</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">upload</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">39</span><span class="p">]</span> <span class="mi">301</span> <span class="o">-</span>   <span class="mi">169</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">vendor</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">vendor</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Task</span> <span class="n">Completed</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有个很明显的登录页面，进去看看，随便输入试试
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.helloimg.com/i/2025/06/02/683d46f115717.png"
+        data-srcset="https://www.helloimg.com/i/2025/06/02/683d46f115717.png, https://www.helloimg.com/i/2025/06/02/683d46f115717.png 1.5x, https://www.helloimg.com/i/2025/06/02/683d46f115717.png 2x"
+        data-sizes="auto"
+        alt="https://www.helloimg.com/i/2025/06/02/683d46f115717.png"
+        title="image.png" />
+有报错回显，但是目前不知道有什么可以打的地方</p></div><div class="post-footer">
+        <a href="/htb-environment/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/litctf2025-crypto/">Litctf2025 Crypto</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-26">2025-05-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>赛时因为有其他的东西就没打，赛后复现，25号一晚上写完了，感觉除了背包其他的都还好</p>
+<h2 id="题目">题目</h2>
+<h3 id="basic">basic</h3>
+<p>task.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">enc</span> <span class="kn">import</span> <span class="n">flag</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="n">bytes_to_long</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">e</span> <span class="o">=</span> <span class="mi">65537</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;e = </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;c = </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>经典的n是大素数的问题</p></div><div class="post-footer">
+        <a href="/litctf2025-crypto/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/thm-the-london-bridge/">THM the London Bridge</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-26">2025-05-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>一鼓作气，再刷一个，THM的一个中等靶机</p>
+<h2 id="外网打点">外网打点</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nmap -sC -sV 10.10.207.41   
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-05-24 20:54 CST
+</span></span><span class="line"><span class="cl">Stats: 0:00:55 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+</span></span><span class="line"><span class="cl">Service scan Timing: About 50.00% done; ETC: 20:55 (0:00:20 remaining)
+</span></span><span class="line"><span class="cl">Stats: 0:01:01 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+</span></span><span class="line"><span class="cl">Service scan Timing: About 50.00% done; ETC: 20:56 (0:00:25 remaining)
+</span></span><span class="line"><span class="cl">Stats: 0:01:44 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+</span></span><span class="line"><span class="cl">Service scan Timing: About 50.00% done; ETC: 20:57 (0:01:08 remaining)
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.207.41
+</span></span><span class="line"><span class="cl">Host is up (0.23s latency).
+</span></span><span class="line"><span class="cl">Not shown: 998 closed tcp ports (conn-refused)
+</span></span><span class="line"><span class="cl">PORT     STATE SERVICE    VERSION
+</span></span><span class="line"><span class="cl">22/tcp   open  ssh        OpenSSH 7.6p1 Ubuntu 4ubuntu0.7 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey:
+</span></span><span class="line"><span class="cl">|   2048 58:c1:e4:79:ca:70:bc:3b:8d:b8:22:17:2f:62:1a:34 (RSA)
+</span></span><span class="line"><span class="cl">|   256 2a:b4:1f:2c:72:35:7a:c3:7a:5c:7d:47:d6:d0:73:c8 (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 1c:7e:d2:c9:dd:c2:e4:ac:11:7e:45:6a:2f:44:af:0f (ED25519)
+</span></span><span class="line"><span class="cl">8080/tcp open  http-proxy gunicorn
+</span></span><span class="line"><span class="cl">|_http-title: Explore London
+</span></span><span class="line"><span class="cl">| fingerprint-strings:
+</span></span><span class="line"><span class="cl">|   GetRequest:
+</span></span><span class="line"><span class="cl">|     HTTP/1.0 200 OK
+</span></span><span class="line"><span class="cl">|     Server: gunicorn
+</span></span><span class="line"><span class="cl">|     Date: Sat, 24 May 2025 12:55:24 GMT
+</span></span><span class="line"><span class="cl">|     Connection: close
+</span></span><span class="line"><span class="cl">|     Content-Type: text/html; charset=utf-8
+</span></span><span class="line"><span class="cl">|     Content-Length: 2682
+</span></span><span class="line"><span class="cl">|     &lt;!DOCTYPE html&gt;
+</span></span><span class="line"><span class="cl">|     &lt;html lang=&#34;en&#34;&gt;
+</span></span><span class="line"><span class="cl">|     &lt;head&gt;
+</span></span><span class="line"><span class="cl">|     &lt;meta charset=&#34;UTF-8&#34;&gt;
+</span></span><span class="line"><span class="cl">|     &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;
+</span></span><span class="line"><span class="cl">|     &lt;title&gt;Explore London&lt;/title&gt;
+</span></span><span class="line"><span class="cl">|     &lt;style&gt;
+</span></span><span class="line"><span class="cl">|     body {
+</span></span><span class="line"><span class="cl">|     font-family: Arial, sans-serif;
+</span></span><span class="line"><span class="cl">|     margin: 0;
+</span></span><span class="line"><span class="cl">|     padding: 0;
+</span></span><span class="line"><span class="cl">|     background-color: #f2f2f2;
+</span></span><span class="line"><span class="cl">|     header {
+</span></span><span class="line"><span class="cl">|     background-color: #333;
+</span></span><span class="line"><span class="cl">|     color: #fff;
+</span></span><span class="line"><span class="cl">|     padding: 10px 20px;
+</span></span><span class="line"><span class="cl">|     text-align: center;
+</span></span><span class="line"><span class="cl">|     background-color: #444;
+</span></span><span class="line"><span class="cl">|     color: #fff;
+</span></span><span class="line"><span class="cl">|     padding: 10px 20px;
+</span></span><span class="line"><span class="cl">|     text-align: center;
+</span></span><span class="line"><span class="cl">|     color: #fff;
+</span></span><span class="line"><span class="cl">|     text-decoration: none;
+</span></span><span class="line"><span class="cl">|     margin: 0 10p
+</span></span><span class="line"><span class="cl">|   HTTPOptions:
+</span></span><span class="line"><span class="cl">|     HTTP/1.0 200 OK
+</span></span><span class="line"><span class="cl">|     Server: gunicorn
+</span></span><span class="line"><span class="cl">|     Date: Sat, 24 May 2025 12:55:25 GMT
+</span></span><span class="line"><span class="cl">|     Connection: close
+</span></span><span class="line"><span class="cl">|     Content-Type: text/html; charset=utf-8
+</span></span><span class="line"><span class="cl">|     Allow: HEAD, GET, OPTIONS
+</span></span><span class="line"><span class="cl">|_    Content-Length: 0
+</span></span><span class="line"><span class="cl">|_http-server-header: gunicorn
+</span></span><span class="line"><span class="cl">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 178.62 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>没什么有用的，disearch启动</p></div><div class="post-footer">
+        <a href="/thm-the-london-bridge/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/htb-planning/">HTB Planning</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-25">2025-05-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>好久没打靶机了，昨天睿抗校赛摸鱼打了一半，回宿舍打完了</p>
+<h2 id="外网打点">外网打点</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">❯ nmap -sC -sV 10.10.11.68 
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-05-24 14:57 CST
+</span></span><span class="line"><span class="cl">Stats: 0:00:31 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+</span></span><span class="line"><span class="cl">Connect Scan Timing: About 99.99% done; ETC: 14:58 (0:00:00 remaining)
+</span></span><span class="line"><span class="cl">Stats: 0:00:32 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+</span></span><span class="line"><span class="cl">Connect Scan Timing: About 99.99% done; ETC: 14:58 (0:00:00 remaining)
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.11.68
+</span></span><span class="line"><span class="cl">Host is up (0.26s latency).
+</span></span><span class="line"><span class="cl">Not shown: 998 closed tcp ports (conn-refused)
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 9.6p1 Ubuntu 3ubuntu13.11 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey:
+</span></span><span class="line"><span class="cl">|   256 62:ff:f6:d4:57:88:05:ad:f4:d3:de:5b:9b:f8:50:f1 (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 4c:ce:7d:5c:fb:2d:a0:9e:9f:bd:f5:5c:5e:61:50:8a (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp open  http    nginx 1.24.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">|_http-title: Did not follow redirect to http://planning.htb/
+</span></span><span class="line"><span class="cl">|_http-server-header: nginx/1.24.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 48.18 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>把域名加到<code>/etc/hosts</code>里面，访问一下，发现没有明显的目标，扫目录</p></div><div class="post-footer">
+        <a href="/htb-planning/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/huangheliuyu/">黄河流域CTF-crypto</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-25">2025-05-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>和睿抗校赛撞了，赛后看看题复现一下，感觉质量很一般</p>
+<h2 id="题目">题目</h2>
+<h3 id="latice">Latice</h3>
+<p>task.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">secret</span> <span class="kn">import</span> <span class="n">flag</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">gen</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">q</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span> <span class="n">t</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">q</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span> <span class="o">%</span> <span class="n">q</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">%</span> <span class="n">q</span>
+</span></span><span class="line"><span class="cl">    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="n">A</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">enc</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">N</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">P</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Z</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">P</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">q</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">Z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="o">%</span> <span class="n">q</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">C</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="mi">127</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.1</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">sigma</span> <span class="o">=</span> <span class="mf">1.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">P</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">gen</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">prep</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span><span class="si">:</span><span class="s2">08b</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">C</span> <span class="o">=</span> <span class="n">enc</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">prep</span><span class="p">(</span><span class="n">hint</span><span class="p">),</span> <span class="n">q</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">P</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">C</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">P</span><span class="si">=}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">C</span><span class="si">=}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一眼看上去是格+aes，但是注意代码</p></div><div class="post-footer">
+        <a href="/huangheliuyu/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/study_xss/">Study_xss</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-09">2025-05-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="xss原理">XSS原理</h2>
+<p>XSS的原理是恶意攻击者往 Web 页面里插入恶意可执行网页脚本代码，当用户浏览该页之时，嵌入其中 Web 里面的脚本代码会被执行，从而可以达到攻击者盗取用户信息或其他侵犯用户安全隐私的目的。</p></div><div class="post-footer">
+        <a href="/study_xss/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/study/">Study</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/2/">2</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/3/">3</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/4/">4</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/5/">5</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/11/">11</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/index.umd.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"态度是心的面具"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

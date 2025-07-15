@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.147.1">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="Zsm Blog">
+  <meta property="og:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="Zsm Blog">
+  <meta name="twitter:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Zsm Blog">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Zsm Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/","inLanguage": "zh-CN","author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": "Zsm Blog,crypto,ctf,nodejs,wp,密码学","name": "Zsm Blog"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="文章"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/zsm.jpg"
+        data-srcset="/images/zsm.jpg, /images/zsm.jpg 1.5x, /images/zsm.jpg 2x"
+        data-sizes="auto"
+        alt="/images/zsm.jpg"
+        title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/vuln_hmv3/">HMV Icecream</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-02-16">2025-02-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="hmv_icecream">hmv_Icecream</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://hackmyvm.eu/machines/machine.php?vm=Icecream" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=Icecream</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">└─$ nmap -sV -sC -T4 -Pn -p- 192.168.64.22
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-10 16:05 HKT
+</span></span><span class="line"><span class="cl">Stats: 0:00:13 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+</span></span><span class="line"><span class="cl">Service scan Timing: About 60.00% done; ETC: 16:06 (0:00:07 remaining)
+</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.64.22
+</span></span><span class="line"><span class="cl">Host is up (0.00048s latency).
+</span></span><span class="line"><span class="cl">Not shown: 65530 closed tcp ports (reset)
+</span></span><span class="line"><span class="cl">PORT     STATE SERVICE     VERSION
+</span></span><span class="line"><span class="cl">22/tcp   open  ssh         OpenSSH 9.2p1 Debian 2+deb12u3 (protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   256 68:94:ca:2f:f7:62:45:56:a4:67:84:59:1b:fe:e9:bc (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 3b:79:1a:21:81:af:75:c2:c1:2e:4e:f5:a3:9c:c9:e3 (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp   open  http        nginx 1.22.1
+</span></span><span class="line"><span class="cl">|_http-title: 403 Forbidden
+</span></span><span class="line"><span class="cl">|_http-server-header: nginx/1.22.1
+</span></span><span class="line"><span class="cl">139/tcp  open  netbios-ssn Samba smbd 4.6.2
+</span></span><span class="line"><span class="cl">445/tcp  open  netbios-ssn Samba smbd 4.6.2
+</span></span><span class="line"><span class="cl">9000/tcp open  cslistener?
+</span></span><span class="line"><span class="cl">| fingerprint-strings: 
+</span></span><span class="line"><span class="cl">|   FourOhFourRequest: 
+</span></span><span class="line"><span class="cl">|     HTTP/1.1 404 Not Found
+</span></span><span class="line"><span class="cl">|     Server: Unit/1.33.0
+</span></span><span class="line"><span class="cl">|     Date: Mon, 10 Feb 2025 08:05:55 GMT
+</span></span><span class="line"><span class="cl">|     Content-Type: application/json
+</span></span><span class="line"><span class="cl">|     Content-Length: 40
+</span></span><span class="line"><span class="cl">|     Connection: close
+</span></span><span class="line"><span class="cl">|     &#34;error&#34;: &#34;Value doesn&#39;t exist.&#34;
+</span></span><span class="line"><span class="cl">|   GetRequest: 
+</span></span><span class="line"><span class="cl">|     HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">|     Server: Unit/1.33.0
+</span></span><span class="line"><span class="cl">|     Date: Mon, 10 Feb 2025 08:05:55 GMT
+</span></span><span class="line"><span class="cl">|     Content-Type: application/json
+</span></span><span class="line"><span class="cl">|     Content-Length: 1042
+</span></span><span class="line"><span class="cl">|     Connection: close
+</span></span><span class="line"><span class="cl">|     &#34;certificates&#34;: {},
+</span></span><span class="line"><span class="cl">|     &#34;js_modules&#34;: {},
+</span></span><span class="line"><span class="cl">|     &#34;config&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;listeners&#34;: {},
+</span></span><span class="line"><span class="cl">|     &#34;routes&#34;: [],
+</span></span><span class="line"><span class="cl">|     &#34;applications&#34;: {}
+</span></span><span class="line"><span class="cl">|     &#34;status&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;modules&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;python&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;3.11.2&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/python3.11.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;php&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;8.2.18&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/php.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;perl&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;5.36.0&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/perl.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;ruby&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;3.1.2&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/ruby.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;java&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;17.0.11&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/java17.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;wasm&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;0.1&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/wasm.unit.so&#34;
+</span></span><span class="line"><span class="cl">|   HTTPOptions: 
+</span></span><span class="line"><span class="cl">|     HTTP/1.1 405 Method Not Allowed
+</span></span><span class="line"><span class="cl">|     Server: Unit/1.33.0
+</span></span><span class="line"><span class="cl">|     Date: Mon, 10 Feb 2025 08:05:55 GMT
+</span></span><span class="line"><span class="cl">|     Content-Type: application/json
+</span></span><span class="line"><span class="cl">|     Content-Length: 35
+</span></span><span class="line"><span class="cl">|     Connection: close
+</span></span><span class="line"><span class="cl">|_    &#34;error&#34;: &#34;Invalid method.&#34;
+</span></span><span class="line"><span class="cl">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+</span></span><span class="line"><span class="cl">SF-Port9000-TCP:V=7.94SVN%I=7%D=2/10%Time=67A9B363%P=aarch64-unknown-linux
+</span></span><span class="line"><span class="cl">SF:-gnu%r(GetRequest,4A8,&#34;HTTP/1\.1\x20200\x20OK\r\nServer:\x20Unit/1\.33\
+</span></span><span class="line"><span class="cl">SF:.0\r\nDate:\x20Mon,\x2010\x20Feb\x202025\x2008:05:55\x20GMT\r\nContent-
+</span></span><span class="line"><span class="cl">SF:Type:\x20application/json\r\nContent-Length:\x201042\r\nConnection:\x20
+</span></span><span class="line"><span class="cl">SF:close\r\n\r\n{\r\n\t\&#34;certificates\&#34;:\x20{},\r\n\t\&#34;js_modules\&#34;:\x20{}
+</span></span><span class="line"><span class="cl">SF:,\r\n\t\&#34;config\&#34;:\x20{\r\n\t\t\&#34;listeners\&#34;:\x20{},\r\n\t\t\&#34;routes\&#34;:
+</span></span><span class="line"><span class="cl">SF:\x20\[\],\r\n\t\t\&#34;applications\&#34;:\x20{}\r\n\t},\r\n\r\n\t\&#34;status\&#34;:\x
+</span></span><span class="line"><span class="cl">SF:20{\r\n\t\t\&#34;modules\&#34;:\x20{\r\n\t\t\t\&#34;python\&#34;:\x20{\r\n\t\t\t\t\&#34;ver
+</span></span><span class="line"><span class="cl">SF:sion\&#34;:\x20\&#34;3\.11\.2\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr/lib/unit/modules
+</span></span><span class="line"><span class="cl">SF:/python3\.11\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;php\&#34;:\x20{\r\n\t\t
+</span></span><span class="line"><span class="cl">SF:\t\t\&#34;version\&#34;:\x20\&#34;8\.2\.18\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr/lib/uni
+</span></span><span class="line"><span class="cl">SF:t/modules/php\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;perl\&#34;:\x20{\r\n\t
+</span></span><span class="line"><span class="cl">SF:\t\t\t\&#34;version\&#34;:\x20\&#34;5\.36\.0\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr/lib/u
+</span></span><span class="line"><span class="cl">SF:nit/modules/perl\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;ruby\&#34;:\x20{\r\
+</span></span><span class="line"><span class="cl">SF:n\t\t\t\t\&#34;version\&#34;:\x20\&#34;3\.1\.2\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr/lib
+</span></span><span class="line"><span class="cl">SF:/unit/modules/ruby\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;java\&#34;:\x20{\
+</span></span><span class="line"><span class="cl">SF:r\n\t\t\t\t\&#34;version\&#34;:\x20\&#34;17\.0\.11\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr
+</span></span><span class="line"><span class="cl">SF:/lib/unit/modules/java17\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;wasm\&#34;:
+</span></span><span class="line"><span class="cl">SF:\x20{\r\n\t\t\t\t\&#34;version\&#34;:\x20\&#34;0\.1\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/us
+</span></span><span class="line"><span class="cl">SF:r/lib/unit/modules/wasm\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t&#34;)%r(HTTPOpt
+</span></span><span class="line"><span class="cl">SF:ions,C7,&#34;HTTP/1\.1\x20405\x20Method\x20Not\x20Allowed\r\nServer:\x20Uni
+</span></span><span class="line"><span class="cl">SF:t/1\.33\.0\r\nDate:\x20Mon,\x2010\x20Feb\x202025\x2008:05:55\x20GMT\r\n
+</span></span><span class="line"><span class="cl">SF:Content-Type:\x20application/json\r\nContent-Length:\x2035\r\nConnectio
+</span></span><span class="line"><span class="cl">SF:n:\x20close\r\n\r\n{\r\n\t\&#34;error\&#34;:\x20\&#34;Invalid\x20method\.\&#34;\r\n}\r\
+</span></span><span class="line"><span class="cl">SF:n&#34;)%r(FourOhFourRequest,C3,&#34;HTTP/1\.1\x20404\x20Not\x20Found\r\nServer:
+</span></span><span class="line"><span class="cl">SF:\x20Unit/1\.33\.0\r\nDate:\x20Mon,\x2010\x20Feb\x202025\x2008:05:55\x20
+</span></span><span class="line"><span class="cl">SF:GMT\r\nContent-Type:\x20application/json\r\nContent-Length:\x2040\r\nCo
+</span></span><span class="line"><span class="cl">SF:nnection:\x20close\r\n\r\n{\r\n\t\&#34;error\&#34;:\x20\&#34;Value\x20doesn&#39;t\x20ex
+</span></span><span class="line"><span class="cl">SF:ist\.\&#34;\r\n}\r\n&#34;);
+</span></span><span class="line"><span class="cl">MAC Address: EE:67:54:A9:FD:C8 (Unknown)
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Host script results:
+</span></span><span class="line"><span class="cl">|_nbstat: NetBIOS name: ICECREAM, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)
+</span></span><span class="line"><span class="cl">| smb2-time: 
+</span></span><span class="line"><span class="cl">|   date: 2025-02-10T08:05:55
+</span></span><span class="line"><span class="cl">|_  start_date: N/A
+</span></span><span class="line"><span class="cl">| smb2-security-mode: 
+</span></span><span class="line"><span class="cl">|   3:1:1: 
+</span></span><span class="line"><span class="cl">|_    Message signing enabled but not required
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 14.77 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="反弹shell">反弹shell</h3>
+<p>看看smb服务</p></div><div class="post-footer">
+        <a href="/vuln_hmv3/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2024dasctf%E6%9A%91%E6%9C%9Fcrypto%E5%A4%8D%E7%8E%B0/">2024DASCTF暑期—Crypto复现</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>感觉这是打的最有意思的一次比赛了，当时在火车站打开电脑写的，秒了一题，然后上火车了，一路很颠就没有再写了，复现一下前三题</p>
+<h2 id="题目">题目</h2>
+<h3 id="complex_enc">complex_enc</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">secret</span> <span class="kn">import</span> <span class="n">flag</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">GET_KEY</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">sum</span><span class="o">=</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span><span class="o">=</span><span class="nb">sum</span><span class="o">+</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">r</span>
+</span></span><span class="line"><span class="cl">        <span class="n">key</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">sum</span><span class="o">+=</span><span class="n">x</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">key</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">enc</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">k</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cipher_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">cipher_list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cipher</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">m</span><span class="o">=</span><span class="n">bytes_to_long</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span> <span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="n">flag</span> <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">format</span><span class="p">(</span><span class="n">byte</span><span class="p">,</span> <span class="s1">&#39;08b&#39;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span><span class="o">=</span><span class="n">GET_KEY</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="o">=</span><span class="n">enc</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>output</p></div><div class="post-footer">
+        <a href="/2024dasctf%E6%9A%91%E6%9C%9Fcrypto%E5%A4%8D%E7%8E%B0/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/basectf2024-crypto-wp/">Basectf2024_crypto</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="week1の题目">week1の题目</h2>
+<h3 id="你会算md吗">你会算MD吗</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag=&#39;BaseCTF{}&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">output=[]
+</span></span><span class="line"><span class="cl">for i in flag:
+</span></span><span class="line"><span class="cl">    my_md5=hashlib.md5()
+</span></span><span class="line"><span class="cl">    my_md5.update(i.encode())
+</span></span><span class="line"><span class="cl">    output.append(my_md5.hexdigest())
+</span></span><span class="line"><span class="cl">print(&#34;output =&#34;,output)
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">output = [&#39;9d5ed678fe57bcca610140957afab571&#39;, &#39;0cc175b9c0f1b6a831c399e269772661&#39;, &#39;03c7c0ace395d80182db07ae2c30f034&#39;, &#39;e1671797c52e15f763380b45e841ec32&#39;, &#39;0d61f8370cad1d412f80b84d143e1257&#39;, &#39;b9ece18c950afbfa6b0fdbfa4ff731d3&#39;, &#39;800618943025315f869e4e1f09471012&#39;, &#39;f95b70fdc3088560732a5ac135644506&#39;, &#39;0cc175b9c0f1b6a831c399e269772661&#39;, &#39;a87ff679a2f3e71d9181a67b7542122c&#39;, &#39;92eb5ffee6ae2fec3ad71c777531578f&#39;, &#39;8fa14cdd754f91cc6554c9e71929cce7&#39;, &#39;a87ff679a2f3e71d9181a67b7542122c&#39;, &#39;eccbc87e4b5ce2fe28308fd9f2a7baf3&#39;, &#39;0cc175b9c0f1b6a831c399e269772661&#39;, &#39;e4da3b7fbbce2345d7772b0674a318d5&#39;, &#39;336d5ebc5436534e61d16e63ddfca327&#39;, &#39;eccbc87e4b5ce2fe28308fd9f2a7baf3&#39;, &#39;8fa14cdd754f91cc6554c9e71929cce7&#39;, &#39;8fa14cdd754f91cc6554c9e71929cce7&#39;, &#39;45c48cce2e2d7fbdea1afc51c7c6ad26&#39;, &#39;336d5ebc5436534e61d16e63ddfca327&#39;, &#39;a87ff679a2f3e71d9181a67b7542122c&#39;, &#39;8f14e45fceea167a5a36dedd4bea2543&#39;, &#39;1679091c5a880faf6fb5e6087eb1b2dc&#39;, &#39;a87ff679a2f3e71d9181a67b7542122c&#39;, &#39;336d5ebc5436534e61d16e63ddfca327&#39;, &#39;92eb5ffee6ae2fec3ad71c777531578f&#39;, &#39;8277e0910d750195b448797616e091ad&#39;, &#39;0cc175b9c0f1b6a831c399e269772661&#39;, &#39;c81e728d9d4c2f636f067f89cc14862c&#39;, &#39;336d5ebc5436534e61d16e63ddfca327&#39;, &#39;0cc175b9c0f1b6a831c399e269772661&#39;, &#39;8fa14cdd754f91cc6554c9e71929cce7&#39;, &#39;c9f0f895fb98ab9159f51fd0297e236d&#39;, &#39;e1671797c52e15f763380b45e841ec32&#39;, &#39;e1671797c52e15f763380b45e841ec32&#39;, &#39;a87ff679a2f3e71d9181a67b7542122c&#39;, &#39;8277e0910d750195b448797616e091ad&#39;, &#39;92eb5ffee6ae2fec3ad71c777531578f&#39;, &#39;45c48cce2e2d7fbdea1afc51c7c6ad26&#39;, &#39;0cc175b9c0f1b6a831c399e269772661&#39;, &#39;c9f0f895fb98ab9159f51fd0297e236d&#39;, &#39;0cc175b9c0f1b6a831c399e269772661&#39;, &#39;cbb184dd8e05c9709e5dcaedaa0495cf&#39;]
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：直接利用哈希表去找字符串就行了
+exp</p></div><div class="post-footer">
+        <a href="/basectf2024-crypto-wp/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/isctf2024_crypto/">isctf2024_crypto</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>本来以为社会组没有奖，就只写了crypto和一部分misc，结果结束了又说前十有奖，呜呜呜</p>
+<h2 id="题目">题目</h2>
+<h3 id="我和小蓝鲨的秘密">我和小蓝鲨的秘密</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from PIL import Image
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import bytes_to_long, long_to_bytes
+</span></span><span class="line"><span class="cl">import numpy as np
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">n = 29869349657224745144762606999
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">original_image_path = &#34;flag.jpg&#34;
+</span></span><span class="line"><span class="cl">img = Image.open(original_image_path)
+</span></span><span class="line"><span class="cl">img = img.convert(&#34;RGB&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">img_array = np.array(img)
+</span></span><span class="line"><span class="cl">h, w, _ = img_array.shape
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">encrypted_array = np.zeros((h, w, 3), dtype=object)
+</span></span><span class="line"><span class="cl">for i in range(h):
+</span></span><span class="line"><span class="cl">    for j in range(w):
+</span></span><span class="line"><span class="cl">        r, g, b = int(img_array[i, j, 0]), int(img_array[i, j, 1]), int(img_array[i, j, 2])
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        encrypted_array[i, j, 0] = pow(r, e, n)
+</span></span><span class="line"><span class="cl">        encrypted_array[i, j, 1] = pow(g, e, n)
+</span></span><span class="line"><span class="cl">        encrypted_array[i, j, 2] = pow(b, e, n)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">np.save(&#34;encrypted_image.npy&#34;, encrypted_array)
+</span></span><span class="line"><span class="cl">print(&#34;图片已加密并保存为 encrypted_image.npy&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：就是很简单图片rsa，可以直接，遍历，n很小，可以直接分解
+exp</p></div><div class="post-footer">
+        <a href="/isctf2024_crypto/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/moectf2024_crypto/">moectf2024_crypto</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="题目">题目</h2>
+<h3 id="现代密码学指北">现代密码学指北</h3>
+<p>task:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import bytes_to_long, getPrime
+</span></span><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">p = getPrime(128)
+</span></span><span class="line"><span class="cl">q = getPrime(128)
+</span></span><span class="line"><span class="cl">n = p*q
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">m = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">c = pow(m, e, n)
+</span></span><span class="line"><span class="cl">print(f&#34;n = {n}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;p = {p}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;q = {q}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;c = {c}&#34;)
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">n = 40600296529065757616876034307502386207424439675894291036278463517602256790833
+</span></span><span class="line"><span class="cl">p = 197380555956482914197022424175976066223
+</span></span><span class="line"><span class="cl">q = 205695522197318297682903544013139543071
+</span></span><span class="line"><span class="cl">c = 36450632910287169149899281952743051320560762944710752155402435752196566406306
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正常解密即可
+exp</p></div><div class="post-footer">
+        <a href="/moectf2024_crypto/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/vuln_hmv2/">Vuln AdmX_new & Empire_LupinOne</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="admx_new">AdmX_new</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://download.vulnhub.com/admx/AdmX_new.7z" target="_blank" rel="noopener noreffer ">https://download.vulnhub.com/admx/AdmX_new.7z</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png"
+        data-srcset="https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png, https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png 1.5x, https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png 2x"
+        data-sizes="auto"
+        alt="https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png"
+        title="image.png" />
+只有80端口开放，直接访问没什么东西，dirb扫描出来wordpress，访问看看，发现很慢，burp抓包发现重定向到192.168.159.145
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png"
+        data-srcset="https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png, https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png 1.5x, https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png 2x"
+        data-sizes="auto"
+        alt="https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png"
+        title="image-1.png" /></p></div><div class="post-footer">
+        <a href="/vuln_hmv2/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/7/">7</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/8/">8</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/9/">9</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/10/">10</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/11/">11</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/index.umd.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"data":{"id-1":"态度是心的面具"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

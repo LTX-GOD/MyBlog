@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Study Golang「3」 - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/study-golang3/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="Study Golang「3」">
+  <meta property="og:description" content="study golang / demo5 后端：mongodb&#43;gorm&#43;MVC&#43;gin&#43;air 前端：vue&#43;vite&#43;ts 仓库：https://github.com/LTX-GOD/study-golang-demo">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-08T11:30:53+08:00">
+    <meta property="article:modified_time" content="2025-07-08T11:30:53+08:00">
+    <meta property="article:tag" content="开发">
+    <meta property="article:tag" content="Study">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="Study Golang「3」">
+  <meta name="twitter:description" content="study golang / demo5 后端：mongodb&#43;gorm&#43;MVC&#43;gin&#43;air 前端：vue&#43;vite&#43;ts 仓库：https://github.com/LTX-GOD/study-golang-demo">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/study-golang3/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/study-golang2/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/l3hctf-wp/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Study Golang「3」",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/study-golang3\/"
+        },"genre": "posts","keywords": "开发, study","wordcount":  3024 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/study-golang3\/","datePublished": "2025-07-08T11:30:53+08:00","dateModified": "2025-07-08T11:30:53+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Study Golang「3」</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>Golang</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-08">2025-07-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3024 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;<span id="/study-golang3/" class="leancloud_visitors" data-flag-title="Study Golang「3」">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#study-golang--demo5">study golang / demo5</a>
+      <ul>
+        <li><a href="#项目架构">项目架构</a>
+          <ul>
+            <li><a href="#关于air包">关于Air包</a></li>
+            <li><a href="#关于mongodb">关于mongodb</a></li>
+          </ul>
+        </li>
+        <li><a href="#关于后端项目">关于后端项目</a>
+          <ul>
+            <li><a href="#router--main"><em><strong>router &amp; main</strong></em></a></li>
+            <li><a href="#models"><em><strong>models</strong></em></a></li>
+            <li><a href="#database"><em><strong>database</strong></em></a></li>
+            <li><a href="#controllers"><em><strong>controllers</strong></em></a></li>
+            <li><a href="#middleware"><em><strong>middleware</strong></em></a></li>
+            <li><a href="#tokens"><em><strong>tokens</strong></em></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#study-golang--demo6">study golang / demo6</a>
+      <ul>
+        <li><a href="#项目架构-1">项目架构</a>
+          <ul>
+            <li><a href="#redis--mysql"><em><strong>redis &amp;&amp; mysql</strong></em></a></li>
+          </ul>
+        </li>
+        <li><a href="#关于后端项目-1">关于后端项目</a>
+          <ul>
+            <li><a href="#编写习惯">编写习惯</a></li>
+            <li><a href="#关于viper">关于<em><strong>viper</strong></em></a></li>
+            <li><a href="#globalgo的作用"><em><strong>global.go</strong></em>的作用</a></li>
+            <li><a href="#关于routesgo">关于<em><strong>routes.go</strong></em></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="study-golang--demo5">study golang / demo5</h2>
+<p><em><strong>后端</strong></em>：mongodb+gorm+MVC+gin+air
+<em><strong>前端</strong></em>：vue+vite+ts
+<em><strong>仓库</strong></em>：https://github.com/LTX-GOD/study-golang-demo</p>
+<h3 id="项目架构">项目架构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">demo5/
+</span></span><span class="line"><span class="cl">├── main.go
+</span></span><span class="line"><span class="cl">├── .air.toml
+</span></span><span class="line"><span class="cl">├── ecommerce-sys
+</span></span><span class="line"><span class="cl">├── go.mod
+</span></span><span class="line"><span class="cl">├── go.sum
+</span></span><span class="line"><span class="cl">├── controllers/
+</span></span><span class="line"><span class="cl">│   ├── address.go
+</span></span><span class="line"><span class="cl">│   ├── cart.go
+</span></span><span class="line"><span class="cl">│   └── controllers.go
+</span></span><span class="line"><span class="cl">├── database/
+</span></span><span class="line"><span class="cl">│   ├── cart.go
+</span></span><span class="line"><span class="cl">│   └── databasesetup.go
+</span></span><span class="line"><span class="cl">├── middleware/
+</span></span><span class="line"><span class="cl">│   └── middleware.go
+</span></span><span class="line"><span class="cl">├── models/
+</span></span><span class="line"><span class="cl">│   └── models.go
+</span></span><span class="line"><span class="cl">├── routes/
+</span></span><span class="line"><span class="cl">│   └── routes.go
+</span></span><span class="line"><span class="cl">├── tokens/
+</span></span><span class="line"><span class="cl">│   └── tokengen.go
+</span></span><span class="line"><span class="cl">├── tmp/
+</span></span><span class="line"><span class="cl">│   ├── build-errors.log
+</span></span><span class="line"><span class="cl">│   └── main
+</span></span><span class="line"><span class="cl">└── static/
+</span></span><span class="line"><span class="cl">    ├── form.html
+</span></span><span class="line"><span class="cl">    └── index.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关于air包">关于Air包</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">go install github.com/air-verse/air@latest //拉包
+</span></span><span class="line"><span class="cl">air init //初始化
+</span></span><span class="line"><span class="cl">air //启动热重载
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关于mongodb">关于mongodb</h4>
+<p>这里本地包docker上去的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it mongodb sh
+</span></span><span class="line"><span class="cl">use gotest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="关于后端项目">关于后端项目</h3>
+<h4 id="router--main"><em><strong>router &amp; main</strong></em></h4>
+<p>路由文件中我只存了关于用户的，其他的存在了<code>main.go</code>里面，原因是这个练手项目的作者第一开始没写完，我后面自己补完的，包括前端的内容。</p>
+<p>然后在main里面，我没有把端口写死，选择环境变量注入的方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">	<span class="c1">// 获取环境变量PORT的值, 如果不存在则赋值8000</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">port</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;PORT&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">port</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">port</span> <span class="p">=</span> <span class="s">&#34;8000&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样的好处是包docker的时候灵活一点</p>
+<p>因为项目是前后端分离，加上前端后还需要解决跨域问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">	<span class="c1">// 配置CORS</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">config</span> <span class="o">:=</span> <span class="nx">cors</span><span class="p">.</span><span class="nf">DefaultConfig</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">config</span><span class="p">.</span><span class="nx">AllowOrigins</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;http://localhost:5173&#34;</span><span class="p">,</span> <span class="s">&#34;http://localhost:3000&#34;</span><span class="p">,</span> <span class="s">&#34;http://localhost:8080&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">config</span><span class="p">.</span><span class="nx">AllowMethods</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;GET&#34;</span><span class="p">,</span> <span class="s">&#34;POST&#34;</span><span class="p">,</span> <span class="s">&#34;PUT&#34;</span><span class="p">,</span> <span class="s">&#34;DELETE&#34;</span><span class="p">,</span> <span class="s">&#34;OPTIONS&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">config</span><span class="p">.</span><span class="nx">AllowHeaders</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;Origin&#34;</span><span class="p">,</span> <span class="s">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s">&#34;Accept&#34;</span><span class="p">,</span> <span class="s">&#34;Authorization&#34;</span><span class="p">,</span> <span class="s">&#34;X-Requested-With&#34;</span><span class="p">,</span> <span class="s">&#34;token&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">config</span><span class="p">.</span><span class="nx">AllowCredentials</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">router</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="nx">cors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">config</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="models"><em><strong>models</strong></em></h4>
+<p>这里定义的有点多</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ID</span>            <span class="nx">primitive</span><span class="p">.</span><span class="nx">ObjectID</span> <span class="s">`json:&#34;_id&#34; bson:&#34;_id&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Name</span>          <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;name&#34; validate:&#34;required,min=6,max=30&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Password</span>      <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;password&#34; validate:&#34;required,min=6,max=30&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Email</span>         <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;email&#34; validate:&#34;email,required&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Phone</span>         <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;phone&#34; validate:&#34;required&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Token</span>         <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;token&#34; `</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Refresh_Token</span> <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;refresh_token&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Created_At</span>    <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>          <span class="s">`json:&#34;created_at&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Updated_At</span>    <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>          <span class="s">`json:&#34;updated_at&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">User_ID</span>       <span class="kt">string</span>             <span class="s">`json:&#34;user_id&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 切片本身已经是一个引用类型，能够提供对底层数据的引用，因此不加*号</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">UserCart</span>        <span class="p">[]</span><span class="nx">ProductUser</span> <span class="s">`json:&#34;usercart&#34; bson:&#34;usercart&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Address_Details</span> <span class="p">[]</span><span class="nx">Address</span>     <span class="s">`json:&#34;address&#34; bson:&#34;address&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Order_Status</span>    <span class="p">[]</span><span class="nx">Order</span>       <span class="s">`json:&#34;order&#34; bson:&#34;order&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Product</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Product_ID</span>   <span class="nx">primitive</span><span class="p">.</span><span class="nx">ObjectID</span> <span class="s">`json:&#34;_id&#34; bson:&#34;_id&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Product_Name</span> <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;product_name&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Price</span>        <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;price&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Rating</span>       <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;rating&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Image</span>        <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;image&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">ProductUser</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Product_ID</span>   <span class="nx">primitive</span><span class="p">.</span><span class="nx">ObjectID</span> <span class="s">`json:&#34;_id&#34; bson:&#34;_id&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Product_Name</span> <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;product_name&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Price</span>        <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;price&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Rating</span>       <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;rating&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Image</span>        <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;image&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Address</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Address_id</span> <span class="nx">primitive</span><span class="p">.</span><span class="nx">ObjectID</span> <span class="s">`bson:&#34;_id&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">House</span>      <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;house_name&#34; bson:&#34;house_name&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Street</span>     <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;street_name&#34; bson:&#34;street_name&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">City</span>       <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;city_name&#34; bson:&#34;city_name&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">PostalCode</span> <span class="o">*</span><span class="kt">string</span>            <span class="s">`json:&#34;postalcode&#34; bson:&#34;postalcode&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Order</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Order_ID</span>       <span class="nx">primitive</span><span class="p">.</span><span class="nx">ObjectID</span> <span class="s">`bson:&#34;_id&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Order_Cart</span>     <span class="p">[]</span><span class="nx">ProductUser</span>      <span class="s">`json:&#34;order_list&#34; bson:&#34;order_list&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Ordered_At</span>     <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>          <span class="s">`json:&#34;ordered_at&#34; bson:&#34;ordered_at&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Price</span>          <span class="kt">int</span>                <span class="s">`json:&#34;price&#34; bson:&#34;price&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Discount</span>       <span class="o">*</span><span class="kt">int</span>               <span class="s">`json:&#34;discount&#34; bson:&#34;discount&#34;`</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Payment_Method</span> <span class="nx">Payment</span>            <span class="s">`json:&#34;payment_method&#34; bson:&#34;payment_method&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Payment</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Digital</span> <span class="kt">bool</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">COD</span>     <span class="kt">bool</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em><strong>结构体中字段为什么是首字母大写</strong></em>
+在go中，首字母大写的含义是这些字段是<code>导出</code>的，可以在包外部访问，就有点像其他语言中的public</p>
+<p>加入首字母小写，就类似private，在外部无权限访问</p>
+<p><em><strong>结构体中<code>json</code>和<code>bson</code>的不同</strong></em></p>
+<ul>
+<li><code>json</code> 标签：用于指定当结构体字段被序列化为 JSON 时，使用的字段名。例如：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Name</span>  <span class="kt">string</span>  <span class="s">`json:&#34;name&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>即使定义的是Name，在json输出中也会被序列化成name</p>
+<ul>
+<li><code>bson</code> 标签：用于指定当结构体字段被序列化为 BSON（MongoDB 的文档格式）时，使用的字段名。例如：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">User</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ID</span>  <span class="nx">primitive</span><span class="p">.</span><span class="nx">ObjectID</span>  <span class="s">`bson:&#34;_id&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个例子中，ID 字段会被映射到 MongoDB 文档的 <code>_id</code> 字段，这是 MongoDB 中常用的主键字段名。</p>
+<h4 id="database"><em><strong>database</strong></em></h4>
+<p>这里分成两个文件进行编写，分别是<code>databasesetup.go</code>和<code>cart.go</code></p>
+<ul>
+<li>databasesetup.go
+主要用来处理数据库连接还有获取用户和产品的集合，稍微多加的一点就是写了个连接数据库时的超时限制，其他的都是很简单的内容</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">ctx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="mi">10</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">defer</span> <span class="nf">cancel</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>cart.go
+这里先定义了一些报错，然后写业务逻辑
+主要任务有：
+<ol>
+<li>将指定产品添加到用户的购物车</li>
+<li>从用户购物车中移除指定产品</li>
+<li>处理用户购物车的购买过程</li>
+<li>立即购买
+代码太长就不放了bro</li>
+</ol>
+</li>
+</ul>
+<h4 id="controllers"><em><strong>controllers</strong></em></h4>
+<p>这里写的也比较乱</p>
+<ul>
+<li>controllers.go：处理密码哈希、注册、密码校验、登录、添加商品、购物车逻辑(增、删、查、购买、下单)</li>
+<li>cart.go：提供接口处理功能，比如加购物车、移除商品、查看购物车、下单等，也就是main.go哪里的api接口</li>
+<li>addre.go：提供用户地址接口，实现增加、编辑、删除的功能</li>
+</ul>
+<p>代码很多，就不放了，部分还不是特别完善，像后面两个都是自己实现的，比较潦草</p>
+<h4 id="middleware"><em><strong>middleware</strong></em></h4>
+<p>这里主要用来实现中间件鉴权</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Authentication</span><span class="p">()</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">HandlerFunc</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">gin</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">ClientToken</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Request</span><span class="p">.</span><span class="nx">Header</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;token&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">ClientToken</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">c</span><span class="p">.</span><span class="nf">JSON</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">,</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">H</span><span class="p">{</span><span class="s">&#34;error&#34;</span><span class="p">:</span> <span class="s">&#34;No authorization header founded&#34;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">c</span><span class="p">.</span><span class="nf">Abort</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">claims</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">token</span><span class="p">.</span><span class="nf">ValidateToken</span><span class="p">(</span><span class="nx">ClientToken</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">c</span><span class="p">.</span><span class="nf">JSON</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">,</span> <span class="nx">gin</span><span class="p">.</span><span class="nx">H</span><span class="p">{</span><span class="s">&#34;error&#34;</span><span class="p">:</span> <span class="nx">err</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">c</span><span class="p">.</span><span class="nf">Abort</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">c</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;email&#34;</span><span class="p">,</span> <span class="nx">claims</span><span class="p">.</span><span class="nx">Email</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">c</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="s">&#34;uid&#34;</span><span class="p">,</span> <span class="nx">claims</span><span class="p">.</span><span class="nx">Uid</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">c</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="tokens"><em><strong>tokens</strong></em></h4>
+<ul>
+<li>生成jwttoken</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">SignedDetails</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Email</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Name</span>  <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Uid</span>   <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">jwt</span><span class="p">.</span><span class="nx">StandardClaims</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// UserData 是存储用户数据的 MongoDB 集合引用</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">UserData</span> <span class="o">*</span><span class="nx">mongo</span><span class="p">.</span><span class="nx">Collection</span> <span class="p">=</span> <span class="nx">database</span><span class="p">.</span><span class="nf">UserData</span><span class="p">(</span><span class="nx">database</span><span class="p">.</span><span class="nx">Client</span><span class="p">,</span> <span class="s">&#34;Users&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 从环境变量中读取JWT的签名和认证</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">SECRET_KEY</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;SECRET_KEY&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// TokenGenerator 生成一个签名的访问令牌和一个签名的刷新令牌。</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">TokenGenerator</span><span class="p">(</span><span class="nx">email</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">uid</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">signedtoken</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">signedrefeshtoken</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">claims</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">SignedDetails</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Email</span><span class="p">:</span> <span class="nx">email</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="nx">name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Uid</span><span class="p">:</span>   <span class="nx">uid</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">StandardClaims</span><span class="p">:</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">StandardClaims</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">ExpiresAt</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Local</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="mi">24</span><span class="p">)).</span><span class="nf">Unix</span><span class="p">(),</span> <span class="c1">// 令牌有效期为24小时</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//创建一个仅包含过期时间的声明，用来刷新令牌</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">refreshclaims</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">SignedDetails</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">StandardClaims</span><span class="p">:</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">StandardClaims</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">ExpiresAt</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Local</span><span class="p">().</span><span class="nf">Add</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="mi">24</span><span class="o">*</span><span class="mi">7</span><span class="p">)).</span><span class="nf">Unix</span><span class="p">(),</span> <span class="c1">//刷新有效七天</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//HS256访问令牌</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">token</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nf">NewWithClaims</span><span class="p">(</span><span class="nx">jwt</span><span class="p">.</span><span class="nx">SigningMethodHS256</span><span class="p">,</span> <span class="nx">claims</span><span class="p">).</span><span class="nf">SignedString</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">SECRET_KEY</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//刷新</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">refreshtoken</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nf">NewWithClaims</span><span class="p">(</span><span class="nx">jwt</span><span class="p">.</span><span class="nx">SigningMethodHS384</span><span class="p">,</span> <span class="nx">refreshclaims</span><span class="p">).</span><span class="nf">SignedString</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">SECRET_KEY</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">token</span><span class="p">,</span> <span class="nx">refreshtoken</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>实现校验功能</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">ValidateToken</span><span class="p">(</span><span class="nx">signedtoken</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">claims</span> <span class="o">*</span><span class="nx">SignedDetails</span><span class="p">,</span> <span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 解析并验证签名令牌，使用提供的密钥和声明类型</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">token</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nf">ParseWithClaims</span><span class="p">(</span><span class="nx">signedtoken</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">SignedDetails</span><span class="p">{},</span> <span class="kd">func</span><span class="p">(</span><span class="nx">token</span> <span class="o">*</span><span class="nx">jwt</span><span class="p">.</span><span class="nx">Token</span><span class="p">)</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">SECRET_KEY</span><span class="p">),</span> <span class="kc">nil</span> <span class="c1">// 使用SECRET_KEY作为签名密钥</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">msg</span> <span class="p">=</span> <span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">()</span> <span class="c1">// 如果解析过程中出现错误，设置错误信息并返回</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 断言token.Claims为*SignedDetails类型，并进行类型检查</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">claims</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">token</span><span class="p">.</span><span class="nx">Claims</span><span class="p">.(</span><span class="o">*</span><span class="nx">SignedDetails</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">msg</span> <span class="p">=</span> <span class="s">&#34;Invalid token&#34;</span> <span class="c1">// 如果断言失败，说明令牌无效，设置错误信息并返回</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 检查令牌的过期时间</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">claims</span><span class="p">.</span><span class="nx">ExpiresAt</span> <span class="p">&lt;</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Local</span><span class="p">().</span><span class="nf">Unix</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">msg</span> <span class="p">=</span> <span class="s">&#34;Token expired&#34;</span> <span class="c1">// 如果令牌已过期，设置错误信息并返回</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 如果所有检查都通过，返回令牌中的声明和一个空消息</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">claims</span><span class="p">,</span> <span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>实现刷新功能</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">UpdateAllTokens</span><span class="p">(</span><span class="nx">signedtoken</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">signedrefreshtoken</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">userid</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 创建一个带有超时的上下文，超时时间为100秒</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">ctx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="p">=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="mi">100</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nf">cancel</span><span class="p">()</span> <span class="c1">// 确保函数返回时取消上下文</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">updateobj</span> <span class="nx">primitive</span><span class="p">.</span><span class="nx">D</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 构建更新对象，包括访问令牌、刷新令牌和更新时间</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">updateobj</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">updateobj</span><span class="p">,</span> <span class="nx">bson</span><span class="p">.</span><span class="nx">E</span><span class="p">{</span><span class="nx">Key</span><span class="p">:</span> <span class="s">&#34;token&#34;</span><span class="p">,</span> <span class="nx">Value</span><span class="p">:</span> <span class="nx">signedtoken</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">updateobj</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">updateobj</span><span class="p">,</span> <span class="nx">bson</span><span class="p">.</span><span class="nx">E</span><span class="p">{</span><span class="nx">Key</span><span class="p">:</span> <span class="s">&#34;refresh_token&#34;</span><span class="p">,</span> <span class="nx">Value</span><span class="p">:</span> <span class="nx">signedrefreshtoken</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">updated_at</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">RFC3339</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">Format</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">RFC3339</span><span class="p">))</span> <span class="c1">// 格式化当前时间为RFC3339格式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">updateobj</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">updateobj</span><span class="p">,</span> <span class="nx">bson</span><span class="p">.</span><span class="nx">E</span><span class="p">{</span><span class="nx">Key</span><span class="p">:</span> <span class="s">&#34;updated_at&#34;</span><span class="p">,</span> <span class="nx">Value</span><span class="p">:</span> <span class="nx">updated_at</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 设置Upsert选项，表示如果用户不存在则插入新记录</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">upsert</span> <span class="o">:=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">filter</span> <span class="o">:=</span> <span class="nx">bson</span><span class="p">.</span><span class="nx">M</span><span class="p">{</span><span class="s">&#34;user_id&#34;</span><span class="p">:</span> <span class="nx">userid</span><span class="p">}</span> <span class="c1">// 设置过滤条件，匹配指定的用户ID</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">opt</span> <span class="o">:=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">UpdateOptions</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Upsert</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">upsert</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 执行更新操作，将更新对象应用到符合过滤条件的文档中</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">UserData</span><span class="p">.</span><span class="nf">UpdateOne</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">filter</span><span class="p">,</span> <span class="nx">bson</span><span class="p">.</span><span class="nx">D</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span><span class="nx">Key</span><span class="p">:</span> <span class="s">&#34;$set&#34;</span><span class="p">,</span> <span class="nx">Value</span><span class="p">:</span> <span class="nx">updateobj</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">},</span> <span class="o">&amp;</span><span class="nx">opt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 处理更新操作中的错误</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="c1">// 记录错误并引发恐慌</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="study-golang--demo6">study golang / demo6</h2>
+<p><em><strong>后端</strong></em>：mysql+redis+gorm+MVC+gin+air+viper
+<em><strong>前端</strong></em>：vue+vite+ts
+<em><strong>仓库</strong></em>：https://github.com/LTX-GOD/study-golang-demo</p>
+<h3 id="项目架构-1">项目架构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">demo6/
+</span></span><span class="line"><span class="cl">├── main.go
+</span></span><span class="line"><span class="cl">├── .air.toml
+</span></span><span class="line"><span class="cl">├── go.mod
+</span></span><span class="line"><span class="cl">├── go.sum
+</span></span><span class="line"><span class="cl">├── readme.md
+</span></span><span class="line"><span class="cl">├── config/
+</span></span><span class="line"><span class="cl">│   ├── config.go
+</span></span><span class="line"><span class="cl">│   ├── config.yml
+</span></span><span class="line"><span class="cl">│   ├── db.go
+</span></span><span class="line"><span class="cl">│   └── redis.go
+</span></span><span class="line"><span class="cl">├── controllers/
+</span></span><span class="line"><span class="cl">│   ├── article_controller.go
+</span></span><span class="line"><span class="cl">│   ├── auth_controller.go
+</span></span><span class="line"><span class="cl">│   ├── exchange_rate_controller.go
+</span></span><span class="line"><span class="cl">│   └── like_controller.go
+</span></span><span class="line"><span class="cl">├── global/
+</span></span><span class="line"><span class="cl">│   └── global.go
+</span></span><span class="line"><span class="cl">├── middlewares/
+</span></span><span class="line"><span class="cl">│   └── auth_middleware.go
+</span></span><span class="line"><span class="cl">├── models/
+</span></span><span class="line"><span class="cl">│   ├── article.go
+</span></span><span class="line"><span class="cl">│   ├── exchange_rate.go
+</span></span><span class="line"><span class="cl">│   └── user.go
+</span></span><span class="line"><span class="cl">├── routes/
+</span></span><span class="line"><span class="cl">│   └── routes.go
+</span></span><span class="line"><span class="cl">├── utils/
+</span></span><span class="line"><span class="cl">│   └── utils.go
+</span></span><span class="line"><span class="cl">└── tmp/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="redis--mysql"><em><strong>redis &amp;&amp; mysql</strong></em></h4>
+<p>这边都用docker去启动，然后先不建库，后面都现场用</p>
+<h3 id="关于后端项目-1">关于后端项目</h3>
+<h4 id="编写习惯">编写习惯</h4>
+<ol>
+<li>这里用viper编写资源管理项</li>
+<li>写路由，并且定义每个地方的函数</li>
+<li>写数据库models层</li>
+<li>写数据库配置文件，mysql和redis</li>
+<li>写config.go</li>
+<li>写utils和middlewares</li>
+</ol>
+<h4 id="关于viper">关于<em><strong>viper</strong></em></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">app</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">CurrencyExchangeApp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;:8000&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">database</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">dsn</span><span class="p">:</span><span class="w"> </span><span class="l">root:password@tcp(127.0.0.1:3306)/gotest?charset=utf8mb4&amp;parseTime=True&amp;loc=Local</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">MaxIdleConns</span><span class="p">:</span><span class="w"> </span><span class="m">11</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">MaxOpenCons</span><span class="p">:</span><span class="w"> </span><span class="m">114</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">redis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">addr</span><span class="p">:</span><span class="w"> </span><span class="l">localhost:6379</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">DB</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">Password</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里去定义端口、数据库连接还有数量</p>
+<p>在<code>config.go</code>里面，把这个viper的规则引入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">viper</span><span class="p">.</span><span class="nf">SetConfigName</span><span class="p">(</span><span class="s">&#34;config&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">viper</span><span class="p">.</span><span class="nf">SetConfigType</span><span class="p">(</span><span class="s">&#34;yml&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">viper</span><span class="p">.</span><span class="nf">AddConfigPath</span><span class="p">(</span><span class="s">&#34;./config&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="globalgo的作用"><em><strong>global.go</strong></em>的作用</h4>
+<p>这个的作用是让这个全局文件都可以访问数据库和redis，在其他的项目中也经常使用这种方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">global</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/go-redis/redis&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;gorm.io/gorm&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Db</span>      <span class="o">*</span><span class="nx">gorm</span><span class="p">.</span><span class="nx">DB</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">RedisDB</span> <span class="o">*</span><span class="nx">redis</span><span class="p">.</span><span class="nx">Client</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关于routesgo">关于<em><strong>routes.go</strong></em></h4>
+<p>这里稍微的严谨了一点，登录和注册是不用token判断的，但是其他的接口都需要，这样就更加规范了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">	<span class="nx">auth</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nf">Group</span><span class="p">(</span><span class="s">&#34;/api/auth&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">auth</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/login&#34;</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">.</span><span class="nx">Login</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">auth</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/register&#34;</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">.</span><span class="nx">Register</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">api</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nf">Group</span><span class="p">(</span><span class="s">&#34;/api&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">api</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/exchangeRates&#34;</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">.</span><span class="nx">GetExchangeRates</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">api</span><span class="p">.</span><span class="nf">Use</span><span class="p">(</span><span class="nx">middlewares</span><span class="p">.</span><span class="nf">AuthMiddleWare</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">api</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/exchangeRates&#34;</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">.</span><span class="nx">CreateExchangeRate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">api</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/articles&#34;</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">.</span><span class="nx">CreateArticle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">api</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/articles&#34;</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">.</span><span class="nx">GetArticles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">api</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/articles/:id&#34;</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">.</span><span class="nx">GetArticleByID</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">api</span><span class="p">.</span><span class="nf">POST</span><span class="p">(</span><span class="s">&#34;/articles/:id/like&#34;</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">.</span><span class="nx">LikeArticle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">api</span><span class="p">.</span><span class="nf">GET</span><span class="p">(</span><span class="s">&#34;/articles/:id/like&#34;</span><span class="p">,</span> <span class="nx">controllers</span><span class="p">.</span><span class="nx">GetArticleLikes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">r</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-07-08</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/study-golang3/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/study-golang3/" data-title="Study Golang「3」" data-hashtags="开发,study"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/study-golang3/" data-hashtag="开发"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/study-golang3/" data-title="Study Golang「3」"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/study-golang3/" data-title="Study Golang「3」"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/study-golang3/" data-title="Study Golang「3」"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a>,&nbsp;<a href="/tags/study/">Study</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/study-golang2/" class="prev" rel="prev" title="Study Golang「2」"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Study Golang「2」</a>
+            <a href="/l3hctf-wp/" class="next" rel="next" title="L3HCTF Wp">L3HCTF Wp<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

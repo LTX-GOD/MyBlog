@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>强网杯2024_crypto - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="强网杯2024_crypto">
+  <meta property="og:description" content="前言 一共七题，出了三个，但是海鲜市场上面已经py烂了，我该喜还是该忧呢？在这里就只写上自己已经出了的题，其他的慢慢复现，最近期中考试&#43;香港比较忙。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-12T00:00:00+00:00">
+    <meta property="article:tag" content="Crypto">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="强网杯2024_crypto">
+  <meta name="twitter:description" content="前言 一共七题，出了三个，但是海鲜市场上面已经py烂了，我该喜还是该忧呢？在这里就只写上自己已经出了的题，其他的慢慢复现，最近期中考试&#43;香港比较忙。">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/%E6%98%A5%E7%A7%8B%E6%9D%AF%E5%86%AC%E5%AD%A3%E8%B5%9B2024_crypto/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/%E5%B7%85%E5%B3%B0%E6%9E%81%E5%AE%A22024crypto/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "强网杯2024_crypto",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto\/"
+        },"genre": "posts","keywords": "crypto","wordcount":  275 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto\/","datePublished": "2024-12-12T00:00:00+00:00","dateModified": "2024-12-12T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">强网杯2024_crypto</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>CTF</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-12">2024-12-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;275 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/" class="leancloud_visitors" data-flag-title="强网杯2024_crypto">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#题目">题目</a>
+      <ul>
+        <li><a href="#ezrsa">EzRsa</a></li>
+        <li><a href="#apbq">apbq</a>
+          <ul>
+            <li><a href="#part1">part1</a></li>
+            <li><a href="#part2">part2</a></li>
+            <li><a href="#part3">part3</a></li>
+          </ul>
+        </li>
+        <li><a href="#21step">21step</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>一共七题，出了三个，但是海鲜市场上面已经py烂了，我该喜还是该忧呢？在这里就只写上自己已经出了的题，其他的慢慢复现，最近期中考试+香港比较忙。</p>
+<h2 id="题目">题目</h2>
+<h3 id="ezrsa">EzRsa</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="n">long_to_bytes</span><span class="p">,</span> <span class="n">bytes_to_long</span><span class="p">,</span> <span class="n">getPrime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">gmpy2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">RSAEncryptor</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="mi">65537</span>
+</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">factorGen</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">product</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">factorGen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">		<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">while</span> <span class="ow">not</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">				<span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">523</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">524</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">while</span> <span class="ow">not</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">				<span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">523</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mi">524</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">is_prime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">				<span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">+</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">				<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">powmod</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">		<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/flag&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="bp">self</span><span class="o">.</span><span class="n">flag</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">enc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;enc=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">enc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;N=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;e=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;g=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">RSAEncryptor</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：
+重点代码是
+</p>
+$$ h=2gab+a+b $$<p> 和 </p>
+$$ N=2hg+1  $$<p>,我们讲</p>
+$$N$$<p>直接展开,其实就是</p>
+$$ N=(2ga+1)(2gb+1)  $$<p>,这个就是老熟人了，Common Prime Rsa,可以参考<a href="https://hasegawaazusa.github.io/common-prime-rsa.html" title="独奏" target="_blank" rel="noopener noreffer ">独奏</a>的文章，易知是 </p>
+$$g<a+b$$<p> 的类型,我们之间修改模板就行了。</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from sage.groups.generic import bsgs
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from pwn import*
+</span></span><span class="line"><span class="cl">import gmpy2
+</span></span><span class="line"><span class="cl">from sympy import primerange
+</span></span><span class="line"><span class="cl">p=remote(&#39;47.94.226.70&#39;, 32973)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">e=65537
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">N=p.recvline().decode().split(&#39;=&#39;)[1]
+</span></span><span class="line"><span class="cl">e=p.recvline().decode().split(&#39;=&#39;)[1]
+</span></span><span class="line"><span class="cl">g=p.recvline().decode().split(&#39;=&#39;)[1]
+</span></span><span class="line"><span class="cl">enc=p.recvline().decode().split(&#39;=&#39;)[1]
+</span></span><span class="line"><span class="cl">N=int(N)
+</span></span><span class="line"><span class="cl">e=int(e)
+</span></span><span class="line"><span class="cl">g=int(g)
+</span></span><span class="line"><span class="cl">enc=int(enc)
+</span></span><span class="line"><span class="cl">print(N)
+</span></span><span class="line"><span class="cl">print(e)
+</span></span><span class="line"><span class="cl">print(g)
+</span></span><span class="line"><span class="cl">print(enc)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nbits = 2048
+</span></span><span class="line"><span class="cl">gamma = 0.244
+</span></span><span class="line"><span class="cl">cbits = ceil(nbits * (0.5 - 2 * gamma))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">M = (N - 1) // (2 * g)
+</span></span><span class="line"><span class="cl">u = M // (2 * g)
+</span></span><span class="line"><span class="cl">v = M - 2 * g * u
+</span></span><span class="line"><span class="cl">GF = Zmod(N)
+</span></span><span class="line"><span class="cl">x = GF.random_element()
+</span></span><span class="line"><span class="cl">y = x ^ (2 * g)
+</span></span><span class="line"><span class="cl"># c的范围大概与N^(0.5-2*gamma)很接近
+</span></span><span class="line"><span class="cl">c = bsgs(y, y ^ u, ((2**(cbits-5)), (2**(cbits+5))))
+</span></span><span class="line"><span class="cl">ab = u - c
+</span></span><span class="line"><span class="cl">apb = v + 2 * g * c
+</span></span><span class="line"><span class="cl">P.&lt;x&gt; = ZZ[]
+</span></span><span class="line"><span class="cl">f = x ^ 2 - apb * x + ab
+</span></span><span class="line"><span class="cl">a = f.roots()
+</span></span><span class="line"><span class="cl">if a:
+</span></span><span class="line"><span class="cl">    a, b = a[0][0], a[1][0]
+</span></span><span class="line"><span class="cl">    p = 2 * g * a + 1
+</span></span><span class="line"><span class="cl">    q = 2 * g * b + 1
+</span></span><span class="line"><span class="cl">    assert p * q == N
+</span></span><span class="line"><span class="cl">    print(p)
+</span></span><span class="line"><span class="cl">    print(q)
+</span></span><span class="line"><span class="cl">    phi=(p-1)*(q-1)
+</span></span><span class="line"><span class="cl">    d=gmpy2.invert(e,phi)
+</span></span><span class="line"><span class="cl">    m=pow(enc,d,N)
+</span></span><span class="line"><span class="cl">    print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因为bsgs现在很慢，几乎被抛弃了，可以使用discrete_log_lambda,大概三秒跑出flag。</p>
+<h3 id="apbq">apbq</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from secrets import flag
+</span></span><span class="line"><span class="cl">from math import ceil
+</span></span><span class="line"><span class="cl">import sys
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class RSA():
+</span></span><span class="line"><span class="cl">    def __init__(self, privatekey, publickey):
+</span></span><span class="line"><span class="cl">        self.p, self.q, self.d = privatekey
+</span></span><span class="line"><span class="cl">        self.n, self.e = publickey
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def encrypt(self, plaintext):
+</span></span><span class="line"><span class="cl">        if isinstance(plaintext, bytes):
+</span></span><span class="line"><span class="cl">            plaintext = bytes_to_long(plaintext)
+</span></span><span class="line"><span class="cl">        ciphertext = pow(plaintext, self.e, self.n)
+</span></span><span class="line"><span class="cl">        return ciphertext
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def decrypt(self, ciphertext):
+</span></span><span class="line"><span class="cl">        if isinstance(ciphertext, bytes):
+</span></span><span class="line"><span class="cl">            ciphertext = bytes_to_long(ciphertext)
+</span></span><span class="line"><span class="cl">        plaintext = pow(ciphertext, self.d, self.n)
+</span></span><span class="line"><span class="cl">        return plaintext
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def get_keypair(nbits, e = 65537):
+</span></span><span class="line"><span class="cl">    p = getPrime(nbits//2)
+</span></span><span class="line"><span class="cl">    q = getPrime(nbits//2)
+</span></span><span class="line"><span class="cl">    n = p * q
+</span></span><span class="line"><span class="cl">    d = inverse(e, n - p - q + 1)
+</span></span><span class="line"><span class="cl">    return (p, q, d), (n, e)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if __name__ == &#39;__main__&#39;:
+</span></span><span class="line"><span class="cl">    pt = &#39;./output.txt&#39;
+</span></span><span class="line"><span class="cl">    fout = open(pt, &#39;w&#39;)
+</span></span><span class="line"><span class="cl">    sys.stdout = fout
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    block_size = ceil(len(flag)/3)
+</span></span><span class="line"><span class="cl">    flag = [flag[i:i+block_size] for i in range(0, len(flag), block_size)]
+</span></span><span class="line"><span class="cl">    e = 65537
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    print(f&#39;[+] Welcome to my apbq game&#39;)
+</span></span><span class="line"><span class="cl">    # stage 1
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ stage 1: p + q&#39;)
+</span></span><span class="line"><span class="cl">    prikey1, pubkey1 = get_keypair(1024)
+</span></span><span class="line"><span class="cl">    RSA1 = RSA(prikey1, pubkey1)
+</span></span><span class="line"><span class="cl">    enc1 = RSA1.encrypt(flag[0])
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ hints = {prikey1[0] + prikey1[1]}&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ public key = {pubkey1}&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ enc1 = {enc1}&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;----------------------&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # stage 2
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ stage 2: ai*p + bi*q&#39;)
+</span></span><span class="line"><span class="cl">    prikey2, pubkey2 = get_keypair(1024)
+</span></span><span class="line"><span class="cl">    RSA2 = RSA(prikey2, pubkey2)
+</span></span><span class="line"><span class="cl">    enc2 = RSA2.encrypt(flag[1])
+</span></span><span class="line"><span class="cl">    kbits = 180
+</span></span><span class="line"><span class="cl">    a = [getRandomNBitInteger(kbits) for i in range(100)]
+</span></span><span class="line"><span class="cl">    b = [getRandomNBitInteger(kbits) for i in range(100)]
+</span></span><span class="line"><span class="cl">    c = [a[i]*prikey2[0] + b[i]*prikey2[1] for i in range(100)]
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ hints = {c}&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ public key = {pubkey2}&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ enc2 = {enc2}&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;----------------------&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    # stage 3
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ stage 3: a*p + q, p + bq&#39;)
+</span></span><span class="line"><span class="cl">    prikey3, pubkey3 = get_keypair(1024)
+</span></span><span class="line"><span class="cl">    RSA3 = RSA(prikey3, pubkey3)
+</span></span><span class="line"><span class="cl">    enc3 = RSA2.encrypt(flag[2])
+</span></span><span class="line"><span class="cl">    kbits = 512
+</span></span><span class="line"><span class="cl">    a = getRandomNBitInteger(kbits)
+</span></span><span class="line"><span class="cl">    b = getRandomNBitInteger(kbits)
+</span></span><span class="line"><span class="cl">    c1 = a*prikey3[0] + prikey3[1]
+</span></span><span class="line"><span class="cl">    c2 = prikey3[0] + b*prikey3[1] 
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ hints = {c1, c2}&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ public key = {pubkey3}&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;┃ enc3 = {enc3}&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="part1">part1</h4>
+<p>已知</p>
+$$pq=n,p+q=hints$$<p>,直接利用sympy解方程就可以了
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">c=
+</span></span><span class="line"><span class="cl">pq = 
+</span></span><span class="line"><span class="cl">n=
+</span></span><span class="line"><span class="cl">e=65537
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from sympy import*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p, q = symbols(&#39;p q&#39;)
+</span></span><span class="line"><span class="cl">eq1 = Eq(p+q, pq)
+</span></span><span class="line"><span class="cl">eq2 = Eq(p*q, n)
+</span></span><span class="line"><span class="cl">sol = solve((eq1, eq2), (p, q))
+</span></span><span class="line"><span class="cl">print(sol)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p=
+</span></span><span class="line"><span class="cl">q=
+</span></span><span class="line"><span class="cl">phi=(p-1)*(q-1)
+</span></span><span class="line"><span class="cl">d = inverse(e, phi)
+</span></span><span class="line"><span class="cl">m = pow(c, d, n)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="part2">part2</h4>
+<p>已知</p>
+$$h=ap+bq$$<p>,而且有一百组，pq都是512bits，而ab是180bits，有这样小的数，我们就可以想到用格，因为自己太菜，直接找到了ductf2023年的exp，改成一百组，就直接出来了（好像四组就行）
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">import</span> <span class="n">itertools</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Util</span><span class="o">.</span><span class="n">number</span> <span class="n">import</span> <span class="n">long_to_bytes</span><span class="p">,</span> <span class="n">GCD</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">sage</span><span class="o">.</span><span class="n">all</span> <span class="n">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">ZZ</span><span class="p">,</span> <span class="n">QQ</span><span class="p">,</span> <span class="n">ideal</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hints</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl"><span class="n">e</span> <span class="o">=</span> <span class="mi">65537</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">V</span> <span class="o">=</span> <span class="n">hints</span>
+</span></span><span class="line"><span class="cl"><span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">400</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span> <span class="o">=</span> <span class="n">Matrix</span><span class="o">.</span><span class="n">column</span><span class="p">([</span><span class="n">k</span> <span class="o">*</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">V</span><span class="p">])</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="n">Matrix</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">V</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">M</span><span class="o">.</span><span class="n">LLL</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"><span class="n">M</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">B</span><span class="p">[:</span><span class="n">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="n">Matrix</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">V</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="n">len</span><span class="p">(</span><span class="n">V</span><span class="p">):]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">M</span><span class="o">.</span><span class="n">LLL</span><span class="p">()</span> <span class="k">if</span> <span class="n">set</span><span class="p">(</span><span class="n">b</span><span class="p">[:</span><span class="n">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="p">{</span><span class="mi">0</span><span class="p">}]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">combination</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span> <span class="o">=</span> <span class="n">combination</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">combination</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="n">T</span><span class="p">[:</span><span class="n">len</span><span class="p">(</span><span class="n">V</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">kq</span> <span class="o">=</span> <span class="n">GCD</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">hints</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">hints</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">kq</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;find!&#39;</span><span class="p">,</span> <span class="n">kq</span><span class="p">,</span> <span class="n">combination</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">combination</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">kq</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">kq</span> <span class="o">//=</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="ne">int</span><span class="p">(</span><span class="n">kq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="ne">int</span><span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="n">kq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="part3">part3</h4>
+<p>写了一个小时，然后发现用的第二组密钥加密的，真的难崩
+正确写法可以参考这个<a href="https://github.com/defund/ctf/blob/master/angstromctf-2024/blahaj/solve.sage" title="帖子" target="_blank" rel="noopener noreffer ">帖子</a></p>
+<h3 id="21step">21step</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import re
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">from secrets import flag
+</span></span><span class="line"><span class="cl">print(f&#39;Can you weight a 128 bits number in 21 steps&#39;)
+</span></span><span class="line"><span class="cl">pattern = r&#39;([AB]|\d+)=([AB]|\d+)(\+|\-|\*|//|&lt;&lt;|&gt;&gt;|&amp;|\^|%)([AB]|\d+)&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">command = input().strip()
+</span></span><span class="line"><span class="cl">assert command[-1] == &#39;;&#39;
+</span></span><span class="line"><span class="cl">assert all([re.fullmatch(pattern, i) for i in command[:-1].split(&#39;;&#39;)])
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">step = 21
+</span></span><span class="line"><span class="cl">for i in command[:-1].split(&#39;;&#39;):
+</span></span><span class="line"><span class="cl">    t = i.translate(str.maketrans(&#39;&#39;, &#39;&#39;, &#39;=AB0123456789&#39;))
+</span></span><span class="line"><span class="cl">    if t in [&#39;&gt;&gt;&#39;, &#39;&lt;&lt;&#39;, &#39;+&#39;, &#39;-&#39;, &#39;&amp;&#39;, &#39;^&#39;]:
+</span></span><span class="line"><span class="cl">        step -= 1
+</span></span><span class="line"><span class="cl">    elif t in [&#39;*&#39;, &#39;/&#39;, &#39;%&#39;]:
+</span></span><span class="line"><span class="cl">        step -= 3
+</span></span><span class="line"><span class="cl">if step &lt; 0:exit()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">success = 0
+</span></span><span class="line"><span class="cl">w = lambda x: sum([int(i) for i in list(bin(x)[2:])])
+</span></span><span class="line"><span class="cl">for _ in range(100):
+</span></span><span class="line"><span class="cl">    A = random.randrange(0, 2**128)
+</span></span><span class="line"><span class="cl">    wa = w(A)
+</span></span><span class="line"><span class="cl">    B = 0
+</span></span><span class="line"><span class="cl">    try : exec(&#34;global A; global B;&#34; + command)
+</span></span><span class="line"><span class="cl">    except : exit()
+</span></span><span class="line"><span class="cl">    if A == wa:
+</span></span><span class="line"><span class="cl">        success += 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if success == 100:
+</span></span><span class="line"><span class="cl">    print(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：很直接的题目，一个128bits的数，在21步算出他二进制中一的数量，直接找到Integer的类型源码，改成128位就好了</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from pwn import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">io = remote(&#39;39.107.90.219&#39;, 22677)
+</span></span><span class="line"><span class="cl">command = &#39;B=A&gt;&gt;1;B=B&amp;113427455640312821154458202477256070485;A=A-B;B=A&gt;&gt;2;B=B&amp;68056473384187692692674921486353642291;A=A&amp;68056473384187692692674921486353642291;A=A+B;B=A&gt;&gt;4;A=A+B;A=A&amp;20016609818878733144904388672456953615;B=A&gt;&gt;8;A=A+B;B=A&gt;&gt;16;A=A+B;B=A&gt;&gt;32;A=A+B;B=A&gt;&gt;64;A=A+B;A=A&amp;127;&#39;
+</span></span><span class="line"><span class="cl">io.recvuntil(b&#39;Can you weight a 128 bits number in 21 steps&#39;)
+</span></span><span class="line"><span class="cl">for i in range(100):
+</span></span><span class="line"><span class="cl">    io.sendline(command)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">io.recvline()
+</span></span><span class="line"><span class="cl">io.interactive()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="总结">总结</h2>
+<p>没有爆零！！！其他的慢慢复现更新</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-12-12</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/" data-title="强网杯2024_crypto" data-hashtags="crypto"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/" data-hashtag="crypto"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/" data-title="强网杯2024_crypto"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/" data-title="强网杯2024_crypto"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/" data-title="强网杯2024_crypto"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E6%98%A5%E7%A7%8B%E6%9D%AF%E5%86%AC%E5%AD%A3%E8%B5%9B2024_crypto/" class="prev" rel="prev" title="春秋杯冬季赛2024_crypto"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>春秋杯冬季赛2024_crypto</a>
+            <a href="/%E5%B7%85%E5%B3%B0%E6%9E%81%E5%AE%A22024crypto/" class="next" rel="next" title="巅峰极客2024_crypto">巅峰极客2024_crypto<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

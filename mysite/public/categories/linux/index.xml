@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Linux - Category - Zsm Blog</title>
+        <link>http://localhost:1313/categories/linux/</link>
+        <description>Linux - Category - Zsm Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2924465428@qq.com (Zsm)</managingEditor>
+            <webMaster>2924465428@qq.com (Zsm)</webMaster><lastBuildDate>Sat, 01 Mar 2025 10:58:35 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux笔记</title>
+    <link>http://localhost:1313/linux%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sat, 01 Mar 2025 10:58:35 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://localhost:1313/linux%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[<h2 id="linux提权">linux提权</h2>
+<h3 id="信息收集">信息收集</h3>
+<blockquote>
+<p>hostname</p></blockquote>
+<p>hostname命令将返回目标计算机的主机名。尽管该值可以很容易地更改或具有相对无意义的字符串（例如 Ubuntu-3487340239），但在某些情况下，它可以提供有关目标系统在企业网络中的角色的信息</p>]]></description>
+</item>
+</channel>
+</rss>

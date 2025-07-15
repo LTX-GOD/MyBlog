@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Study nodejs「3」 - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/study_nodejs3/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="Study nodejs「3」">
+  <meta property="og:description" content="MVC 这真的很java吧（）
+安装依赖 npm install inversify reflect-metadata express inversify-express-util prisma class-validator class-transformer
+(数据库的东西用的还是上次的，懒得搞了，然后有个版本问题，npm install inversify-express-utils要求inversify@6.0.3express@4.21.1 )">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-06T15:06:17+08:00">
+    <meta property="article:modified_time" content="2025-04-06T15:06:17+08:00">
+    <meta property="article:tag" content="开发">
+    <meta property="article:tag" content="Study">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="Study nodejs「3」">
+  <meta name="twitter:description" content="MVC 这真的很java吧（）
+安装依赖 npm install inversify reflect-metadata express inversify-express-util prisma class-validator class-transformer
+(数据库的东西用的还是上次的，懒得搞了，然后有个版本问题，npm install inversify-express-utils要求inversify@6.0.3express@4.21.1 )">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/study_nodejs3/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/study_nodejs2/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/study_nodejs4/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Study nodejs「3」",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/study_nodejs3\/"
+        },"genre": "posts","keywords": "开发, study","wordcount":  1802 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/study_nodejs3\/","datePublished": "2025-04-06T15:06:17+08:00","dateModified": "2025-04-06T15:06:17+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Study nodejs「3」</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/nodejs/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>Nodejs</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-04-06">2025-04-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1802 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/study_nodejs3/" class="leancloud_visitors" data-flag-title="Study nodejs「3」">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mvc">MVC</a>
+      <ul>
+        <li><a href="#安装依赖">安装依赖</a></li>
+        <li><a href="#封装方法">封装方法</a></li>
+        <li><a href="#正式写入">正式写入</a></li>
+      </ul>
+    </li>
+    <li><a href="#jwt">JWT</a>
+      <ul>
+        <li><a href="#安装依赖-1">安装依赖</a></li>
+        <li><a href="#实现">实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#最后结构">最后结构</a></li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="mvc">MVC</h2>
+<p>这真的很java吧（）</p>
+<h3 id="安装依赖">安装依赖</h3>
+<blockquote>
+<p>npm install inversify reflect-metadata express inversify-express-util prisma class-validator class-transformer</p></blockquote>
+<p>(数据库的东西用的还是上次的，懒得搞了，然后有个版本问题，npm install inversify-express-utils要求inversify@6.0.3express@4.21.1 )</p>
+<h3 id="封装方法">封装方法</h3>
+<p>main.tx</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">InversifyExpressServer</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify-express-utils&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Container</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">container</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InversifyExpressServer</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">server</span><span class="p">.</span><span class="nx">build</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;server started&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是最简单的封装，把<code>express</code>封装成一个<code>server</code></p>
+<p><code>src</code> 下面创建亮个文件夹，一个<code>user</code>,一个<code>db</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">db
+</span></span><span class="line"><span class="cl">     --index.ts
+</span></span><span class="line"><span class="cl">user
+</span></span><span class="line"><span class="cl">     --server.ts
+</span></span><span class="line"><span class="cl">     --user.dto.ts
+</span></span><span class="line"><span class="cl">     --controller.ts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="正式写入">正式写入</h3>
+<p>main.ts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="s1">&#39;reflect-metadata&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">InversifyExpressServer</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify-express-utils&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Container</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">UserController</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./src/user/controller&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">UserService</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./src/user/service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">express</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">PrismaClient</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@prisma/client&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">PrismaDB</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./src/db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">container</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">()</span> <span class="c1">//Ioc搞个容器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * prisma依赖注入
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">//注入工厂封装db
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">container</span><span class="p">.</span><span class="nx">bind</span><span class="p">&lt;</span><span class="nt">PrismaClient</span><span class="p">&gt;(</span><span class="s1">&#39;PrismaClient&#39;</span><span class="p">).</span><span class="nx">toFactory</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="nx">PrismaClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">container</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">PrismaDB</span><span class="p">).</span><span class="nx">toSelf</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * user模块
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="nx">container</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">UserService</span><span class="p">).</span><span class="nx">to</span><span class="p">(</span><span class="nx">UserService</span><span class="p">)</span> <span class="c1">//添加到容器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">container</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">UserController</span><span class="p">).</span><span class="nx">to</span><span class="p">(</span><span class="nx">UserController</span><span class="p">)</span> <span class="c1">//添加到容器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * post模块
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InversifyExpressServer</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="c1">//返回server
+</span></span></span><span class="line"><span class="cl"><span class="c1">//中间件编写在这儿
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">server</span><span class="p">.</span><span class="nx">setConfig</span><span class="p">(</span><span class="nx">app</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span> <span class="c1">//接受json
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">server</span><span class="p">.</span><span class="nx">build</span><span class="p">()</span> <span class="c1">//app就是express
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;http://localhost:3000&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>user/controller.ts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">controller</span><span class="p">,</span> <span class="nx">httpGet</span> <span class="kr">as</span> <span class="nx">GetMapping</span><span class="p">,</span> <span class="nx">httpPost</span> <span class="kr">as</span> <span class="nx">PostMapping</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify-express-utils&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">inject</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">UserService</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">@controller</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">)</span> <span class="c1">//路由
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">class</span> <span class="nx">UserController</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">constructor</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">@inject</span><span class="p">(</span><span class="nx">UserService</span><span class="p">)</span> <span class="kr">private</span> <span class="kr">readonly</span> <span class="nx">userService</span>: <span class="kt">UserService</span><span class="p">,</span> <span class="c1">//依赖注入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">@GetMapping</span><span class="p">(</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span> <span class="c1">//get请求
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">public</span> <span class="kr">async</span> <span class="nx">getIndex</span><span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="o">?</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">info</span> <span class="o">=</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">userService</span><span class="p">.</span><span class="nx">getUserInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">@PostMapping</span><span class="p">(</span><span class="s1">&#39;/create&#39;</span><span class="p">)</span> <span class="c1">//post请求
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">public</span> <span class="kr">async</span> <span class="nx">createUser</span><span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">userService</span><span class="p">.</span><span class="nx">createUser</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>user/service.ts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">injectable</span><span class="p">,</span> <span class="nx">inject</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">UserDto</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./user.dto&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">plainToClass</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;class-transformer&#39;</span> <span class="c1">//dto验证
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">validate</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;class-validator&#39;</span> <span class="c1">//dto验证
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">PrismaDB</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">@injectable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">UserService</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">constructor</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">@inject</span><span class="p">(</span><span class="nx">PrismaDB</span><span class="p">)</span> <span class="kr">private</span> <span class="kr">readonly</span> <span class="nx">PrismaDB</span>: <span class="kt">PrismaDB</span> <span class="c1">//依赖注入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">public</span> <span class="kr">async</span> <span class="nx">getUserInfo() {</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">PrismaDB</span><span class="p">.</span><span class="nx">prisma</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">findMany</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">public</span> <span class="kr">async</span> <span class="nx">createUser</span><span class="p">(</span><span class="nx">data</span>: <span class="kt">UserDto</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">plainToClass</span><span class="p">(</span><span class="nx">UserDto</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">errors</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">validate</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">dto</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">errors</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">errors</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">constraints</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">dto</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">[</span><span class="nx">error</span><span class="p">.</span><span class="nx">property</span><span class="p">]</span><span class="o">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">constraints</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">                <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nx">dto</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">const</span> <span class="nx">userInfo</span> <span class="o">=</span>  <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">PrismaDB</span><span class="p">.</span><span class="nx">prisma</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">data</span>: <span class="kt">user</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nx">userInfo</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>user/user.dto.ts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">IsNotEmpty</span><span class="p">,</span> <span class="nx">IsEmail</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;class-validator&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Transform</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;class-transformer&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">UserDto</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">@IsNotEmpty</span><span class="p">({</span> <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;用户名必填&#39;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">@Transform</span><span class="p">(</span><span class="nx">user</span> <span class="o">=&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span>: <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">@IsNotEmpty</span><span class="p">({</span> <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;邮箱必填&#39;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">@IsEmail</span><span class="p">({},{</span><span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;邮箱格式不正确&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">@Transform</span><span class="p">(</span><span class="nx">user</span> <span class="o">=&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">email</span>: <span class="kt">string</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>db/index.ts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">injectable</span><span class="p">,</span> <span class="nx">inject</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">PrismaClient</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@prisma/client&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">@injectable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">PrismaDB</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">prisma</span>: <span class="kt">PrismaClient</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">constructor</span><span class="p">(</span><span class="kd">@inject</span><span class="p">(</span><span class="s1">&#39;PrismaClient&#39;</span><span class="p">)</span> <span class="nx">PrismaClient</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">PrismaClient</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="k">this</span><span class="p">.</span><span class="nx">prisma</span> <span class="o">=</span> <span class="nx">PrismaClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>总体思想是去把不同的部分去分别封装，然后通过<code>inversify</code>去注入，这样子就实现了一个简单的MVC框架，有点类似java了，但是更加手动，dto验证可以去限制文件内容，类似<code>python</code>的<code>re</code>。</p>
+<h2 id="jwt">JWT</h2>
+<h3 id="安装依赖-1">安装依赖</h3>
+<blockquote>
+<p>npm install jsonwebtoken passport passport-jwt</p></blockquote>
+<h3 id="实现">实现</h3>
+<p>我们在<code>src</code>中新建一个文件夹<code>jwt</code>，新建一个<code>index.ts</code></p>
+<p>jwt/index.ts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">injectable</span><span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">passport</span> <span class="kr">from</span> <span class="s1">&#39;passport&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">jsonwebtoken</span> <span class="kr">from</span> <span class="s1">&#39;jsonwebtoken&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">Strategy</span><span class="p">,</span><span class="nx">ExtractJwt</span><span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;passport-jwt&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">@injectable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">JWT</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">private</span> <span class="nx">secret</span>:<span class="kt">string</span><span class="o">=</span><span class="s1">&#39;awfbkuahfbakjhfbafuwhjbeawhjfn&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">private</span> <span class="nx">jwtOptions</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">jwtFromRequest</span>:<span class="kt">ExtractJwt.fromAuthHeaderAsBearerToken</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">secretOrKey</span>:<span class="kt">this.secret</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">constructor</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">strategy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">public</span> <span class="nx">strategy</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">str</span><span class="o">=</span><span class="k">new</span> <span class="nx">Strategy</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">jwtOptions</span><span class="p">,(</span><span class="nx">payload</span><span class="p">,</span><span class="nx">done</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="c1">//激活插件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">static</span> <span class="nx">middleware</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">&#39;jwt&#39;</span><span class="p">,{</span><span class="nx">session</span>:<span class="kt">false</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="c1">//经过jwt认证后才能进入到下一个
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//生成token
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">public</span> <span class="nx">createToken</span><span class="p">(</span><span class="nx">data</span>:<span class="kt">Object</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">jsonwebtoken</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">secret</span><span class="p">,{</span><span class="nx">expiresIN</span><span class="o">:</span><span class="s1">&#39;1h&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//关联express
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">public</span> <span class="nx">init</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>需要注意的是我们要去激活插件，并且要关联express</p>
+<p>main.ts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="s1">&#39;reflect-metadata&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">InversifyExpressServer</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify-express-utils&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Container</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">User</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./src/user/controller&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">UserService</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./src/user/services&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">express</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">PrismaClient</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@prisma/client&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">PrismaDB</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./src/db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">JWT</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./src/jwt&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">container</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * user模块
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="nx">container</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">User</span><span class="p">).</span><span class="nx">to</span><span class="p">(</span><span class="nx">User</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">container</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">UserService</span><span class="p">).</span><span class="nx">to</span><span class="p">(</span><span class="nx">UserService</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *  封装PrismaClient
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="nx">container</span><span class="p">.</span><span class="nx">bind</span><span class="p">&lt;</span><span class="nt">PrismaClient</span><span class="p">&gt;(</span><span class="s1">&#39;PrismaClient&#39;</span><span class="p">).</span><span class="nx">toFactory</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="nx">PrismaClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">container</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">PrismaDB</span><span class="p">).</span><span class="nx">to</span><span class="p">(</span><span class="nx">PrismaDB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * jwt模块
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="nx">container</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">JWT</span><span class="p">).</span><span class="nx">to</span><span class="p">(</span><span class="nx">JWT</span><span class="p">)</span> <span class="c1">//主要代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InversifyExpressServer</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">server</span><span class="p">.</span><span class="nx">setConfig</span><span class="p">((</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">container</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="nx">JWT</span><span class="p">).</span><span class="nx">init</span><span class="p">())</span> <span class="c1">//主要代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">server</span><span class="p">.</span><span class="nx">build</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Listening on port 3000&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>user/controller.ts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">controller</span><span class="p">,</span> <span class="nx">httpGet</span> <span class="kr">as</span> <span class="nx">GetMapping</span><span class="p">,</span> <span class="nx">httpPost</span> <span class="kr">as</span> <span class="nx">PostMapping</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify-express-utils&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">UserService</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./services&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">inject</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">JWT</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../jwt&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span><span class="nx">middleware</span><span class="p">}</span>  <span class="o">=</span> <span class="k">new</span> <span class="nx">JWT</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kd">@controller</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">constructor</span><span class="p">(</span><span class="kd">@inject</span><span class="p">(</span><span class="nx">UserService</span><span class="p">)</span> <span class="kr">private</span> <span class="kr">readonly</span> <span class="nx">UserService</span>: <span class="kt">UserService</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">@GetMapping</span><span class="p">(</span><span class="s1">&#39;/index&#39;</span><span class="p">,</span><span class="nx">middleware</span><span class="p">())</span> <span class="c1">//主要代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">public</span> <span class="kr">async</span> <span class="nx">getIndex</span><span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">UserService</span><span class="p">.</span><span class="nx">getList</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">@PostMapping</span><span class="p">(</span><span class="s1">&#39;/create&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">public</span> <span class="kr">async</span> <span class="nx">createUser</span><span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">UserService</span><span class="p">.</span><span class="nx">createUser</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>user/services.ts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">injectable</span><span class="p">,</span> <span class="nx">inject</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;inversify&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">PrismaDB</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../db&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">UserDto</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./user.dto&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">plainToClass</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;class-transformer&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">validate</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;class-validator&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">JWT</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../jwt&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">@injectable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">UserService</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">constructor</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">@inject</span><span class="p">(</span><span class="nx">PrismaDB</span><span class="p">)</span> <span class="kr">private</span> <span class="kr">readonly</span> <span class="nx">PrismaDB</span>: <span class="kt">PrismaDB</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">@inject</span><span class="p">(</span><span class="nx">JWT</span><span class="p">)</span> <span class="kr">private</span> <span class="kr">readonly</span> <span class="nx">jwt</span>: <span class="kt">JWT</span> <span class="c1">//依赖注入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">public</span> <span class="kr">async</span> <span class="nx">getList() {</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">PrismaDB</span><span class="p">.</span><span class="nx">prisma</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">findMany</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">public</span> <span class="kr">async</span> <span class="nx">createUser</span><span class="p">(</span><span class="nx">user</span>: <span class="kt">UserDto</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">userDto</span> <span class="o">=</span> <span class="nx">plainToClass</span><span class="p">(</span><span class="nx">UserDto</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">errors</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">validate</span><span class="p">(</span><span class="nx">userDto</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">errors</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nx">errors</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">PrismaDB</span><span class="p">.</span><span class="nx">prisma</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">data</span>: <span class="kt">user</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="p">...</span><span class="nx">result</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">token</span>: <span class="kt">this.jwt.createToken</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="c1">//生成token
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后会发现接收信息存在类型问题，我们在<code>main.ts</code>加入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">declare</span> <span class="kr">global</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">namespace</span> <span class="nx">Express</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">interface</span> <span class="nx">Request</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">id</span>: <span class="kt">number</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">name</span>: <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">email</span>: <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="最后结构">最后结构</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">├── main.ts                 # 应用入口文件
+</span></span><span class="line"><span class="cl">├── src/
+</span></span><span class="line"><span class="cl">    ├── db/                 # 数据库相关
+</span></span><span class="line"><span class="cl">    │   └── index.ts       
+</span></span><span class="line"><span class="cl">    ├── jwt/               # JWT认证相关
+</span></span><span class="line"><span class="cl">    │   └── index.ts
+</span></span><span class="line"><span class="cl">    └── user/              # 用户模块
+</span></span><span class="line"><span class="cl">        ├── controller.ts  # 控制器
+</span></span><span class="line"><span class="cl">        ├── service.ts     # 服务层
+</span></span><span class="line"><span class="cl">        └── user.dto.ts    # 数据传输对象
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-04-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/study_nodejs3/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/study_nodejs3/" data-title="Study nodejs「3」" data-hashtags="开发,study"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/study_nodejs3/" data-hashtag="开发"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/study_nodejs3/" data-title="Study nodejs「3」"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/study_nodejs3/" data-title="Study nodejs「3」"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/study_nodejs3/" data-title="Study nodejs「3」"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a>,&nbsp;<a href="/tags/study/">Study</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/study_nodejs2/" class="prev" rel="prev" title="Study nodejs「2」"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Study nodejs「2」</a>
+            <a href="/study_nodejs4/" class="next" rel="next" title="Study nodejs 「4」">Study nodejs 「4」<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

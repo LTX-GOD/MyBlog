@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on Zsm Blog</title>
+    <link>https://www.zhuangsanmeng.xyz/categories/web/</link>
+    <description>Recent content in Web on Zsm Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2924465428@qq.com (Zsm)</managingEditor>
+    <webMaster>2924465428@qq.com (Zsm)</webMaster>
+    <lastBuildDate>Fri, 09 May 2025 21:25:33 +0800</lastBuildDate>
+    <atom:link href="https://www.zhuangsanmeng.xyz/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Study_xss</title>
+      <link>https://www.zhuangsanmeng.xyz/study_xss/</link>
+      <pubDate>Fri, 09 May 2025 21:25:33 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study_xss/</guid>
+      <description>&lt;h2 id=&#34;xss原理&#34;&gt;XSS原理&lt;/h2&gt;&#xA;&lt;p&gt;XSS的原理是恶意攻击者往 Web 页面里插入恶意可执行网页脚本代码，当用户浏览该页之时，嵌入其中 Web 里面的脚本代码会被执行，从而可以达到攻击者盗取用户信息或其他侵犯用户安全隐私的目的。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Zsm Blog</title>
+    <link>https://www.zhuangsanmeng.xyz/tags/</link>
+    <description>Recent content in Tags on Zsm Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2924465428@qq.com (Zsm)</managingEditor>
+    <webMaster>2924465428@qq.com (Zsm)</webMaster>
+    <lastBuildDate>Tue, 15 Jul 2025 09:17:46 +0800</lastBuildDate>
+    <atom:link href="https://www.zhuangsanmeng.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Crypto</title>
+      <link>https://www.zhuangsanmeng.xyz/tags/crypto/</link>
+      <pubDate>Tue, 15 Jul 2025 09:17:46 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/tags/crypto/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Study</title>
+      <link>https://www.zhuangsanmeng.xyz/tags/study/</link>
+      <pubDate>Tue, 08 Jul 2025 11:30:53 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/tags/study/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>开发</title>
+      <link>https://www.zhuangsanmeng.xyz/tags/%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Tue, 08 Jul 2025 11:30:53 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/tags/%E5%BC%80%E5%8F%91/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>渗透</title>
+      <link>https://www.zhuangsanmeng.xyz/tags/%E6%B8%97%E9%80%8F/</link>
+      <pubDate>Mon, 02 Jun 2025 21:44:30 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/tags/%E6%B8%97%E9%80%8F/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hugo</title>
+      <link>https://www.zhuangsanmeng.xyz/tags/hugo/</link>
+      <pubDate>Tue, 25 Feb 2025 20:05:47 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/tags/hugo/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

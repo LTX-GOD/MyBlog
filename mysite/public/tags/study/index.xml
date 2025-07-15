@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Study on Zsm Blog</title>
+    <link>https://www.zhuangsanmeng.xyz/tags/study/</link>
+    <description>Recent content in Study on Zsm Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2924465428@qq.com (Zsm)</managingEditor>
+    <webMaster>2924465428@qq.com (Zsm)</webMaster>
+    <lastBuildDate>Tue, 08 Jul 2025 11:30:53 +0800</lastBuildDate>
+    <atom:link href="https://www.zhuangsanmeng.xyz/tags/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Study Golang「3」</title>
+      <link>https://www.zhuangsanmeng.xyz/study-golang3/</link>
+      <pubDate>Tue, 08 Jul 2025 11:30:53 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study-golang3/</guid>
+      <description>&lt;h2 id=&#34;study-golang--demo5&#34;&gt;study golang / demo5&lt;/h2&gt;&#xA;&lt;p&gt;&lt;em&gt;&lt;strong&gt;后端&lt;/strong&gt;&lt;/em&gt;：mongodb+gorm+MVC+gin+air&#xA;&lt;em&gt;&lt;strong&gt;前端&lt;/strong&gt;&lt;/em&gt;：vue+vite+ts&#xA;&lt;em&gt;&lt;strong&gt;仓库&lt;/strong&gt;&lt;/em&gt;：https://github.com/LTX-GOD/study-golang-demo&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study Golang「2」</title>
+      <link>https://www.zhuangsanmeng.xyz/study-golang2/</link>
+      <pubDate>Tue, 08 Jul 2025 11:27:55 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study-golang2/</guid>
+      <description>&lt;h2 id=&#34;study-golang--demo3&#34;&gt;study golang / demo3&lt;/h2&gt;&#xA;&lt;p&gt;mysql+gorm+MVC&lt;/p&gt;&#xA;&lt;h3 id=&#34;项目架构&#34;&gt;项目架构&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D:.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├─ go.mod&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├─ go.sum&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  &#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├─cmd&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│  └─main&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│          main.go&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─pkg&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├─config&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │      app.go&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├─controllers&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │      book-controller.go&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├─models&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │      book.go&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├─routes&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │      bookstore-routes.go&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └─utils&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            utils.go&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;这里直接按照mvc思想去编写了，互相引用比较多，可以初始化规范一点了&lt;code&gt;go mod init github.com/your_username/go-bookstore&lt;/code&gt;，但是我比较懒，所以就没有这样(&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study golang「1」</title>
+      <link>https://www.zhuangsanmeng.xyz/study-golang1/</link>
+      <pubDate>Mon, 07 Jul 2025 22:23:58 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study-golang1/</guid>
+      <description>&lt;h2 id=&#34;study-golang--demo1&#34;&gt;study golang / demo1&lt;/h2&gt;&#xA;&lt;p&gt;作为一个初学者，跟着佬的步伐写五个小demo玩玩，熟悉一下整个的开发方式和流程&lt;/p&gt;&#xA;&lt;h3 id=&#34;项目架构&#34;&gt;项目架构&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── main.go&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── static&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├── form.html&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └── index.html&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;最初级的东西了，这里不用&lt;code&gt;gin&lt;/code&gt;练练代码，静态文件就不写了，自由发挥了bro&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study K8s</title>
+      <link>https://www.zhuangsanmeng.xyz/study-k8s/</link>
+      <pubDate>Mon, 09 Jun 2025 08:58:54 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study-k8s/</guid>
+      <description>&lt;h2 id=&#34;关于安装&#34;&gt;关于安装&lt;/h2&gt;&#xA;&lt;p&gt;mac的话可以直接orb一把梭了，里面直接启动即可，如果不想的话，就直接去看&lt;a href=&#34;https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary&amp;#43;download&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;官方安装方法&lt;/a&gt;我感觉不如orb，linux和win只能安装官方的来咯&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study Docker</title>
+      <link>https://www.zhuangsanmeng.xyz/study-docker/</link>
+      <pubDate>Mon, 09 Jun 2025 08:48:08 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study-docker/</guid>
+      <description>&lt;h2 id=&#34;中文文档&#34;&gt;中文文档&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://yeasy.gitbook.io/docker_practice&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;https://yeasy.gitbook.io/docker_practice&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;关于部署&#34;&gt;关于部署&lt;/h2&gt;&#xA;&lt;p&gt;mac可以用docker-desktop，或者是orbstack(这个真的好用xd)，linux就直接指令操作吧。win不推荐，推荐wsl里面搞docker然后映射出来&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>关于MVC的小笔记or总结</title>
+      <link>https://www.zhuangsanmeng.xyz/thinking-mvc/</link>
+      <pubDate>Fri, 06 Jun 2025 11:10:48 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/thinking-mvc/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;前面的nodejs「3」其实写过，但是很潦草且不深刻，这个稍微深刻一点&lt;/p&gt;&#xA;&lt;h2 id=&#34;什么是mvc&#34;&gt;什么是MVC&lt;/h2&gt;&#xA;&lt;p&gt;三个字母对应三个单词，对应三个层次&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;M-&amp;gt;&lt;code&gt;Model&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;V-&amp;gt;&lt;code&gt;View&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;C-&amp;gt;&lt;code&gt;Control&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;在我浅薄的理解下，&lt;code&gt;Model&lt;/code&gt;层是对于数据库去建立sql模型，以及增删查改等操作。&lt;code&gt;Control&lt;/code&gt;去作为M和V之间的中间件，去衔接贯通，并且在我的理解里面，这个不应该含有web层面的业务逻辑(下单，支付等操作)。而&lt;code&gt;View&lt;/code&gt;就是与前端进行交互，得到or发送状态/数据等信息。&lt;br&gt;&#xA;那么web层面的逻辑就应该交给&lt;code&gt;Services&lt;/code&gt;层去完成，衍生出来的&lt;code&gt;DTO&lt;/code&gt;层，用于C-&amp;gt;S时的数据处理以及规范，有趣的是他只是一个结构体，不能处理复杂的逻辑，比如权限管理，增加waf等，我第一开始真的想过在这里去加waf保证安全(如xss，sql注入等)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study_xss</title>
+      <link>https://www.zhuangsanmeng.xyz/study_xss/</link>
+      <pubDate>Fri, 09 May 2025 21:25:33 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study_xss/</guid>
+      <description>&lt;h2 id=&#34;xss原理&#34;&gt;XSS原理&lt;/h2&gt;&#xA;&lt;p&gt;XSS的原理是恶意攻击者往 Web 页面里插入恶意可执行网页脚本代码，当用户浏览该页之时，嵌入其中 Web 里面的脚本代码会被执行，从而可以达到攻击者盗取用户信息或其他侵犯用户安全隐私的目的。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study nodejs 「5」</title>
+      <link>https://www.zhuangsanmeng.xyz/study_nodejs5/</link>
+      <pubDate>Wed, 09 Apr 2025 20:15:50 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study_nodejs5/</guid>
+      <description>&lt;h2 id=&#34;nodejs实现定时任务&#34;&gt;nodejs实现定时任务&lt;/h2&gt;&#xA;&lt;p&gt;用&lt;code&gt;node-schedule&lt;/code&gt;这个模组去实现定时任务&#xA;然后这边实现自动登录校园网的(，首先先bp抓个包，发现里面东西有点多，就写了一堆配置文件，然后包成docker去定时发送&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study nodejs 「4」</title>
+      <link>https://www.zhuangsanmeng.xyz/study_nodejs4/</link>
+      <pubDate>Sun, 06 Apr 2025 22:34:22 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study_nodejs4/</guid>
+      <description>&lt;h2 id=&#34;redis&#34;&gt;Redis&lt;/h2&gt;&#xA;&lt;h3 id=&#34;docker部署&#34;&gt;docker部署&lt;/h3&gt;&#xA;&lt;p&gt;本地是mac，加上初学不想污染环境，就用docker试试&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker pull redis&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -p 6379:6379 -d - redis-server --appendonly yes&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker rename funny_buck redis&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker exec -it redis redis-cli&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;//vsc中Database Client可以可视化&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;h3 id=&#34;字符串命令&#34;&gt;字符串命令&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SET key value [NX|XX] [EX seconds] [PX milliseconds] [GET]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;&lt;code&gt;key&lt;/code&gt;：要设置的键名。&#xA;&lt;code&gt;value&lt;/code&gt;：要设置的值。&#xA;&lt;code&gt;NX&lt;/code&gt;：可选参数，表示只在键不存在时才设置值。&#xA;&lt;code&gt;XX&lt;/code&gt;：可选参数，表示只在键已经存在时才设置值。&#xA;&lt;code&gt;EX seconds&lt;/code&gt;：可选参数，将键的过期时间设置为指定的秒数。&#xA;&lt;code&gt;PX milliseconds&lt;/code&gt;：可选参数，将键的过期时间设置为指定的毫秒数。&#xA;&lt;code&gt;GET&lt;/code&gt;：可选参数，返回键的旧值。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study nodejs「3」</title>
+      <link>https://www.zhuangsanmeng.xyz/study_nodejs3/</link>
+      <pubDate>Sun, 06 Apr 2025 15:06:17 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study_nodejs3/</guid>
+      <description>&lt;h2 id=&#34;mvc&#34;&gt;MVC&lt;/h2&gt;&#xA;&lt;p&gt;这真的很java吧（）&lt;/p&gt;&#xA;&lt;h3 id=&#34;安装依赖&#34;&gt;安装依赖&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;npm install inversify reflect-metadata express inversify-express-util prisma class-validator class-transformer&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;(数据库的东西用的还是上次的，懒得搞了，然后有个版本问题，npm install inversify-express-utils要求inversify@6.0.3express@4.21.1 )&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study nodejs「2」</title>
+      <link>https://www.zhuangsanmeng.xyz/study_nodejs2/</link>
+      <pubDate>Tue, 01 Apr 2025 16:46:56 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study_nodejs2/</guid>
+      <description>&lt;h2 id=&#34;nodejsmysql&#34;&gt;nodejs&amp;amp;mysql&lt;/h2&gt;&#xA;&lt;p&gt;现在学mysql和sqlserver(学校老师强制要求的)比较多，就先拿这些举例子了&lt;/p&gt;&#xA;&lt;h3 id=&#34;mysql2&#34;&gt;mysql2&lt;/h3&gt;&#xA;&lt;p&gt;一个把&lt;code&gt;nodejs&amp;amp;mysql&amp;amp;express&lt;/code&gt;连接的包，顺便使用&lt;code&gt;js-yaml&lt;/code&gt;去写配置&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Study Nodejs「1」</title>
+      <link>https://www.zhuangsanmeng.xyz/study_nodejs1/</link>
+      <pubDate>Mon, 31 Mar 2025 20:20:05 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/study_nodejs1/</guid>
+      <description>&lt;h2 id=&#34;为什么学nodejs&#34;&gt;为什么学nodejs&lt;/h2&gt;&#xA;&lt;p&gt;可能是后面要接手一些项目，或者是些javaspring烦了，学学nodejs玩，目前感觉nodejs的生态还是不错的&lt;/p&gt;&#xA;&lt;h2 id=&#34;npm的生命周期&#34;&gt;npm的生命周期&lt;/h2&gt;&#xA;&lt;p&gt;第一开始也没想到这个还有生命周期的，就记录一下&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
