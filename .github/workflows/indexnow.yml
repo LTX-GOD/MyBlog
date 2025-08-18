@@ -15,7 +15,6 @@ jobs:
         uses: bojieyang/indexnow-action@v2
         with:
           sitemap-location: "https://zhuangsanmeng.xyz/sitemap.xml"  # 修改为你自己的
-          endpoint: "www.bing.com"
           since: 1
           # minite, hour, day, week, month, year
           since-unit: "day"
