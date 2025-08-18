@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Terminal Configuration - Zsm Blog</title><meta name="Description" content="shell,zsh,kitty,zinit,nvim"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/terminal-configuration/">
+  <meta property="og:site_name" content="Zsm Blog">
+  <meta property="og:title" content="Terminal Configuration">
+  <meta property="og:description" content="shell,zsh,kitty,zinit,nvim">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-04T11:20:09+08:00">
+    <meta property="article:modified_time" content="2025-08-04T11:20:09+08:00">
+    <meta property="article:tag" content="终端">
+    <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
+  <meta name="twitter:title" content="Terminal Configuration">
+  <meta name="twitter:description" content="shell,zsh,kitty,zinit,nvim">
+<meta name="application-name" content="Zsm blog">
+<meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/terminal-configuration/" /><link rel="prev" href="https://www.zhuangsanmeng.xyz/secconbeginner2025-wp/" /><link rel="next" href="https://www.zhuangsanmeng.xyz/htb-editorcypher/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Terminal Configuration",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.zhuangsanmeng.xyz\/terminal-configuration\/"
+        },"genre": "posts","keywords": "终端","wordcount":  3513 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/terminal-configuration\/","datePublished": "2025-08-04T11:20:09+08:00","dateModified": "2025-08-04T11:20:09+08:00","publisher": {
+            "@type": "Organization",
+            "name": "zsm"},"author": {
+                "@type": "Person",
+                "name": "Zsm"
+            },"description": "shell,zsh,kitty,zinit,nvim"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/" title="About"> 关于 </a><a class="menu-item" href="/friend/" title="Friend"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Zsm Blog"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/logo.png"
+        data-srcset="/images/logo.png, /images/logo.png 1.5x, /images/logo.png 2x"
+        data-sizes="auto"
+        alt="/images/logo.png"
+        title="/images/logo.png" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="About">关于</a><a class="menu-item" href="/friend/" title="Friend">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+    <h2 class="toc-title">Contents</h2>
+    <div class="toc-content" id="toc-content-auto"></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Terminal Configuration</h1><div class="post-meta">
+        <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%85%8D%E7%BD%AE/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>配置</a>&nbsp;<a href="/categories/%E6%9D%82%E8%B0%88/"><i class="far fa-folder fa-fw"
+                    aria-hidden="true"></i>杂谈</a></span></div>
+        <div class="post-meta-line">
+    
+
+    
+        
+
+        
+        
+            <span id="busuanzi_container_value_page_pv"><i class="far fa-eye fa-fw"></i>
+                
+                <span id="busuanzi_value_page_pv"></span>&nbsp;views</span>
+        
+    
+
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-08-04">2025-08-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3513 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/terminal-configuration/" class="leancloud_visitors" data-flag-title="Terminal Configuration">
+                <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
+                    class=leancloud-visitors-count></span>&nbsp;views
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="">
+        <div class="details-summary toc-title">
+            <span>Contents</span>
+            <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#kitty">kitty</a>
+      <ul>
+        <li><a href="#基础配置">基础配置</a></li>
+        <li><a href="#二次配置">二次配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#aerospace">AeroSpace</a></li>
+    <li><a href="#starship">starship</a></li>
+    <li><a href="#zinit">zinit</a></li>
+    <li><a href="#nvim">nvim</a>
+      <ul>
+        <li><a href="#render-markdown">render-markdown</a></li>
+        <li><a href="#flash">flash</a></li>
+        <li><a href="#community">community</a></li>
+      </ul>
+    </li>
+    <li><a href="#最后">最后</a></li>
+  </ul>
+</nav></div>
+    </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>最近看了一些关于终端的视频，心血来潮，所以自己也更新一下我的配置和软件，正好感觉<code>iterm2</code>有点老且卡</p>
+<h2 id="kitty">kitty</h2>
+<p>一个印度佬开发的终端模拟器，非常的nb，看了一下，是go&amp;python&amp;c混合开发的，性能也是非常的好，所以这里换成<code>kitty</code>.</p>
+<h3 id="基础配置">基础配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">brew install kitty
+</span></span><span class="line"><span class="cl"><span class="c1">#选字体，我的字体是github那个+nerd图标自构的，所以这样方便一点</span>
+</span></span><span class="line"><span class="cl">kitten choose-fonts
+</span></span><span class="line"><span class="cl"><span class="c1">#选主题</span>
+</span></span><span class="line"><span class="cl">kitty +kitten themes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样操作之后，勉强能看了bro。</p>
+<h3 id="二次配置">二次配置</h3>
+<p>kitty的配置文件在<code>~/.config/kitty/</code>下，新建一个<code>kitty.conf</code>，不知道为什么我的主题没有导入进去，自己手写一下</p>
+<blockquote>
+<p>include dark-theme.auto.conf</p></blockquote>
+<p>然后配置一下字体大小、光标样式、边框、背景透明度、毛玻璃效果、顶部样式，因为我是mac，还要打开mac的键盘映射(option)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># font
+</span></span><span class="line"><span class="cl">font_size 12
+</span></span><span class="line"><span class="cl"># font_family          Monaspace Radon
+</span></span><span class="line"><span class="cl">disable_ligatures never
+</span></span><span class="line"><span class="cl">cursor_shape beam
+</span></span><span class="line"><span class="cl"># window
+</span></span><span class="line"><span class="cl">hide_window_decorations        titlebar-only
+</span></span><span class="line"><span class="cl">window_padding_width           10
+</span></span><span class="line"><span class="cl">window_border_width            0.5pt
+</span></span><span class="line"><span class="cl">draw_minimal_borders           yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">background_opacity             0.8
+</span></span><span class="line"><span class="cl">background_blur                64
+</span></span><span class="line"><span class="cl">remember_window_size           yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># tab bar
+</span></span><span class="line"><span class="cl">tab_bar_edge                top
+</span></span><span class="line"><span class="cl">tab_bar_style               powerline
+</span></span><span class="line"><span class="cl">tab_powerline_style         slanted
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># general key mapping
+</span></span><span class="line"><span class="cl">macos_option_as_alt yes
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>kitty还有一个巨帅的东西，光标动画</p>
+<blockquote>
+<p>cursor_trail 3</p></blockquote>
+<p>然后再略微配置一下快捷键映射，这边<code>iterm2</code>用多了，改一下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">enabled_layouts splits
+</span></span><span class="line"><span class="cl">enable_audio_bell no
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 跳到行开头和结尾
+</span></span><span class="line"><span class="cl">map cmd+left send_text all \x01
+</span></span><span class="line"><span class="cl">map cmd+right send_text all \x05
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 跳转标签
+</span></span><span class="line"><span class="cl">map cmd+1 goto_tab 1
+</span></span><span class="line"><span class="cl">map cmd+2 goto_tab 2
+</span></span><span class="line"><span class="cl">map cmd+3 goto_tab 3
+</span></span><span class="line"><span class="cl">map cmd+4 goto_tab 4
+</span></span><span class="line"><span class="cl">map cmd+5 goto_tab 5
+</span></span><span class="line"><span class="cl">map cmd+6 goto_tab 6
+</span></span><span class="line"><span class="cl">map cmd+7 goto_tab 7
+</span></span><span class="line"><span class="cl">map cmd+8 goto_tab 8
+</span></span><span class="line"><span class="cl">map cmd+9 goto_tab 9
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>目前这样就够用了，如果有其他的后面再补吧</p>
+<h2 id="aerospace">AeroSpace</h2>
+<p>一个窗口平铺管理软件，个人感受比<code>yabai</code>好，配置不算繁杂，手风琴模式对我这种小屏幕用户很友好，我的配置大多数是从<a href="https://space.bilibili.com/846392?spm_id_from=333.337.search-card.all.click" target="_blank" rel="noopener noreffer ">帕特里柯基</a>上面扒下来的</p>
+<h2 id="starship">starship</h2>
+<p>因为p10k总有一些稀奇古怪的bug，并且缓存机制卡卡的，这里换成starship，配置可以去dis上面自己找找，这里我的配置就是扒下来然后自己改改的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span><span class="lnt">333
+</span><span class="lnt">334
+</span><span class="lnt">335
+</span><span class="lnt">336
+</span><span class="lnt">337
+</span><span class="lnt">338
+</span><span class="lnt">339
+</span><span class="lnt">340
+</span><span class="lnt">341
+</span><span class="lnt">342
+</span><span class="lnt">343
+</span><span class="lnt">344
+</span><span class="lnt">345
+</span><span class="lnt">346
+</span><span class="lnt">347
+</span><span class="lnt">348
+</span><span class="lnt">349
+</span><span class="lnt">350
+</span><span class="lnt">351
+</span><span class="lnt">352
+</span><span class="lnt">353
+</span><span class="lnt">354
+</span><span class="lnt">355
+</span><span class="lnt">356
+</span><span class="lnt">357
+</span><span class="lnt">358
+</span><span class="lnt">359
+</span><span class="lnt">360
+</span><span class="lnt">361
+</span><span class="lnt">362
+</span><span class="lnt">363
+</span><span class="lnt">364
+</span><span class="lnt">365
+</span><span class="lnt">366
+</span><span class="lnt">367
+</span><span class="lnt">368
+</span><span class="lnt">369
+</span><span class="lnt">370
+</span><span class="lnt">371
+</span><span class="lnt">372
+</span><span class="lnt">373
+</span><span class="lnt">374
+</span><span class="lnt">375
+</span><span class="lnt">376
+</span><span class="lnt">377
+</span><span class="lnt">378
+</span><span class="lnt">379
+</span><span class="lnt">380
+</span><span class="lnt">381
+</span><span class="lnt">382
+</span><span class="lnt">383
+</span><span class="lnt">384
+</span><span class="lnt">385
+</span><span class="lnt">386
+</span><span class="lnt">387
+</span><span class="lnt">388
+</span><span class="lnt">389
+</span><span class="lnt">390
+</span><span class="lnt">391
+</span><span class="lnt">392
+</span><span class="lnt">393
+</span><span class="lnt">394
+</span><span class="lnt">395
+</span><span class="lnt">396
+</span><span class="lnt">397
+</span><span class="lnt">398
+</span><span class="lnt">399
+</span><span class="lnt">400
+</span><span class="lnt">401
+</span><span class="lnt">402
+</span><span class="lnt">403
+</span><span class="lnt">404
+</span><span class="lnt">405
+</span><span class="lnt">406
+</span><span class="lnt">407
+</span><span class="lnt">408
+</span><span class="lnt">409
+</span><span class="lnt">410
+</span><span class="lnt">411
+</span><span class="lnt">412
+</span><span class="lnt">413
+</span><span class="lnt">414
+</span><span class="lnt">415
+</span><span class="lnt">416
+</span><span class="lnt">417
+</span><span class="lnt">418
+</span><span class="lnt">419
+</span><span class="lnt">420
+</span><span class="lnt">421
+</span><span class="lnt">422
+</span><span class="lnt">423
+</span><span class="lnt">424
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="s2">&#34;$schema&#34;</span> <span class="p">=</span> <span class="s1">&#39;https://starship.rs/config-schema.json&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">add_newline</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">command_timeout</span> <span class="p">=</span> <span class="mi">2000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">$os\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$username\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$directory\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$git_branch\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$git_commit\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$git_status\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$git_metrics\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$git_state\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$c\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$rust\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$golang\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$nodejs\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$php\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$java\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$kotlin\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$haskell\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$python\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$package\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$docker_context\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$kubernetes\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$shell\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$container\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$jobs\
+</span></span></span><span class="line"><span class="cl"><span class="s2">${custom.memory_usage}\
+</span></span></span><span class="line"><span class="cl"><span class="s2">${custom.battery}\
+</span></span></span><span class="line"><span class="cl"><span class="s2">${custom.keyboard_layout}\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$time\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$cmd_duration\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$status\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$line_break\
+</span></span></span><span class="line"><span class="cl"><span class="s2">$character\
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">palette</span> <span class="p">=</span> <span class="s1">&#39;default&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">palettes</span><span class="p">.</span><span class="nx">default</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">color_ok</span> <span class="p">=</span> <span class="s1">&#39;bright-green&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_danger</span> <span class="p">=</span> <span class="s1">&#39;bright-red&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_caution</span> <span class="p">=</span> <span class="s1">&#39;bright-yellow&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">color_os</span> <span class="p">=</span> <span class="s1">&#39;red&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_username</span> <span class="p">=</span> <span class="s1">&#39;red&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_directory</span> <span class="p">=</span> <span class="s1">&#39;yellow&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_git</span> <span class="p">=</span> <span class="s1">&#39;cyan&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_git_added</span> <span class="p">=</span> <span class="s1">&#39;bright-green&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_git_deleted</span> <span class="p">=</span> <span class="s1">&#39;bright-red&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_env</span> <span class="p">=</span> <span class="s1">&#39;blue&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_kubernetes</span> <span class="p">=</span> <span class="s1">&#39;purple&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_docker</span> <span class="p">=</span> <span class="s1">&#39;blue&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_shell</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_container</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_other</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_time</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_duration</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">color_vimcmd_ok</span> <span class="p">=</span> <span class="s1">&#39;green&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_vimcmd_replace</span> <span class="p">=</span> <span class="s1">&#39;purple&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_vimcmd_visual</span> <span class="p">=</span> <span class="s1">&#39;yellow&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">palettes</span><span class="p">.</span><span class="nx">gruvbox_dark</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">color_ok</span> <span class="p">=</span> <span class="s1">&#39;#b8bb26&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_danger</span> <span class="p">=</span> <span class="s1">&#39;#fb4934&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_caution</span> <span class="p">=</span> <span class="s1">&#39;#d79921&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">color_os</span> <span class="p">=</span> <span class="s1">&#39;#d65d0e&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_username</span> <span class="p">=</span> <span class="s1">&#39;#d65d0e&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_directory</span> <span class="p">=</span> <span class="s1">&#39;#d79921&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_git</span> <span class="p">=</span> <span class="s1">&#39;#689d6a&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_git_added</span> <span class="p">=</span> <span class="s1">&#39;#b8bb26&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_git_deleted</span> <span class="p">=</span> <span class="s1">&#39;#fb4934&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_env</span> <span class="p">=</span> <span class="s1">&#39;#458588&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_kubernetes</span> <span class="p">=</span> <span class="s1">&#39;#b16286&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_docker</span> <span class="p">=</span> <span class="s1">&#39;#458588&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_shell</span> <span class="p">=</span> <span class="s1">&#39;#a89984&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_container</span> <span class="p">=</span> <span class="s1">&#39;#cc241d&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_other</span> <span class="p">=</span> <span class="s1">&#39;#d5c4a1&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_time</span> <span class="p">=</span> <span class="s1">&#39;#fbf1c7&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_duration</span> <span class="p">=</span> <span class="s1">&#39;#fbf1c7&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">color_vimcmd_ok</span> <span class="p">=</span> <span class="s1">&#39;#8ec07c&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_vimcmd_replace</span> <span class="p">=</span> <span class="s1">&#39;#b16286&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_vimcmd_visual</span> <span class="p">=</span> <span class="s1">&#39;#d79921&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">palettes</span><span class="p">.</span><span class="nx">gruvbox_light</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">color_ok</span> <span class="p">=</span> <span class="s1">&#39;#79740e&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_danger</span> <span class="p">=</span> <span class="s1">&#39;#9d0006&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_caution</span> <span class="p">=</span> <span class="s1">&#39;#d79921&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">color_os</span> <span class="p">=</span> <span class="s1">&#39;#d65d0e&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_username</span> <span class="p">=</span> <span class="s1">&#39;#d65d0e&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_directory</span> <span class="p">=</span> <span class="s1">&#39;#d79921&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_git</span> <span class="p">=</span> <span class="s1">&#39;#689d6a&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_git_added</span> <span class="p">=</span> <span class="s1">&#39;#79740e&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_git_deleted</span> <span class="p">=</span> <span class="s1">&#39;#9d0006&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_env</span> <span class="p">=</span> <span class="s1">&#39;#458588&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_kubernetes</span> <span class="p">=</span> <span class="s1">&#39;#b16286&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_docker</span> <span class="p">=</span> <span class="s1">&#39;#458588&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_shell</span> <span class="p">=</span> <span class="s1">&#39;#7c6f64&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_container</span> <span class="p">=</span> <span class="s1">&#39;#cc241d&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_other</span> <span class="p">=</span> <span class="s1">&#39;#504945&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_time</span> <span class="p">=</span> <span class="s1">&#39;#282828&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_duration</span> <span class="p">=</span> <span class="s1">&#39;#282828&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">color_vimcmd_ok</span> <span class="p">=</span> <span class="s1">&#39;#689d6a&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_vimcmd_replace</span> <span class="p">=</span> <span class="s1">&#39;#b16286&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">color_vimcmd_visual</span> <span class="p">=</span> <span class="s1">&#39;#d79921&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">os</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;[$symbol]($style)&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">os</span><span class="p">.</span><span class="nx">symbols</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Windows</span> <span class="p">=</span> <span class="s2">&#34;󰍲&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Ubuntu</span> <span class="p">=</span> <span class="s2">&#34;󰕈&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">SUSE</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Raspbian</span> <span class="p">=</span> <span class="s2">&#34;󰐿&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Mint</span> <span class="p">=</span> <span class="s2">&#34;󰣭&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Macos</span> <span class="p">=</span> <span class="s2">&#34;󰀵&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Manjaro</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Linux</span> <span class="p">=</span> <span class="s2">&#34;󰌽&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Gentoo</span> <span class="p">=</span> <span class="s2">&#34;󰣨&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Fedora</span> <span class="p">=</span> <span class="s2">&#34;󰣛&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Alpine</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Amazon</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Android</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Arch</span> <span class="p">=</span> <span class="s2">&#34;󰣇&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Artix</span> <span class="p">=</span> <span class="s2">&#34;󰣇&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">EndeavourOS</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">CentOS</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Debian</span> <span class="p">=</span> <span class="s2">&#34;󰣚&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Redhat</span> <span class="p">=</span> <span class="s2">&#34;󱄛&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">RedHatEnterprise</span> <span class="p">=</span> <span class="s2">&#34;󱄛&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Pop</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">username</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">show_always</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style_user</span> <span class="p">=</span> <span class="s2">&#34;fg:color_username&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style_root</span> <span class="p">=</span> <span class="s2">&#34;bold fg:color_danger&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;[ $user ]($style)&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">directory</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_directory&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">read_only_style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_directory&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">repo_root_style</span> <span class="p">=</span> <span class="s2">&#34;bold fg:color_directory&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s2">&#34;[ $path ]($style)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">read_only</span> <span class="p">=</span> <span class="s2">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">home_symbol</span> <span class="p">=</span> <span class="s2">&#34;~&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">truncation_symbol</span> <span class="p">=</span> <span class="s2">&#34;…/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">truncation_length</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nx">truncate_to_repo</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fish_style_pwd_dir_length</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nx">use_logical_path</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">git_branch</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_git&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;\[[$symbol$branch]($style)\]&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">only_attached</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ignore_branches</span> <span class="p">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">truncation_length</span> <span class="p">=</span> <span class="mi">25</span>
+</span></span><span class="line"><span class="cl"><span class="nx">truncation_symbol</span> <span class="p">=</span> <span class="s2">&#34;...&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">always_show_remote</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">git_commit</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_git&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s2">&#34;( [($tag)(@$hash)]($style) )&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">commit_hash_length</span> <span class="p">=</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="nx">only_detached</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">tag_symbol</span> <span class="p">=</span> <span class="s2">&#34;󰓼 &#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">tag_disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">git_status</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_git&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;([$ahead_behind]($style) )([$all_status]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stashed</span> <span class="p">=</span> <span class="s2">&#34;*${count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ahead</span> <span class="p">=</span> <span class="s2">&#34;⇡${count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">behind</span> <span class="p">=</span> <span class="s2">&#34;⇣${count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">up_to_date</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">diverged</span> <span class="p">=</span> <span class="s2">&#34;⇡${ahead_count}⇣${behind_count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">conflicted</span> <span class="p">=</span> <span class="s2">&#34;=${count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">deleted</span> <span class="p">=</span> <span class="s2">&#34;×${count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">renamed</span> <span class="p">=</span> <span class="s2">&#34;»${count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">modified</span> <span class="p">=</span> <span class="s2">&#34;!${count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">staged</span> <span class="p">=</span> <span class="s2">&#34;+${count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">untracked</span> <span class="p">=</span> <span class="s2">&#34;?${count}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ignore_submodules</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">git_metrics</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;([([+$added]($added_style))([-$deleted]($deleted_style))](fg:color_git) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">added_style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_git_added&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">deleted_style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_git_deleted&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">only_nonzero_diffs</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">git_state</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_danger&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;([$state( $progress_current/$progress_total)]($style bold) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">rebase</span> <span class="p">=</span> <span class="s2">&#34;REBASING&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">merge</span> <span class="p">=</span> <span class="s2">&#34;MERGING&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">revert</span> <span class="p">=</span> <span class="s2">&#34;REVERTING&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cherry_pick</span> <span class="p">=</span> <span class="s2">&#34;CHERRY-PICKING&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bisect</span> <span class="p">=</span> <span class="s2">&#34;BISECTING&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">am</span> <span class="p">=</span> <span class="s2">&#34;AM&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">am_or_rebase</span> <span class="p">=</span> <span class="s2">&#34;AM/REBASE&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">nodejs</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;⬢&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">c</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">rust</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;󱘗&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">golang</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;󰟓&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">php</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">java</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">kotlin</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">haskell</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">python</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)( $virtualenv)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version_format</span> <span class="p">=</span> <span class="s1">&#39;${raw}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">package</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;󰏗&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_env&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $version)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">docker_context</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_docker&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $context)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">kubernetes</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;󱃾&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_kubernetes&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [($symbol( $cluster))]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">shell</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;[ ⬢ $indicator ]($style)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bash_indicator</span> <span class="p">=</span> <span class="s2">&#34;bash&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fish_indicator</span> <span class="p">=</span> <span class="s2">&#34;fish&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">zsh_indicator</span> <span class="p">=</span> <span class="s2">&#34;zsh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">powershell_indicator</span> <span class="p">=</span> <span class="s2">&#34;powershell&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">pwsh_indicator</span> <span class="p">=</span> <span class="s2">&#34;pwsh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ion_indicator</span> <span class="p">=</span> <span class="s2">&#34;ion&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">elvish_indicator</span> <span class="p">=</span> <span class="s2">&#34;elvish&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">tcsh_indicator</span> <span class="p">=</span> <span class="s2">&#34;tcsh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">xonsh_indicator</span> <span class="p">=</span> <span class="s2">&#34;xonsh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cmd_indicator</span> <span class="p">=</span> <span class="s2">&#34;cmd&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">nu_indicator</span> <span class="p">=</span> <span class="s2">&#34;nu&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">unknown_indicator</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_shell&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">container</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_container&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol $name]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">jobs</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;󰒋&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_other&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $number)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol_threshold</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">number_threshold</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">custom</span><span class="p">.</span><span class="nx">memory_usage</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;starship module memory_usage&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">when</span> <span class="p">=</span> <span class="s1">&#39;[ &#34;${STARSHIP_COCKPIT_MEMORY_USAGE_ENABLED:-false}&#34; = &#34;true&#34; ]&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">shell</span> <span class="p">=</span> <span class="s2">&#34;sh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s2">&#34;( $output )&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">memory_usage</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">threshold</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;󰓅&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_other&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( ${ram})]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">custom</span><span class="p">.</span><span class="nx">battery</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">battery_info=$(starship module battery)
+</span></span></span><span class="line"><span class="cl"><span class="s2">if [ -n &#34;</span><span class="err">$</span><span class="nx">battery_info</span><span class="s2">&#34; ]; then
+</span></span></span><span class="line"><span class="cl"><span class="s2">    percent=$(echo &#34;</span><span class="err">$</span><span class="nx">battery_info</span><span class="s2">&#34; | grep -o &#39;[0-9]*%&#39; | sed &#39;s/%//&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    if [ &#34;</span><span class="err">$</span><span class="nx">percent</span><span class="s2">&#34; -le &#34;</span><span class="err">$</span><span class="p">{</span><span class="nx">STARSHIP_COCKPIT_BATTERY_THRESHOLD</span><span class="err">:</span><span class="mi">-0</span><span class="p">}</span><span class="s2">&#34; ]; then
+</span></span></span><span class="line"><span class="cl"><span class="s2">        echo &#34;</span><span class="err">$</span><span class="nx">battery_info</span><span class="s2">&#34; | sed &#39;s/%%/%/&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    fi
+</span></span></span><span class="line"><span class="cl"><span class="s2">fi
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">when</span> <span class="p">=</span> <span class="s1">&#39;[ &#34;${STARSHIP_COCKPIT_BATTERY_ENABLED:-false}&#34; = &#34;true&#34; ]&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">shell</span> <span class="p">=</span> <span class="s2">&#34;sh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s2">&#34;( $output )&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">battery</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">full_symbol</span> <span class="p">=</span> <span class="s2">&#34;󰁹&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">charging_symbol</span> <span class="p">=</span> <span class="s2">&#34;󰂄&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">discharging_symbol</span> <span class="p">=</span> <span class="s2">&#34;󰂃&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">unknown_symbol</span> <span class="p">=</span> <span class="s2">&#34;󰂑&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">empty_symbol</span> <span class="p">=</span> <span class="s2">&#34;󰂎&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $percentage)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">battery</span><span class="p">.</span><span class="nx">display</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">threshold</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;bold fg:color_danger&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">battery</span><span class="p">.</span><span class="nx">display</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">threshold</span> <span class="p">=</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_caution&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">battery</span><span class="p">.</span><span class="nx">display</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">threshold</span> <span class="p">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_other&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">time</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">time_format</span> <span class="p">=</span> <span class="s2">&#34;%R&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_time&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [󰔛 $time]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">cmd_duration</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">min_time</span> <span class="p">=</span> <span class="mi">2000</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [󱫑 $duration]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s1">&#39;fg:color_duration&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">show_milliseconds</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">status</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol( $common_meaning)( $signal_name)]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">map_symbol</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">pipestatus</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s1">&#39;󰅙&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">success_symbol</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">not_executable_symbol</span> <span class="p">=</span> <span class="s1">&#39;󰂭&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">not_found_symbol</span> <span class="p">=</span> <span class="s1">&#39;󰍉&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">sigint_symbol</span> <span class="p">=</span> <span class="s1">&#39;󰐊&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">signal_symbol</span> <span class="p">=</span> <span class="s1">&#39;󱐋&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s1">&#39;bold fg:color_danger&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">recognize_signal_code</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">line_break</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">character</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">success_symbol</span> <span class="p">=</span> <span class="s1">&#39;[❯](bold fg:color_ok)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">error_symbol</span> <span class="p">=</span> <span class="s1">&#39;[❯](bold fg:color_danger)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">vimcmd_symbol</span> <span class="p">=</span> <span class="s1">&#39;[❮](bold fg:color_vimcmd_ok)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">vimcmd_replace_one_symbol</span> <span class="p">=</span> <span class="s1">&#39;[❮](bold fg:color_vimcmd_replace)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">vimcmd_replace_symbol</span> <span class="p">=</span> <span class="s1">&#39;[❮](bold fg:color_vimcmd_replace)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">vimcmd_visual_symbol</span> <span class="p">=</span> <span class="s1">&#39;[❮](bold fg:color_vimcmd_visual)&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">custom</span><span class="p">.</span><span class="nx">keyboard_layout</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># Set env variables if you want to use layout aliases (in uppercase)
+</span></span></span><span class="line"><span class="cl"><span class="s2">#     export STARSHIP_COCKPIT_KEYBOARD_LAYOUT_ABC=ENG
+</span></span></span><span class="line"><span class="cl"><span class="s2">#     export STARSHIP_COCKPIT_KEYBOARD_LAYOUT_UKRAINIAN=UKR
+</span></span></span><span class="line"><span class="cl"><span class="s2">#
+</span></span></span><span class="line"><span class="cl"><span class="s2"># Implementations:
+</span></span></span><span class="line"><span class="cl"><span class="s2">#     macOS
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">if [ &#34;</span><span class="err">$(</span><span class="nx">uname</span> <span class="nx">-s</span><span class="err">)</span><span class="s2">&#34; = &#34;</span><span class="nx">Darwin</span><span class="s2">&#34; ]; then
+</span></span></span><span class="line"><span class="cl"><span class="s2">        input_source=$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID)
+</span></span></span><span class="line"><span class="cl"><span class="s2">        layout_id=$(echo &#34;</span><span class="err">$</span><span class="nx">input_source</span><span class="s2">&#34; | cut -d &#39;.&#39; -f4)
+</span></span></span><span class="line"><span class="cl"><span class="s2">        layout=$(printenv &#34;</span><span class="nx">STARSHIP_COCKPIT_KEYBOARD_LAYOUT_</span><span class="err">$(</span><span class="nx">echo</span> <span class="s2">&#34;$layout_id&#34;</span> <span class="err">|</span> <span class="nx">tr</span> <span class="s1">&#39;[:lower:]&#39;</span> <span class="s1">&#39;[:upper:]&#39;</span><span class="err">)</span><span class="s2">&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">        echo &#34;</span><span class="err">$</span><span class="nx">layout</span><span class="s2">&#34; || echo &#34;</span><span class="err">$</span><span class="nx">layout_id</span><span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">fi
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">symbol</span> <span class="p">=</span> <span class="s2">&#34;󰌌&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">style</span> <span class="p">=</span> <span class="s2">&#34;fg:color_other&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;( [$symbol $output]($style) )&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">when</span> <span class="p">=</span> <span class="s1">&#39;[ &#34;${STARSHIP_COCKPIT_KEYBOARD_LAYOUT_ENABLED:-false}&#34; = &#34;true&#34; ]&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">shell</span> <span class="p">=</span> <span class="s2">&#34;sh&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">disabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>目前用起来的适配型还是很高的</p>
+<h2 id="zinit">zinit</h2>
+<p>安装方法就不写了xd，这里主要看一下插件(记得挂梯子)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 高亮
+</span></span><span class="line"><span class="cl">zinit light zsh-users/zsh-syntax-highlighting
+</span></span><span class="line"><span class="cl"># 补全
+</span></span><span class="line"><span class="cl">zinit light zsh-users/zsh-autosuggestions
+</span></span><span class="line"><span class="cl">zinit light zsh-users/zsh-completions
+</span></span><span class="line"><span class="cl"># 搜索
+</span></span><span class="line"><span class="cl">zinit light zdharma/history-search-multi-word
+</span></span><span class="line"><span class="cl"># ls高亮
+</span></span><span class="line"><span class="cl">source /Users/zsm/.config/color.sh
+</span></span><span class="line"><span class="cl">alias ls=&#39;gls --color=auto&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ls高亮这个自己找一下就行了，或者是用<code>eza</code>替代一下。</p>
+<p>然后我顺便写了一下历史规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># History
+</span></span><span class="line"><span class="cl">HISTSIZE=5000
+</span></span><span class="line"><span class="cl">HISTFILE=~/.zsh_history
+</span></span><span class="line"><span class="cl">SAVEHIST=$HISTSIZE
+</span></span><span class="line"><span class="cl">HISTDUP=erase
+</span></span><span class="line"><span class="cl">setopt appendhistory
+</span></span><span class="line"><span class="cl">setopt hist_ignore_space
+</span></span><span class="line"><span class="cl">setopt hist_ignore_all_dups
+</span></span><span class="line"><span class="cl">setopt hist_save_no_dups
+</span></span><span class="line"><span class="cl">setopt hist_ignore_dups
+</span></span><span class="line"><span class="cl">setopt hist_find_no_dups
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其他的环境变量什么的自己加进去就行了，记得写好注释，要不然回头忘了</p>
+<h2 id="nvim">nvim</h2>
+<p>我想用这个<code>nvim</code>很久了xd，这里采用<code>AstroNvim</code>作为起点</p>
+<h3 id="render-markdown">render-markdown</h3>
+<p>写markdown必备的一个插件，这里手动添加到<code>~/.config/nvim/lua/plugins/</code>里面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;MeanderingProgrammer/render-markdown.nvim&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;nvim-treesitter/nvim-treesitter&#39;</span><span class="p">,</span> <span class="s1">&#39;echasnovski/mini.nvim&#39;</span> <span class="p">},</span> <span class="c1">-- if you use the mini.nvim suite</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- dependencies = { &#39;nvim-treesitter/nvim-treesitter&#39;, &#39;echasnovski/mini.icons&#39; }, -- if you use standalone mini plugins</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- dependencies = { &#39;nvim-treesitter/nvim-treesitter&#39;, &#39;nvim-tree/nvim-web-devicons&#39; }, -- if you prefer nvim-web-devicons</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">---@module &#39;render-markdown&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">---@type render.md.UserConfig</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opts</span> <span class="o">=</span> <span class="p">{},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">config</span><span class="o">=</span><span class="kr">function</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">require</span><span class="p">(</span><span class="s2">&#34;render-markdown&#34;</span><span class="p">).</span><span class="n">setup</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="flash">flash</h3>
+<p>强大的光标跳转插件，同样添加进去</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;folke/flash.nvim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">event</span> <span class="o">=</span> <span class="s2">&#34;VeryLazy&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">---@type Flash.Config</span>
+</span></span><span class="line"><span class="cl">  <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">modes</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">search</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">enabled</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">-- stylua: ignore</span>
+</span></span><span class="line"><span class="cl">  <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;s&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="s2">&#34;o&#34;</span> <span class="p">},</span> <span class="kr">function</span><span class="p">()</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;flash&#34;</span><span class="p">).</span><span class="n">jump</span><span class="p">()</span> <span class="kr">end</span><span class="p">,</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&#34;Flash&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;S&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="s2">&#34;o&#34;</span> <span class="p">},</span> <span class="kr">function</span><span class="p">()</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;flash&#34;</span><span class="p">).</span><span class="n">treesitter</span><span class="p">()</span> <span class="kr">end</span><span class="p">,</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&#34;Flash Treesitter&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s2">&#34;o&#34;</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;flash&#34;</span><span class="p">).</span><span class="n">remote</span><span class="p">()</span> <span class="kr">end</span><span class="p">,</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&#34;Remote Flash&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;R&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;o&#34;</span><span class="p">,</span> <span class="s2">&#34;x&#34;</span> <span class="p">},</span> <span class="kr">function</span><span class="p">()</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;flash&#34;</span><span class="p">).</span><span class="n">treesitter_search</span><span class="p">()</span> <span class="kr">end</span><span class="p">,</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&#34;Treesitter Search&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;&lt;c-s&gt;&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;c&#34;</span> <span class="p">},</span> <span class="kr">function</span><span class="p">()</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;flash&#34;</span><span class="p">).</span><span class="n">toggle</span><span class="p">()</span> <span class="kr">end</span><span class="p">,</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&#34;Toggle Flash Search&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="community">community</h3>
+<p>一个社区插件，可以直接下载astro社区里面的插件，先用用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">-- Add the community repository of plugin specifications</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;AstroNvim/astrocommunity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">-- example of importing a plugin</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">-- available plugins can be found at https://github.com/AstroNvim/astrocommunity</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="n">import</span> <span class="o">=</span> <span class="s2">&#34;astrocommunity.colorscheme.catppuccin&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="n">import</span> <span class="o">=</span> <span class="s2">&#34;astrocommunity.completion.copilot-lua&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">-- example of importing an entire language pack</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">-- these packs can set up things such as Treesitter, Language Servers, additional language specific plugins, and more!</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="n">import</span> <span class="o">=</span> <span class="s2">&#34;astrocommunity.pack.rust&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="n">import</span> <span class="o">=</span> <span class="s2">&#34;astrocommunity.pack.python&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="n">import</span> <span class="o">=</span> <span class="s2">&#34;astrocommunity.pack.go&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="最后">最后</h2>
+<p>目前这些是够用的，<code>yazi</code>还没有额外配置，后面会加进来。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-08-04</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/terminal-configuration/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://www.zhuangsanmeng.xyz/terminal-configuration/" data-title="Terminal Configuration" data-hashtags="终端"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://www.zhuangsanmeng.xyz/terminal-configuration/" data-hashtag="终端"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://www.zhuangsanmeng.xyz/terminal-configuration/" data-title="Terminal Configuration"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://www.zhuangsanmeng.xyz/terminal-configuration/" data-title="Terminal Configuration"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://www.zhuangsanmeng.xyz/terminal-configuration/" data-title="Terminal Configuration"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%BB%88%E7%AB%AF/">终端</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/secconbeginner2025-wp/" class="prev" rel="prev" title="Seccon beginner 2025 Wp"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Seccon beginner 2025 Wp</a>
+            <a href="/htb-editorcypher/" class="next" rel="next" title="HTB Editor&amp;Cypher">HTB Editor&Cypher<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src=''></script>
+
+    <script type="text/javascript">
+        new Valine({
+            el: '#valine',
+            appId: 'XiJ1G58psCdX6BgfE27O7IH9-MdYXbMMI',
+            appKey: 'e9j5fWZui0l2YfNwupu7SDW2',
+            notify: '',
+            verify: '',
+            avatar: 'mp',
+            placeholder: '留下你的评论～',
+            visitor: 'true'
+        });
+    </script></div></article></div>
+            </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
+                title="Hugo 0.147.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
+                    aria-hidden="true"></i> LoveIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
+                    href="/" target="_blank">Zsm</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+            <span class="icp">豫ICP备2024048128号</span></div>
+    
+        
+        <script async src=" //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js "></script>
+    
+
+    
+        
+            <section>
+                
+                    <span id="busuanzi_container_value_site_pv"><i class="far fa-eye fa-fw"></i>
+                        
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+
+                
+                    &nbsp;|&nbsp;              
+                
+
+                
+                    <span id="busuanzi_container_value_site_uv"><i class="fa fa-user"></i>
+                        
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+            </section>
+        
+
+        
+        
+    
+
+</div>
+</footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

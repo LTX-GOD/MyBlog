@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>终端 on Zsm Blog</title>
+    <link>https://www.zhuangsanmeng.xyz/tags/%E7%BB%88%E7%AB%AF/</link>
+    <description>Recent content in 终端 on Zsm Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2924465428@qq.com (Zsm)</managingEditor>
+    <webMaster>2924465428@qq.com (Zsm)</webMaster>
+    <lastBuildDate>Mon, 04 Aug 2025 11:20:09 +0800</lastBuildDate>
+    <atom:link href="https://www.zhuangsanmeng.xyz/tags/%E7%BB%88%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Terminal Configuration</title>
+      <link>https://www.zhuangsanmeng.xyz/terminal-configuration/</link>
+      <pubDate>Mon, 04 Aug 2025 11:20:09 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/terminal-configuration/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;最近看了一些关于终端的视频，心血来潮，所以自己也更新一下我的配置和软件，正好感觉&lt;code&gt;iterm2&lt;/code&gt;有点老且卡&lt;/p&gt;&#xA;&lt;h2 id=&#34;kitty&#34;&gt;kitty&lt;/h2&gt;&#xA;&lt;p&gt;一个印度佬开发的终端模拟器，非常的nb，看了一下，是go&amp;amp;python&amp;amp;c混合开发的，性能也是非常的好，所以这里换成&lt;code&gt;kitty&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

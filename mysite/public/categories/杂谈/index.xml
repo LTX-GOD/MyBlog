@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>杂谈 on Zsm Blog</title>
+    <link>https://www.zhuangsanmeng.xyz/categories/%E6%9D%82%E8%B0%88/</link>
+    <description>Recent content in 杂谈 on Zsm Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <managingEditor>2924465428@qq.com (Zsm)</managingEditor>
+    <webMaster>2924465428@qq.com (Zsm)</webMaster>
+    <lastBuildDate>Mon, 04 Aug 2025 11:20:09 +0800</lastBuildDate>
+    <atom:link href="https://www.zhuangsanmeng.xyz/categories/%E6%9D%82%E8%B0%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Terminal Configuration</title>
+      <link>https://www.zhuangsanmeng.xyz/terminal-configuration/</link>
+      <pubDate>Mon, 04 Aug 2025 11:20:09 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/terminal-configuration/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;最近看了一些关于终端的视频，心血来潮，所以自己也更新一下我的配置和软件，正好感觉&lt;code&gt;iterm2&lt;/code&gt;有点老且卡&lt;/p&gt;&#xA;&lt;h2 id=&#34;kitty&#34;&gt;kitty&lt;/h2&gt;&#xA;&lt;p&gt;一个印度佬开发的终端模拟器，非常的nb，看了一下，是go&amp;amp;python&amp;amp;c混合开发的，性能也是非常的好，所以这里换成&lt;code&gt;kitty&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux笔记</title>
+      <link>https://www.zhuangsanmeng.xyz/linux%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 01 Mar 2025 10:58:35 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/linux%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;h2 id=&#34;linux提权&#34;&gt;linux提权&lt;/h2&gt;&#xA;&lt;h3 id=&#34;信息收集&#34;&gt;信息收集&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;hostname&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;hostname命令将返回目标计算机的主机名。尽管该值可以很容易地更改或具有相对无意义的字符串（例如 Ubuntu-3487340239），但在某些情况下，它可以提供有关目标系统在企业网络中的角色的信息&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
