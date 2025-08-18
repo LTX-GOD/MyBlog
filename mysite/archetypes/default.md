@@ -7,6 +7,7 @@ draft: true
 author: ""
 authorLink: ""
 license: ""
+description: ""
 
 tags: [""]
 categories: [""]

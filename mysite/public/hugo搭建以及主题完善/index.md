@@ -7,22 +7,24 @@
 
 1.  安装hugo
 
->brew install hugo
+> brew install hugo
 
 2. 创建博客
->hugo new site myblog
+
+   > hugo new site myblog
 
 3. 创建主题
->cd site_name
-git init
-git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
-(git clone https://github.com/dillonzq/LoveIt.git themes/LoveIt 也可以)
-echo theme = "LoveIt" >> hugo.toml
+   > cd site_name
+   > git init
+   > git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
+   > (git clone https://github.com/dillonzq/LoveIt.git themes/LoveIt 也可以)
+   > echo theme = "LoveIt" >> hugo.toml
 
 当然你也可以选择其他的主题，方法与之类似
 
 4. 修改配置
-你知道的，hugo.toml里面就是你整个博客的配置，包括博客名称，作者名字，头像，联系方式等，直接上模板
+   你知道的，hugo.toml里面就是你整个博客的配置，包括博客名称，作者名字，头像，联系方式等，直接上模板
+
 ```
 baseURL = "https://your-domain.org"
 
@@ -526,7 +528,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     # someJavascript = "some.js"
     # 位于 "assets/"
     # 或者
-    # someJavascript = "https://cdn.example.com/some.js" 
+    # someJavascript = "https://cdn.example.com/some.js"
 # LoveIt 更改 | 0.2.10 页面 SEO 配置
 [params.page.seo]
   # 图片 URL
@@ -641,11 +643,12 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 ```
 
 5. 创建文章
-创建文章和hexo很像
->hugo new posts/my-first-post.md
+   创建文章和hexo很像
+
+   > hugo new posts/my-first-post.md
 
 6. 启动
->hugo server
+   > hugo server
 
 哎？为什么我看不到文章啊？因为你创建的.md中draft:true是不显示的样子，改成false就行啦，一般hugo会运行在1313端口，别冲突了
 
@@ -662,6 +665,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 ### 文章模板
 
 在你的mysite/archetypes/default.md文件里添加以下内容：
+
 ```
 ---
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
@@ -702,6 +706,7 @@ comment:
 ### 添加统计功能
 
 在your_site\layouts\partials\plugin\下创建busuanzi.html文件，写入
+
 ```
 {{ if .params.enable }}
     {{ if eq .bsz_type "footer" }}
@@ -722,7 +727,7 @@ comment:
                 {{ end }}
 
                 {{ if and (eq .params.site_pv true) (eq .params.site_uv true) }}
-                    &nbsp;|&nbsp;              
+                    &nbsp;|&nbsp;
                 {{ end }}
 
                 {{ if eq .params.site_uv true }}
@@ -752,6 +757,7 @@ comment:
 ```
 
 然后在hugo.toml里添加
+
 ```
 # 添加不蒜子计数
 [params.busuanzi]
@@ -759,7 +765,7 @@ comment:
   # 是否开启全站独立访客数
   site_uv = true
   # 全站独立访客数前的图标或提示语
-  site_uv_pre = '<i class="fa fa-user"></i>' 
+  site_uv_pre = '<i class="fa fa-user"></i>'
   # 全站独立访客数后的图标或提示语
   site_uv_post = ''
   # 是否开启全站浏览量
@@ -780,12 +786,14 @@ comment:
 #### 页脚统计
 
 把your_site\themes\LoveIt\layouts\partials\footer.html复制粘贴到路径your_site\layouts\partials\下。 再修改文件your_site\layouts\partials\footer.html，在最后三行
+
 ```
         </div>
     </footer>
 {{- end -}}
 
 ```
+
 前面添加
 
 ```
@@ -793,6 +801,7 @@ comment:
 {{- partial "plugin/busuanzi.html" (dict "params" .Site.Params.busuanzi "bsz_type" "footer") -}}
 
 ```
+
 然后你就无敌了
 
 #### 文章统计
@@ -857,7 +866,7 @@ password: ""
 
 原主题的二级标题我不好评价，它跟下一级的标题几乎区分不开，这导致文章看起来没有条理。因此在这里我们将修改二级标题的样式以做区分。
 
-找到your_site\assets\css\_custom.scss文件，在里面添加如下内容：
+找到your_site\assets\css_custom.scss文件，在里面添加如下内容：
 
 ```
 
@@ -885,7 +894,7 @@ password: ""
 
 原主题的行内代码能用，但只能用一点点，实在是与正文区分不开，所以在这修改一下它的样式。
 
-找到your_site\assets\css\_custom.scss文件，在里面添加如下内容：
+找到your_site\assets\css_custom.scss文件，在里面添加如下内容：
 
 ```
 
@@ -917,7 +926,7 @@ pre code {
 
 在原主题中分割线几乎看不到，这里修改一下。
 
-找到your_site\assets\css\_custom.scss文件，在里面添加如下内容：
+找到your_site\assets\css_custom.scss文件，在里面添加如下内容：
 
 ```
 
@@ -933,7 +942,7 @@ hr {
 
 页脚内容与其他内容连在一起有点杂乱，因此添加一个页脚的分割线还是很有必要的。
 
-找到your_site\assets\css\_custom.scss文件，在里面添加如下内容：
+找到your_site\assets\css_custom.scss文件，在里面添加如下内容：
 
 ```
 /* 页脚分割线 */
@@ -1001,9 +1010,10 @@ padding-right: 0rem;
 {{ end }}
 
 ```
-##### 添加_friend.scss文件
 
-在your_site\assets\css\_partial\_single\路径下（如果没有就自己创建），新建文件_friend.scss，并在里面添加如下内容：
+##### 添加\_friend.scss文件
+
+在your_site\assets\css_partial_single\路径下（如果没有就自己创建），新建文件\_friend.scss，并在里面添加如下内容：
 
 ```
 #article-container {
@@ -1136,9 +1146,9 @@ padding-right: 0rem;
 
 ```
 
-##### 在_single.scss中引入代码
+##### 在\_single.scss中引入代码
 
-把your_site\themes\LoveIt\assets\css\_page\_single.scss复制粘贴到路径your_site\assets\css\_page\下。 再在文件your_site\assets\css\_page\_single.scss里添加如下内容：
+把your_site\themes\LoveIt\assets\css_page_single.scss复制粘贴到路径your_site\assets\css_page\下。 再在文件your_site\assets\css_page_single.scss里添加如下内容：
 
 ```
 @import "../_partial/_single/friend";
@@ -1151,23 +1161,20 @@ padding-right: 0rem;
 
 先new一个
 
->hugo new friend/index.md
+> hugo new friend/index.md
 
 写入
 
 ```html
-
 <div class="flink" id="article-container">
-<div class="friend-list-div" >
-
-{{ friend name="友链名称1" url="友链地址1" logo="友链图片链接1" word="友链描述1" >}}
-{{ friend name="友链名称2" url="友链地址2" logo="友链图片链接2" word="友链描述2" >}}
-
-</div>
+  <div class="friend-list-div">
+    {{ friend name="友链名称1" url="友链地址1" logo="友链图片链接1"
+    word="友链描述1" >}} {{ friend name="友链名称2" url="友链地址2"
+    logo="友链图片链接2" word="友链描述2" >}}
+  </div>
 </div>
 
 因为我已经配置完，每行都少写一个<，要不然会渲染成友链链接
-
 ```
 
 ##### 修改配置文件
@@ -1193,5 +1200,6 @@ padding-right: 0rem;
 1. 安装宝塔（方便，且适合所有人）
 2. 创建一个网站，并把网站根目录指向你的hugo生成的public文件夹
 3. 同步
-  我采用的本地编写，编译后用rsync同步到服务器
+   我采用的本地编写，编译后用rsync同步到服务器
 4. 不断更新维护即可
+

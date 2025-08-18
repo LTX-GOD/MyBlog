@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-	<meta name="generator" content="Hugo 0.147.1">
+	<meta name="generator" content="Hugo 0.147.4">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/">
+        <title>Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/">
   <meta property="og:site_name" content="Zsm Blog">
   <meta property="og:title" content="Zsm Blog">
-  <meta property="og:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+  <meta property="og:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
@@ -16,7 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
   <meta name="twitter:title" content="Zsm Blog">
-  <meta name="twitter:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+  <meta name="twitter:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm">
 <meta name="application-name" content="Zsm blog">
 <meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Zsm Blog">
     <link rel="feed" href="/index.xml" type="application/rss+xml" title="Zsm Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -28,7 +28,7 @@
         "url": "https:\/\/www.zhuangsanmeng.xyz\/","inLanguage": "zh-CN","author": {
                 "@type": "Person",
                 "name": "Zsm"
-            },"description": "Zsm Blog,crypto,ctf,nodejs,wp,密码学","name": "Zsm Blog"
+            },"description": "Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm","name": "Zsm Blog"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -112,8 +112,486 @@
         data-srcset="/images/zsm.jpg, /images/zsm.jpg 1.5x, /images/zsm.jpg 2x"
         data-sizes="auto"
         alt="/images/zsm.jpg"
-        title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
+        title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/wsl2-arch-sagemath/">wsl2 + arch + sagemath</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>为什么要这样搞呢，主要是自己太闲了（被打），还是因为win环境下的sagemath版本低，bug多，而且还不能pwn交互，虽然在vm里面可以搞，但是我又嫌打开虚拟机麻烦，所以就wsl2了。</p></div><div class="post-footer">
+        <a href="/wsl2-arch-sagemath/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/%E4%B8%B2%E7%83%A7_crypto/">串烧_crypto复现</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>打了香港，日本的比赛，还有蜀道山，感觉这几个题都很好，但是都不会（），写个记录一下，顺便总结</p>
+<h2 id="题目">题目</h2>
+<h3 id="secconreiwa_rot13">seccon/reiwa_rot13</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">import codecs
+</span></span><span class="line"><span class="cl">import string
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">from Crypto.Cipher import AES
+</span></span><span class="line"><span class="cl">from Crypto.Random import get_random_bytes
+</span></span><span class="line"><span class="cl">from flag import flag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = getStrongPrime(512)
+</span></span><span class="line"><span class="cl">q = getStrongPrime(512)
+</span></span><span class="line"><span class="cl">n = p*q
+</span></span><span class="line"><span class="cl">e = 137
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key = &#39;&#39;.join(random.sample(string.ascii_lowercase, 10))
+</span></span><span class="line"><span class="cl">rot13_key = codecs.encode(key, &#39;rot13&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key = key.encode()
+</span></span><span class="line"><span class="cl">rot13_key = rot13_key.encode()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(&#34;n =&#34;, n)
+</span></span><span class="line"><span class="cl">print(&#34;e =&#34;, e)
+</span></span><span class="line"><span class="cl">print(&#34;c1 =&#34;, pow(bytes_to_long(key), e, n))
+</span></span><span class="line"><span class="cl">print(&#34;c2 =&#34;, pow(bytes_to_long(rot13_key), e, n))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">key = hashlib.sha256(key).digest()
+</span></span><span class="line"><span class="cl">cipher = AES.new(key, AES.MODE_ECB)
+</span></span><span class="line"><span class="cl">print(&#34;encyprted_flag = &#34;, cipher.encrypt(flag))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：
+当时比赛第一眼看过去，e很小，就在想是不是富兰克林，然后想利用rot13的性质去写，发现没用，然后就想通过c1和c2直接去构造富兰克林攻击，发现一直不对。
+正确想法应该是bytes_to_long转换的时候形成的富兰克林，每一位可以看作</p></div><div class="post-footer">
+        <a href="/%E4%B8%B2%E7%83%A7_crypto/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/%E5%9B%BD%E5%9F%8E%E6%9D%AF2024_crypto/">国城杯2024_crypto</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>额，没有进线下，很遗憾，24名，感觉算是尽力了吧，密码差一个，pwn差一个，害，加油加油</p>
+<h2 id="题目">题目</h2>
+<h3 id="baby_rsa">baby_rsa</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from secret import flag
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import*
+</span></span><span class="line"><span class="cl">from gmpy2 import*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flag = b&#39;D0g3xGC{****************}&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def gen_key(p, q):
+</span></span><span class="line"><span class="cl">    public_key = p*p*q
+</span></span><span class="line"><span class="cl">    e = public_key
+</span></span><span class="line"><span class="cl">    n = p*q
+</span></span><span class="line"><span class="cl">    phi_n = (p-1)*(q-1)
+</span></span><span class="line"><span class="cl">    private_key = inverse(e,phi_n)
+</span></span><span class="line"><span class="cl">    return public_key,private_key,e
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">p = getPrime(512)
+</span></span><span class="line"><span class="cl">q = getPrime(512)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">N,d,e = gen_key(p,q)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">c = gmpy2.powmod(bytes_to_long(flag),e,N)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">print(N)
+</span></span><span class="line"><span class="cl">print(d)
+</span></span><span class="line"><span class="cl">print(c)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">n = 539403894871945779827202174061302970341082455928364137444962844359039924160163196863639732747261316352083923762760392277536591121706270680734175544093484423564223679628430671167864783270170316881238613070741410367403388936640139281272357761773388084534717028640788227350254140821128908338938211038299089224967666902522698905762169859839320277939509727532793553875254243396522340305880944219886874086251872580220405893975158782585205038779055706441633392356197489
+</span></span><span class="line"><span class="cl">d = 58169755386408729394668831947856757060407423126014928705447058468355548861569452522734305188388017764321018770435192767746145932739423507387500606563617116764196418533748380893094448060562081543927295828007016873588530479985728135015510171217414380395169021607415979109815455365309760152218352878885075237009
+</span></span><span class="line"><span class="cl">c = 82363935080688828403687816407414245190197520763274791336321809938555352729292372511750720874636733170318783864904860402219217916275532026726988967173244517058861515301795651235356589935260088896862597321759820481288634232602161279508285376396160040216717452399727353343286840178630019331762024227868572613111538565515895048015318352044475799556833174329418774012639769680007774968870455333386419199820213165698948819857171366903857477182306178673924861370469175
+</span></span><span class="line"><span class="cl">&#39;&#39;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思路：第一开始蠢了，光想着数论去分解（），实际上就是已知ed去分解n的板子，如果你不喜欢这样写，也可以当做Schmidt-Samoa密码系统去写，也就是N=p<em>p</em>q
+exp
+已知ed分解n</p></div><div class="post-footer">
+        <a href="/%E5%9B%BD%E5%9F%8E%E6%9D%AF2024_crypto/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/%E5%B7%85%E5%B3%B0%E6%9E%81%E5%AE%A22024crypto/">巅峰极客2024_crypto</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2>
+前言
+</h2>
+应该是这个暑假里面(目前)打的最难的一场了，相比于das，他就上一个密码题啊我靠，八个小时，上了三波题，就开局一个密码，还是没写过的ECDSA加密，写不出来就很尴尬也很痛苦
+<br>
+<h2>题目</h2>
+<h3>task</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from ecdsa.ecdsa import *
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">import hashlib
+</span></span><span class="line"><span class="cl">import gmpy2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def inverse_mod(a, m):
+</span></span><span class="line"><span class="cl">    if a == 0:
+</span></span><span class="line"><span class="cl">        return 0
+</span></span><span class="line"><span class="cl">    return gmpy2.powmod(a, -1, m)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def bit_length(x):
+</span></span><span class="line"><span class="cl">    return x.bit_length()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def get_malicious_key():
+</span></span><span class="line"><span class="cl">    a = 751818   
+</span></span><span class="line"><span class="cl">    b = 1155982
+</span></span><span class="line"><span class="cl">    w = 908970521
+</span></span><span class="line"><span class="cl">    X = 20391992
+</span></span><span class="line"><span class="cl">    return a, b, w, X
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class RSZeroError(RuntimeError):
+</span></span><span class="line"><span class="cl">    pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class InvalidPointError(RuntimeError):
+</span></span><span class="line"><span class="cl">    pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class Signature(object):
+</span></span><span class="line"><span class="cl">    &#34;&#34;&#34;ECDSA signature.&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def __init__(self, r, s):
+</span></span><span class="line"><span class="cl">        self.r = r
+</span></span><span class="line"><span class="cl">        self.s = s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class Public_key(object):
+</span></span><span class="line"><span class="cl">    &#34;&#34;&#34;Public key for ECDSA.&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def __init__(self, generator, point, verify=True):
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        self.curve = generator.curve()
+</span></span><span class="line"><span class="cl">        self.generator = generator
+</span></span><span class="line"><span class="cl">        self.point = point
+</span></span><span class="line"><span class="cl">        n = generator.order()
+</span></span><span class="line"><span class="cl">        p = self.curve.p()
+</span></span><span class="line"><span class="cl">        if not (0 &lt;= point.x() &lt; p) or not (0 &lt;= point.y() &lt; p):
+</span></span><span class="line"><span class="cl">            raise InvalidPointError(
+</span></span><span class="line"><span class="cl">                &#34;The public point has x or y out of range.&#34;
+</span></span><span class="line"><span class="cl">            )
+</span></span><span class="line"><span class="cl">        if verify and not self.curve.contains_point(point.x(), point.y()):
+</span></span><span class="line"><span class="cl">            raise InvalidPointError(&#34;Point does not lay on the curve&#34;)
+</span></span><span class="line"><span class="cl">        if not n:
+</span></span><span class="line"><span class="cl">            raise InvalidPointError(&#34;Generator point must have order.&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        if (
+</span></span><span class="line"><span class="cl">            verify
+</span></span><span class="line"><span class="cl">            and self.curve.cofactor() != 1
+</span></span><span class="line"><span class="cl">            and not n * point == ellipticcurve.INFINITY
+</span></span><span class="line"><span class="cl">        ):
+</span></span><span class="line"><span class="cl">            raise InvalidPointError(&#34;Generator point order is bad.&#34;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">class Private_key(object):
+</span></span><span class="line"><span class="cl">    &#34;&#34;&#34;Private key for ECDSA.&#34;&#34;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def __init__(self, public_key, secret_multiplier):
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        self.public_key = public_key
+</span></span><span class="line"><span class="cl">        self.secret_multiplier = secret_multiplier
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def sign(self, hash, random_k):
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        G = self.public_key.generator
+</span></span><span class="line"><span class="cl">        n = G.order()# 获取该椭圆模数
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        k = random_k % n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        p1 = k * G
+</span></span><span class="line"><span class="cl">        r = p1.x() % n
+</span></span><span class="line"><span class="cl">        if r == 0:
+</span></span><span class="line"><span class="cl">            raise RSZeroError(&#34;amazingly unlucky random number r&#34;)
+</span></span><span class="line"><span class="cl">        s = (
+</span></span><span class="line"><span class="cl">            inverse_mod(k, n)
+</span></span><span class="line"><span class="cl">            * (hash + (self.secret_multiplier * r) % n)
+</span></span><span class="line"><span class="cl">        ) % n
+</span></span><span class="line"><span class="cl">        if s == 0:
+</span></span><span class="line"><span class="cl">            raise RSZeroError(&#34;amazingly unlucky random number s&#34;)
+</span></span><span class="line"><span class="cl">        return Signature(r, s)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    def malicious_sign(self,hash, random_k, a, b, w, X):
+</span></span><span class="line"><span class="cl">        # t = random.randint(0,1)
+</span></span><span class="line"><span class="cl">        t = 1
+</span></span><span class="line"><span class="cl">        G = self.public_key.generator
+</span></span><span class="line"><span class="cl">        Y = X * G
+</span></span><span class="line"><span class="cl">        n = G.order()
+</span></span><span class="line"><span class="cl">        k1 = random_k
+</span></span><span class="line"><span class="cl">        z = (k1 - w * t) * G + (-a * k1 - b) * Y
+</span></span><span class="line"><span class="cl">        zx = z.x() % n
+</span></span><span class="line"><span class="cl">        k2 = int(hashlib.sha1(str(zx).encode()).hexdigest(), 16)
+</span></span><span class="line"><span class="cl">        #print(f&#39;k2 = {k2}&#39;)
+</span></span><span class="line"><span class="cl">        p1 = k2 * G
+</span></span><span class="line"><span class="cl">        r = p1.x() % n
+</span></span><span class="line"><span class="cl">        if r == 0:
+</span></span><span class="line"><span class="cl">            raise RSZeroError(&#34;amazingly unlucky random number r&#34;)
+</span></span><span class="line"><span class="cl">        s = (
+</span></span><span class="line"><span class="cl">                    inverse_mod(k2, n)
+</span></span><span class="line"><span class="cl">                    * (hash + (self.secret_multiplier * r) % n)
+</span></span><span class="line"><span class="cl">            ) % n
+</span></span><span class="line"><span class="cl">        if s == 0:
+</span></span><span class="line"><span class="cl">            raise RSZeroError(&#34;amazingly unlucky random number s&#34;)
+</span></span><span class="line"><span class="cl">        return (Signature(r, s),k2)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">if __name__ == &#39;__main__&#39;:
+</span></span><span class="line"><span class="cl">    a,b,w,X = get_malicious_key()
+</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">    message1 = b&#39;It sounds as though you were lamenting,&#39;
+</span></span><span class="line"><span class="cl">    message2 = b&#39;a butterfly cooing like a dove.&#39;
+</span></span><span class="line"><span class="cl">    hash_message1 = int(hashlib.sha1(message1).hexdigest(), 16)
+</span></span><span class="line"><span class="cl">    hash_message2 = int(hashlib.sha1(message2).hexdigest(), 16)
+</span></span><span class="line"><span class="cl">    private = getRandomNBitInteger(50)
+</span></span><span class="line"><span class="cl">    rand = getRandomNBitInteger(49)
+</span></span><span class="line"><span class="cl">    public_key = Public_key(generator_192, generator_192 * private)
+</span></span><span class="line"><span class="cl">    private_key = Private_key(public_key, private)
+</span></span><span class="line"><span class="cl">    sig = private_key.sign(hash_message1, rand)
+</span></span><span class="line"><span class="cl">    malicious_sig,k2 = private_key.malicious_sign(hash_message2, rand, a,b,w,X)
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    print(a,b,w,X)
+</span></span><span class="line"><span class="cl">    print(sig.r)
+</span></span><span class="line"><span class="cl">    print(malicious_sig.r)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    &#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">    751818 1155982 908970521 20391992
+</span></span><span class="line"><span class="cl">    sig.r=6052579169727414254054653383715281797417510994285530927615
+</span></span><span class="line"><span class="cl">    malicious_sig.r=3839784391338849056467977882403235863760503590134852141664
+</span></span><span class="line"><span class="cl">    &#39;&#39;&#39;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    # flag为flag{uuid}格式
+</span></span><span class="line"><span class="cl">    flag = b&#39;&#39;
+</span></span><span class="line"><span class="cl">    m = bytes_to_long(flag)
+</span></span><span class="line"><span class="cl">    p = k2
+</span></span><span class="line"><span class="cl">    for i in range(99):
+</span></span><span class="line"><span class="cl">        p = gmpy2.next_prime(p)
+</span></span><span class="line"><span class="cl">    q = gmpy2.next_prime(p)
+</span></span><span class="line"><span class="cl">    e = 65537
+</span></span><span class="line"><span class="cl">    c = pow(m,e,p*q)
+</span></span><span class="line"><span class="cl">    print(c)
+</span></span><span class="line"><span class="cl">    # 1294716523385880392710224476578009870292343123062352402869702505110652244504101007338338248714943
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>写题的时候有一些地方被我改了一点点，应该可以看出来（）</p></div><div class="post-footer">
+        <a href="/%E5%B7%85%E5%B3%B0%E6%9E%81%E5%AE%A22024crypto/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/">强网杯2024_crypto</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>一共七题，出了三个，但是海鲜市场上面已经py烂了，我该喜还是该忧呢？在这里就只写上自己已经出了的题，其他的慢慢复现，最近期中考试+香港比较忙。</p></div><div class="post-footer">
+        <a href="/%E5%BC%BA%E7%BD%91%E6%9D%AF2024_crypto/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/%E6%98%A5%E7%A7%8B%E6%9D%AF%E5%86%AC%E5%AD%A3%E8%B5%9B2024_crypto/">春秋杯冬季赛2024_crypto</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
 <p>报名了，但是没打，刚回家，就被亲戚拉过去串门了，然后中间还有一天西湖论剑，害</p>
@@ -123,17 +601,6 @@
 在数字城，大家都是通过是通过数字电话进行的通信,常见是以188开头的11位纯血号码组成，亚历山大抵在一个特殊的地方截获一串特殊的字符串&quot;ca12fd8250972ec363a16593356abb1f3cf3a16d&quot;，通过查阅发现这个跟以前散落的国度有点相似，可能是去往哈希国度的。年轻程序员亚力山大抵对这个国度充满好奇，决定破译这个哈希值。在经过一段时间的摸索后，亚力山大抵凭借强大的编程实力成功破解，在输入对应字符串后瞬间被传送到一个奇幻的数据世界，同时亚力山大抵也开始了他的进修之路。(提交格式：flag{11位号码}）
 即已知前三位，爆破八位，好像cmd5已经有了</p></div><div class="post-footer">
         <a href="/%E6%98%A5%E7%A7%8B%E6%9D%AF%E5%86%AC%E5%AD%A3%E8%B5%9B2024_crypto/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/%E8%A5%BF%E7%93%9C%E6%9D%AF2024_crypto/">西瓜杯2024_crypto</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2>前言</h2>
-额，好像是聚餐的时候才知道有这个比赛，打的时候已经要结束了，复现一下
-<p> </p>
-<h2>题目</h2>
-<h3>奇奇怪怪的条形码</h3>
-能隐隐约约看出来里面是字母和数字，一个一个写出来扔到随波逐流里面梭哈就行了。
-<p> </p></div><div class="post-footer">
-        <a href="/%E8%A5%BF%E7%93%9C%E6%9D%AF2024_crypto/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
@@ -153,10 +620,14 @@
                     <span class="page-link">
                         <a href="/page/11/">11</a>
                     </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/12/">12</a>
+                    </span>
                 </li></ul></div></div>
             </main><footer class="footer">
     <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
-                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                title="Hugo 0.147.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
                 rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
                     aria-hidden="true"></i> LoveIt</a>
         </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a

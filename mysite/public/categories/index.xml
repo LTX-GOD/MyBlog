@@ -8,13 +8,34 @@
     <language>zh-CN</language>
     <managingEditor>2924465428@qq.com (Zsm)</managingEditor>
     <webMaster>2924465428@qq.com (Zsm)</webMaster>
-    <lastBuildDate>Tue, 15 Jul 2025 09:17:46 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 18 Aug 2025 09:45:19 +0800</lastBuildDate>
     <atom:link href="https://www.zhuangsanmeng.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CTF</title>
       <link>https://www.zhuangsanmeng.xyz/categories/ctf/</link>
-      <pubDate>Tue, 15 Jul 2025 09:17:46 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <pubDate>Mon, 18 Aug 2025 09:45:19 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
       <guid>https://www.zhuangsanmeng.xyz/categories/ctf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>靶场</title>
+      <link>https://www.zhuangsanmeng.xyz/categories/%E9%9D%B6%E5%9C%BA/</link>
+      <pubDate>Tue, 12 Aug 2025 15:52:17 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/categories/%E9%9D%B6%E5%9C%BA/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>杂谈</title>
+      <link>https://www.zhuangsanmeng.xyz/categories/%E6%9D%82%E8%B0%88/</link>
+      <pubDate>Mon, 04 Aug 2025 11:20:09 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/categories/%E6%9D%82%E8%B0%88/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>配置</title>
+      <link>https://www.zhuangsanmeng.xyz/categories/%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 04 Aug 2025 11:20:09 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
+      <guid>https://www.zhuangsanmeng.xyz/categories/%E9%85%8D%E7%BD%AE/</guid>
       <description></description>
     </item>
     <item>
@@ -36,27 +57,6 @@
       <link>https://www.zhuangsanmeng.xyz/categories/nodejs/</link>
       <pubDate>Fri, 06 Jun 2025 11:10:48 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
       <guid>https://www.zhuangsanmeng.xyz/categories/nodejs/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>靶场</title>
-      <link>https://www.zhuangsanmeng.xyz/categories/%E9%9D%B6%E5%9C%BA/</link>
-      <pubDate>Mon, 02 Jun 2025 21:44:30 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
-      <guid>https://www.zhuangsanmeng.xyz/categories/%E9%9D%B6%E5%9C%BA/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux&amp;windows</title>
-      <link>https://www.zhuangsanmeng.xyz/categories/linuxwindows/</link>
-      <pubDate>Sat, 01 Mar 2025 10:58:35 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
-      <guid>https://www.zhuangsanmeng.xyz/categories/linuxwindows/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Blog</title>
-      <link>https://www.zhuangsanmeng.xyz/categories/blog/</link>
-      <pubDate>Tue, 25 Feb 2025 20:05:47 +0800</pubDate><author>2924465428@qq.com (Zsm)</author>
-      <guid>https://www.zhuangsanmeng.xyz/categories/blog/</guid>
       <description></description>
     </item>
   </channel>

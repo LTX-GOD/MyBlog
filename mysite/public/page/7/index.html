@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-	<meta name="generator" content="Hugo 0.147.1">
+	<meta name="generator" content="Hugo 0.147.4">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/">
+        <title>Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/">
   <meta property="og:site_name" content="Zsm Blog">
   <meta property="og:title" content="Zsm Blog">
-  <meta property="og:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+  <meta property="og:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
@@ -16,7 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
   <meta name="twitter:title" content="Zsm Blog">
-  <meta name="twitter:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+  <meta name="twitter:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm">
 <meta name="application-name" content="Zsm blog">
 <meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Zsm Blog">
     <link rel="feed" href="/index.xml" type="application/rss+xml" title="Zsm Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -28,7 +28,7 @@
         "url": "https:\/\/www.zhuangsanmeng.xyz\/","inLanguage": "zh-CN","author": {
                 "@type": "Person",
                 "name": "Zsm"
-            },"description": "Zsm Blog,crypto,ctf,nodejs,wp,密码学","name": "Zsm Blog"
+            },"description": "Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm","name": "Zsm Blog"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -112,8 +112,446 @@
         data-srcset="/images/zsm.jpg, /images/zsm.jpg 1.5x, /images/zsm.jpg 2x"
         data-sizes="auto"
         alt="/images/zsm.jpg"
-        title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
+        title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2025polarctf/">2025PolarCTF春季赛</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-22">2025-03-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>去南京的路上，顺手写写</p>
+<h2 id="题目">题目</h2>
+<h3 id="crypto">crypto</h3>
+<h4 id="rsa1-2">RSA1-2</h4>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import os
+</span></span><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">from typing import Union
+</span></span><span class="line"><span class="cl">from flag import flag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">bits = 512
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def polar(msg: Union[bytes, bytearray], length: int) -&gt; bytes:
+</span></span><span class="line"><span class="cl">    assert length &gt; len(msg), &#34;指定的长度必须大于原始消息长度加 1。&#34;
+</span></span><span class="line"><span class="cl">    return bytes(msg) + b&#39;\x00&#39; + os.urandom(length - len(msg) - 1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def unpolar(msg: Union[bytes, bytearray]) -&gt; bytes:
+</span></span><span class="line"><span class="cl">    msg = bytes(msg)
+</span></span><span class="line"><span class="cl">    assert b&#39;\x00&#39; in msg, &#34;输入的字节串中不包含分隔符。&#34;
+</span></span><span class="line"><span class="cl">    return msg.split(b&#39;\x00&#39;)[0]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def getflag1(m):
+</span></span><span class="line"><span class="cl">    result = []
+</span></span><span class="line"><span class="cl">    for i in range(2):
+</span></span><span class="line"><span class="cl">        result.append(getPrime(bits))
+</span></span><span class="line"><span class="cl">    p, q = result
+</span></span><span class="line"><span class="cl">    if p &lt;= q:
+</span></span><span class="line"><span class="cl">        p, q = q, p
+</span></span><span class="line"><span class="cl">    e = 0x10001
+</span></span><span class="line"><span class="cl">    n = p * q
+</span></span><span class="line"><span class="cl">    c = pow(m, e, n)
+</span></span><span class="line"><span class="cl">    hint = pow(2024 * p + 2025, q, n)
+</span></span><span class="line"><span class="cl">    print(&#39;---------- getflag 1 ----------&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;{c = }&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;{n = }&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;{hint = }&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def getflag2(m):
+</span></span><span class="line"><span class="cl">    result = []
+</span></span><span class="line"><span class="cl">    for i in range(2):
+</span></span><span class="line"><span class="cl">        result.append(getPrime(bits))
+</span></span><span class="line"><span class="cl">    p, q = result
+</span></span><span class="line"><span class="cl">    n = p * q
+</span></span><span class="line"><span class="cl">    hint1 = pow(m, p, n)
+</span></span><span class="line"><span class="cl">    hint2 = pow(m, q, n)
+</span></span><span class="line"><span class="cl">    print(&#39;---------- getflag 2 ----------&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;{hint1 = }&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;{hint2 = }&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;{n = }&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def getflag3(m):
+</span></span><span class="line"><span class="cl">    result = []
+</span></span><span class="line"><span class="cl">    for i in range(2):
+</span></span><span class="line"><span class="cl">        result.append(getPrime(bits))
+</span></span><span class="line"><span class="cl">    p, q = result
+</span></span><span class="line"><span class="cl">    e = 0x10001
+</span></span><span class="line"><span class="cl">    n = p * q
+</span></span><span class="line"><span class="cl">    g = 20242025
+</span></span><span class="line"><span class="cl">    hint = pow(g + p * 1111, e, n)
+</span></span><span class="line"><span class="cl">    c = pow(m, e, n)
+</span></span><span class="line"><span class="cl">    print(&#39;---------- getflag 3 ----------&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;{c = }&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;{n = }&#39;)
+</span></span><span class="line"><span class="cl">    print(f&#39;{hint = }&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">assert len(flag) == 42
+</span></span><span class="line"><span class="cl">mm = []
+</span></span><span class="line"><span class="cl">for i in range(0, 42, 14):
+</span></span><span class="line"><span class="cl">    mm.append(bytes_to_long(polar(flag[i:i + 14], bits // 4 - 1)))
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">m1, m2, m3 = mm
+</span></span><span class="line"><span class="cl">getflag1(m1)
+</span></span><span class="line"><span class="cl">getflag2(m2)
+</span></span><span class="line"><span class="cl">getflag3(m3)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>三个很经典的数论题堆到了一起，额，后面补长度，其实没啥区别，直接写就行了，如果想看细节推导的话，可以等我下周写（</p></div><div class="post-footer">
+        <a href="/2025polarctf/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/hgctf2025/">Hgctf2025</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-09">2025-03-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>质量挺高的一场新生赛，老登大乱斗（），这里只写一部分wp</p>
+<h2 id="crypto题目">crypto题目</h2>
+<h3 id="baby_factor">baby_factor</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from Crypto.Util.number import *
+</span></span><span class="line"><span class="cl">def create():
+</span></span><span class="line"><span class="cl">    pl  = []
+</span></span><span class="line"><span class="cl">    for i in range(3):
+</span></span><span class="line"><span class="cl">        pl.append(getPrime(1024))
+</span></span><span class="line"><span class="cl">    return sorted(pl)
+</span></span><span class="line"><span class="cl">pl = create()
+</span></span><span class="line"><span class="cl">m=b&#39;NSSCTF{xxx}&#39;
+</span></span><span class="line"><span class="cl">p,q,r = pl[0],pl[1],pl[2]
+</span></span><span class="line"><span class="cl">e = 65537
+</span></span><span class="line"><span class="cl">n = p*q*r
+</span></span><span class="line"><span class="cl">phi = (p-1)*(q-1)*(r-1)
+</span></span><span class="line"><span class="cl">c=pow(bytes_to_long(m),e,n)
+</span></span><span class="line"><span class="cl">print(f&#39;n={n}&#39;)
+</span></span><span class="line"><span class="cl">print(f&#39;phi={phi}&#39;)
+</span></span><span class="line"><span class="cl">print(f&#39;c={c}&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>好像是出题人数据问题
+exp</p></div><div class="post-footer">
+        <a href="/hgctf2025/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/apoorvctf_2025/">ApoorvCTF 2025</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-09">2025-03-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>赛时就做了两题，跟着佬的wp复现一下</p>
+<h2 id="题目">题目</h2>
+<h3 id="genjutsu_labyrinth">Genjutsu_Labyrinth</h3>
+<p>task</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from sympy import primerange
+</span></span><span class="line"><span class="cl">import random
+</span></span><span class="line"><span class="cl">from collections import deque
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def generate(size):
+</span></span><span class="line"><span class="cl">    grid = [[random.randint(0, 9) for col in range(size)] for row in range(size)]
+</span></span><span class="line"><span class="cl">    grid[0][0] = 0
+</span></span><span class="line"><span class="cl">    return grid
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def encrypt(n, a, b, mod=101):
+</span></span><span class="line"><span class="cl">    return (a * n + b) % mod
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def build_encrypted_grid(grid, a, b, mod=101):
+</span></span><span class="line"><span class="cl">    size = 10
+</span></span><span class="line"><span class="cl">    encry_grid = []
+</span></span><span class="line"><span class="cl">    for y in range(size):
+</span></span><span class="line"><span class="cl">        row = []
+</span></span><span class="line"><span class="cl">        for x in range(size):
+</span></span><span class="line"><span class="cl">            enc_val = encrypt(grid[y][x], a, b, mod)
+</span></span><span class="line"><span class="cl">            row.append(str(enc_val).zfill(2))
+</span></span><span class="line"><span class="cl">        encry_grid.append(row)
+</span></span><span class="line"><span class="cl">    return encry_grid
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def optimize(grid):
+</span></span><span class="line"><span class="cl">    #hidden
+</span></span><span class="line"><span class="cl">    pass
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">grid = generate(10)
+</span></span><span class="line"><span class="cl">a = random.choice(list(primerange(2, 12)))
+</span></span><span class="line"><span class="cl">b = random.choice(range(101))
+</span></span><span class="line"><span class="cl">encry_grid = build_encrypted_grid(grid, a, b, mod=101)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#nc chals1.apoorvctf.xyz 4002
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>generate是正常一个10*10的迷宫，每个数字0-9，起点是0
+encrypt是正常的线性同余加密
+optimize没啥用
+build_encrypted_grid是生成一个没个数加密后的矩阵，并且输出为字符串，比如5-&gt;05</p></div><div class="post-footer">
+        <a href="/apoorvctf_2025/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/hmv_jo2024/">HMV JO2024</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-07">2025-03-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="jo2024">JO2024</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://hackmyvm.eu/machines/machine.php?vm=JO2024" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=JO2024</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(parallels㉿kali-linux-2024-2)-[~]
+</span></span><span class="line"><span class="cl">└─$ sudo arp-scan -l
+</span></span><span class="line"><span class="cl">Interface: eth0, type: EN10MB, MAC: 00:1c:42:fd:ba:b5, IPv4: 192.168.31.187
+</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
+</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
+</span></span><span class="line"><span class="cl">Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+</span></span><span class="line"><span class="cl">192.168.31.1    58:ea:1f:38:ff:17       (Unknown)
+</span></span><span class="line"><span class="cl">192.168.31.106  08:00:27:91:df:4a       (Unknown)
+</span></span><span class="line"><span class="cl">192.168.31.186  42:60:96:7b:26:bd       (Unknown: locally administered)
+</span></span><span class="line"><span class="cl">192.168.31.210  f4:6d:3f:27:e6:fb       (Unknown)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">8 packets received by filter, 0 packets dropped by kernel
+</span></span><span class="line"><span class="cl">Ending arp-scan 1.10.0: 256 hosts scanned in 1.841 seconds (139.05 hosts/sec). 4 responded
+</span></span><span class="line"><span class="cl">                                                                             
+</span></span><span class="line"><span class="cl">┌──(parallels㉿kali-linux-2024-2)-[~]
+</span></span><span class="line"><span class="cl">└─$ nmap -sC -sV 192.168.31.106 
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-07 16:22 CST
+</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.31.106 
+</span></span><span class="line"><span class="cl">Host is up (0.0039s latency).
+</span></span><span class="line"><span class="cl">Not shown: 998 closed tcp ports (conn-refused)
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 9.2p1 Debian 2+deb12u3 (protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   256 e7:ce:f2:f6:5d:a7:47:5a:16:2f:90:07:07:33:4e:a9 (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 09:db:b7:e8:ee:d4:52:b8:49:c3:cc:29:a5:6e:07:35 (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp open  http    Apache httpd 2.4.61 ((Debian))
+</span></span><span class="line"><span class="cl">|_http-title: Paris 2024 Olympic Games
+</span></span><span class="line"><span class="cl">|_http-server-header: Apache/2.4.61 (Debian)
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 8.21 seconds
+</span></span><span class="line"><span class="cl">                                                                
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>网页没有什么危险信息，轻微爆破一下目录</p></div><div class="post-footer">
+        <a href="/hmv_jo2024/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/hmv_smol/">HMV Smol</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-07">2025-03-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="smol">Smol</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://hackmyvm.eu/machines/machine.php?vm=Smol" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=Smol</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(parallels㉿kali-linux-2024-2)-[~]
+</span></span><span class="line"><span class="cl">└─$ nmap -sC -sV 192.168.31.25
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-06 20:18 CST
+</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.31.25
+</span></span><span class="line"><span class="cl">Host is up (0.0023s latency).
+</span></span><span class="line"><span class="cl">Not shown: 998 closed tcp ports (conn-refused)
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   3072 44:5f:26:67:4b:4a:91:9b:59:7a:95:59:c8:4c:2e:04 (RSA)
+</span></span><span class="line"><span class="cl">|   256 0a:4b:b9:b1:77:d2:48:79:fc:2f:8a:3d:64:3a:ad:94 (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 d3:3b:97:ea:54:bc:41:4d:03:39:f6:8f:ad:b6:a0:fb (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+</span></span><span class="line"><span class="cl">|_http-server-header: Apache/2.4.41 (Ubuntu)
+</span></span><span class="line"><span class="cl">|_http-title: Did not follow redirect to http://www.smol.hmv
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 7.60 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置一下重定向，最下面有<code>Proudly powered by WordPress | PopularFX Theme</code>
+wpscan启动！</p></div><div class="post-footer">
+        <a href="/hmv_smol/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/hmv_publisher/">HMV publisher</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-05">2025-03-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="publisher">publisher</h2>
 <h3 id="靶场链接">靶场链接</h3>
@@ -169,267 +607,6 @@
 </div><p>dirb和dirsearch都扫不出来什么东西，换gobuster试试</p></div><div class="post-footer">
         <a href="/hmv_publisher/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/hmv_hackingtoys/">HMV HackingToys</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-03">2025-03-03</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="hackingtoys">HackingToys</h2>
-<h3 id="靶场链接">靶场链接</h3>
-<p><a href="https://hackmyvm.eu/machines/machine.php?vm=HackingToys" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=HackingToys</a></p>
-<h3 id="日常扫描">日常扫描</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
-</span></span><span class="line"><span class="cl">└─$ sudo arp-scan -l        
-</span></span><span class="line"><span class="cl">Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.31.183
-</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
-</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
-</span></span><span class="line"><span class="cl">Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-</span></span><span class="line"><span class="cl">192.168.31.1    58:ea:1f:38:ff:17       (Unknown)
-</span></span><span class="line"><span class="cl">192.168.31.178  08:00:27:23:bb:bb       (Unknown)
-</span></span><span class="line"><span class="cl">192.168.31.186  42:60:96:7b:26:bd       (Unknown: locally administered)
-</span></span><span class="line"><span class="cl">192.168.31.210  f4:6d:3f:27:e6:fb       (Unknown)
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">4 packets received by filter, 0 packets dropped by kernel
-</span></span><span class="line"><span class="cl">Ending arp-scan 1.10.0: 256 hosts scanned in 1.873 seconds (136.68 hosts/sec). 4 responded
-</span></span><span class="line"><span class="cl">                                                                                
-</span></span><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
-</span></span><span class="line"><span class="cl">└─$ nmap 192.168.31.178                                         
-</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-02 20:19 HKT
-</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.31.178
-</span></span><span class="line"><span class="cl">Host is up (0.0013s latency).
-</span></span><span class="line"><span class="cl">Not shown: 998 closed tcp ports (reset)
-</span></span><span class="line"><span class="cl">PORT     STATE SERVICE
-</span></span><span class="line"><span class="cl">22/tcp   open  ssh
-</span></span><span class="line"><span class="cl">3000/tcp open  ppp
-</span></span><span class="line"><span class="cl">MAC Address: 08:00:27:23:BB:BB (Oracle VirtualBox virtual NIC)
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 0.29 seconds
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>有ssl证书，https访问3000端口</p></div><div class="post-footer">
-        <a href="/hmv_hackingtoys/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/hmv_metamorphose/">HMV Metamorphose</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-02">2025-03-02</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="metamorphose">Metamorphose</h2>
-<h3 id="靶场链接">靶场链接</h3>
-<p><a href="https://hackmyvm.eu/machines/machine.php?vm=Metamorphose" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=Metamorphose</a></p>
-<h3 id="日常扫描">日常扫描</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
-</span></span><span class="line"><span class="cl">└─$ sudo arp-scan -l -I eth0
-</span></span><span class="line"><span class="cl">[sudo] password for kali: 
-</span></span><span class="line"><span class="cl">Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.31.183
-</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
-</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
-</span></span><span class="line"><span class="cl">Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-</span></span><span class="line"><span class="cl">192.168.31.1    58:ea:1f:38:ff:17       (Unknown)
-</span></span><span class="line"><span class="cl">192.168.31.25   08:00:27:78:88:2c       (Unknown)
-</span></span><span class="line"><span class="cl">192.168.31.186  42:60:96:7b:26:bd       (Unknown: locally administered)
-</span></span><span class="line"><span class="cl">192.168.31.210  f4:6d:3f:27:e6:fb       (Unknown)
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">4 packets received by filter, 0 packets dropped by kernel
-</span></span><span class="line"><span class="cl">Ending arp-scan 1.10.0: 256 hosts scanned in 1.936 seconds (132.23 hosts/sec). 4 responded
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
-</span></span><span class="line"><span class="cl">└─$ nmap -Pn -sSV -p- -T5 192.168.31.25
-</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-28 12:25 HKT
-</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.31.25
-</span></span><span class="line"><span class="cl">Host is up (0.0017s latency).
-</span></span><span class="line"><span class="cl">Not shown: 65532 closed tcp ports (reset)
-</span></span><span class="line"><span class="cl">PORT      STATE SERVICE VERSION
-</span></span><span class="line"><span class="cl">22/tcp    open  ssh     OpenSSH 9.2p1 Debian 2+deb12u2 (protocol 2.0)
-</span></span><span class="line"><span class="cl">4369/tcp  open  epmd    Erlang Port Mapper Daemon
-</span></span><span class="line"><span class="cl">39441/tcp open  unknown
-</span></span><span class="line"><span class="cl">MAC Address: 08:00:27:78:88:2C (Oracle VirtualBox virtual NIC)
-</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 139.14 seconds
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="反弹shell">反弹shell</h3>
-<p>epmd的信息在https://book.hacktricks.wiki/en/network-services-pentesting/4369-pentesting-erlang-port-mapper-daemon-epmd.html 有</p></div><div class="post-footer">
-        <a href="/hmv_metamorphose/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/linux%E7%AC%94%E8%AE%B0/">Linux笔记</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-01">2025-03-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a>&nbsp;<a href=""><i class="far fa-folder fa-fw" aria-hidden="true"></i></a></span></div><div class="content"><h2 id="linux提权">linux提权</h2>
-<h3 id="信息收集">信息收集</h3>
-<blockquote>
-<p>hostname</p></blockquote>
-<p>hostname命令将返回目标计算机的主机名。尽管该值可以很容易地更改或具有相对无意义的字符串（例如 Ubuntu-3487340239），但在某些情况下，它可以提供有关目标系统在企业网络中的角色的信息</p></div><div class="post-footer">
-        <a href="/linux%E7%AC%94%E8%AE%B0/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/hugo%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E4%B8%BB%E9%A2%98%E5%AE%8C%E5%96%84/">Hugo搭建以及主题完善</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-02-25">2025-02-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/blog/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Blog</a></span></div><div class="content"><h2 id="hugo搭建">hugo搭建</h2>
-<h3 id="mac">mac</h3>
-<ol>
-<li>安装hugo</li>
-</ol>
-<blockquote>
-<p>brew install hugo</p></blockquote>
-<ol start="2">
-<li>创建博客</li>
-</ol>
-<blockquote>
-<p>hugo new site myblog</p></blockquote>
-<ol start="3">
-<li>创建主题</li>
-</ol>
-<blockquote>
-<p>cd site_name
-git init
-git submodule add <a href="https://github.com/dillonzq/LoveIt.git" target="_blank" rel="noopener noreffer ">https://github.com/dillonzq/LoveIt.git</a> themes/LoveIt
-(git clone <a href="https://github.com/dillonzq/LoveIt.git" target="_blank" rel="noopener noreffer ">https://github.com/dillonzq/LoveIt.git</a> themes/LoveIt 也可以)
-echo theme = &ldquo;LoveIt&rdquo; &raquo; hugo.toml</p></blockquote>
-<p>当然你也可以选择其他的主题，方法与之类似</p></div><div class="post-footer">
-        <a href="/hugo%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E4%B8%BB%E9%A2%98%E5%AE%8C%E5%96%84/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hugo/">Hugo</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/hmv_adria/">HMV Adria</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-02-25">2025-02-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="hmv-adria">HMV Adria</h2>
-<h3 id="靶场链接">靶场链接</h3>
-<p><a href="https://hackmyvm.eu/machines/machine.php?vm=Adria" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=Adria</a></p>
-<h3 id="日常扫描">日常扫描</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
-</span></span><span class="line"><span class="cl">└─$ sudo arp-scan -l
-</span></span><span class="line"><span class="cl">Interface: eth0, type: EN10MB, MAC: 12:37:b3:be:69:38, IPv4: 192.168.31.183
-</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
-</span></span><span class="line"><span class="cl">WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
-</span></span><span class="line"><span class="cl">Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-</span></span><span class="line"><span class="cl">192.168.31.1    58:ea:1f:38:ff:17       (Unknown)
-</span></span><span class="line"><span class="cl">192.168.31.102  08:00:27:96:ce:01       (Unknown)
-</span></span><span class="line"><span class="cl">192.168.31.186  42:60:96:7b:26:bd       (Unknown: locally administered)
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">3 packets received by filter, 0 packets dropped by kernel
-</span></span><span class="line"><span class="cl">Ending arp-scan 1.10.0: 256 hosts scanned in 1.864 seconds (137.34 hosts/sec). 3 responded
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">┌──(kali㉿kali)-[~]
-</span></span><span class="line"><span class="cl">└─$ nmap -sV -sC -T4 -Pn -p- 192.168.31.102
-</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-24 22:21 HKT
-</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.31.102
-</span></span><span class="line"><span class="cl">Host is up (0.0014s latency).
-</span></span><span class="line"><span class="cl">Not shown: 65531 closed tcp ports (reset)
-</span></span><span class="line"><span class="cl">PORT    STATE SERVICE     VERSION
-</span></span><span class="line"><span class="cl">22/tcp  open  ssh         OpenSSH 9.2p1 Debian 2 (protocol 2.0)
-</span></span><span class="line"><span class="cl">| ssh-hostkey: 
-</span></span><span class="line"><span class="cl">|   256 dd:83:da:cb:45:d3:a8:ea:c6:be:19:03:45:76:43:8c (ECDSA)
-</span></span><span class="line"><span class="cl">|_  256 e5:5f:7f:25:aa:c0:18:04:c4:46:98:b3:5d:a5:2b:48 (ED25519)
-</span></span><span class="line"><span class="cl">80/tcp  open  http        Apache httpd 2.4.57 ((Debian))
-</span></span><span class="line"><span class="cl">|_http-title: Did not follow redirect to http://adria.hmv/
-</span></span><span class="line"><span class="cl">| http-robots.txt: 7 disallowed entries 
-</span></span><span class="line"><span class="cl">| /backup/ /cron/? /front/ /install/ /panel/ /tmp/ 
-</span></span><span class="line"><span class="cl">|_/updates/
-</span></span><span class="line"><span class="cl">|_http-server-header: Apache/2.4.57 (Debian)
-</span></span><span class="line"><span class="cl">139/tcp open  netbios-ssn Samba smbd 4.6.2
-</span></span><span class="line"><span class="cl">445/tcp open  netbios-ssn Samba smbd 4.6.2
-</span></span><span class="line"><span class="cl">MAC Address: 08:00:27:96:CE:01 (Oracle VirtualBox virtual NIC)
-</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>我说直接curl80没有东西，他有个重定向，写入到/etc/hosts，然后访问就行了</p></div><div class="post-footer">
-        <a href="/hmv_adria/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -460,12 +637,12 @@ echo theme = &ldquo;LoveIt&rdquo; &raquo; hugo.toml</p></blockquote>
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/11/">11</a>
+                        <a href="/page/12/">12</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
     <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
-                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                title="Hugo 0.147.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
                 rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
                     aria-hidden="true"></i> LoveIt</a>
         </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a

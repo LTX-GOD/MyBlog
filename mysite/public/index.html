@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-	<meta name="generator" content="Hugo 0.147.1">
+	<meta name="generator" content="Hugo 0.147.4">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/">
+        <title>Zsm Blog</title><meta name="Description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm"><meta property="og:url" content="https://www.zhuangsanmeng.xyz/">
   <meta property="og:site_name" content="Zsm Blog">
   <meta property="og:title" content="Zsm Blog">
-  <meta property="og:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+  <meta property="og:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
@@ -16,7 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://www.zhuangsanmeng.xyz/">
   <meta name="twitter:title" content="Zsm Blog">
-  <meta name="twitter:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学">
+  <meta name="twitter:description" content="Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm">
 <meta name="application-name" content="Zsm blog">
 <meta name="apple-mobile-web-app-title" content="Zsm blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/logo.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.zhuangsanmeng.xyz/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Zsm Blog">
     <link rel="feed" href="/index.xml" type="application/rss+xml" title="Zsm Blog"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -28,7 +28,7 @@
         "url": "https:\/\/www.zhuangsanmeng.xyz\/","inLanguage": "zh-CN","author": {
                 "@type": "Person",
                 "name": "Zsm"
-            },"description": "Zsm Blog,crypto,ctf,nodejs,wp,密码学","name": "Zsm Blog"
+            },"description": "Zsm Blog,crypto,ctf,nodejs,wp,密码学,zsm","name": "Zsm Blog"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -112,8 +112,272 @@
         data-srcset="/images/zsm.jpg, /images/zsm.jpg 1.5x, /images/zsm.jpg 2x"
         data-sizes="auto"
         alt="/images/zsm.jpg"
-        title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
+        title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/lilctf2025/">LILCTF2025</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-08-18">2025-08-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>rank19，略微遗憾，最后区块链没做出来，下面把wp汇总一下</p>
+<h2 id="cryptozsm">Crypto(zsm)</h2>
+<h3 id="ez_math">ez_math</h3>
+<p>task.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sage.all</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.Padding</span> <span class="kn">import</span> <span class="n">pad</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;LILCTF</span><span class="si">{test_flag}</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">P</span> <span class="o">=</span> <span class="n">GF</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">62</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">mul</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="n">vector</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="n">vector</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="n">vector</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">v1</span> <span class="o">=</span> <span class="p">[</span><span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="n">v2</span> <span class="o">=</span> <span class="p">[</span><span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="n">v3</span> <span class="o">=</span> <span class="p">[</span><span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="n">v4</span> <span class="o">=</span> <span class="p">[</span><span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="n">v5</span> <span class="o">=</span> <span class="p">[</span><span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span>  <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">A</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="p">[</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">v5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">B</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="p">[</span><span class="n">mul</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="n">a</span><span class="p">),</span> <span class="n">mul</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="n">b</span><span class="p">),</span> <span class="n">mul</span><span class="p">(</span><span class="n">v3</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">mul</span><span class="p">(</span><span class="n">v4</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">mul</span><span class="p">(</span><span class="n">v5</span><span class="p">,</span> <span class="n">e</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl"><span class="n">C</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span> <span class="o">*</span> <span class="n">B</span>
+</span></span><span class="line"><span class="cl"><span class="n">D</span> <span class="o">=</span> <span class="n">C</span><span class="o">**</span><span class="n">key</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">pad</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">aes</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">AES</span><span class="o">.</span><span class="n">MODE_ECB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">aes</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="mi">64</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;p = </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;C = </span><span class="si">{</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">C</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;[&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;D = </span><span class="si">{</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">D</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;[&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;msg = </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>矩阵B是对角矩阵L*矩阵A得到，C=A^{-1}B=A^{-1}LA，显而易见就是矩阵的相似变换，lambda1 和 lambda2 正是矩阵 C 的两个特征值，直接打就行了</p></div><div class="post-footer">
+        <a href="/lilctf2025/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/htb-editorcypher/">HTB Editor&Cypher</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-08-12">2025-08-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h1 id="editor">Editor</h1>
+<h2 id="外网打点">外网打点</h2>
+<p><code>rustscan</code>不知道为什么扫不出来8080，感觉被资本做局了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nmap -sC -sV -Pn -p- 10.10.11.80 --min-rate=5000
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-08-05 13:06 CST
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.11.80
+</span></span><span class="line"><span class="cl">Host is up (0.11s latency).
+</span></span><span class="line"><span class="cl">Not shown: 52865 filtered tcp ports (no-response), 12667 closed tcp ports (conn-refused)
+</span></span><span class="line"><span class="cl">PORT     STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   256 3e:ea:45:4b:c5:d1:6d:6f:e2:d4:d1:3b:0a:3d:a9:4f (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 64:cc:75:de:4a:e6:a5:b4:73:eb:3f:1b:cf:b4:e3:94 (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp   open  http    nginx 1.18.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">|_http-title: Did not follow redirect to http://editor.htb/
+</span></span><span class="line"><span class="cl">|_http-server-header: nginx/1.18.0 (Ubuntu)
+</span></span><span class="line"><span class="cl">8080/tcp open  http    Jetty 10.0.20
+</span></span><span class="line"><span class="cl">| http-cookie-flags: 
+</span></span><span class="line"><span class="cl">|   /: 
+</span></span><span class="line"><span class="cl">|     JSESSIONID: 
+</span></span><span class="line"><span class="cl">|_      httponly flag not set
+</span></span><span class="line"><span class="cl">| http-title: XWiki - Main - Intro
+</span></span><span class="line"><span class="cl">|_Requested resource was http://10.10.11.80:8080/xwiki/bin/view/Main/
+</span></span><span class="line"><span class="cl">| http-robots.txt: 50 disallowed entries (15 shown)
+</span></span><span class="line"><span class="cl">| /xwiki/bin/viewattachrev/ /xwiki/bin/viewrev/ 
+</span></span><span class="line"><span class="cl">| /xwiki/bin/pdf/ /xwiki/bin/edit/ /xwiki/bin/create/ 
+</span></span><span class="line"><span class="cl">| /xwiki/bin/inline/ /xwiki/bin/preview/ /xwiki/bin/save/ 
+</span></span><span class="line"><span class="cl">| /xwiki/bin/saveandcontinue/ /xwiki/bin/rollback/ /xwiki/bin/deleteversions/ 
+</span></span><span class="line"><span class="cl">| /xwiki/bin/cancel/ /xwiki/bin/delete/ /xwiki/bin/deletespace/ 
+</span></span><span class="line"><span class="cl">|_/xwiki/bin/undelete/
+</span></span><span class="line"><span class="cl">| http-webdav-scan: 
+</span></span><span class="line"><span class="cl">|   WebDAV type: Unknown
+</span></span><span class="line"><span class="cl">|   Allowed Methods: OPTIONS, GET, HEAD, PROPFIND, LOCK, UNLOCK
+</span></span><span class="line"><span class="cl">|_  Server Type: Jetty(10.0.20)
+</span></span><span class="line"><span class="cl">|_http-server-header: Jetty(10.0.20)
+</span></span><span class="line"><span class="cl">| http-methods: 
+</span></span><span class="line"><span class="cl">|_  Potentially risky methods: PROPFIND LOCK UNLOCK
+</span></span><span class="line"><span class="cl">|_http-open-proxy: Proxy might be redirecting requests
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 106.22 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>先把域名加进去，然后访问80发现什么都没有bro，看看8080，发现了<code>xwiki</code>这个词
+直接在网上搜一下，找到<a href="https://github.com/dollarboysushil/CVE-2025-24893-XWiki-Unauthenticated-RCE-Exploit-POC/blob/main/CVE-2025-24893-dbs.py" target="_blank" rel="noopener noreffer ">CVE</a></p></div><div class="post-footer">
+        <a href="/htb-editorcypher/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/terminal-configuration/">Terminal Configuration</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-08-04">2025-08-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%85%8D%E7%BD%AE/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>配置</a>&nbsp;<a href="/categories/%E6%9D%82%E8%B0%88/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>杂谈</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>最近看了一些关于终端的视频，心血来潮，所以自己也更新一下我的配置和软件，正好感觉<code>iterm2</code>有点老且卡</p>
+<h2 id="kitty">kitty</h2>
+<p>一个印度佬开发的终端模拟器，非常的nb，看了一下，是go&amp;python&amp;c混合开发的，性能也是非常的好，所以这里换成<code>kitty</code>.</p></div><div class="post-footer">
+        <a href="/terminal-configuration/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%BB%88%E7%AB%AF/">终端</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/secconbeginner2025-wp/">Seccon beginner 2025 Wp</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-07-27">2025-07-27</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="整体概况">整体概况</h2>
+<p>rank 135/880</p>
+<p>感觉可以更高的，毕竟没有一直打，这次主要水了一下cry和re，下面是整体题目情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## crypto
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### seesaw (100pt / 612 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### 01-Translator (100pt / 280 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### Elliptic4b (272pt / 171 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### Golden Ticket (491pt / 35 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### mathmyth (452pt / 79 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## reversing
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### CrazyLazyProgram1 (100pt / 654 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### CrazyLazyProgram2 (100pt / 468 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### D-compile (100pt / 335 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### wasm_S_exp (100pt / 330 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### MAFC (339pt / 144 solves)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### code_injection (441pt / 88 solves)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>加<code>*</code>号的是没出来的</p></div><div class="post-footer">
+        <a href="/secconbeginner2025-wp/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/mocsctf2025-wp/">Mocsctf2025 Wp</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-07-17">2025-07-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>澳门的一个比赛，奖品比较好，就冲了xd，复盘一下，后面会补题</p>
+<h2 id="web">web</h2>
+<h3 id="shuke-beita">shuke-beita</h3>
+<p>这个真的是签到了xd，f12进去可以看见一行<code>(document.body.innerHTML = &quot;请关闭开发者工具以继续使用本网站&quot;)</code>，我们比较叛逆，直接打开，然后运行游戏抓个包，f12里面就看见flag了，无敌了</p></div><div class="post-footer">
+        <a href="/mocsctf2025-wp/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/l3hctf-wp/">L3HCTF Wp</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-07-15">2025-07-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
 <p>密码这次真的简单吧xd，当作记录帖子了</p>
@@ -198,148 +462,6 @@
 <p>GCD把r求出来，然后直接求解</p></div><div class="post-footer">
         <a href="/l3hctf-wp/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/study-golang3/">Study Golang「3」</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-07-08">2025-07-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a></span></div><div class="content"><h2 id="study-golang--demo5">study golang / demo5</h2>
-<p><em><strong>后端</strong></em>：mongodb+gorm+MVC+gin+air
-<em><strong>前端</strong></em>：vue+vite+ts
-<em><strong>仓库</strong></em>：https://github.com/LTX-GOD/study-golang-demo</p></div><div class="post-footer">
-        <a href="/study-golang3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a>,&nbsp;<a href="/tags/study/">Study</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/study-golang2/">Study Golang「2」</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-07-08">2025-07-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a></span></div><div class="content"><h2 id="study-golang--demo3">study golang / demo3</h2>
-<p>mysql+gorm+MVC</p>
-<h3 id="项目架构">项目架构</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">D:.
-</span></span><span class="line"><span class="cl">├─ go.mod
-</span></span><span class="line"><span class="cl">├─ go.sum
-</span></span><span class="line"><span class="cl">│  
-</span></span><span class="line"><span class="cl">├─cmd
-</span></span><span class="line"><span class="cl">│  └─main
-</span></span><span class="line"><span class="cl">│          main.go
-</span></span><span class="line"><span class="cl">│
-</span></span><span class="line"><span class="cl">└─pkg
-</span></span><span class="line"><span class="cl">    ├─config
-</span></span><span class="line"><span class="cl">    │      app.go
-</span></span><span class="line"><span class="cl">    │
-</span></span><span class="line"><span class="cl">    ├─controllers
-</span></span><span class="line"><span class="cl">    │      book-controller.go
-</span></span><span class="line"><span class="cl">    │
-</span></span><span class="line"><span class="cl">    ├─models
-</span></span><span class="line"><span class="cl">    │      book.go
-</span></span><span class="line"><span class="cl">    │
-</span></span><span class="line"><span class="cl">    ├─routes
-</span></span><span class="line"><span class="cl">    │      bookstore-routes.go
-</span></span><span class="line"><span class="cl">    │
-</span></span><span class="line"><span class="cl">    └─utils
-</span></span><span class="line"><span class="cl">            utils.go
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>这里直接按照mvc思想去编写了，互相引用比较多，可以初始化规范一点了<code>go mod init github.com/your_username/go-bookstore</code>，但是我比较懒，所以就没有这样(</p></div><div class="post-footer">
-        <a href="/study-golang2/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a>,&nbsp;<a href="/tags/study/">Study</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/study-golang1/">Study golang「1」</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-07-07">2025-07-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a></span></div><div class="content"><h2 id="study-golang--demo1">study golang / demo1</h2>
-<p>作为一个初学者，跟着佬的步伐写五个小demo玩玩，熟悉一下整个的开发方式和流程</p>
-<h3 id="项目架构">项目架构</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.
-</span></span><span class="line"><span class="cl">├── main.go
-</span></span><span class="line"><span class="cl">└── static
-</span></span><span class="line"><span class="cl">    ├── form.html
-</span></span><span class="line"><span class="cl">    └── index.html
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>最初级的东西了，这里不用<code>gin</code>练练代码，静态文件就不写了，自由发挥了bro</p></div><div class="post-footer">
-        <a href="/study-golang1/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a>,&nbsp;<a href="/tags/study/">Study</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/ge-1/">格学习笔记</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-06-29">2025-06-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
-<p>用来记录我的格密码学习，参考资料是NSS工坊和一些blog</p>
-<h2 id="ntru">NTRU</h2>
-<h3 id="1入门题">1.入门题</h3>
-<p>task.py</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">gmpy2</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">secret</span> <span class="kn">import</span> <span class="n">flag</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="n">bytes_to_long</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">=</span> <span class="n">getPrime</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">h</span> <span class="o">=</span> <span class="n">gmpy2</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">f</span><span class="o">+</span><span class="mi">20192020202120222023</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">g</span> <span class="o">%</span> <span class="n">p</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;h =&#39;</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;p =&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>想要flag就要求出f，f=f+20192020202120222023，最后减去这个数就好了，那么已知的式子就变成了</p></div><div class="post-footer">
-        <a href="/ge-1/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/mt19937/">MT19937</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-06-28">2025-06-28</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="算法描述">算法描述</h2>
-<h3 id="主要步骤">主要步骤</h3>
-<ol>
-<li>利用 seed 初始化寄存器状态</li>
-<li>对寄存器状态进行旋转</li>
-<li>根据寄存器状态提取伪随机数</li>
-</ol>
-<p><strong>初始化</strong>可能用的是固定的种子，也有可能是服务器时间戳，生成一个长度为624的状态数组，填充完后作为初始状态</p></div><div class="post-footer">
-        <a href="/mt19937/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -356,12 +478,12 @@
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/11/">11</a>
+                        <a href="/page/12/">12</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
     <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer"
-                title="Hugo 0.147.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
+                title="Hugo 0.147.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank"
                 rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw"
                     aria-hidden="true"></i> LoveIt</a>
         </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a
