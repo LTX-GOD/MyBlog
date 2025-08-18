@@ -11,14 +11,14 @@ jobs:
   check-and-submit:
     runs-on: ubuntu-latest
     steps:
-      - name: submit-to-bing
-        uses: bojieyang/indexnow-action@v1
+      - name: indexnow-action
+        uses: bojieyang/indexnow-action@v2
         with:
           sitemap-location: "https://zhuangsanmeng.xyz/sitemap.xml"  # 修改为你自己的
           endpoint: "www.bing.com"
           since: 1
           # minite, hour, day, week, month, year
           since-unit: "day"
-          limit: 100
+          limit: 1000
           key: ${{ secrets.INDEXNOW_KEY }}
           key-location: ${{ secrets.INDEXNOW_KEY_LOCATION }}
