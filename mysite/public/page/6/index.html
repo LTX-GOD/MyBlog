@@ -114,6 +114,105 @@
         alt="/images/zsm.jpg"
         title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/study_nodejs5/">Study nodejs 「5」</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-04-09">2025-04-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/nodejs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Nodejs</a></span></div><div class="content"><h2 id="nodejs实现定时任务">nodejs实现定时任务</h2>
+<p>用<code>node-schedule</code>这个模组去实现定时任务
+然后这边实现自动登录校园网的(，首先先bp抓个包，发现里面东西有点多，就写了一堆配置文件，然后包成docker去定时发送</p></div><div class="post-footer">
+        <a href="/study_nodejs5/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a>,&nbsp;<a href="/tags/study/">Study</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/xyctf2025/">Xyctf2025</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-04-07">2025-04-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>25年开始以来打的最高质量的密码了？</p>
+<h2 id="题目">题目</h2>
+<h3 id="division">Division</h3>
+<p>抢了个血，怪不好意思的
+task.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----Welcome to my division calc----&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">menu:
+</span></span></span><span class="line"><span class="cl"><span class="s1">      [1]  Division calc
+</span></span></span><span class="line"><span class="cl"><span class="s1">      [2]  Get flag
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">choose</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;: &gt;&gt;&gt; &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">choose</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">denominator</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;input the denominator: &gt;&gt;&gt; &#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;INPUT NUMBERS&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nominator</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">denominator</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;NO YOU DONT&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">nominator</span><span class="si">}</span><span class="s1">//</span><span class="si">{</span><span class="n">denominator</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">nominator</span><span class="o">//</span><span class="n">denominator</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">choose</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;input the answer: &gt;&gt;&gt; &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rand1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">(</span><span class="mi">11000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rand2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">correct_ans</span> <span class="o">=</span> <span class="n">rand1</span> <span class="o">//</span> <span class="n">rand2</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">correct_ans</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">ans</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;WOW&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;flag&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Here is your flag: </span><span class="si">{</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;NOPE, the correct answer is </span><span class="si">{</span><span class="n">correct_ans</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;INPUT NUMBERS&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Invalid choice&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一时间拿到就知道是<code>mt19937</code>预测随机数，1里面输入1就可以拿到每次的随机数从而预测了
+exp.py</p></div><div class="post-footer">
+        <a href="/xyctf2025/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/study_nodejs4/">Study nodejs 「4」</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-04-06">2025-04-06</time></span>&nbsp;<span class="post-category">included in <a href="/categories/nodejs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Nodejs</a></span></div><div class="content"><h2 id="redis">Redis</h2>
 <h3 id="docker部署">docker部署</h3>
@@ -187,28 +286,6 @@
 task</p></div><div class="post-footer">
         <a href="/tamuctf2025/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/study_nodejs1/">Study Nodejs「1」</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-31">2025-03-31</time></span>&nbsp;<span class="post-category">included in <a href="/categories/nodejs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Nodejs</a></span></div><div class="content"><h2 id="为什么学nodejs">为什么学nodejs</h2>
-<p>可能是后面要接手一些项目，或者是些javaspring烦了，学学nodejs玩，目前感觉nodejs的生态还是不错的</p>
-<h2 id="npm的生命周期">npm的生命周期</h2>
-<p>第一开始也没想到这个还有生命周期的，就记录一下</p></div><div class="post-footer">
-        <a href="/study_nodejs1/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a>,&nbsp;<a href="/tags/study/">Study</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/htb-alert_and_linkvortex_and_code/">HTB Alert&LinkVortex&code</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-24">2025-03-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="靶场链接">靶场链接</h2>
-<p><a href="https://app.hackthebox.com/machines/Alert" target="_blank" rel="noopener noreffer ">https://app.hackthebox.com/machines/Alert</a>
-<a href="https://app.hackthebox.com/machines/LinkVortex" target="_blank" rel="noopener noreffer ">https://app.hackthebox.com/machines/LinkVortex</a>
-code是本周靶机哎</p>
-<h2 id="笔记">笔记</h2>
-<p>HTB的靶场质量都很高，不想像其他的一样写很多没用的东西，主要写学到的东西和靶机概况</p>
-<h3 id="whatweb">whatweb</h3>
-<p>可以自动分析网站的响应并识别出使用的Web框架、CMS、服务器、JavaScript库等技术组件，
-一般情况下<code>whatweb -v</code>输出的比较详细，而且好看，
-WhatWeb 有 4 种扫描级别，通过数字 1~4 选择，默认为1：</p></div><div class="post-footer">
-        <a href="/htb-alert_and_linkvortex_and_code/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

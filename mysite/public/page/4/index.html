@@ -114,6 +114,307 @@
         alt="/images/zsm.jpg"
         title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/thm-whyhackme/">THM WhyHackMe</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-06-02">2025-06-02</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>THM的一个中等难度靶机，主要是xss相关？挺难的（</p>
+<h2 id="外网打点">外网打点</h2>
+<p>nmap+dirsearch启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> nmap -sC -sV 10.10.146.135     
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-06-02 15:53 CST
+</span></span><span class="line"><span class="cl">Nmap scan report for 10.10.146.135
+</span></span><span class="line"><span class="cl">Host is up (0.24s latency).
+</span></span><span class="line"><span class="cl">Not shown: 997 closed tcp ports (conn-refused)
+</span></span><span class="line"><span class="cl">PORT   STATE SERVICE VERSION
+</span></span><span class="line"><span class="cl">21/tcp open  ftp     vsftpd 3.0.3
+</span></span><span class="line"><span class="cl">| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+</span></span><span class="line"><span class="cl">|_-rw-r--r--    1 0        0             318 Mar 14  2023 update.txt
+</span></span><span class="line"><span class="cl">| ftp-syst:
+</span></span><span class="line"><span class="cl">|   STAT:
+</span></span><span class="line"><span class="cl">| FTP server status:
+</span></span><span class="line"><span class="cl">|      Connected to 10.21.155.141
+</span></span><span class="line"><span class="cl">|      Logged in as ftp
+</span></span><span class="line"><span class="cl">|      TYPE: ASCII
+</span></span><span class="line"><span class="cl">|      No session bandwidth limit
+</span></span><span class="line"><span class="cl">|      Session timeout in seconds is 300
+</span></span><span class="line"><span class="cl">|      Control connection is plain text
+</span></span><span class="line"><span class="cl">|      Data connections will be plain text
+</span></span><span class="line"><span class="cl">|      At session startup, client count was 3
+</span></span><span class="line"><span class="cl">|      vsFTPd 3.0.3 - secure, fast, stable
+</span></span><span class="line"><span class="cl">|_End of status
+</span></span><span class="line"><span class="cl">22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey:
+</span></span><span class="line"><span class="cl">|   3072 47:71:2b:90:7d:89:b8:e9:b4:6a:76:c1:50:49:43:cf (RSA)
+</span></span><span class="line"><span class="cl">|   256 cb:29:97:dc:fd:85:d9:ea:f8:84:98:0b:66:10:5e:6f (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 12:3f:38:92:a7:ba:7f:da:a7:18:4f:0d:ff:56:c1:1f (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+</span></span><span class="line"><span class="cl">|_http-title: Welcome!!
+</span></span><span class="line"><span class="cl">|_http-server-header: Apache/2.4.41 (Ubuntu)
+</span></span><span class="line"><span class="cl">Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 56.16 seconds
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> python dirsearch.py -u http://10.10.146.135            
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  _|. _ _  _  _  _ _|_    v0.4.3
+</span></span><span class="line"><span class="cl"> (_||| _) (/_(_|| (_| )
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Extensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25 | Wordlist size: 12290
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Target: http://10.10.146.135/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[15:57:12] Scanning:
+</span></span><span class="line"><span class="cl">[15:57:27] 403 -   278B - /.php
+</span></span><span class="line"><span class="cl">[15:58:04] 301 -   315B - /assets  -&gt;  http://10.10.146.135/assets/
+</span></span><span class="line"><span class="cl">[15:58:04] 200 -    1KB - /assets/
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/awstats.pl
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/a1stats/a1disp.cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/awstats/
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/htmlscript
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/login
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/login.php
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/login.cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/mt-xmlrpc.cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/mt.cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/mt/mt-xmlrpc.cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/mt/mt.cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/mt7/mt-xmlrpc.cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/mt7/mt.cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/php.ini
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/printenv.pl
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/ViewLog.asp
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/test-cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/test.cgi
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/htimage.exe?2,2
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/imagemap.exe?2,2
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/index.html
+</span></span><span class="line"><span class="cl">[15:58:11] 403 -   278B - /cgi-bin/printenv
+</span></span><span class="line"><span class="cl">[15:58:15] 200 -     0B - /config.php
+</span></span><span class="line"><span class="cl">[15:58:22] 403 -   278B - /dir
+</span></span><span class="line"><span class="cl">[15:58:36] 200 -   563B - /index.php
+</span></span><span class="line"><span class="cl">[15:58:36] 200 -   563B - /index.php/login/
+</span></span><span class="line"><span class="cl">[15:58:42] 200 -   523B - /login.php
+</span></span><span class="line"><span class="cl">[15:58:43] 302 -     0B - /logout.php  -&gt;  login.php
+</span></span><span class="line"><span class="cl">[15:59:02] 200 -   643B - /register.php
+</span></span><span class="line"><span class="cl">[15:59:06] 403 -   278B - /server-status/
+</span></span><span class="line"><span class="cl">[15:59:06] 403 -   278B - /server-status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Task Completed
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个时候缓一下，差点忘记<code>21ftp</code>没看，直接连接上去拿下来一个文件</p></div><div class="post-footer">
+        <a href="/thm-whyhackme/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/htb-environment/">HTB Environment</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-06-02">2025-06-02</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="前言">前言</h2>
+<p>一个很有意思的靶机，HTB中等难度</p>
+<h2 id="外网打点">外网打点</h2>
+<p>按照惯例nmap+dirsearch</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">nmap</span> <span class="o">-</span><span class="n">sC</span> <span class="o">-</span><span class="n">sV</span> <span class="mf">10.10</span><span class="o">.</span><span class="mf">11.67</span>        
+</span></span><span class="line"><span class="cl"><span class="n">Starting</span> <span class="n">Nmap</span> <span class="mf">7.94</span><span class="n">SVN</span> <span class="p">(</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">nmap</span><span class="o">.</span><span class="n">org</span> <span class="p">)</span> <span class="n">at</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">31</span> <span class="mi">20</span><span class="p">:</span><span class="mi">35</span> <span class="n">CST</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">21</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">46.63</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">38</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">29</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">17</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">54.81</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">39</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">50</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">05</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">61.43</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">40</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">54</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">10</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">79.51</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">42</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">19</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">55</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">94.33</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">43</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">25</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stats</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">55</span> <span class="n">elapsed</span><span class="p">;</span> <span class="mi">0</span> <span class="n">hosts</span> <span class="n">completed</span> <span class="p">(</span><span class="mi">1</span> <span class="n">up</span><span class="p">),</span> <span class="mi">1</span> <span class="n">undergoing</span> <span class="n">Connect</span> <span class="n">Scan</span>
+</span></span><span class="line"><span class="cl"><span class="n">Connect</span> <span class="n">Scan</span> <span class="n">Timing</span><span class="p">:</span> <span class="n">About</span> <span class="mf">94.34</span><span class="o">%</span> <span class="n">done</span><span class="p">;</span> <span class="n">ETC</span><span class="p">:</span> <span class="mi">20</span><span class="p">:</span><span class="mi">43</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">25</span> <span class="n">remaining</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Nmap</span> <span class="n">scan</span> <span class="n">report</span> <span class="k">for</span> <span class="mf">10.10</span><span class="o">.</span><span class="mf">11.67</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span> <span class="n">is</span> <span class="n">up</span> <span class="p">(</span><span class="mf">1.1</span><span class="n">s</span> <span class="n">latency</span><span class="p">)</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Not</span> <span class="n">shown</span><span class="p">:</span> <span class="mi">998</span> <span class="n">closed</span> <span class="n">tcp</span> <span class="n">ports</span> <span class="p">(</span><span class="n">conn</span><span class="o">-</span><span class="n">refused</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">PORT</span>   <span class="n">STATE</span> <span class="n">SERVICE</span> <span class="n">VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="mi">22</span><span class="o">/</span><span class="n">tcp</span> <span class="n">open</span>  <span class="n">ssh</span>     <span class="n">OpenSSH</span> <span class="mf">9.2</span><span class="n">p1</span> <span class="n">Debian</span> <span class="mi">2</span><span class="o">+</span><span class="n">deb12u5</span> <span class="p">(</span><span class="n">protocol</span> <span class="mf">2.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span> <span class="n">ssh</span><span class="o">-</span><span class="n">hostkey</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span>   <span class="mi">256</span> <span class="mi">5</span><span class="n">c</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="n">ef</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="n">e2</span><span class="p">:</span><span class="mi">80</span><span class="p">:</span><span class="n">cd</span><span class="p">:</span><span class="mi">3</span><span class="n">a</span><span class="p">:</span><span class="mi">96</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="n">f1</span><span class="p">:</span><span class="mi">92</span><span class="p">:</span><span class="mi">64</span> <span class="p">(</span><span class="n">ECDSA</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="n">_</span>  <span class="mi">256</span> <span class="mi">1</span><span class="n">f</span><span class="p">:</span><span class="mi">3</span><span class="n">d</span><span class="p">:</span><span class="n">c2</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="mi">77</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">48</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="n">c4</span><span class="p">:</span><span class="mi">4</span><span class="n">b</span><span class="p">:</span><span class="mi">74</span><span class="p">:</span><span class="n">ab</span> <span class="p">(</span><span class="n">ED25519</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">80</span><span class="o">/</span><span class="n">tcp</span> <span class="n">open</span>  <span class="n">http</span>    <span class="n">nginx</span> <span class="mf">1.22</span><span class="o">.</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="n">_http</span><span class="o">-</span><span class="n">title</span><span class="p">:</span> <span class="n">Did</span> <span class="ow">not</span> <span class="n">follow</span> <span class="n">redirect</span> <span class="n">to</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span>
+</span></span><span class="line"><span class="cl"><span class="o">|</span><span class="n">_http</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">header</span><span class="p">:</span> <span class="n">nginx</span><span class="o">/</span><span class="mf">1.22</span><span class="o">.</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Service</span> <span class="n">Info</span><span class="p">:</span> <span class="ne">OS</span><span class="p">:</span> <span class="n">Linux</span><span class="p">;</span> <span class="n">CPE</span><span class="p">:</span> <span class="n">cpe</span><span class="p">:</span><span class="o">/</span><span class="n">o</span><span class="p">:</span><span class="n">linux</span><span class="p">:</span><span class="n">linux_kernel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="n">python</span> <span class="n">dirsearch</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">u</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">zsm</span><span class="o">/</span><span class="n">CTF</span><span class="o">/</span><span class="k">tool</span><span class="o">/</span><span class="n">kali_word</span><span class="o">/</span><span class="n">dirb</span><span class="o">/</span><span class="n">wordlists</span><span class="o">/</span><span class="n">big</span><span class="o">.</span><span class="n">txt</span>     
+</span></span><span class="line"><span class="cl">  <span class="n">_</span><span class="o">|.</span> <span class="n">_</span> <span class="n">_</span>  <span class="n">_</span>  <span class="n">_</span>  <span class="n">_</span> <span class="n">_</span><span class="o">|</span><span class="n">_</span>    <span class="n">v0</span><span class="o">.</span><span class="mf">4.3</span>
+</span></span><span class="line"><span class="cl"> <span class="p">(</span><span class="n">_</span><span class="o">|||</span> <span class="n">_</span><span class="p">)</span> <span class="p">(</span><span class="o">/</span><span class="n">_</span><span class="p">(</span><span class="n">_</span><span class="o">||</span> <span class="p">(</span><span class="n">_</span><span class="o">|</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Extensions</span><span class="p">:</span> <span class="n">php</span><span class="p">,</span> <span class="n">asp</span><span class="p">,</span> <span class="n">aspx</span><span class="p">,</span> <span class="n">jsp</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">htm</span> <span class="o">|</span> <span class="n">HTTP</span> <span class="n">method</span><span class="p">:</span> <span class="n">GET</span> <span class="o">|</span> <span class="n">Threads</span><span class="p">:</span> <span class="mi">25</span> <span class="o">|</span> <span class="n">Wordlist</span> <span class="n">size</span><span class="p">:</span> <span class="mi">20469</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Target</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">45</span><span class="p">]</span> <span class="n">Scanning</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">49</span><span class="p">:</span><span class="mi">52</span><span class="p">]</span> <span class="mi">301</span> <span class="o">-</span>   <span class="mi">169</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">build</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">build</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">49</span><span class="p">:</span><span class="mi">52</span><span class="p">]</span> <span class="mi">301</span> <span class="o">-</span>   <span class="mi">169</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">build</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">build</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">23</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>     <span class="mi">0</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">favicon</span><span class="o">.</span><span class="n">ico</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">04</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">2</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">login</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">04</span><span class="p">]</span> <span class="mi">302</span> <span class="o">-</span>   <span class="mi">358</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">logout</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">login</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span> <span class="mi">405</span> <span class="o">-</span>  <span class="mi">244</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">mailing</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">33</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">24</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">robots</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">09</span><span class="p">]</span> <span class="mi">301</span> <span class="o">-</span>   <span class="mi">169</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">storage</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">storage</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">19</span><span class="p">]</span> <span class="mi">200</span> <span class="o">-</span>    <span class="mi">2</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">up</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span> <span class="mi">405</span> <span class="o">-</span>  <span class="mi">244</span><span class="n">KB</span> <span class="o">-</span> <span class="o">/</span><span class="n">upload</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">39</span><span class="p">]</span> <span class="mi">301</span> <span class="o">-</span>   <span class="mi">169</span><span class="n">B</span> <span class="o">-</span> <span class="o">/</span><span class="n">vendor</span>  <span class="o">-&gt;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">environment</span><span class="o">.</span><span class="n">htb</span><span class="o">/</span><span class="n">vendor</span><span class="o">/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Task</span> <span class="n">Completed</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有个很明显的登录页面，进去看看，随便输入试试
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.helloimg.com/i/2025/06/02/683d46f115717.png"
+        data-srcset="https://www.helloimg.com/i/2025/06/02/683d46f115717.png, https://www.helloimg.com/i/2025/06/02/683d46f115717.png 1.5x, https://www.helloimg.com/i/2025/06/02/683d46f115717.png 2x"
+        data-sizes="auto"
+        alt="https://www.helloimg.com/i/2025/06/02/683d46f115717.png"
+        title="image.png" />
+有报错回显，但是目前不知道有什么可以打的地方</p></div><div class="post-footer">
+        <a href="/htb-environment/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/litctf2025-crypto/">Litctf2025 Crypto</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-26">2025-05-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
 <p>赛时因为有其他的东西就没打，赛后复现，25号一晚上写完了，感觉除了背包其他的都还好</p>
@@ -459,22 +760,6 @@
 </div><p>第一眼看上去是格+aes，但是注意代码</p></div><div class="post-footer">
         <a href="/huangheliuyu/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/study_xss/">Study_xss</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-09">2025-05-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="xss原理">XSS原理</h2>
-<p>XSS的原理是恶意攻击者往 Web 页面里插入恶意可执行网页脚本代码，当用户浏览该页之时，嵌入其中 Web 里面的脚本代码会被执行，从而可以达到攻击者盗取用户信息或其他侵犯用户安全隐私的目的。</p></div><div class="post-footer">
-        <a href="/study_xss/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/study/">Study</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/about51/">五一长假vue3+nodejs全栈项目复盘</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-04">2025-05-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/nodejs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Nodejs</a></span></div><div class="content"><h2 id="前言">前言</h2>
-<p>五一闲来无事，也不是特别想打ctf，啧，最近感觉打ctf的体验越来越不对了，热爱好像变质了？搓个项目玩吧。在这里复盘一下</p>
-<h2 id="整体框架">整体框架</h2>
-<p>前端<code>vue3</code>，好久没搓vue了，还挺怀念去年暑假学vue的。<br>
-后端<code>nodejs+expres</code>，本来想用<code>fastify</code>，但是掌握度不高，还是稳一点吧，别给自己写恶心了。<br>
-项目挺老套的，新闻+产品管理/发布项目，两套前端(admin&amp;web)，一个后端(server)。管理又分为管理员和编辑员。</p></div><div class="post-footer">
-        <a href="/about51/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%BC%80%E5%8F%91/">开发</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

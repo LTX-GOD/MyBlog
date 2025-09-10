@@ -114,6 +114,260 @@
         alt="/images/zsm.jpg"
         title="/images/zsm.jpg" width="1080" height="1080" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/LTX-GOD" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="mailto:2924465428@qq.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/vuln_hmv4/">HMV buster</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-02-16">2025-02-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="buster">buster</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://hackmyvm.eu/machines/machine.php?vm=buster" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=buster</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<p>扫出来80端口，打开发现是wordpress
+wpscan扫出来两个用户，继续扫描</p>
+<h3 id="反弹shell">反弹shell</h3>
+<p>wpscan &ndash;api-token  &ndash;url http://192.168.64.20/ -e u,ap &ndash;plugins-detection aggressive</p>
+<p>扫出来漏洞插件wp-query-console，CVE-2024-50498
+poc</p></div><div class="post-footer">
+        <a href="/vuln_hmv4/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/vuln_hmv3/">HMV Icecream</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-02-16">2025-02-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="hmv_icecream">hmv_Icecream</h2>
+<h3 id="靶场链接">靶场链接</h3>
+<p><a href="https://hackmyvm.eu/machines/machine.php?vm=Icecream" target="_blank" rel="noopener noreffer ">https://hackmyvm.eu/machines/machine.php?vm=Icecream</a></p>
+<h3 id="日常扫描">日常扫描</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">└─$ nmap -sV -sC -T4 -Pn -p- 192.168.64.22
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-10 16:05 HKT
+</span></span><span class="line"><span class="cl">Stats: 0:00:13 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+</span></span><span class="line"><span class="cl">Service scan Timing: About 60.00% done; ETC: 16:06 (0:00:07 remaining)
+</span></span><span class="line"><span class="cl">Nmap scan report for 192.168.64.22
+</span></span><span class="line"><span class="cl">Host is up (0.00048s latency).
+</span></span><span class="line"><span class="cl">Not shown: 65530 closed tcp ports (reset)
+</span></span><span class="line"><span class="cl">PORT     STATE SERVICE     VERSION
+</span></span><span class="line"><span class="cl">22/tcp   open  ssh         OpenSSH 9.2p1 Debian 2+deb12u3 (protocol 2.0)
+</span></span><span class="line"><span class="cl">| ssh-hostkey: 
+</span></span><span class="line"><span class="cl">|   256 68:94:ca:2f:f7:62:45:56:a4:67:84:59:1b:fe:e9:bc (ECDSA)
+</span></span><span class="line"><span class="cl">|_  256 3b:79:1a:21:81:af:75:c2:c1:2e:4e:f5:a3:9c:c9:e3 (ED25519)
+</span></span><span class="line"><span class="cl">80/tcp   open  http        nginx 1.22.1
+</span></span><span class="line"><span class="cl">|_http-title: 403 Forbidden
+</span></span><span class="line"><span class="cl">|_http-server-header: nginx/1.22.1
+</span></span><span class="line"><span class="cl">139/tcp  open  netbios-ssn Samba smbd 4.6.2
+</span></span><span class="line"><span class="cl">445/tcp  open  netbios-ssn Samba smbd 4.6.2
+</span></span><span class="line"><span class="cl">9000/tcp open  cslistener?
+</span></span><span class="line"><span class="cl">| fingerprint-strings: 
+</span></span><span class="line"><span class="cl">|   FourOhFourRequest: 
+</span></span><span class="line"><span class="cl">|     HTTP/1.1 404 Not Found
+</span></span><span class="line"><span class="cl">|     Server: Unit/1.33.0
+</span></span><span class="line"><span class="cl">|     Date: Mon, 10 Feb 2025 08:05:55 GMT
+</span></span><span class="line"><span class="cl">|     Content-Type: application/json
+</span></span><span class="line"><span class="cl">|     Content-Length: 40
+</span></span><span class="line"><span class="cl">|     Connection: close
+</span></span><span class="line"><span class="cl">|     &#34;error&#34;: &#34;Value doesn&#39;t exist.&#34;
+</span></span><span class="line"><span class="cl">|   GetRequest: 
+</span></span><span class="line"><span class="cl">|     HTTP/1.1 200 OK
+</span></span><span class="line"><span class="cl">|     Server: Unit/1.33.0
+</span></span><span class="line"><span class="cl">|     Date: Mon, 10 Feb 2025 08:05:55 GMT
+</span></span><span class="line"><span class="cl">|     Content-Type: application/json
+</span></span><span class="line"><span class="cl">|     Content-Length: 1042
+</span></span><span class="line"><span class="cl">|     Connection: close
+</span></span><span class="line"><span class="cl">|     &#34;certificates&#34;: {},
+</span></span><span class="line"><span class="cl">|     &#34;js_modules&#34;: {},
+</span></span><span class="line"><span class="cl">|     &#34;config&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;listeners&#34;: {},
+</span></span><span class="line"><span class="cl">|     &#34;routes&#34;: [],
+</span></span><span class="line"><span class="cl">|     &#34;applications&#34;: {}
+</span></span><span class="line"><span class="cl">|     &#34;status&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;modules&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;python&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;3.11.2&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/python3.11.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;php&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;8.2.18&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/php.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;perl&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;5.36.0&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/perl.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;ruby&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;3.1.2&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/ruby.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;java&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;17.0.11&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/java17.unit.so&#34;
+</span></span><span class="line"><span class="cl">|     &#34;wasm&#34;: {
+</span></span><span class="line"><span class="cl">|     &#34;version&#34;: &#34;0.1&#34;,
+</span></span><span class="line"><span class="cl">|     &#34;lib&#34;: &#34;/usr/lib/unit/modules/wasm.unit.so&#34;
+</span></span><span class="line"><span class="cl">|   HTTPOptions: 
+</span></span><span class="line"><span class="cl">|     HTTP/1.1 405 Method Not Allowed
+</span></span><span class="line"><span class="cl">|     Server: Unit/1.33.0
+</span></span><span class="line"><span class="cl">|     Date: Mon, 10 Feb 2025 08:05:55 GMT
+</span></span><span class="line"><span class="cl">|     Content-Type: application/json
+</span></span><span class="line"><span class="cl">|     Content-Length: 35
+</span></span><span class="line"><span class="cl">|     Connection: close
+</span></span><span class="line"><span class="cl">|_    &#34;error&#34;: &#34;Invalid method.&#34;
+</span></span><span class="line"><span class="cl">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+</span></span><span class="line"><span class="cl">SF-Port9000-TCP:V=7.94SVN%I=7%D=2/10%Time=67A9B363%P=aarch64-unknown-linux
+</span></span><span class="line"><span class="cl">SF:-gnu%r(GetRequest,4A8,&#34;HTTP/1\.1\x20200\x20OK\r\nServer:\x20Unit/1\.33\
+</span></span><span class="line"><span class="cl">SF:.0\r\nDate:\x20Mon,\x2010\x20Feb\x202025\x2008:05:55\x20GMT\r\nContent-
+</span></span><span class="line"><span class="cl">SF:Type:\x20application/json\r\nContent-Length:\x201042\r\nConnection:\x20
+</span></span><span class="line"><span class="cl">SF:close\r\n\r\n{\r\n\t\&#34;certificates\&#34;:\x20{},\r\n\t\&#34;js_modules\&#34;:\x20{}
+</span></span><span class="line"><span class="cl">SF:,\r\n\t\&#34;config\&#34;:\x20{\r\n\t\t\&#34;listeners\&#34;:\x20{},\r\n\t\t\&#34;routes\&#34;:
+</span></span><span class="line"><span class="cl">SF:\x20\[\],\r\n\t\t\&#34;applications\&#34;:\x20{}\r\n\t},\r\n\r\n\t\&#34;status\&#34;:\x
+</span></span><span class="line"><span class="cl">SF:20{\r\n\t\t\&#34;modules\&#34;:\x20{\r\n\t\t\t\&#34;python\&#34;:\x20{\r\n\t\t\t\t\&#34;ver
+</span></span><span class="line"><span class="cl">SF:sion\&#34;:\x20\&#34;3\.11\.2\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr/lib/unit/modules
+</span></span><span class="line"><span class="cl">SF:/python3\.11\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;php\&#34;:\x20{\r\n\t\t
+</span></span><span class="line"><span class="cl">SF:\t\t\&#34;version\&#34;:\x20\&#34;8\.2\.18\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr/lib/uni
+</span></span><span class="line"><span class="cl">SF:t/modules/php\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;perl\&#34;:\x20{\r\n\t
+</span></span><span class="line"><span class="cl">SF:\t\t\t\&#34;version\&#34;:\x20\&#34;5\.36\.0\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr/lib/u
+</span></span><span class="line"><span class="cl">SF:nit/modules/perl\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;ruby\&#34;:\x20{\r\
+</span></span><span class="line"><span class="cl">SF:n\t\t\t\t\&#34;version\&#34;:\x20\&#34;3\.1\.2\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr/lib
+</span></span><span class="line"><span class="cl">SF:/unit/modules/ruby\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;java\&#34;:\x20{\
+</span></span><span class="line"><span class="cl">SF:r\n\t\t\t\t\&#34;version\&#34;:\x20\&#34;17\.0\.11\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/usr
+</span></span><span class="line"><span class="cl">SF:/lib/unit/modules/java17\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t\t\&#34;wasm\&#34;:
+</span></span><span class="line"><span class="cl">SF:\x20{\r\n\t\t\t\t\&#34;version\&#34;:\x20\&#34;0\.1\&#34;,\r\n\t\t\t\t\&#34;lib\&#34;:\x20\&#34;/us
+</span></span><span class="line"><span class="cl">SF:r/lib/unit/modules/wasm\.unit\.so\&#34;\r\n\t\t\t},\r\n\r\n\t\t&#34;)%r(HTTPOpt
+</span></span><span class="line"><span class="cl">SF:ions,C7,&#34;HTTP/1\.1\x20405\x20Method\x20Not\x20Allowed\r\nServer:\x20Uni
+</span></span><span class="line"><span class="cl">SF:t/1\.33\.0\r\nDate:\x20Mon,\x2010\x20Feb\x202025\x2008:05:55\x20GMT\r\n
+</span></span><span class="line"><span class="cl">SF:Content-Type:\x20application/json\r\nContent-Length:\x2035\r\nConnectio
+</span></span><span class="line"><span class="cl">SF:n:\x20close\r\n\r\n{\r\n\t\&#34;error\&#34;:\x20\&#34;Invalid\x20method\.\&#34;\r\n}\r\
+</span></span><span class="line"><span class="cl">SF:n&#34;)%r(FourOhFourRequest,C3,&#34;HTTP/1\.1\x20404\x20Not\x20Found\r\nServer:
+</span></span><span class="line"><span class="cl">SF:\x20Unit/1\.33\.0\r\nDate:\x20Mon,\x2010\x20Feb\x202025\x2008:05:55\x20
+</span></span><span class="line"><span class="cl">SF:GMT\r\nContent-Type:\x20application/json\r\nContent-Length:\x2040\r\nCo
+</span></span><span class="line"><span class="cl">SF:nnection:\x20close\r\n\r\n{\r\n\t\&#34;error\&#34;:\x20\&#34;Value\x20doesn&#39;t\x20ex
+</span></span><span class="line"><span class="cl">SF:ist\.\&#34;\r\n}\r\n&#34;);
+</span></span><span class="line"><span class="cl">MAC Address: EE:67:54:A9:FD:C8 (Unknown)
+</span></span><span class="line"><span class="cl">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Host script results:
+</span></span><span class="line"><span class="cl">|_nbstat: NetBIOS name: ICECREAM, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)
+</span></span><span class="line"><span class="cl">| smb2-time: 
+</span></span><span class="line"><span class="cl">|   date: 2025-02-10T08:05:55
+</span></span><span class="line"><span class="cl">|_  start_date: N/A
+</span></span><span class="line"><span class="cl">| smb2-security-mode: 
+</span></span><span class="line"><span class="cl">|   3:1:1: 
+</span></span><span class="line"><span class="cl">|_    Message signing enabled but not required
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap done: 1 IP address (1 host up) scanned in 14.77 seconds
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="反弹shell">反弹shell</h3>
+<p>看看smb服务</p></div><div class="post-footer">
+        <a href="/vuln_hmv3/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2024dasctf%E6%9A%91%E6%9C%9Fcrypto%E5%A4%8D%E7%8E%B0/">2024DASCTF暑期—Crypto复现</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ctf/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CTF</a></span></div><div class="content"><h2 id="前言">前言</h2>
 <p>感觉这是打的最有意思的一次比赛了，当时在火车站打开电脑写的，秒了一题，然后上火车了，一路很颠就没有再写了，复现一下前三题</p>
@@ -349,75 +603,6 @@ exp</p></div><div class="post-footer">
 exp</p></div><div class="post-footer">
         <a href="/moectf2024_crypto/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/crypto/">Crypto</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/vuln_hmv2/">Vuln AdmX_new & Empire_LupinOne</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="admx_new">AdmX_new</h2>
-<h3 id="靶场链接">靶场链接</h3>
-<p><a href="https://download.vulnhub.com/admx/AdmX_new.7z" target="_blank" rel="noopener noreffer ">https://download.vulnhub.com/admx/AdmX_new.7z</a></p>
-<h3 id="日常扫描">日常扫描</h3>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png"
-        data-srcset="https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png, https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png 1.5x, https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png 2x"
-        data-sizes="auto"
-        alt="https://www.helloimg.com/i/2025/02/01/679dd5311e56b.png"
-        title="image.png" />
-只有80端口开放，直接访问没什么东西，dirb扫描出来wordpress，访问看看，发现很慢，burp抓包发现重定向到192.168.159.145
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png"
-        data-srcset="https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png, https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png 1.5x, https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png 2x"
-        data-sizes="auto"
-        alt="https://www.helloimg.com/i/2025/02/01/679dd52e24b43.png"
-        title="image-1.png" /></p></div><div class="post-footer">
-        <a href="/vuln_hmv2/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/vuln_hmv1/">Vuln EvilBox: One & BoredHackerBlog_Cloud_AV</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Zsm</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-12-12">2024-12-12</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%B6%E5%9C%BA/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>靶场</a></span></div><div class="content"><h2 id="evilbox-one">EvilBox: One</h2>
-<h3 id="靶场链接">靶场链接</h3>
-<p><a href="https://www.vulnhub.com/entry/evilbox-one,736/" target="_blank" rel="noopener noreffer ">https://www.vulnhub.com/entry/evilbox-one,736/</a></p>
-<h4 id="日常扫描">日常扫描</h4>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://www.helloimg.com/i/2025/01/09/677f6bd101d98.png"
-        data-srcset="https://www.helloimg.com/i/2025/01/09/677f6bd101d98.png, https://www.helloimg.com/i/2025/01/09/677f6bd101d98.png 1.5x, https://www.helloimg.com/i/2025/01/09/677f6bd101d98.png 2x"
-        data-sizes="auto"
-        alt="https://www.helloimg.com/i/2025/01/09/677f6bd101d98.png"
-        title="image.png" />
-发现这玩意靶机（这个需要自己配置一下网卡）
-nmap扫描端口
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://www.helloimg.com/i/2025/01/09/677f6c1aa458a.png"
-        data-srcset="https://www.helloimg.com/i/2025/01/09/677f6c1aa458a.png, https://www.helloimg.com/i/2025/01/09/677f6c1aa458a.png 1.5x, https://www.helloimg.com/i/2025/01/09/677f6c1aa458a.png 2x"
-        data-sizes="auto"
-        alt="https://www.helloimg.com/i/2025/01/09/677f6c1aa458a.png"
-        title="image-1.png" />
-没有用，dis或者是dirb扫一下
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://www.helloimg.com/i/2025/01/09/677f6c1be4db5.png"
-        data-srcset="https://www.helloimg.com/i/2025/01/09/677f6c1be4db5.png, https://www.helloimg.com/i/2025/01/09/677f6c1be4db5.png 1.5x, https://www.helloimg.com/i/2025/01/09/677f6c1be4db5.png 2x"
-        data-sizes="auto"
-        alt="https://www.helloimg.com/i/2025/01/09/677f6c1be4db5.png"
-        title="image-2.png" />
-发现这几个，一个一个点进去看一眼，http://192.168.64.4/secret/ 网页是纯白的，
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://www.helloimg.com/i/2025/01/09/677f6c1b24285.png"
-        data-srcset="https://www.helloimg.com/i/2025/01/09/677f6c1b24285.png, https://www.helloimg.com/i/2025/01/09/677f6c1b24285.png 1.5x, https://www.helloimg.com/i/2025/01/09/677f6c1b24285.png 2x"
-        data-sizes="auto"
-        alt="https://www.helloimg.com/i/2025/01/09/677f6c1b24285.png"
-        title="image-4.png" /></p></div><div class="post-footer">
-        <a href="/vuln_hmv1/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

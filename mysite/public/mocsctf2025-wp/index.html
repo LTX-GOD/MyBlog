@@ -13,7 +13,7 @@ web shuke-beita 这个真的是签到了xd，f12进去可以看见一行(documen
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-07-17T19:20:00+08:00">
-    <meta property="article:modified_time" content="2025-07-17T19:20:00+08:00">
+    <meta property="article:modified_time" content="2025-08-31T15:05:01+08:00">
     <meta property="article:tag" content="Crypto">
     <meta property="og:image" content="https://www.zhuangsanmeng.xyz/">
 
@@ -34,8 +34,8 @@ web shuke-beita 这个真的是签到了xd，f12进去可以看见一行(documen
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/www.zhuangsanmeng.xyz\/mocsctf2025-wp\/"
-        },"genre": "posts","keywords": "crypto","wordcount":  2095 ,
-        "url": "https:\/\/www.zhuangsanmeng.xyz\/mocsctf2025-wp\/","datePublished": "2025-07-17T19:20:00+08:00","dateModified": "2025-07-17T19:20:00+08:00","publisher": {
+        },"genre": "posts","keywords": "crypto","wordcount":  2788 ,
+        "url": "https:\/\/www.zhuangsanmeng.xyz\/mocsctf2025-wp\/","datePublished": "2025-07-17T19:20:00+08:00","dateModified": "2025-08-31T15:05:01+08:00","publisher": {
             "@type": "Organization",
             "name": "zsm"},"author": {
                 "@type": "Person",
@@ -137,8 +137,8 @@ web shuke-beita 这个真的是签到了xd，f12进去可以看见一行(documen
         
     
 
-<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-17">2025-07-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2095 words&nbsp;
-            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/mocsctf2025-wp/" class="leancloud_visitors" data-flag-title="Mocsctf2025 Wp">
+<i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-17">2025-07-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2788 words&nbsp;
+            <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/mocsctf2025-wp/" class="leancloud_visitors" data-flag-title="Mocsctf2025 Wp">
                 <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span
                     class=leancloud-visitors-count></span>&nbsp;views
             </span>&nbsp;</div>
@@ -162,7 +162,12 @@ web shuke-beita 这个真的是签到了xd，f12进去可以看见一行(documen
       <ul>
         <li><a href="#ez-matrix">ez-matrix</a></li>
         <li><a href="#ez-learning">ez-learning</a></li>
-        <li><a href="#ez-klepto">ez-klepto</a></li>
+        <li><a href="#ez-klepto">ez-klepto</a>
+          <ul>
+            <li><a href="#比赛时的非预期解">比赛时的非预期解</a></li>
+            <li><a href="#预期解">预期解</a></li>
+          </ul>
+        </li>
         <li><a href="#ez-math">ez-math</a></li>
         <li><a href="#ez-bcrypt补题">ez-bcrypt(补题)</a></li>
         <li><a href="#ez-dhke补题">ez-DHKE(补题)</a></li>
@@ -291,14 +296,285 @@ web shuke-beita 这个真的是签到了xd，f12进去可以看见一行(documen
 <h3 id="ez-learning">ez-learning</h3>
 <p>第一部分直接分解n，第二部分费马分解，第三部分小e攻击，第四部分共模攻击</p>
 <h3 id="ez-klepto">ez-klepto</h3>
+<h4 id="比赛时的非预期解">比赛时的非预期解</h4>
 <p>Y可以开平方分解出来PQ，s的恢复方法是<code>s=pow(n&gt;&gt;1024,d_Y,Y)</code>，然后利用漏洞恢复p即可<code>p = gmpy2.next_prime(int(sha256(str(s).encode() * 4).hexdigest(), 16))</code></p>
 <p>后面求出q，直接拿q算就行了</p>
+<h4 id="预期解">预期解</h4>
+<p>官方wp出来了，看了一下，原来是论文啊，Kleptography: Using Cryptography Against Cryptography这个论文，赛时没有找到</p>
+<p>简单的看了一下，不难其实，就直接打，没有魔改什么</p>
+<p>exp.py</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha256</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">gmpy2</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fermat</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">iroot</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># y^2 = x^2 - num</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">y2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">num</span>
+</span></span><span class="line"><span class="cl">        <span class="n">y</span> <span class="o">=</span> <span class="n">iroot</span><span class="p">(</span><span class="n">y2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="o">==</span> <span class="n">y2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Y</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">P</span> <span class="o">=</span> <span class="n">fermat</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Q</span> <span class="o">=</span> <span class="n">Y</span><span class="o">//</span><span class="n">P</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">P</span> <span class="o">*</span> <span class="n">Q</span> <span class="o">==</span> <span class="n">Y</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="mi">65537</span><span class="p">,(</span><span class="n">P</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Q</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">c_s</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="n">n</span><span class="p">)[</span><span class="mi">2</span><span class="p">:</span><span class="mi">1023</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">c_s</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">next_prime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sha256</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span><span class="mi">16</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">gcd</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;get p&#39;</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span> <span class="o">=</span> <span class="n">n</span><span class="o">//</span><span class="n">p</span>
+</span></span><span class="line"><span class="cl">    <span class="n">phi</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="mi">65537</span><span class="p">,</span><span class="n">phi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">long_to_bytes</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么为什么非预期可以呢，其实就是</p>
+<p>因为
+</p>
+\[
+\texttt{tmp} = (c \ll 1024) + RND,
+\]<p>
+而
+</p>
+\[
+n = \texttt{tmp} - r,
+\]<p>
+所以
+</p>
+\[
+\frac{n}{2^{1024}} = c + \frac{RND - r}{2^{1024}}.
+\]<p>注意：
+</p>
+\[
+RND < 2^{1024}, \quad r < p \approx 2^{512},
+\]<p>
+因此
+</p>
+\[
+|RND - r| < 2^{1024},
+\quad \frac{RND - r}{2^{1024}} \in (-1,1).
+\]<p>也就是说
+</p>
+\[
+\frac{n}{2^{1024}} = c + \varepsilon, \quad \varepsilon \in (-1,1).
+\]<p>于是直接取整：
+</p>
+\[
+c \approx n \gg 1024,
+\]<p>
+最多差 1（因为可能进位/借位），</p>
+<p>这就是课件里所说的：
+<em>“the (-r) operation will not ruin $c$ by more than one bit”</em>。</p>
 <h3 id="ez-math">ez-math</h3>
 <p>当时时间比较紧，ai一把梭出来了，现在看看</p>
 <p>pq直接开平方出来，后面的处理就是crt了xd</p>
 <h3 id="ez-bcrypt补题">ez-bcrypt(补题)</h3>
-<p>抽象题哥们，bp爆破，看响应，部分会有flag</p>
-<h3 id="ez-dhke补题">ez-DHKE(补题)</h3>
+<p>index.php</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">generate_uuid_v4</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">random_bytes</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$data</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="nx">chr</span><span class="p">(</span><span class="nx">ord</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x0f</span> <span class="o">|</span> <span class="mh">0x40</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$data</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="nx">chr</span><span class="p">(</span><span class="nx">ord</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0x3f</span> <span class="o">|</span> <span class="mh">0x80</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">vsprintf</span><span class="p">(</span><span class="s1">&#39;%s%s-%s-%s-%s-%s%s%s&#39;</span><span class="p">,</span> <span class="nx">str_split</span><span class="p">(</span><span class="nx">bin2hex</span><span class="p">(</span><span class="nv">$data</span><span class="p">),</span> <span class="mi">4</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$flag</span> <span class="o">=</span> <span class="nx">file_get_contents</span><span class="p">(</span><span class="s1">&#39;/flag.txt&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">session_start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$usernameAdmin</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$passwordAdmin</span> <span class="o">=</span> <span class="nx">generate_uuid_v4</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$entropy</span> <span class="o">=</span> <span class="s2">&#34;My-password-is-super-secure-that-You&#39;d-never-guess-it-Hia-hiahia&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;POST&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$username</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$password</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$hash</span> <span class="o">=</span> <span class="nx">password_hash</span><span class="p">(</span><span class="nv">$usernameAdmin</span> <span class="o">.</span> <span class="nv">$entropy</span> <span class="o">.</span> <span class="nv">$passwordAdmin</span><span class="p">,</span> <span class="nx">PASSWORD_BCRYPT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$usernameAdmin</span> <span class="o">===</span> <span class="nv">$username</span> <span class="o">&amp;&amp;</span> <span class="nx">password_verify</span><span class="p">(</span><span class="nv">$username</span> <span class="o">.</span> <span class="nv">$entropy</span> <span class="o">.</span> <span class="nv">$password</span><span class="p">,</span> <span class="nv">$hash</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;logged_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是题目给的php代码，可以注意到密码用的是<code>PASSWORD_BCRYPT</code>，这个方法用72长度的加密，题目中的<code>entropy</code>是69字节，那么3字节是可以爆破的，多线程爆破就行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">combinations</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">password</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">password</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">i</span><span class="si">}{</span><span class="n">j</span><span class="si">}{</span><span class="n">k</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">try_password</span><span class="p">(</span><span class="n">password_attempt</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;admin&#34;</span><span class="p">,</span> <span class="s2">&#34;password&#34;</span><span class="p">:</span> <span class="n">password_attempt</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s2">&#34;MOCSCTF{&#34;</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Found flag: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">password_attempt</span><span class="si">}</span><span class="s2"> is not right&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">start_threads</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">try_password</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="s2">&#34;Found flag&#34;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">exit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start_threads</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ez-dhke补题">ez-DHKE(补题)</h3>
 <p>task.py</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -703,7 +979,7 @@ web shuke-beita 这个真的是签到了xd，f12进去可以看见一行(documen
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2025-07-17</span>
+                <span>Updated on 2025-08-31</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
